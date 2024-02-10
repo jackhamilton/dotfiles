@@ -11,6 +11,12 @@ Plugin 'rust-lang/rust.vim'
 call vundle#end()
 filetype plugin indent on
 
+let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
+if empty(glob(data_dir . '/autoload/plug.vim'))
+  silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
 call plug#begin()
 "Plug 'sheerun/vim-polyglot'
 "Plug 'honza/vim-snippets'
@@ -87,26 +93,14 @@ set softtabstop=0
 set expandtab
 set shiftwidth=4
 
-augroup nord-theme-overrides
-  autocmd!
+"augroup nord-theme-overrides
+"  autocmd!
   " Use 'nord7' as foreground color for Vim comment titles.
-  autocmd ColorScheme nord highlight Comment ctermfg=178 guifg=#dfaf00
-augroup END
+"  autocmd ColorScheme nord highlight Comment ctermfg=178 guifg=#dfaf00
+"augroup END
 
-colorscheme nord
+"colorscheme nord
 
-
-let g:lightline = {
-        \ 'colorscheme': 'nord',
-        \ 'active': {
-        \       'left': [ [ 'mode', 'paste' ],
-        \                 [ 'readonly', 'filename', 'modified' ] ],
-        \       'right': [ [ 'lineinfo','filetype' ] ]
-        \ },
-        \ 'inactive': {
-        \       'right': [ [ 'lineinfo','filetype' ] ]
-        \ },
-        \ }
 " fix backspace
 set backspace=indent,eol,start
 
