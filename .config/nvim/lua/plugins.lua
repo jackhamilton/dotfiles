@@ -1,5 +1,9 @@
 vim.cmd [[packadd packer.nvim]]
 
+require 'lspconfig'.sourcekit.setup {
+    cmd = { '$TOOLCHAIN_PATH/usr/bin/sourcekit-lsp' }
+}
+
 return require('packer').startup(function(use)
     -- Packer can manage itself
     use 'wbthomason/packer.nvim'
