@@ -8,7 +8,7 @@ export ZSH="$HOME/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="robbyrussell"
+ZSH_THEME="agnoster"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -41,7 +41,7 @@ ZSH_THEME="robbyrussell"
 # DISABLE_AUTO_TITLE="true"
 
 # Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
+ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
 # You can also set it to another string to have that shown instead of the default red dots.
@@ -70,7 +70,36 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
+[[ ! -d "$HOME/.antigen" ]] && git clone https://github.com/zsh-users/antigen.git "$HOME/.antigen"
+source "$HOME/.antigen/antigen.zsh"
+
+# Set the default plugin repo to be zsh-utils
+antigen use belak/zsh-utils --branch=main
+
+# Specify completions we want before the completion module
+antigen bundle zsh-users/zsh-completions
+
+# Specify plugins we want
+plugins=(envrc)
+antigen bundle editor@main
+antigen bundle history@main
+antigen bundle prompt@main
+antigen bundle utility@main
+antigen bundle completion@main
+antigen bundle akash329d/zsh-alias-finder
+antigen bundle Junker/zsh-archlinux@main
+antigen bundle desyncr/auto-ls
+antigen bundle zpm-zsh/undollar
+antigen bundle aubreypwd/zsh-plugin-fd@1.0.0
+antigen bundle jeffreytse/zsh-vi-mode
+antigen bundle zsh-users/zsh-autosuggestions
+AUTO_LS_COMMANDS=(/usr/bin/lsd git-status)
+
+# Specify additional external plugins we want
+antigen bundle zsh-users/zsh-syntax-highlighting
+
+# Load everything
+antigen apply
 
 source $ZSH/oh-my-zsh.sh
 
@@ -87,6 +116,7 @@ source $ZSH/oh-my-zsh.sh
 # else
 #   export EDITOR='mvim'
 # fi
+export EDITOR='nvim'
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -99,3 +129,12 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+alias cd=z
+alias cat="bat -P"
+alias curl=curlie
+alias pacin="sudo pacman -S"
+alias find=fd
+alias ls=lsd
+
+eval "$(zoxide init zsh)"
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"

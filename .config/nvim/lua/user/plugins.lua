@@ -30,6 +30,7 @@ return {
             "MunifTanjim/nui.nvim",
         }
     },
+    { 'kassio/neoterm' },
 
     { "ellisonleao/glow.nvim", config = true, cmd = "Glow" }, -- Markdown preview, :Glow/:Glow!
 }
