@@ -14,16 +14,15 @@ end
 
 require 'lspconfig'.pyright.setup { on_attach = on_attach }
 
-if vim.fn.has("macunix") then
-    require 'lspconfig'.sourcekit.setup {
-        cmd = { '/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/sourcekit-lsp' }
-    }
-end
-
 -- if client.supports_method("textDocument/formatting") then
 --     vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
 --     vim.cmd("autocmd BufWritePre lua vim.lsp.buf.format()")
 -- end
+
+vim.keymap.set('n', '<space>e', vim.diagnostic.open_float)
+vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
+vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
+vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist)
 
 vim.api.nvim_create_autocmd('LspAttach', {
     group = vim.api.nvim_create_augroup('UserLspConfig', {}),
@@ -37,6 +36,8 @@ vim.api.nvim_create_autocmd('LspAttach', {
         vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
         --puts doc header info into a float page
         vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
+        vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
+        vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
 
         -- workspace management. Necessary for multi-module projects
         vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, opts)
