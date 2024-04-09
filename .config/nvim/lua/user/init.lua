@@ -1,14 +1,9 @@
 local on_attach = function(client, bufnr)
     local bufopts = { noremap = true, silent = true, buffer = bufnr }
-
     vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
-
     vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
-
     vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
-
     vim.keymap.set('n', 'lr', vim.lsp.buf.rename, bufopts)
-
     vim.keymap.set('n', '<space>lf', function() vim.lsp.buf.format { async = true } end, bufopts)
 end
 
@@ -33,9 +28,10 @@ vim.api.nvim_create_autocmd('LspAttach', {
         -- buffer local mappings
         local opts = { buffer = ev.buf }
         -- go to definition
-        vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
+        -- vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
         --puts doc header info into a float page
         vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
+        vim.keymap.set('n', 'J', vim.lsp.buf.definition, opts)
         vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
         vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
 

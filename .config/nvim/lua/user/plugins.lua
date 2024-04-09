@@ -13,6 +13,18 @@ return {
     { "hrsh7th/nvim-cmp" }, -- Code autocompletion
     { "hrsh7th/cmp-nvim-lsp" },
 
+    -- Lsp
+    {
+        'nvimdev/lspsaga.nvim',
+        config = function()
+            require('lspsaga').setup({})
+        end,
+        dependencies = {
+            'nvim-treesitter/nvim-treesitter',
+            'nvim-tree/nvim-web-devicons',
+        },
+    },
+
     -- Snippets
     { 'L3MON4D3/LuaSnip' },
     { 'rafamadriz/friendly-snippets' },

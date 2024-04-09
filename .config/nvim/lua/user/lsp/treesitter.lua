@@ -21,6 +21,7 @@ treesitter.setup({
         "vim",
         "rust",
         "markdown",
+        "markdown_inline",
         "bash",
     },
     auto_install = true,
