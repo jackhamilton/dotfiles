@@ -6,7 +6,10 @@ return {
     { "nvim-lua/plenary.nvim" },           -- Dependency
 
     -- General
-    { 'echasnovski/mini.nvim',            version = false },
+    {
+        'echasnovski/mini.nvim',
+        version = false
+    },
 
     -- Autocompletion
     { 'hrsh7th/cmp-buffer' },
@@ -15,6 +18,11 @@ return {
     { 'hrsh7th/cmp-nvim-lua' },
     { "hrsh7th/nvim-cmp" }, -- Code autocompletion
     { "hrsh7th/cmp-nvim-lsp" },
+    {
+        'echasnovski/mini.pairs',
+        event = "VeryLazy",
+        opts = {},
+    },
 
     -- Lsp
     {
@@ -64,7 +72,11 @@ return {
         event = 'VimEnter',
         dependencies = 'nvim-tree/nvim-web-devicons'
     },
-    { 'lewis6991/gitsigns.nvim' },
+    {
+        'lewis6991/gitsigns.nvim',
+        event = 'VimEnter',
+        opts = {},
+    },
     {
         'freddiehaddad/feline.nvim',
         opts = {},
@@ -95,6 +107,7 @@ return {
                 org_default_notes_file = '~/orgfiles/refile.org',
             })
         end,
+        opts = {},
     },
 
     -- Themes
