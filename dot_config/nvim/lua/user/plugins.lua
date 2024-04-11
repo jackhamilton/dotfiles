@@ -5,6 +5,9 @@ return {
     { "jose-elias-alvarez/null-ls.nvim" }, -- for formatters and linters
     { "nvim-lua/plenary.nvim" },           -- Dependency
 
+    -- General
+    { 'echasnovski/mini.nvim',            version = false },
+
     -- Autocompletion
     { 'hrsh7th/cmp-buffer' },
     { 'hrsh7th/cmp-path' },
