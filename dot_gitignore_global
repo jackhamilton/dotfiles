@@ -1,3 +1,5 @@
 *.DS_STORE
 *.envrc
 *.resolved
+buildServer.json
+-workspace
