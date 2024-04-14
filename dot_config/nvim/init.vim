@@ -33,15 +33,15 @@ augroup numbertoggle
     autocmd BufLeave,FocusLost,InsertEnter,WinLeave   * if &nu                  | set nornu | endif
 augroup END
 
-noremap m h
-noremap n j
-noremap e k
-noremap i l
-noremap j n
-noremap J N
-noremap h m
-noremap l i
-noremap k e
+" noremap m h
+" noremap n j
+" noremap e k
+" noremap i l
+" noremap j n
+" noremap J N
+" noremap h m
+" noremap l i
+" noremap k e
 
 nnoremap <C-m> <C-w>m
 nnoremap <C-n> <C-w>n
