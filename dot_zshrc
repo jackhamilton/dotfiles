@@ -61,8 +61,6 @@ alias curl=curlie
 alias pacin="sudo pacman -S"
 alias find=fd
 alias ls=lsd
-alias gcc="sccache gcc"
-alias cmake="cmake -DCMAKE_C_COMPILER_LAUNCHER=sccache -DCMAKE_CXX_COMPILER_LAUNCHER=sccache"
 
 eval "$(zoxide init zsh)"
 eval "$(direnv hook zsh)"

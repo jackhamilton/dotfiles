@@ -6,3 +6,5 @@ else
     export PATH="$PATH:$HOME/.rvm/bin"
     export PATH="$PATH:$HOME/.cargo/bin"
 fi
+alias gcc="sccache gcc"
+alias cmake="cmake -DCMAKE_C_COMPILER_LAUNCHER=sccache -DCMAKE_CXX_COMPILER_LAUNCHER=sccache"
