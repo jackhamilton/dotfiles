@@ -37,7 +37,11 @@ antigen bundle zpm-zsh/undollar
 antigen bundle aubreypwd/zsh-plugin-fd@1.0.0
 antigen bundle jeffreytse/zsh-vi-mode
 antigen bundle zsh-users/zsh-autosuggestions
+if [[ "$OSTYPE" == "gnu-linux"* ]]; then
+AUTO_LS_COMMANDS=(/usr/bin/lsd git-status)
+elif [[ "$OSTYPE" == "darwin"* ]]; then
 AUTO_LS_COMMANDS=(/opt/homebrew/bin/lsd git-status)
+fi
 
 # Specify additional external plugins we want
 antigen bundle zsh-users/zsh-syntax-highlighting
