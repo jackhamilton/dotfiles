@@ -225,6 +225,7 @@ bindsym $mod+Shift+Ctrl+0 move container to workspace number 0; workspace number
 #
 # Layout stuff:
 #
+exec sworkstyle &> /tmp/sworkstyle.log
 
 #gaps and borders
 default_border pixel 3
