@@ -110,7 +110,7 @@ bindsym $mod+q kill
 bindsym $mod+d exec ~/.config/rofi/launchers/type-6/launcher.sh
 
 # Start your browser
-bindsym $mod+w exec firefox
+bindsym $mod+w exec firefox-nightly
 # bindsym $mod+Shift+w exec microsoft-edge-beta --enable-features=UseOzonePlatform --ozone-platform=wayland
 
 # Start your file manager
