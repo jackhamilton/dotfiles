@@ -53,7 +53,7 @@ nnoremap <A-Left> <C-w>h
 nnoremap <A-Up> <C-w>k
 nnoremap <A-Down> <C-w>j
 nnoremap <A-Right> <C-w>l
-nnoremap <A-n> :Neotree<Enter>
+nnoremap <C-n> :Neotree<Enter>
 
 "autocmd CursorHold <buffer> lua vim.lsp.diagnostic.show_line_diagnostics({ focusable = false })
 
