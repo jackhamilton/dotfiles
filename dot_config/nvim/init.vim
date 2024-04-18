@@ -49,10 +49,10 @@ autocmd FileChangedShellPost *
 " noremap l i
 " noremap k e
 
-nnoremap <C-m> <C-w>m
-nnoremap <C-n> <C-w>n
-nnoremap <C-e> <C-w>e
-nnoremap <C-i> <C-w>i
+nnoremap <C-Left> <C-w>h
+nnoremap <C-Up> <C-w>k
+nnoremap <C-Down> <C-w>j
+nnoremap <C-Right> <C-w>l
 nnoremap <C-n> :Neotree<Enter>
 
 "autocmd CursorHold <buffer> lua vim.lsp.diagnostic.show_line_diagnostics({ focusable = false })
