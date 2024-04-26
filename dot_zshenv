@@ -5,6 +5,7 @@ else
     export PATH="$HOME/.rbenv/bin:$PATH"
     export PATH="$PATH:$HOME/.rvm/bin"
     export PATH="$PATH:$HOME/.cargo/bin"
+    export PATH="$PATH:$HOME/.local/bin"
 fi
 export RUSTC_WRAPPER=sccache
 alias gcc="sccache gcc"

@@ -10,6 +10,7 @@ text/cql-expression=nvim.desktop;
 text/cql-identifier=nvim.desktop;
 text/css=nvim.desktop;
 text/csv=nvim.desktop;
+libreoffice-calc.desktop;
 text/csv-schema=nvim.desktop;
 text/directory=nvim.desktop;
 text/dns=nvim.desktop;
@@ -337,3 +338,4 @@ image/x-tga=org.gnome.Loupe.desktop
 inode/directory=org.gnome.Nautilus.desktop
 message/rfc822=betterbird.desktop
 text/calendar=org.gnome.Calendar.desktop
+text/csv=libreoffice-calc.desktop
