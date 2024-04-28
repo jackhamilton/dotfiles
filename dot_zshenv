@@ -6,6 +6,7 @@ else
     export PATH="$PATH:$HOME/.rvm/bin"
     export PATH="$PATH:$HOME/.cargo/bin"
     export PATH="$PATH:$HOME/.local/bin"
+    export PATH="$PATH:$HOME/Android/Sdk/platform-tools"
 fi
 export RUSTC_WRAPPER=sccache
 alias gcc="sccache gcc"

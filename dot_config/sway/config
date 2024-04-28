@@ -94,9 +94,13 @@ exec nm-applet --indicator
 # exec $HOME/.config/sway/scripts/inactive-windows-transparency.py
 exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec autotiling
+workspace 4
 exec betterbird
-exec discord
-exec caps2esc
+workspace 1
+exec armcord
+workspace 3
+workspace 2
+exec firefox
 # exec_always {
 #     gsettings set $gnome-schema gtk-theme 'Arc-Dark'
 #     gsettings set $gnome-schema icon-theme 'Papirus'
@@ -305,7 +309,7 @@ bindsym $mod+r mode "resize"
 #
 # Rules
 # xprop WM_CLASS
-for_window [class="Songs of Syx"] resize set width 2560 height 1440, move position center 
+for_window [class="Songs of Syx"] floating enable
 for_window [app_id="blueman-manager"] floating enable, resize set width 680 height 400, \
     move position center
 for_window [app_id="pavucontrol"] floating enable, resize set width 680 height 400, \
