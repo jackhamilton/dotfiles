@@ -61,6 +61,9 @@ alias curl=curlie
 alias pacin="sudo pacman -S"
 alias find=fd
 alias ls=lsd
+alias gcc="sccache gcc"
+alias cmake="cmake -DCMAKE_C_COMPILER_LAUNCHER=sccache -DCMAKE_CXX_COMPILER_LAUNCHER=sccache"
+alias vimdiff="nvim -d"
 
 eval "$(zoxide init zsh)"
 eval "$(direnv hook zsh)"
@@ -125,3 +128,6 @@ eval "$(direnv hook zsh)"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
+
+# Created by `pipx` on 2024-04-21 17:00:31
+export PATH="$PATH:/home/jack/.local/bin"
