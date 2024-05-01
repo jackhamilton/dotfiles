@@ -25,8 +25,8 @@ alt-shift-down = 'move down'
 alt-shift-up = 'move up'
 alt-shift-right = 'move right'
 
-alt-h = 'split horizontal'
-alt-v = 'split vertical'
+# alt-h = 'split horizontal'
+# alt-v = 'split vertical'
 
 alt-f = 'fullscreen'
 
