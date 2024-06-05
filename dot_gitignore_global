@@ -3,3 +3,4 @@
 *.resolved
 buildServer.json
 -workspace
+.nvim/*
