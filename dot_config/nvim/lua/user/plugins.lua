@@ -22,10 +22,6 @@ return {
                 vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
             end
 
-            lspconfig["sourcekit"].setup({
-                capabilities = capabilities,
-                on_attach = on_attach,
-            })
         end,
     },
     {

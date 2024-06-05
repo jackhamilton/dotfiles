@@ -48,7 +48,9 @@ workspace 6 output DP-1
 workspace 7 output HDMI-A-1
 workspace 8 output DP-2
 workspace 9 output DP-1
+exec xrandr --output DP-2 --primary
 output * background ~/Downloads/mountain.jpg fill
+bindsym $mod+ctrl+0 resize set width 2560px height 1440px
 
 ### Input configuration
 #
@@ -163,7 +165,7 @@ bindsym Ctrl+Shift+Print exec sh $HOME/.config/sway/scripts/grimshot.sh copy out
 bindsym $mod+Shift+s exec sh $HOME/.config/sway/scripts/grimshot.sh copy area
 
 #
-# Moving around:
+# Moving around:bind app to monitor sway
 #
 
 # Move your focus around
@@ -309,7 +311,13 @@ bindsym $mod+r mode "resize"
 #
 # Rules
 # xprop WM_CLASS
-for_window [class="Songs of Syx"] floating enable
+assign [class="armcord"] 1
+assign [class="discord"] 1
+assign [app_id="firefox"] 3
+assign [class="steam"] 2
+assign [app_id="victoria3"] 2
+for_window [class="paradox launcher"] floating enable
+for_window [app_id="victoria3"] resize set width 2560 height 1440
 for_window [app_id="blueman-manager"] floating enable, resize set width 680 height 400, \
     move position center
 for_window [app_id="pavucontrol"] floating enable, resize set width 680 height 400, \
