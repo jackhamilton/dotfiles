@@ -9,6 +9,7 @@ end
 
 require 'lspconfig'.pyright.setup { on_attach = on_attach }
 require 'lspconfig'.gdscript.setup { on_attach = on_attach }
+require 'lspconfig'.sourcekit.setup {on_attach = on_attach }
 
 -- if client.supports_method("textDocument/formatting") then
 --     vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
