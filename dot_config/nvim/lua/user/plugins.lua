@@ -93,6 +93,7 @@ return {
     {
         "mfussenegger/nvim-lint",
         event = { "BufReadPre", "BufNewFile" },
+        enabled = function() return jit.os ~= "Linux" end,
         config = function()
             local lint = require("lint")
 

@@ -313,9 +313,11 @@ bindsym $mod+r mode "resize"
 # xprop WM_CLASS
 assign [class="armcord"] 1
 assign [class="discord"] 1
-assign [app_id="firefox"] 3
+# assign [app_id="firefox"] 3
 assign [class="steam"] 2
 assign [app_id="victoria3"] 2
+assign [class="steam.*"] 2
+for_window [class="steam.*"] resize set width 2560 height 1440
 for_window [class="Paradox Launcher"] floating enable
 for_window [app_id="victoria3"] resize set width 2560 height 1440
 for_window [app_id="blueman-manager"] floating enable, resize set width 680 height 400, \
