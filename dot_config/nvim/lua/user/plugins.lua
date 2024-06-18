@@ -314,6 +314,12 @@ return {
     },
     { 'ludovicchabant/vim-gutentags' },
     { 'kevinhwang91/nvim-bqf' },
+    {
+      'stevearc/oil.nvim',
+      opts = {},
+      -- Optional dependencies
+      dependencies = { "nvim-tree/nvim-web-devicons" },
+    },
     { 'kassio/neoterm' },
     {
         'nanozuki/tabby.nvim',
