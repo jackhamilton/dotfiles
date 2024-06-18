@@ -54,8 +54,8 @@ nnoremap <C-A-Up> <C-w>k
 nnoremap <C-A-Down> <C-w>j
 nnoremap <C-A-Right> <C-w>l
 nnoremap <C-n> :Neotree<Enter>
-nnoremap <C-S-o> :Telescope smart_open
-nnoremap <C-S-b> :Telescope buffers
+nnoremap <C-S-o> :Telescope smart_open<Enter>
+nnoremap <C-S-b> :Telescope buffers<Enter>
 
 "autocmd CursorHold <buffer> lua vim.lsp.diagnostic.show_line_diagnostics({ focusable = false })
 
