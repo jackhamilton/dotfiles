@@ -312,6 +312,8 @@ return {
             "MunifTanjim/nui.nvim",
         }
     },
+    { 'ludovicchabant/vim-gutentags' },
+    { 'kevinhwang91/nvim-bqf' },
     { 'kassio/neoterm' },
     {
         'nanozuki/tabby.nvim',
