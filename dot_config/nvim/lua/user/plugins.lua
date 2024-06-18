@@ -147,16 +147,6 @@ return {
         'echasnovski/mini.nvim',
         version = false
     },
-    {
-        'echasnovski/mini.files',
-    },
-
-    -- Autocompletion
-    {
-        'echasnovski/mini.pairs',
-        event = "VeryLazy",
-        opts = {},
-    },
 
     -- Lsp
     {
