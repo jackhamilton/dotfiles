@@ -63,7 +63,8 @@ alias find=fd
 alias ls=lsd
 alias gcc="sccache gcc"
 alias cmake="cmake -DCMAKE_C_COMPILER_LAUNCHER=sccache -DCMAKE_CXX_COMPILER_LAUNCHER=sccache"
-alias vimdiff="nvim -d"
+alias vdiff="nvim -d"
+alias cedit="chezmoi edit"
 
 eval "$(zoxide init zsh)"
 eval "$(direnv hook zsh)"
