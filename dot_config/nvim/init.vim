@@ -53,8 +53,12 @@ nnoremap <C-A-Left> <C-w>h
 nnoremap <C-A-Up> <C-w>k
 nnoremap <C-A-Down> <C-w>j
 nnoremap <C-A-Right> <C-w>l
-nnoremap <C-n> :Neotree<Enter>
-nnoremap <C-b> :Telescope buffers<Enter>
+nnoremap <C-A-u> <C-w>v
+nnoremap <C-A-y> <C-w>s
+nnoremap <C-n> :lua MiniFiles.open()<Enter>
+nnoremap <C-S-r> :Telescope smart_open<Enter>
+nnoremap <C-S-b> :Telescope buffers<Enter>
+nnoremap <C-S-o> :Telescope find_files<Enter>
 
 "autocmd CursorHold <buffer> lua vim.lsp.diagnostic.show_line_diagnostics({ focusable = false })
 
