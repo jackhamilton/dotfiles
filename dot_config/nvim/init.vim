@@ -53,6 +53,8 @@ nnoremap <C-A-Left> <C-w>h
 nnoremap <C-A-Up> <C-w>k
 nnoremap <C-A-Down> <C-w>j
 nnoremap <C-A-Right> <C-w>l
+nnoremap <C-A-u> <C-w>v
+nnoremap <C-A-y> <C-w>s
 nnoremap <C-n> :Neotree<Enter>
 nnoremap <C-S-r> :Telescope smart_open<Enter>
 nnoremap <C-S-b> :Telescope buffers<Enter>
