@@ -137,15 +137,15 @@
 <C-A-Up>	dot_config/nvim/init.vim	/^nnoremap <C-A-Up> <C-w>k$/;"	m
 <C-A-u>	dot_config/nvim/init.vim	/^nnoremap <C-A-u> <C-w>v$/;"	m
 <C-A-y>	dot_config/nvim/init.vim	/^nnoremap <C-A-y> <C-w>s$/;"	m
-<C-S-b>	dot_config/nvim/init.vim	/^nnoremap <C-S-b> :Telescope buffers<Enter>$/;"	m
-<C-S-o>	dot_config/nvim/init.vim	/^nnoremap <C-S-o> :Telescope find_files<Enter>$/;"	m
-<C-S-r>	dot_config/nvim/init.vim	/^nnoremap <C-S-r> :Telescope smart_open<Enter>$/;"	m
+<C-S-b>	dot_config/nvim/init.vim	/^nnoremap <C-S-b> :Telescope buffers<CR>$/;"	m
+<C-S-o>	dot_config/nvim/init.vim	/^nnoremap <C-S-o> :Telescope find_files<CR>$/;"	m
+<C-S-r>	dot_config/nvim/init.vim	/^nnoremap <C-S-r> :Telescope smart_open<CR>$/;"	m
 <C-h>	.config/nvim/init.vim	/^nnoremap <C-h> <C-w>h$/;"	m
 <C-j>	.config/nvim/init.vim	/^nnoremap <C-j> <C-w>j$/;"	m
 <C-k>	.config/nvim/init.vim	/^nnoremap <C-k> <C-w>k$/;"	m
 <C-l>	.config/nvim/init.vim	/^nnoremap <C-l> <C-w>l$/;"	m
 <C-n>	.config/nvim/init.vim	/^nnoremap <C-n> :Neotree<Enter>$/;"	m
-<C-n>	dot_config/nvim/init.vim	/^nnoremap <C-n> :lua MiniFiles.open()<Enter>$/;"	m
+<C-n>	dot_config/nvim/init.vim	/^nnoremap <C-n> :lua MiniFiles.open()<CR>$/;"	m
 <Esc>	.vimrc	/^inoremap <Esc> <Esc>l$/;"	m
 <Esc>	.vimrc	/^nnoremap <Esc> i$/;"	m
 <F6>	.vimrc	/^imap <F6> <Plug>(JavaComplete-Imports-AddMissing)$/;"	m
