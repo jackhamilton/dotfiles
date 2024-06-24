@@ -397,7 +397,6 @@ config	.config/nvim/lua/user/plugins.lua	/^        config = function()$/;"	f
 config	dot_config/nvim/lua/plugins/lazy/feline.lua	/^local function config(_, opts)$/;"	f
 config	dot_config/nvim/lua/plugins/lazy/lazyplugins.lua	/^                    config = function()$/;"	f
 config	dot_config/nvim/lua/plugins/lazy/lazyplugins.lua	/^        config = function()$/;"	f
-config	dot_config/nvim/lua/plugins/lazy/lazyplugins.lua	/^        config = function(_, opts) require'lsp_signature'.setup(opts) end$/;"	f
 config	dot_config/nvim/lua/plugins/lazy/lazyplugins.lua	/^        config = function(_, opts)$/;"	f
 confirm_cmd	.config/rofi/applets/bin/powermenu.sh	/^confirm_cmd() {$/;"	f
 confirm_cmd	.config/rofi/powermenu/type-1/powermenu.sh	/^confirm_cmd() {$/;"	f
@@ -448,7 +447,6 @@ copy_shot	.config/rofi/applets/bin/screenshot.sh	/^copy_shot () {$/;"	f
 copy_shot	dot_config/rofi/applets/bin/executable_screenshot.sh	/^copy_shot () {$/;"	f
 countdown	.config/rofi/applets/bin/screenshot.sh	/^countdown () {$/;"	f
 countdown	dot_config/rofi/applets/bin/executable_screenshot.sh	/^countdown () {$/;"	f
-cr_action	dot_config/nvim/lua/plugins/mini.lua	/^_G.cr_action = function()$/;"	f	unknown:_G
 create_directory_on_save	dot_config/nvim/lua/core/autocmds/utils.lua	/^local function create_directory_on_save()$/;"	f
 cursor_warp	.config/qtile/config-rofi.py	/^cursor_warp = False$/;"	v
 cursor_warp	.config/qtile/config.py	/^cursor_warp = False$/;"	v
