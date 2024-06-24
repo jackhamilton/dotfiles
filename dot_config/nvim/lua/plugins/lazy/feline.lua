@@ -158,7 +158,7 @@ local function config(_, opts)
                 str = ' ',
                 hl = {
                     fg = 'NONE',
-                    bg = 'black'
+                    bg = 'bg'
                 }
             },
             priority = -10
