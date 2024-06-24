@@ -15,7 +15,10 @@ if not rocks_enable then
     end
     vim.opt.rtp:prepend(lazypath)
     require("lazy").setup("lazyplugins")
-    require("plugins")
+    require("plugins.lspconfig")
+    require("plugins.mini")
+    require("plugins.tabby")
+    require("plugins.which-key")
 else
     do
         -- Specifies where to install/use rocks.nvim
