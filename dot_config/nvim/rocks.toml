@@ -1,0 +1,98 @@
+# This is your rocks.nvim plugins declaration file.
+# Here is a small yet pretty detailed example on how to use it:
+#
+# [plugins]
+# nvim-treesitter = "semver_version"  # e.g. "1.0.0"
+
+[config]
+plugins_dir = "plugins/"
+auto_setup = true
+colorscheme = "sonokai"
+
+# List of non-Neovim rocks.
+# This includes things like `toml` or other lua packages.
+[rocks]
+
+[treesitter]
+auto_highlight = "all"
+auto_install = "yes"
+
+# List of Neovim plugins to install alongside their versions.
+# If the plugin name contains a dot then you must add quotes to the key name!
+[plugins]
+"rocks.nvim" = "2.31.3"
+"rocks-config.nvim" = "2.0.0"
+"rocks-git.nvim" = "1.5.1"
+nvim-lspconfig = "0.1.8"
+nvim-lint = "scm"
+"conform.nvim" = "5.9.0"
+"mini.nvim" = "scm"
+"lspsaga.nvim" = "scm"
+nvim-dap = "0.8.0"
+nvim-dap-ui = "4.0.0"
+luasnip = "2.3.0"
+nvim-treesitter = "0.9.2"
+"rocks-treesitter.nvim" = "scm"
+neorg = { version = "8.7.1", opt = true, ft = "norg" }
+nvim-treesitter-context = "scm"
+"oil.nvim" = "2.10.0"
+"tabby.nvim" = { version = "2.5.1", opt = true, event = [ "TabNewEntered" ] }
+"feline.nvim" = "1.6.2"
+"which-key.nvim" = "2.1.0"
+"comment.nvim" = "0.8.0"
+"trouble.nvim" = "3.4.3"
+"todo-comments.nvim" = "1.2.0"
+"noice.nvim" = "4.2.2"
+"flash.nvim" = "1.18.3"
+neogen = "2.17.1"
+"nightfox.nvim" = "3.9.3"
+nvim-web-devicons = "0.100"
+"glow.nvim" = "0.2.0"
+"telescope.nvim" = { version = "scm", opt = true, cmd = "Telescope" }
+"rocks-lazy.nvim" = "scm"
+tree-sitter-toml = "scm"
+tree-sitter-vim = "scm"
+nvim-notify = "3.13.5"
+tree-sitter-regex = "scm"
+
+[plugins."smart-open"]
+git = "github:danielfalk/smart-open.nvim"
+
+[plugins.vim-gutentags]
+git = "github:ludovicchabant/vim-gutentags"
+
+[plugins.gutentags-plus]
+git = "github:skywind3000/gutentags_plus"
+
+[plugins.nvim-bqf]
+git = "github:kevinhwang91/nvim-bqf"
+
+[plugins.neoterm]
+git = "github:kassio/neoterm"
+
+[plugins."gitsigns.nvim"]
+git = "github:lewis6991/gitsigns.nvim"
+
+[plugins."nvcode-color-schemes.nvim"]
+git = "github:christianchiarulli/nvcode-color-schemes.vim"
+
+[plugins."colorbuddy.vim"]
+git = "github:tjdevries/colorbuddy.vim"
+
+[plugins.onebuddy]
+git = "github:Th3Whit3Wolf/onebuddy"
+
+[plugins.sonokai]
+git = "github:sainnhe/sonokai"
+
+[plugins.edge]
+git = "github:sainnhe/edge"
+
+[plugins."telescope-zf-native.nvim"]
+git = "github:natecraddock/telescope-zf-native.nvim"
+
+# Better diagnostics
+[plugins."lsp_lines.nvim"]
+git = "sourcehut:whynothugo/lsp_lines.nvim"
+opt = true
+event = "LspAttach"
