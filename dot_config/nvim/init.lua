@@ -14,7 +14,7 @@ if not rocks_enable then
       })
     end
     vim.opt.rtp:prepend(lazypath)
-    require("lazy").setup("lazyplugins")
+    require("lazy").setup("plugins.lazy")
     require("plugins.lspconfig")
     require("plugins.mini")
     require("plugins.tabby")
