@@ -14,7 +14,6 @@ colorscheme = "sonokai"
 [rocks]
 
 [treesitter]
-auto_highlight = "all"
 auto_install = "yes"
 
 # List of Neovim plugins to install alongside their versions.
@@ -54,16 +53,7 @@ tree-sitter-toml = "scm"
 tree-sitter-vim = "scm"
 nvim-notify = "3.13.5"
 tree-sitter-regex = "scm"
-
-# smartopen dependencies
-[plugins."sqlite.lua"]
-git = "kkharji/sqlite.lua"
-[plugins."telescope-fzy-native.nvim"]
-git = "nvim-telescope/telescope-fzy-native.nvim"
-
-[plugins."smart-open"]
-git = "github:danielfalk/smart-open.nvim"
-opt = true
+"mini.files" = "0.13.0"
 
 [plugins.vim-gutentags]
 git = "github:ludovicchabant/vim-gutentags"
@@ -74,8 +64,8 @@ git = "github:skywind3000/gutentags_plus"
 [plugins.nvim-bqf]
 git = "github:kevinhwang91/nvim-bqf"
 
-[plugins.neoterm]
-git = "github:kassio/neoterm"
+#[plugins.neoterm]
+#git = "github:kassio/neoterm"
 
 [plugins."gitsigns.nvim"]
 git = "github:lewis6991/gitsigns.nvim"
@@ -97,6 +87,16 @@ git = "github:sainnhe/edge"
 
 [plugins."telescope-zf-native.nvim"]
 git = "github:natecraddock/telescope-zf-native.nvim"
+
+# smartopen dependencies
+[plugins."sqlite.lua"]
+git = "kkharji/sqlite.lua"
+[plugins."telescope-fzy-native.nvim"]
+git = "nvim-telescope/telescope-fzy-native.nvim"
+
+[plugins."smart-open"]
+git = "github:danielfalk/smart-open.nvim"
+opt = true
 
 # Better diagnostics
 [plugins."lsp_lines.nvim"]
