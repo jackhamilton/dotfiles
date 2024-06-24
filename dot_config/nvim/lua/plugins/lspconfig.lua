@@ -169,6 +169,10 @@ local defaults = {
     flags = { debounce_text_changes = 150 },
 }
 
+if vim.fn.executable("sourcekit-lsp") == 1 then
+    lsp.sourcekit.setup(defaults)
+end
+
 -- C/C++
 if vim.fn.executable("clangd") == 1 then
     local clangd_defaults = require("lspconfig.server_configurations.clangd")
