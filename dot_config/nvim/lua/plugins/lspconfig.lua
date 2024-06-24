@@ -30,10 +30,10 @@ sign_define("DiagnosticSignWarn", { text = "", texthl = "DiagnosticSignWarn" 
 sign_define("DiagnosticSignInfo", { text = "", texthl = "DiagnosticSignInfo" })
 sign_define("DiagnosticSignHint", { text = "", texthl = "DiagnosticSignHint" })
 
-vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
-    vim.lsp.handlers.signature_help,
-    { border = "rounded", close_events = { "CursorMoved", "BufHidden", "InsertCharPre" } }
-)
+-- vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
+--     vim.lsp.handlers.signature_help,
+--     { border = "rounded", close_events = { "CursorMoved", "BufHidden", "InsertCharPre" } }
+-- )
 vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
     vim.lsp.handlers.hover,
     { border = "rounded", close_events = { "CursorMoved", "BufHidden" } }
@@ -77,17 +77,17 @@ local function on_attach(client, bufnr)
         range = capabilities.document_range_formatting,
     }
 
-    --- Signature
-    require("lsp_signature").on_attach({
-        bind = true,
-        fix_pos = true,
-        floating_window_above_cur_line = true,
-        doc_lines = 0,
-        hint_enable = true,
-        hint_prefix = "● ",
-        hint_scheme = "DiagnosticSignInfo",
-    }, bufnr)
-
+    -- --- Signature
+    -- require("lsp_signature").on_attach({
+    --     bind = true,
+    --     fix_pos = true,
+    --     floating_window_above_cur_line = true,
+    --     doc_lines = 0,
+    --     hint_enable = true,
+    --     hint_prefix = "● ",
+    --     hint_scheme = "DiagnosticSignInfo",
+    -- }, bufnr)
+    --
     -- Enable omnifunc-completion
     vim.opt_local.omnifunc = "v:lua.vim.lsp.omnifunc"
 

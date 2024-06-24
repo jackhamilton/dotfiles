@@ -395,7 +395,9 @@ conditional	.config/nvim/lua/user/lsp/null-ls.lua	/^local conditional = function
 config	.config/nvim/lua/plugins.lua	/^    use { "ellisonleao\/glow.nvim", config = function() require("glow").setup() end }$/;"	f
 config	.config/nvim/lua/user/plugins.lua	/^        config = function()$/;"	f
 config	dot_config/nvim/lua/plugins/lazy/feline.lua	/^local function config(_, opts)$/;"	f
+config	dot_config/nvim/lua/plugins/lazy/lazyplugins.lua	/^                    config = function()$/;"	f
 config	dot_config/nvim/lua/plugins/lazy/lazyplugins.lua	/^        config = function()$/;"	f
+config	dot_config/nvim/lua/plugins/lazy/lazyplugins.lua	/^        config = function(_, opts) require'lsp_signature'.setup(opts) end$/;"	f
 config	dot_config/nvim/lua/plugins/lazy/lazyplugins.lua	/^        config = function(_, opts)$/;"	f
 confirm_cmd	.config/rofi/applets/bin/powermenu.sh	/^confirm_cmd() {$/;"	f
 confirm_cmd	.config/rofi/powermenu/type-1/powermenu.sh	/^confirm_cmd() {$/;"	f
@@ -481,9 +483,9 @@ enabled	.config/nvim/lua/user/ui/feline.lua	/^        enabled = function()$/;"	f
 enabled	dot_config/nvim/lua/plugins/lazy/lazyplugins.lua	/^        enabled = function() return jit.os ~= "Linux" end,$/;"	f
 ensure_installed	dot_config/nvim/lua/plugins/lazy/lazyplugins.lua	/^            local function ensure_installed()$/;"	f
 error_msg	.config/nvim/plugin/packer_compiled.lua	/^local no_errors, error_msg = pcall(function()$/;"	f
-event_exited["dapui_config"]	dot_config/nvim/lua/plugins/lazy/lazyplugins.lua	/^            dap.listeners.before.event_exited["dapui_config"] = function()$/;"	f	unknown:dap.listeners.before
-event_initialized["dapui_config"]	dot_config/nvim/lua/plugins/lazy/lazyplugins.lua	/^            dap.listeners.after.event_initialized["dapui_config"] = function()$/;"	f	unknown:dap.listeners.after
-event_terminated["dapui_config"]	dot_config/nvim/lua/plugins/lazy/lazyplugins.lua	/^            dap.listeners.before.event_terminated["dapui_config"] = function()$/;"	f	unknown:dap.listeners.before
+event_exited["dapui_config"]	dot_config/nvim/lua/plugins/lazy/lazyplugins.lua	/^                        dap.listeners.before.event_exited["dapui_config"] = function()$/;"	f	unknown:dap.listeners.before
+event_initialized["dapui_config"]	dot_config/nvim/lua/plugins/lazy/lazyplugins.lua	/^                        dap.listeners.after.event_initialized["dapui_config"] = function()$/;"	f	unknown:dap.listeners.after
+event_terminated["dapui_config"]	dot_config/nvim/lua/plugins/lazy/lazyplugins.lua	/^                        dap.listeners.before.event_terminated["dapui_config"] = function()$/;"	f	unknown:dap.listeners.before
 exitTest	dot_config/nvim/lua/utils/sudo_write.lua	/^  local function exitTest(code, _)$/;"	f
 exitWrite	dot_config/nvim/lua/utils/sudo_write.lua	/^  local function exitWrite(code, _)$/;"	f
 expand	.config/nvim/lua/user/lsp/cmp.lua	/^        expand = function(args)$/;"	f
@@ -556,6 +558,7 @@ icon	dot_config/nvim/README.md	/^### icon$/;"	S	section:dotfiles/dot_config/nvim
 icon_for_window	.config/sway/scripts/autoname-workspaces.py	/^def icon_for_window(window):$/;"	f
 icon_for_window	dot_config/sway/scripts/executable_autoname-workspaces.py	/^def icon_for_window(window):$/;"	f
 init	dot_config/nvim/lua/plugins/lazy/feline.lua	/^    init = function()$/;"	f
+init	dot_config/nvim/lua/plugins/lazy/lazyplugins.lua	/^                    init = function()$/;"	f
 init	dot_config/nvim/lua/plugins/lazy/lazyplugins.lua	/^        init = function()$/;"	f
 init_screens	.config/qtile/config-rofi.py	/^def init_screens():$/;"	f
 init_screens	.config/qtile/config.py	/^def init_screens():$/;"	f
@@ -611,11 +614,11 @@ mod	.config/qtile/config-rofi.py	/^mod = "mod4"$/;"	v
 mod	.config/qtile/config.py	/^mod = "mod4"$/;"	v
 mod	dot_config/qtile/config-rofi.py	/^mod = "mod4"$/;"	v
 mod	dot_config/qtile/config.py	/^mod = "mod4"$/;"	v
-mode	dot_config/nvim/lua/plugins/lazy/lazyplugins.lua	/^            { "<c-s>", mode = { "c" },           function() require("flash").toggle() end,      /;"	f
-mode	dot_config/nvim/lua/plugins/lazy/lazyplugins.lua	/^            { "R",     mode = { "o", "x" },      function() require("flash").treesitter_search()/;"	f
-mode	dot_config/nvim/lua/plugins/lazy/lazyplugins.lua	/^            { "S",     mode = { "n", "x", "o" }, function() require("flash").treesitter() end,  /;"	f
-mode	dot_config/nvim/lua/plugins/lazy/lazyplugins.lua	/^            { "r",     mode = "o",               function() require("flash").remote() end,      /;"	f
-mode	dot_config/nvim/lua/plugins/lazy/lazyplugins.lua	/^            { "s",     mode = { "n", "x", "o" }, function() require("flash").jump() end,        /;"	f
+mode	dot_config/nvim/lua/plugins/lazy/lazyplugins.lua	/^                        { "<c-s>", mode = { "c" },           function() require("flash").toggle(/;"	f
+mode	dot_config/nvim/lua/plugins/lazy/lazyplugins.lua	/^                        { "R",     mode = { "o", "x" },      function() require("flash").treesit/;"	f
+mode	dot_config/nvim/lua/plugins/lazy/lazyplugins.lua	/^                        { "S",     mode = { "n", "x", "o" }, function() require("flash").treesit/;"	f
+mode	dot_config/nvim/lua/plugins/lazy/lazyplugins.lua	/^                        { "r",     mode = "o",               function() require("flash").remote(/;"	f
+mode	dot_config/nvim/lua/plugins/lazy/lazyplugins.lua	/^                        { "s",     mode = { "n", "x", "o" }, function() require("flash").jump() /;"	f
 motion	dot_config/nvim/README.md	/^### motion$/;"	S	section:dotfiles/dot_config/nvim""Plugins
 mouse	.config/qtile/config-rofi.py	/^mouse = [$/;"	v
 mouse	.config/qtile/config.py	/^mouse = [$/;"	v
