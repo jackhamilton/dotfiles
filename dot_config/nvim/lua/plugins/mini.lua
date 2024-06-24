@@ -9,6 +9,10 @@ require("mini.pairs").setup({
 --- Surround
 require("mini.surround").setup()
 
+require("mini.operators").setup()
+
+require("mini.move").setup()
+
 require("mini.ai").setup()
 ---@type table<string, string|table>
 local i = {

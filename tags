@@ -46,6 +46,7 @@
 !_TAG_KIND_DESCRIPTION!Vim	a,augroup	/autocommand groups/
 !_TAG_KIND_DESCRIPTION!Vim	c,command	/user-defined commands/
 !_TAG_KIND_DESCRIPTION!Vim	f,function	/function definitions/
+!_TAG_KIND_DESCRIPTION!Vim	k,class	/vim9script classes/
 !_TAG_KIND_DESCRIPTION!Vim	m,map	/maps/
 !_TAG_KIND_DESCRIPTION!Vim	n,filename	/vimball filename/
 !_TAG_KIND_DESCRIPTION!Vim	v,variable	/variable definitions/
@@ -61,14 +62,14 @@
 !_TAG_PARSER_VERSION!Markdown	1.1	/current.age/
 !_TAG_PARSER_VERSION!Python	0.0	/current.age/
 !_TAG_PARSER_VERSION!Sh	0.0	/current.age/
-!_TAG_PARSER_VERSION!Vim	0.0	/current.age/
+!_TAG_PARSER_VERSION!Vim	1.1	/current.age/
 !_TAG_PARSER_VERSION!Yaml	0.0	/current.age/
 !_TAG_PATTERN_LENGTH_LIMIT	96	/0 for no limit/
-!_TAG_PROC_CWD	/home/jack/.local/share/chezmoi/	//
+!_TAG_PROC_CWD	/Users/jackhamilton/.local/share/chezmoi/	//
 !_TAG_PROGRAM_AUTHOR	Universal Ctags Team	//
 !_TAG_PROGRAM_NAME	Universal Ctags	/Derived from Exuberant Ctags/
 !_TAG_PROGRAM_URL	https://ctags.io/	/official site/
-!_TAG_PROGRAM_VERSION	6.1.0	/v6.1.0/
+!_TAG_PROGRAM_VERSION	6.1.0	/8976ec3d2/
 !_TAG_ROLE_DESCRIPTION!Python!module	imported	/imported modules/
 !_TAG_ROLE_DESCRIPTION!Python!module	indirectlyImported	/module imported in alternative name/
 !_TAG_ROLE_DESCRIPTION!Python!module	namespace	/namespace from where classes\/variables\/functions are imported/
@@ -154,19 +155,21 @@
 <S-Tab>	.vimrc	/^nnoremap <S-Tab> <<$/;"	m
 ARGUMENTS	.config/sway/scripts/autoname-workspaces.py	/^    ARGUMENTS = args$/;"	v
 ARGUMENTS	dot_config/sway/scripts/executable_autoname-workspaces.py	/^    ARGUMENTS = args$/;"	v
+Comment.nvim	dot_config/nvim/lazy-lock.json	/^  "Comment.nvim": { "branch": "master", "commit": "e30b7f2008e52442154b66f7c519bfd2f1e32acb" },$/;"	o
 DEFAULT_ICON	.config/sway/scripts/autoname-workspaces.py	/^DEFAULT_ICON = "󰀏"$/;"	v
 DEFAULT_ICON	dot_config/sway/scripts/executable_autoname-workspaces.py	/^DEFAULT_ICON = "󰀏"$/;"	v
-Install Instructions	README.md	/^## Install Instructions$/;"	s	chapter:dotfiles/dot_config/nvim
-Language Servers	README.md	/^## Language Servers$/;"	s	chapter:dotfiles/dot_config/nvim
+Install Instructions	dot_config/nvim/README.md	/^## Install Instructions$/;"	s	chapter:dotfiles/dot_config/nvim
+Language Servers	dot_config/nvim/README.md	/^## Language Servers$/;"	s	chapter:dotfiles/dot_config/nvim
 LuaSnip	.config/nvim/lazy-lock.json	/^  "LuaSnip": { "branch": "master", "commit": "a7a4b4682c4b3e2ba82b82a4e6e5f5a0e79dec32" },$/;"	o
-Plugins	README.md	/^## Plugins$/;"	s	chapter:dotfiles/dot_config/nvim
+LuaSnip	dot_config/nvim/lazy-lock.json	/^  "LuaSnip": { "branch": "master", "commit": "50fcf17db7c75af80e6b6109acfbfb4504768780" },$/;"	o
+Plugins	dot_config/nvim/README.md	/^## Plugins$/;"	s	chapter:dotfiles/dot_config/nvim
 WEATHER_CODES	.config/waybar/scripts/wttr.py	/^WEATHER_CODES = {$/;"	v
 WEATHER_CODES	dot_config/waybar/scripts/executable_wttr.py	/^WEATHER_CODES = {$/;"	v
 WINDOW_ICONS	.config/sway/scripts/autoname-workspaces.py	/^WINDOW_ICONS = {$/;"	v
 WINDOW_ICONS	dot_config/sway/scripts/executable_autoname-workspaces.py	/^WINDOW_ICONS = {$/;"	v
 Y	.vimrc	/^nnoremap Y y\$$/;"	m
-["<C-b>"]	dot_config/nvim/lua/lazyplugins.lua	/^                    ["<C-b>"] = cmp.mapping(function(fallback)$/;"	f
-["<C-f>"]	dot_config/nvim/lua/lazyplugins.lua	/^                    ["<C-f>"] = cmp.mapping(function(fallback)$/;"	f
+["<C-b>"]	dot_config/nvim/lua/plugins/lazy/lazyplugins.lua	/^                    ["<C-b>"] = cmp.mapping(function(fallback)$/;"	f
+["<C-f>"]	dot_config/nvim/lua/plugins/lazy/lazyplugins.lua	/^                    ["<C-f>"] = cmp.mapping(function(fallback)$/;"	f
 ["<S-Tab>"]	.config/nvim/lua/user/lsp/cmp.lua	/^        ["<S-Tab>"] = cmp.mapping(function(fallback)$/;"	f
 ["<Tab>"]	.config/nvim/lua/user/lsp/cmp.lua	/^        ["<Tab>"] = cmp.mapping(function(fallback)$/;"	f
 _generate_user_statusline_highlights	.config/nvim/lua/user/ui/feline.lua	/^_G._generate_user_statusline_highlights = function()$/;"	f	unknown:_G
@@ -215,6 +218,60 @@ branch	.config/nvim/lazy-lock.json	/^  "plenary.nvim": { "branch": "master", "co
 branch	.config/nvim/lazy-lock.json	/^  "sonokai": { "branch": "master", "commit": "da162343354fbd9bf9cd49293a856f0e3761e8ac" },$/;"	s	object:sonokai
 branch	.config/nvim/lazy-lock.json	/^  "tabby.nvim": { "branch": "main", "commit": "c4df244245e116280c961112cf6ee221ca3bc294" },$/;"	s	object:tabby.nvim
 branch	.config/nvim/lazy-lock.json	/^  "telescope.nvim": { "branch": "master", "commit": "d90956833d7c27e73c621a61f20b29fdb7122709" }$/;"	s	object:telescope.nvim
+branch	dot_config/nvim/lazy-lock.json	/^  "Comment.nvim": { "branch": "master", "commit": "e30b7f2008e52442154b66f7c519bfd2f1e32acb" },$/;"	s	object:Comment.nvim
+branch	dot_config/nvim/lazy-lock.json	/^  "LuaSnip": { "branch": "master", "commit": "50fcf17db7c75af80e6b6109acfbfb4504768780" },$/;"	s	object:LuaSnip
+branch	dot_config/nvim/lazy-lock.json	/^  "cmp-buffer": { "branch": "main", "commit": "3022dbc9166796b644a841a02de8dd1cc1d311fa" },$/;"	s	object:cmp-buffer
+branch	dot_config/nvim/lazy-lock.json	/^  "cmp-path": { "branch": "main", "commit": "91ff86cd9c29299a64f968ebb45846c485725f23" },$/;"	s	object:cmp-path
+branch	dot_config/nvim/lazy-lock.json	/^  "cmp_luasnip": { "branch": "master", "commit": "05a9ab28b53f71d1aece421ef32fee2cb857a843" },$/;"	s	object:cmp_luasnip
+branch	dot_config/nvim/lazy-lock.json	/^  "conform.nvim": { "branch": "master", "commit": "b23b548461b9636a4ba28dce8f06807cd72e9336" },$/;"	s	object:conform.nvim
+branch	dot_config/nvim/lazy-lock.json	/^  "edge": { "branch": "master", "commit": "7c5349427794c7ad2251b0ad7a9b29ac28c8b175" },$/;"	s	object:edge
+branch	dot_config/nvim/lazy-lock.json	/^  "feline.nvim": { "branch": "main", "commit": "8bc28b94a16304aad2f53b8c3653b14803748c28" },$/;"	s	object:feline.nvim
+branch	dot_config/nvim/lazy-lock.json	/^  "flash.nvim": { "branch": "main", "commit": "43f67935d388fbb540f8b40e8cbfd80de54f978a" },$/;"	s	object:flash.nvim
+branch	dot_config/nvim/lazy-lock.json	/^  "friendly-snippets": { "branch": "main", "commit": "682157939e57bd6a2c86277dfd4d6fbfce63dbac" /;"	s	object:friendly-snippets
+branch	dot_config/nvim/lazy-lock.json	/^  "gitsigns.nvim": { "branch": "main", "commit": "17e8fd66182c9ad79dc129451ad015af3d27529c" },$/;"	s	object:gitsigns.nvim
+branch	dot_config/nvim/lazy-lock.json	/^  "glow.nvim": { "branch": "main", "commit": "238070a686c1da3bccccf1079700eb4b5e19aea4" },$/;"	s	object:glow.nvim
+branch	dot_config/nvim/lazy-lock.json	/^  "lazy.nvim": { "branch": "main", "commit": "9bcbbc17a77680992fc9afcf3819f3b5c8f06bba" },$/;"	s	object:lazy.nvim
+branch	dot_config/nvim/lazy-lock.json	/^  "lsp-progress.nvim": { "branch": "main", "commit": "55a04895ea20c365b670051a3128265d43bdfa3d" /;"	s	object:lsp-progress.nvim
+branch	dot_config/nvim/lazy-lock.json	/^  "lsp_lines.nvim": { "branch": "main", "commit": "7d9e2748b61bff6ebba6e30adbc7173ccf21c055" },$/;"	s	object:lsp_lines.nvim
+branch	dot_config/nvim/lazy-lock.json	/^  "lsp_signature.nvim": { "branch": "master", "commit": "a38da0a61c172bb59e34befc12efe4835988479/;"	s	object:lsp_signature.nvim
+branch	dot_config/nvim/lazy-lock.json	/^  "lspkind.nvim": { "branch": "master", "commit": "1735dd5a5054c1fb7feaf8e8658dbab925f4f0cf" },$/;"	s	object:lspkind.nvim
+branch	dot_config/nvim/lazy-lock.json	/^  "lspsaga.nvim": { "branch": "main", "commit": "6f920cfabddb9b7de5a3a4d0b7cd4f0774ae23e2" },$/;"	s	object:lspsaga.nvim
+branch	dot_config/nvim/lazy-lock.json	/^  "mason-lspconfig.nvim": { "branch": "main", "commit": "37a336b653f8594df75c827ed589f1c91d91ff6/;"	s	object:mason-lspconfig.nvim
+branch	dot_config/nvim/lazy-lock.json	/^  "mason.nvim": { "branch": "main", "commit": "0950b15060067f752fde13a779a994f59516ce3d" },$/;"	s	object:mason.nvim
+branch	dot_config/nvim/lazy-lock.json	/^  "mini.nvim": { "branch": "main", "commit": "334a2d9cfbd86ea08c4d870e39b5ba8bb354d938" },$/;"	s	object:mini.nvim
+branch	dot_config/nvim/lazy-lock.json	/^  "neo-tree.nvim": { "branch": "v3.x", "commit": "29f7c215332ba95e470811c380ddbce2cebe2af4" },$/;"	s	object:neo-tree.nvim
+branch	dot_config/nvim/lazy-lock.json	/^  "neogen": { "branch": "main", "commit": "6de0add4805165317ab7d3d36b5cef48b1b865f3" },$/;"	s	object:neogen
+branch	dot_config/nvim/lazy-lock.json	/^  "neoterm": { "branch": "master", "commit": "eca22dc90a9db5e52d8baf91f31991ad540ffe36" },$/;"	s	object:neoterm
+branch	dot_config/nvim/lazy-lock.json	/^  "nightfox.nvim": { "branch": "main", "commit": "df75a6a94910ae47854341d6b5a6fd483192c0eb" },$/;"	s	object:nightfox.nvim
+branch	dot_config/nvim/lazy-lock.json	/^  "noice.nvim": { "branch": "main", "commit": "cade1f972ba226e7753a7a113f3f1a942908e73c" },$/;"	s	object:noice.nvim
+branch	dot_config/nvim/lazy-lock.json	/^  "nui.nvim": { "branch": "main", "commit": "a2bc1e9d0359caa5d11ad967cd1e30e8d4676226" },$/;"	s	object:nui.nvim
+branch	dot_config/nvim/lazy-lock.json	/^  "nvcode-color-schemes.vim": { "branch": "master", "commit": "3a0e624a67ecd2c7f990bc3c25a1044e8/;"	s	object:nvcode-color-schemes.vim
+branch	dot_config/nvim/lazy-lock.json	/^  "nvim-bqf": { "branch": "main", "commit": "1b24dc6050c34e8cd377b6b4cd6abe40509e0187" },$/;"	s	object:nvim-bqf
+branch	dot_config/nvim/lazy-lock.json	/^  "nvim-cmp": { "branch": "main", "commit": "a110e12d0b58eefcf5b771f533fc2cf3050680ac" },$/;"	s	object:nvim-cmp
+branch	dot_config/nvim/lazy-lock.json	/^  "nvim-dap": { "branch": "master", "commit": "6f79b822997f2e8a789c6034e147d42bc6706770" },$/;"	s	object:nvim-dap
+branch	dot_config/nvim/lazy-lock.json	/^  "nvim-dap-ui": { "branch": "master", "commit": "b7267003ba4dd860350be86f75b9d9ea287cedca" },$/;"	s	object:nvim-dap-ui
+branch	dot_config/nvim/lazy-lock.json	/^  "nvim-lint": { "branch": "master", "commit": "941fa1220a61797a51f3af9ec6b7d74c8c7367ce" },$/;"	s	object:nvim-lint
+branch	dot_config/nvim/lazy-lock.json	/^  "nvim-lspconfig": { "branch": "master", "commit": "9c9eb07fecc578e25e28db8dc9002b43fff2ed79" }/;"	s	object:nvim-lspconfig
+branch	dot_config/nvim/lazy-lock.json	/^  "nvim-notify": { "branch": "master", "commit": "d333b6f167900f6d9d42a59005d82919830626bf" },$/;"	s	object:nvim-notify
+branch	dot_config/nvim/lazy-lock.json	/^  "nvim-treesitter": { "branch": "master", "commit": "d4a888ae3cff358cb239643c45b2b38bb60e29c6" /;"	s	object:nvim-treesitter
+branch	dot_config/nvim/lazy-lock.json	/^  "nvim-treesitter-context": { "branch": "master", "commit": "5efba33af0f39942e426340da7bc15d7de/;"	s	object:nvim-treesitter-context
+branch	dot_config/nvim/lazy-lock.json	/^  "nvim-web-devicons": { "branch": "master", "commit": "c0cfc1738361b5da1cd0a962dd6f774cc444f856/;"	s	object:nvim-web-devicons
+branch	dot_config/nvim/lazy-lock.json	/^  "oil.nvim": { "branch": "master", "commit": "65c53dbe4f2140236590a7568a5f22a77d16be39" },$/;"	s	object:oil.nvim
+branch	dot_config/nvim/lazy-lock.json	/^  "onebuddy": { "branch": "main", "commit": "7e16006e7dde15e3cb72889f736c49409db6ff42" },$/;"	s	object:onebuddy
+branch	dot_config/nvim/lazy-lock.json	/^  "plenary.nvim": { "branch": "master", "commit": "a3e3bc82a3f95c5ed0d7201546d5d2c19b20d683" },$/;"	s	object:plenary.nvim
+branch	dot_config/nvim/lazy-lock.json	/^  "precognition.nvim": { "branch": "main", "commit": "02dcc8f8db677fe02d2dd68da6155177283fe711" /;"	s	object:precognition.nvim
+branch	dot_config/nvim/lazy-lock.json	/^  "smart-open.nvim": { "branch": "0.2.x", "commit": "87626ee8748b9bba22093adec7bb58c63e7214f0" }/;"	s	object:smart-open.nvim
+branch	dot_config/nvim/lazy-lock.json	/^  "sonokai": { "branch": "master", "commit": "bceb820817b12d3441636f7cf76ab3f77557a662" },$/;"	s	object:sonokai
+branch	dot_config/nvim/lazy-lock.json	/^  "sqlite.lua": { "branch": "master", "commit": "d0ffd703b56d090d213b497ed4eb840495f14a11" },$/;"	s	object:sqlite.lua
+branch	dot_config/nvim/lazy-lock.json	/^  "tabby.nvim": { "branch": "main", "commit": "229605a2ccf36798f77eb7d1b55b5905df487162" },$/;"	s	object:tabby.nvim
+branch	dot_config/nvim/lazy-lock.json	/^  "telescope-fzf-native.nvim": { "branch": "main", "commit": "9ef21b2e6bb6ebeaf349a0781745549bbb/;"	s	object:telescope-fzf-native.nvim
+branch	dot_config/nvim/lazy-lock.json	/^  "telescope-fzy-native.nvim": { "branch": "master", "commit": "282f069504515eec762ab6d6c8990337/;"	s	object:telescope-fzy-native.nvim
+branch	dot_config/nvim/lazy-lock.json	/^  "telescope.nvim": { "branch": "master", "commit": "d90956833d7c27e73c621a61f20b29fdb7122709" }/;"	s	object:telescope.nvim
+branch	dot_config/nvim/lazy-lock.json	/^  "todo-comments.nvim": { "branch": "main", "commit": "51e10f838e84b4756c16311d0b1ef0972c6482d2"/;"	s	object:todo-comments.nvim
+branch	dot_config/nvim/lazy-lock.json	/^  "trouble.nvim": { "branch": "main", "commit": "88c3be40c061ce053ab326ce4fdcb973a1f785ff" },$/;"	s	object:trouble.nvim
+branch	dot_config/nvim/lazy-lock.json	/^  "vim-gutentags": { "branch": "master", "commit": "aa47c5e29c37c52176c44e61c780032dfacef3dd" },$/;"	s	object:vim-gutentags
+branch	dot_config/nvim/lazy-lock.json	/^  "which-key.nvim": { "branch": "main", "commit": "0099511294f16b81c696004fa6a403b0ae61f7a0" },$/;"	s	object:which-key.nvim
+branch	dot_config/nvim/lazy-lock.json	/^  "xcodebuild.nvim": { "branch": "main", "commit": "2c11361fae9b349665fcf2392164fe8706855a46" }$/;"	s	object:xcodebuild.nvim
 bring_front_click	.config/qtile/config-rofi.py	/^bring_front_click = False$/;"	v
 bring_front_click	.config/qtile/config.py	/^bring_front_click = False$/;"	v
 bring_front_click	dot_config/qtile/config-rofi.py	/^bring_front_click = False$/;"	v
@@ -225,23 +282,28 @@ callback	.config/nvim/lua/user/lsp/handlers.lua	/^            callback = functio
 callback	.config/nvim/lua/user/ui/feline.lua	/^    callback = function()$/;"	f
 callback	.config/nvim/lua/user/ui/tabby.lua	/^    callback = function()$/;"	f
 callback	dot_config/nvim/lua/core/autocmds.lua	/^  callback = function()$/;"	f
-callback	dot_config/nvim/lua/lazyplugins.lua	/^                callback = function()$/;"	f
-callback	dot_config/nvim/lua/plugins/lspconfig.lua	/^    callback = function()$/;"	f
+callback	dot_config/nvim/lua/plugins/lazy/feline.lua	/^            callback = function() vim.opt.statusline = vim.opt.statusline end,$/;"	f
+callback	dot_config/nvim/lua/plugins/lazy/lazyplugins.lua	/^                callback = function()$/;"	f
+callback	dot_config/nvim/lua/plugins/lspconfig.lua	/^        callback = function()$/;"	f
 check	.config/sway/scripts/grimshot.sh	/^check() {$/;"	f
 check	dot_config/sway/scripts/executable_grimshot.sh	/^check() {$/;"	f
+client_format	dot_config/nvim/lua/plugins/lazy/feline.lua	/^                client_format = function(_, spinner, series_messages)$/;"	f
 cmp-buffer	.config/nvim/lazy-lock.json	/^  "cmp-buffer": { "branch": "main", "commit": "3022dbc9166796b644a841a02de8dd1cc1d311fa" },$/;"	o
+cmp-buffer	dot_config/nvim/lazy-lock.json	/^  "cmp-buffer": { "branch": "main", "commit": "3022dbc9166796b644a841a02de8dd1cc1d311fa" },$/;"	o
 cmp-nvim-lsp	.config/nvim/lazy-lock.json	/^  "cmp-nvim-lsp": { "branch": "main", "commit": "5af77f54de1b16c34b23cba810150689a3a90312" },$/;"	o
 cmp-nvim-lua	.config/nvim/lazy-lock.json	/^  "cmp-nvim-lua": { "branch": "main", "commit": "f12408bdb54c39c23e67cab726264c10db33ada8" },$/;"	o
 cmp-path	.config/nvim/lazy-lock.json	/^  "cmp-path": { "branch": "main", "commit": "91ff86cd9c29299a64f968ebb45846c485725f23" },$/;"	o
+cmp-path	dot_config/nvim/lazy-lock.json	/^  "cmp-path": { "branch": "main", "commit": "91ff86cd9c29299a64f968ebb45846c485725f23" },$/;"	o
 cmp_luasnip	.config/nvim/lazy-lock.json	/^  "cmp_luasnip": { "branch": "master", "commit": "05a9ab28b53f71d1aece421ef32fee2cb857a843" },$/;"	o
+cmp_luasnip	dot_config/nvim/lazy-lock.json	/^  "cmp_luasnip": { "branch": "master", "commit": "05a9ab28b53f71d1aece421ef32fee2cb857a843" },$/;"	o
 cnt	.config/waybar/scripts/checkgmail.py	/^cnt = 0$/;"	v
 cnt	dot_config/waybar/scripts/executable_checkgmail.py	/^cnt = 0$/;"	v
 colors	.config/qtile/config-rofi.py	/^colors = [["#282c34", "#282c34"],$/;"	v
 colors	.config/qtile/config.py	/^colors = [["#282c34", "#282c34"],$/;"	v
 colors	dot_config/qtile/config-rofi.py	/^colors = [["#282c34", "#282c34"],$/;"	v
 colors	dot_config/qtile/config.py	/^colors = [["#282c34", "#282c34"],$/;"	v
-colorscheme	README.md	/^### colorscheme$/;"	S	section:dotfiles/dot_config/nvim""Plugins
-comment	README.md	/^### comment$/;"	S	section:dotfiles/dot_config/nvim""Plugins
+colorscheme	dot_config/nvim/README.md	/^### colorscheme$/;"	S	section:dotfiles/dot_config/nvim""Plugins
+comment	dot_config/nvim/README.md	/^### comment$/;"	S	section:dotfiles/dot_config/nvim""Plugins
 commit	.config/nvim/lazy-lock.json	/^  "LuaSnip": { "branch": "master", "commit": "a7a4b4682c4b3e2ba82b82a4e6e5f5a0e79dec32" },$/;"	s	object:LuaSnip
 commit	.config/nvim/lazy-lock.json	/^  "cmp-buffer": { "branch": "main", "commit": "3022dbc9166796b644a841a02de8dd1cc1d311fa" },$/;"	s	object:cmp-buffer
 commit	.config/nvim/lazy-lock.json	/^  "cmp-nvim-lsp": { "branch": "main", "commit": "5af77f54de1b16c34b23cba810150689a3a90312" },$/;"	s	object:cmp-nvim-lsp
@@ -274,13 +336,68 @@ commit	.config/nvim/lazy-lock.json	/^  "plenary.nvim": { "branch": "master", "co
 commit	.config/nvim/lazy-lock.json	/^  "sonokai": { "branch": "master", "commit": "da162343354fbd9bf9cd49293a856f0e3761e8ac" },$/;"	s	object:sonokai
 commit	.config/nvim/lazy-lock.json	/^  "tabby.nvim": { "branch": "main", "commit": "c4df244245e116280c961112cf6ee221ca3bc294" },$/;"	s	object:tabby.nvim
 commit	.config/nvim/lazy-lock.json	/^  "telescope.nvim": { "branch": "master", "commit": "d90956833d7c27e73c621a61f20b29fdb7122709" }$/;"	s	object:telescope.nvim
-completion	README.md	/^### completion$/;"	S	section:dotfiles/dot_config/nvim""Plugins
+commit	dot_config/nvim/lazy-lock.json	/^  "Comment.nvim": { "branch": "master", "commit": "e30b7f2008e52442154b66f7c519bfd2f1e32acb" },$/;"	s	object:Comment.nvim
+commit	dot_config/nvim/lazy-lock.json	/^  "LuaSnip": { "branch": "master", "commit": "50fcf17db7c75af80e6b6109acfbfb4504768780" },$/;"	s	object:LuaSnip
+commit	dot_config/nvim/lazy-lock.json	/^  "cmp-buffer": { "branch": "main", "commit": "3022dbc9166796b644a841a02de8dd1cc1d311fa" },$/;"	s	object:cmp-buffer
+commit	dot_config/nvim/lazy-lock.json	/^  "cmp-path": { "branch": "main", "commit": "91ff86cd9c29299a64f968ebb45846c485725f23" },$/;"	s	object:cmp-path
+commit	dot_config/nvim/lazy-lock.json	/^  "cmp_luasnip": { "branch": "master", "commit": "05a9ab28b53f71d1aece421ef32fee2cb857a843" },$/;"	s	object:cmp_luasnip
+commit	dot_config/nvim/lazy-lock.json	/^  "conform.nvim": { "branch": "master", "commit": "b23b548461b9636a4ba28dce8f06807cd72e9336" },$/;"	s	object:conform.nvim
+commit	dot_config/nvim/lazy-lock.json	/^  "edge": { "branch": "master", "commit": "7c5349427794c7ad2251b0ad7a9b29ac28c8b175" },$/;"	s	object:edge
+commit	dot_config/nvim/lazy-lock.json	/^  "feline.nvim": { "branch": "main", "commit": "8bc28b94a16304aad2f53b8c3653b14803748c28" },$/;"	s	object:feline.nvim
+commit	dot_config/nvim/lazy-lock.json	/^  "flash.nvim": { "branch": "main", "commit": "43f67935d388fbb540f8b40e8cbfd80de54f978a" },$/;"	s	object:flash.nvim
+commit	dot_config/nvim/lazy-lock.json	/^  "friendly-snippets": { "branch": "main", "commit": "682157939e57bd6a2c86277dfd4d6fbfce63dbac" /;"	s	object:friendly-snippets
+commit	dot_config/nvim/lazy-lock.json	/^  "gitsigns.nvim": { "branch": "main", "commit": "17e8fd66182c9ad79dc129451ad015af3d27529c" },$/;"	s	object:gitsigns.nvim
+commit	dot_config/nvim/lazy-lock.json	/^  "glow.nvim": { "branch": "main", "commit": "238070a686c1da3bccccf1079700eb4b5e19aea4" },$/;"	s	object:glow.nvim
+commit	dot_config/nvim/lazy-lock.json	/^  "lazy.nvim": { "branch": "main", "commit": "9bcbbc17a77680992fc9afcf3819f3b5c8f06bba" },$/;"	s	object:lazy.nvim
+commit	dot_config/nvim/lazy-lock.json	/^  "lsp-progress.nvim": { "branch": "main", "commit": "55a04895ea20c365b670051a3128265d43bdfa3d" /;"	s	object:lsp-progress.nvim
+commit	dot_config/nvim/lazy-lock.json	/^  "lsp_lines.nvim": { "branch": "main", "commit": "7d9e2748b61bff6ebba6e30adbc7173ccf21c055" },$/;"	s	object:lsp_lines.nvim
+commit	dot_config/nvim/lazy-lock.json	/^  "lsp_signature.nvim": { "branch": "master", "commit": "a38da0a61c172bb59e34befc12efe4835988479/;"	s	object:lsp_signature.nvim
+commit	dot_config/nvim/lazy-lock.json	/^  "lspkind.nvim": { "branch": "master", "commit": "1735dd5a5054c1fb7feaf8e8658dbab925f4f0cf" },$/;"	s	object:lspkind.nvim
+commit	dot_config/nvim/lazy-lock.json	/^  "lspsaga.nvim": { "branch": "main", "commit": "6f920cfabddb9b7de5a3a4d0b7cd4f0774ae23e2" },$/;"	s	object:lspsaga.nvim
+commit	dot_config/nvim/lazy-lock.json	/^  "mason-lspconfig.nvim": { "branch": "main", "commit": "37a336b653f8594df75c827ed589f1c91d91ff6/;"	s	object:mason-lspconfig.nvim
+commit	dot_config/nvim/lazy-lock.json	/^  "mason.nvim": { "branch": "main", "commit": "0950b15060067f752fde13a779a994f59516ce3d" },$/;"	s	object:mason.nvim
+commit	dot_config/nvim/lazy-lock.json	/^  "mini.nvim": { "branch": "main", "commit": "334a2d9cfbd86ea08c4d870e39b5ba8bb354d938" },$/;"	s	object:mini.nvim
+commit	dot_config/nvim/lazy-lock.json	/^  "neo-tree.nvim": { "branch": "v3.x", "commit": "29f7c215332ba95e470811c380ddbce2cebe2af4" },$/;"	s	object:neo-tree.nvim
+commit	dot_config/nvim/lazy-lock.json	/^  "neogen": { "branch": "main", "commit": "6de0add4805165317ab7d3d36b5cef48b1b865f3" },$/;"	s	object:neogen
+commit	dot_config/nvim/lazy-lock.json	/^  "neoterm": { "branch": "master", "commit": "eca22dc90a9db5e52d8baf91f31991ad540ffe36" },$/;"	s	object:neoterm
+commit	dot_config/nvim/lazy-lock.json	/^  "nightfox.nvim": { "branch": "main", "commit": "df75a6a94910ae47854341d6b5a6fd483192c0eb" },$/;"	s	object:nightfox.nvim
+commit	dot_config/nvim/lazy-lock.json	/^  "noice.nvim": { "branch": "main", "commit": "cade1f972ba226e7753a7a113f3f1a942908e73c" },$/;"	s	object:noice.nvim
+commit	dot_config/nvim/lazy-lock.json	/^  "nui.nvim": { "branch": "main", "commit": "a2bc1e9d0359caa5d11ad967cd1e30e8d4676226" },$/;"	s	object:nui.nvim
+commit	dot_config/nvim/lazy-lock.json	/^  "nvcode-color-schemes.vim": { "branch": "master", "commit": "3a0e624a67ecd2c7f990bc3c25a1044e8/;"	s	object:nvcode-color-schemes.vim
+commit	dot_config/nvim/lazy-lock.json	/^  "nvim-bqf": { "branch": "main", "commit": "1b24dc6050c34e8cd377b6b4cd6abe40509e0187" },$/;"	s	object:nvim-bqf
+commit	dot_config/nvim/lazy-lock.json	/^  "nvim-cmp": { "branch": "main", "commit": "a110e12d0b58eefcf5b771f533fc2cf3050680ac" },$/;"	s	object:nvim-cmp
+commit	dot_config/nvim/lazy-lock.json	/^  "nvim-dap": { "branch": "master", "commit": "6f79b822997f2e8a789c6034e147d42bc6706770" },$/;"	s	object:nvim-dap
+commit	dot_config/nvim/lazy-lock.json	/^  "nvim-dap-ui": { "branch": "master", "commit": "b7267003ba4dd860350be86f75b9d9ea287cedca" },$/;"	s	object:nvim-dap-ui
+commit	dot_config/nvim/lazy-lock.json	/^  "nvim-lint": { "branch": "master", "commit": "941fa1220a61797a51f3af9ec6b7d74c8c7367ce" },$/;"	s	object:nvim-lint
+commit	dot_config/nvim/lazy-lock.json	/^  "nvim-lspconfig": { "branch": "master", "commit": "9c9eb07fecc578e25e28db8dc9002b43fff2ed79" }/;"	s	object:nvim-lspconfig
+commit	dot_config/nvim/lazy-lock.json	/^  "nvim-notify": { "branch": "master", "commit": "d333b6f167900f6d9d42a59005d82919830626bf" },$/;"	s	object:nvim-notify
+commit	dot_config/nvim/lazy-lock.json	/^  "nvim-treesitter": { "branch": "master", "commit": "d4a888ae3cff358cb239643c45b2b38bb60e29c6" /;"	s	object:nvim-treesitter
+commit	dot_config/nvim/lazy-lock.json	/^  "nvim-treesitter-context": { "branch": "master", "commit": "5efba33af0f39942e426340da7bc15d7de/;"	s	object:nvim-treesitter-context
+commit	dot_config/nvim/lazy-lock.json	/^  "nvim-web-devicons": { "branch": "master", "commit": "c0cfc1738361b5da1cd0a962dd6f774cc444f856/;"	s	object:nvim-web-devicons
+commit	dot_config/nvim/lazy-lock.json	/^  "oil.nvim": { "branch": "master", "commit": "65c53dbe4f2140236590a7568a5f22a77d16be39" },$/;"	s	object:oil.nvim
+commit	dot_config/nvim/lazy-lock.json	/^  "onebuddy": { "branch": "main", "commit": "7e16006e7dde15e3cb72889f736c49409db6ff42" },$/;"	s	object:onebuddy
+commit	dot_config/nvim/lazy-lock.json	/^  "plenary.nvim": { "branch": "master", "commit": "a3e3bc82a3f95c5ed0d7201546d5d2c19b20d683" },$/;"	s	object:plenary.nvim
+commit	dot_config/nvim/lazy-lock.json	/^  "precognition.nvim": { "branch": "main", "commit": "02dcc8f8db677fe02d2dd68da6155177283fe711" /;"	s	object:precognition.nvim
+commit	dot_config/nvim/lazy-lock.json	/^  "smart-open.nvim": { "branch": "0.2.x", "commit": "87626ee8748b9bba22093adec7bb58c63e7214f0" }/;"	s	object:smart-open.nvim
+commit	dot_config/nvim/lazy-lock.json	/^  "sonokai": { "branch": "master", "commit": "bceb820817b12d3441636f7cf76ab3f77557a662" },$/;"	s	object:sonokai
+commit	dot_config/nvim/lazy-lock.json	/^  "sqlite.lua": { "branch": "master", "commit": "d0ffd703b56d090d213b497ed4eb840495f14a11" },$/;"	s	object:sqlite.lua
+commit	dot_config/nvim/lazy-lock.json	/^  "tabby.nvim": { "branch": "main", "commit": "229605a2ccf36798f77eb7d1b55b5905df487162" },$/;"	s	object:tabby.nvim
+commit	dot_config/nvim/lazy-lock.json	/^  "telescope-fzf-native.nvim": { "branch": "main", "commit": "9ef21b2e6bb6ebeaf349a0781745549bbb/;"	s	object:telescope-fzf-native.nvim
+commit	dot_config/nvim/lazy-lock.json	/^  "telescope-fzy-native.nvim": { "branch": "master", "commit": "282f069504515eec762ab6d6c8990337/;"	s	object:telescope-fzy-native.nvim
+commit	dot_config/nvim/lazy-lock.json	/^  "telescope.nvim": { "branch": "master", "commit": "d90956833d7c27e73c621a61f20b29fdb7122709" }/;"	s	object:telescope.nvim
+commit	dot_config/nvim/lazy-lock.json	/^  "todo-comments.nvim": { "branch": "main", "commit": "51e10f838e84b4756c16311d0b1ef0972c6482d2"/;"	s	object:todo-comments.nvim
+commit	dot_config/nvim/lazy-lock.json	/^  "trouble.nvim": { "branch": "main", "commit": "88c3be40c061ce053ab326ce4fdcb973a1f785ff" },$/;"	s	object:trouble.nvim
+commit	dot_config/nvim/lazy-lock.json	/^  "vim-gutentags": { "branch": "master", "commit": "aa47c5e29c37c52176c44e61c780032dfacef3dd" },$/;"	s	object:vim-gutentags
+commit	dot_config/nvim/lazy-lock.json	/^  "which-key.nvim": { "branch": "main", "commit": "0099511294f16b81c696004fa6a403b0ae61f7a0" },$/;"	s	object:which-key.nvim
+commit	dot_config/nvim/lazy-lock.json	/^  "xcodebuild.nvim": { "branch": "main", "commit": "2c11361fae9b349665fcf2392164fe8706855a46" }$/;"	s	object:xcodebuild.nvim
+completion	dot_config/nvim/README.md	/^### completion$/;"	S	section:dotfiles/dot_config/nvim""Plugins
 condition	.config/nvim/lua/user/lsp/null-ls.lua	/^        condition = function(utils)$/;"	f
 conditional	.config/nvim/lua/user/lsp/null-ls.lua	/^local conditional = function(fn)$/;"	f
 config	.config/nvim/lua/plugins.lua	/^    use { "ellisonleao\/glow.nvim", config = function() require("glow").setup() end }$/;"	f
 config	.config/nvim/lua/user/plugins.lua	/^        config = function()$/;"	f
-config	dot_config/nvim/lua/lazyplugins.lua	/^        config = function()$/;"	f
-config	dot_config/nvim/lua/lazyplugins.lua	/^      config = function()$/;"	f
+config	dot_config/nvim/lua/plugins/lazy/feline.lua	/^local function config(_, opts)$/;"	f
+config	dot_config/nvim/lua/plugins/lazy/lazyplugins.lua	/^        config = function()$/;"	f
+config	dot_config/nvim/lua/plugins/lazy/lazyplugins.lua	/^        config = function(_, opts)$/;"	f
 confirm_cmd	.config/rofi/applets/bin/powermenu.sh	/^confirm_cmd() {$/;"	f
 confirm_cmd	.config/rofi/powermenu/type-1/powermenu.sh	/^confirm_cmd() {$/;"	f
 confirm_cmd	.config/rofi/powermenu/type-2/powermenu.sh	/^confirm_cmd() {$/;"	f
@@ -323,6 +440,7 @@ confirm_exit	dot_config/rofi/powermenu/type-5/executable_powermenu.sh	/^confirm_
 confirm_exit	dot_config/rofi/powermenu/type-6/executable_powermenu.sh	/^confirm_exit() {$/;"	f
 confirm_run	.config/rofi/applets/bin/powermenu.sh	/^confirm_run () {	$/;"	f
 confirm_run	dot_config/rofi/applets/bin/executable_powermenu.sh	/^confirm_run () {	$/;"	f
+conform.nvim	dot_config/nvim/lazy-lock.json	/^  "conform.nvim": { "branch": "master", "commit": "b23b548461b9636a4ba28dce8f06807cd72e9336" },$/;"	o
 construct_workspace_name	.config/sway/scripts/autoname-workspaces.py	/^def construct_workspace_name(parts):$/;"	f
 construct_workspace_name	dot_config/sway/scripts/executable_autoname-workspaces.py	/^def construct_workspace_name(parts):$/;"	f
 copy_shot	.config/rofi/applets/bin/screenshot.sh	/^copy_shot () {$/;"	f
@@ -341,7 +459,7 @@ data	.config/waybar/scripts/wttr.py	/^data = {}$/;"	v
 data	dot_config/waybar/scripts/executable_checkgmail.py	/^typ, data = obj.search(None,'UnSeen')$/;"	v
 data	dot_config/waybar/scripts/executable_wttr.py	/^data = {}$/;"	v
 data_dir	.vimrc	/^let data_dir = has('nvim') ? stdpath('data') . '\/site' : '~\/.vim'$/;"	v
-debugging	README.md	/^### debugging$/;"	S	section:dotfiles/dot_config/nvim""Plugins
+debugging	dot_config/nvim/README.md	/^### debugging$/;"	S	section:dotfiles/dot_config/nvim""Plugins
 dgroups_app_rules	.config/qtile/config-rofi.py	/^dgroups_app_rules = []  # type: list$/;"	v
 dgroups_app_rules	.config/qtile/config.py	/^dgroups_app_rules = []  # type: list$/;"	v
 dgroups_app_rules	dot_config/qtile/config-rofi.py	/^dgroups_app_rules = []  # type: list$/;"	v
@@ -350,33 +468,37 @@ dgroups_key_binder	.config/qtile/config-rofi.py	/^dgroups_key_binder = None$/;"	
 dgroups_key_binder	.config/qtile/config.py	/^dgroups_key_binder = None$/;"	v
 dgroups_key_binder	dot_config/qtile/config-rofi.py	/^dgroups_key_binder = None$/;"	v
 dgroups_key_binder	dot_config/qtile/config.py	/^dgroups_key_binder = None$/;"	v
-diagnostics	README.md	/^### diagnostics$/;"	S	section:dotfiles/dot_config/nvim""Plugins
+diagnostics	dot_config/nvim/README.md	/^### diagnostics$/;"	S	section:dotfiles/dot_config/nvim""Plugins
 die	.config/sway/scripts/grimshot.sh	/^die() {$/;"	f
 die	dot_config/sway/scripts/executable_grimshot.sh	/^die() {$/;"	f
 disable_format_on_save	.config/nvim/lua/user/lsp/handlers.lua	/^function M.disable_format_on_save()$/;"	f	unknown:M
 disable_ui_settings	dot_config/nvim/lua/core/autocmds.lua	/^local function disable_ui_settings()$/;"	f
-dotfiles/dot_config/nvim	README.md	/^# dotfiles\/dot_config\/nvim$/;"	c
+dotfiles/dot_config/nvim	dot_config/nvim/README.md	/^# dotfiles\/dot_config\/nvim$/;"	c
 edge	.config/nvim/lazy-lock.json	/^  "edge": { "branch": "master", "commit": "4e2eee9fbbad1c8fdcad8acda979d3828aee538d" },$/;"	o
-editing-support	README.md	/^### editing-support$/;"	S	section:dotfiles/dot_config/nvim""Plugins
+edge	dot_config/nvim/lazy-lock.json	/^  "edge": { "branch": "master", "commit": "7c5349427794c7ad2251b0ad7a9b29ac28c8b175" },$/;"	o
+editing-support	dot_config/nvim/README.md	/^### editing-support$/;"	S	section:dotfiles/dot_config/nvim""Plugins
 enable_format_on_save	.config/nvim/lua/user/lsp/handlers.lua	/^function M.enable_format_on_save()$/;"	f	unknown:M
 enabled	.config/nvim/lua/user/ui/feline.lua	/^        enabled = function()$/;"	f
-enabled	dot_config/nvim/lua/lazyplugins.lua	/^        enabled = function() return jit.os ~= "Linux" end,$/;"	f
+enabled	dot_config/nvim/lua/plugins/lazy/lazyplugins.lua	/^        enabled = function() return jit.os ~= "Linux" end,$/;"	f
+ensure_installed	dot_config/nvim/lua/plugins/lazy/lazyplugins.lua	/^            local function ensure_installed()$/;"	f
 error_msg	.config/nvim/plugin/packer_compiled.lua	/^local no_errors, error_msg = pcall(function()$/;"	f
-event_exited["dapui_config"]	dot_config/nvim/lua/lazyplugins.lua	/^            dap.listeners.before.event_exited["dapui_config"] = function()$/;"	f	unknown:dap.listeners.before
-event_initialized["dapui_config"]	dot_config/nvim/lua/lazyplugins.lua	/^            dap.listeners.after.event_initialized["dapui_config"] = function()$/;"	f	unknown:dap.listeners.after
-event_terminated["dapui_config"]	dot_config/nvim/lua/lazyplugins.lua	/^            dap.listeners.before.event_terminated["dapui_config"] = function()$/;"	f	unknown:dap.listeners.before
+event_exited["dapui_config"]	dot_config/nvim/lua/plugins/lazy/lazyplugins.lua	/^            dap.listeners.before.event_exited["dapui_config"] = function()$/;"	f	unknown:dap.listeners.before
+event_initialized["dapui_config"]	dot_config/nvim/lua/plugins/lazy/lazyplugins.lua	/^            dap.listeners.after.event_initialized["dapui_config"] = function()$/;"	f	unknown:dap.listeners.after
+event_terminated["dapui_config"]	dot_config/nvim/lua/plugins/lazy/lazyplugins.lua	/^            dap.listeners.before.event_terminated["dapui_config"] = function()$/;"	f	unknown:dap.listeners.before
 exitTest	dot_config/nvim/lua/utils/sudo_write.lua	/^  local function exitTest(code, _)$/;"	f
 exitWrite	dot_config/nvim/lua/utils/sudo_write.lua	/^  local function exitWrite(code, _)$/;"	f
 expand	.config/nvim/lua/user/lsp/cmp.lua	/^        expand = function(args)$/;"	f
-expand	dot_config/nvim/lua/lazyplugins.lua	/^                    expand = function(args)$/;"	f
+expand	dot_config/nvim/lua/plugins/lazy/lazyplugins.lua	/^                    expand = function(args)$/;"	f
 extension_defaults	.config/qtile/config-rofi.py	/^extension_defaults = widget_defaults.copy()$/;"	v
 extension_defaults	.config/qtile/config.py	/^extension_defaults = widget_defaults.copy()$/;"	v
 extension_defaults	dot_config/qtile/config-rofi.py	/^extension_defaults = widget_defaults.copy()$/;"	v
 extension_defaults	dot_config/qtile/config.py	/^extension_defaults = widget_defaults.copy()$/;"	v
 feline.nvim	.config/nvim/lazy-lock.json	/^  "feline.nvim": { "branch": "main", "commit": "6cfbe0608d2552a7d947c6f521670b10379fbe42" },$/;"	o
-file-explorer	README.md	/^### file-explorer$/;"	S	section:dotfiles/dot_config/nvim""Plugins
+feline.nvim	dot_config/nvim/lazy-lock.json	/^  "feline.nvim": { "branch": "main", "commit": "8bc28b94a16304aad2f53b8c3653b14803748c28" },$/;"	o
+file-explorer	dot_config/nvim/README.md	/^### file-explorer$/;"	S	section:dotfiles/dot_config/nvim""Plugins
 file_info	.config/nvim/lua/user/ui/feline.lua	/^local function file_info()$/;"	f
 filter	.config/nvim/lua/user/lsp/handlers.lua	/^        filter = function(client)$/;"	f
+flash.nvim	dot_config/nvim/lazy-lock.json	/^  "flash.nvim": { "branch": "main", "commit": "43f67935d388fbb540f8b40e8cbfd80de54f978a" },$/;"	o
 floating_layout	.config/qtile/config-rofi.py	/^floating_layout = layout.Floating($/;"	v
 floating_layout	.config/qtile/config.py	/^floating_layout = layout.Floating($/;"	v
 floating_layout	dot_config/qtile/config-rofi.py	/^floating_layout = layout.Floating($/;"	v
@@ -390,16 +512,18 @@ follow_mouse_focus	.config/qtile/config.py	/^follow_mouse_focus = True$/;"	v
 follow_mouse_focus	dot_config/qtile/config-rofi.py	/^follow_mouse_focus = True$/;"	v
 follow_mouse_focus	dot_config/qtile/config.py	/^follow_mouse_focus = True$/;"	v
 format	.config/nvim/lua/user/lsp/cmp.lua	/^        format = function(entry, vim_item)$/;"	f
+format	dot_config/nvim/lua/plugins/lazy/feline.lua	/^                format = function(client_messages)$/;"	f
 format_chances	.config/waybar/scripts/wttr.py	/^def format_chances(hour):$/;"	f
 format_chances	dot_config/waybar/scripts/executable_wttr.py	/^def format_chances(hour):$/;"	f
-format_on_save	dot_config/nvim/lua/lazyplugins.lua	/^                format_on_save = function(bufnr)$/;"	f
+format_on_save	dot_config/nvim/lua/plugins/lazy/lazyplugins.lua	/^                format_on_save = function(bufnr)$/;"	f
 format_temp	.config/waybar/scripts/wttr.py	/^def format_temp(temp):$/;"	f
 format_temp	dot_config/waybar/scripts/executable_wttr.py	/^def format_temp(temp):$/;"	f
 format_time	.config/waybar/scripts/wttr.py	/^def format_time(time):$/;"	f
 format_time	dot_config/waybar/scripts/executable_wttr.py	/^def format_time(time):$/;"	f
-formatting	README.md	/^### formatting$/;"	S	section:dotfiles/dot_config/nvim""Plugins
+formatting	dot_config/nvim/README.md	/^### formatting$/;"	S	section:dotfiles/dot_config/nvim""Plugins
 friendly-snippets	.config/nvim/lazy-lock.json	/^  "friendly-snippets": { "branch": "main", "commit": "dcd4a586439a1c81357d5b9d26319ae218cc9479" /;"	o
-fuzzy-finder	README.md	/^### fuzzy-finder$/;"	S	section:dotfiles/dot_config/nvim""Plugins
+friendly-snippets	dot_config/nvim/lazy-lock.json	/^  "friendly-snippets": { "branch": "main", "commit": "682157939e57bd6a2c86277dfd4d6fbfce63dbac" /;"	o
+fuzzy-finder	dot_config/nvim/README.md	/^### fuzzy-finder$/;"	S	section:dotfiles/dot_config/nvim""Plugins
 g:nvcode_termcolors	.config/nvim/init.vim	/^let g:nvcode_termcolors = 256$/;"	v
 g:nvcode_termcolors	dot_config/nvim/vs-setup.vim	/^let g:nvcode_termcolors = 256$/;"	v
 g:sonokai_style	.config/nvim/init.vim	/^let g:sonokai_style = 'default'$/;"	v
@@ -412,9 +536,11 @@ get_diag	.config/nvim/lua/user/ui/feline.lua	/^local function get_diag(str)$/;"	
 get_highlight	.config/nvim/lua/user/ui/feline.lua	/^local function get_highlight(name)$/;"	f
 get_highlight	.config/nvim/lua/user/ui/tabby.lua	/^local function get_highlight(name)$/;"	f
 get_time	dot_config/nvim/extern/measure_nvim.sh	/^get_time() {$/;"	f
-git	README.md	/^### git$/;"	S	section:dotfiles/dot_config/nvim""Plugins
+git	dot_config/nvim/README.md	/^### git$/;"	S	section:dotfiles/dot_config/nvim""Plugins
 gitsigns.nvim	.config/nvim/lazy-lock.json	/^  "gitsigns.nvim": { "branch": "main", "commit": "078041e9d060a386b0c9d3a8c7a7b019a35d3fb0" },$/;"	o
+gitsigns.nvim	dot_config/nvim/lazy-lock.json	/^  "gitsigns.nvim": { "branch": "main", "commit": "17e8fd66182c9ad79dc129451ad015af3d27529c" },$/;"	o
 glow.nvim	.config/nvim/lazy-lock.json	/^  "glow.nvim": { "branch": "main", "commit": "238070a686c1da3bccccf1079700eb4b5e19aea4" },$/;"	o
+glow.nvim	dot_config/nvim/lazy-lock.json	/^  "glow.nvim": { "branch": "main", "commit": "238070a686c1da3bccccf1079700eb4b5e19aea4" },$/;"	o
 groups	.config/qtile/config-rofi.py	/^groups = [Group(i) for i in "123456789"]$/;"	v
 groups	.config/qtile/config.py	/^groups = [Group(i) for i in "123456789"]$/;"	v
 groups	dot_config/qtile/config-rofi.py	/^groups = [Group(i) for i in "123456789"]$/;"	v
@@ -424,10 +550,14 @@ height	.config/pavucontrol.ini	/^height=394$/;"	k	section:window
 height	dot_config/pavucontrol.ini	/^height=394$/;"	k	section:window
 hex	.config/nvim/lua/user/ui/feline.lua	/^local hex = function(n)$/;"	f
 hex	.config/nvim/lua/user/ui/tabby.lua	/^local hex = function(n)$/;"	f
-icon	README.md	/^### icon$/;"	S	section:dotfiles/dot_config/nvim""Plugins
+hl	dot_config/nvim/lua/plugins/lazy/feline.lua	/^                hl = function() return { fg = 'fg', bg = 'bg' } end,$/;"	f
+hl	dot_config/nvim/lua/plugins/lazy/feline.lua	/^                hl = function()$/;"	f
+hl	dot_config/nvim/lua/plugins/lazy/feline.lua	/^            hl = function()$/;"	f
+icon	dot_config/nvim/README.md	/^### icon$/;"	S	section:dotfiles/dot_config/nvim""Plugins
 icon_for_window	.config/sway/scripts/autoname-workspaces.py	/^def icon_for_window(window):$/;"	f
 icon_for_window	dot_config/sway/scripts/executable_autoname-workspaces.py	/^def icon_for_window(window):$/;"	f
-init	dot_config/nvim/lua/lazyplugins.lua	/^      init = function()$/;"	f
+init	dot_config/nvim/lua/plugins/lazy/feline.lua	/^    init = function()$/;"	f
+init	dot_config/nvim/lua/plugins/lazy/lazyplugins.lua	/^        init = function()$/;"	f
 init_screens	.config/qtile/config-rofi.py	/^def init_screens():$/;"	f
 init_screens	.config/qtile/config.py	/^def init_screens():$/;"	f
 init_screens	dot_config/qtile/config-rofi.py	/^def init_screens():$/;"	f
@@ -448,7 +578,7 @@ ipc	.config/sway/scripts/autoname-workspaces.py	/^    ipc = i3ipc.Connection()$/
 ipc	.config/sway/scripts/inactive-windows-transparency.py	/^    ipc = i3ipc.Connection()$/;"	v
 ipc	dot_config/sway/scripts/executable_autoname-workspaces.py	/^    ipc = i3ipc.Connection()$/;"	v
 ipc	dot_config/sway/scripts/executable_inactive-windows-transparency.py	/^    ipc = i3ipc.Connection()$/;"	v
-keybinding	README.md	/^### keybinding$/;"	S	section:dotfiles/dot_config/nvim""Plugins
+keybinding	dot_config/nvim/README.md	/^### keybinding$/;"	S	section:dotfiles/dot_config/nvim""Plugins
 keys	.config/qtile/config-rofi.py	/^keys = [$/;"	v
 keys	.config/qtile/config.py	/^keys = [$/;"	v
 keys	dot_config/qtile/config-rofi.py	/^keys = [$/;"	v
@@ -460,33 +590,47 @@ layouts	.config/qtile/config.py	/^layouts = [$/;"	v
 layouts	dot_config/qtile/config-rofi.py	/^layouts = [$/;"	v
 layouts	dot_config/qtile/config.py	/^layouts = [$/;"	v
 lazy.nvim	.config/nvim/lazy-lock.json	/^  "lazy.nvim": { "branch": "main", "commit": "bef521ac89c8d423f9d092e37b58e8af0c099309" },$/;"	o
-lsp	README.md	/^### lsp$/;"	S	section:dotfiles/dot_config/nvim""Plugins
+lazy.nvim	dot_config/nvim/lazy-lock.json	/^  "lazy.nvim": { "branch": "main", "commit": "9bcbbc17a77680992fc9afcf3819f3b5c8f06bba" },$/;"	o
+lsp	dot_config/nvim/README.md	/^### lsp$/;"	S	section:dotfiles/dot_config/nvim""Plugins
+lsp-progress.nvim	dot_config/nvim/lazy-lock.json	/^  "lsp-progress.nvim": { "branch": "main", "commit": "55a04895ea20c365b670051a3128265d43bdfa3d" /;"	o
 lsp_attach	.config/nvim/ftplugin/java.lua	/^local lsp_attach = function(client, bufnr)$/;"	f
 lsp_formatting	.config/nvim/lua/user/lsp/handlers.lua	/^local lsp_formatting = function(bufnr)$/;"	f
 lsp_keymaps	.config/nvim/lua/user/lsp/handlers.lua	/^local function lsp_keymaps(bufnr)$/;"	f
+lsp_lines.nvim	dot_config/nvim/lazy-lock.json	/^  "lsp_lines.nvim": { "branch": "main", "commit": "7d9e2748b61bff6ebba6e30adbc7173ccf21c055" },$/;"	o
+lsp_signature.nvim	dot_config/nvim/lazy-lock.json	/^  "lsp_signature.nvim": { "branch": "master", "commit": "a38da0a61c172bb59e34befc12efe4835988479/;"	o
+lspkind.nvim	dot_config/nvim/lazy-lock.json	/^  "lspkind.nvim": { "branch": "master", "commit": "1735dd5a5054c1fb7feaf8e8658dbab925f4f0cf" },$/;"	o
 lspsaga.nvim	.config/nvim/lazy-lock.json	/^  "lspsaga.nvim": { "branch": "main", "commit": "a4d442896a9ff1f83ee3db965d81b659ebc977d5" },$/;"	o
+lspsaga.nvim	dot_config/nvim/lazy-lock.json	/^  "lspsaga.nvim": { "branch": "main", "commit": "6f920cfabddb9b7de5a3a4d0b7cd4f0774ae23e2" },$/;"	o
 mapleader	.vimrc	/^let mapleader = "\\<Space>"$/;"	v
-markdown-and-latex	README.md	/^### markdown-and-latex$/;"	S	section:dotfiles/dot_config/nvim""Plugins
+markdown-and-latex	dot_config/nvim/README.md	/^### markdown-and-latex$/;"	S	section:dotfiles/dot_config/nvim""Plugins
 mason-lspconfig.nvim	.config/nvim/lazy-lock.json	/^  "mason-lspconfig.nvim": { "branch": "main", "commit": "55716a879568a498fa236593c8119789054a3b8/;"	o
+mason-lspconfig.nvim	dot_config/nvim/lazy-lock.json	/^  "mason-lspconfig.nvim": { "branch": "main", "commit": "37a336b653f8594df75c827ed589f1c91d91ff6/;"	o
 mason.nvim	.config/nvim/lazy-lock.json	/^  "mason.nvim": { "branch": "main", "commit": "3b5068f0fc565f337d67a2d315d935f574848ee7" },$/;"	o
+mason.nvim	dot_config/nvim/lazy-lock.json	/^  "mason.nvim": { "branch": "main", "commit": "0950b15060067f752fde13a779a994f59516ce3d" },$/;"	o
+mini.nvim	dot_config/nvim/lazy-lock.json	/^  "mini.nvim": { "branch": "main", "commit": "334a2d9cfbd86ea08c4d870e39b5ba8bb354d938" },$/;"	o
 mod	.config/qtile/config-rofi.py	/^mod = "mod4"$/;"	v
 mod	.config/qtile/config.py	/^mod = "mod4"$/;"	v
 mod	dot_config/qtile/config-rofi.py	/^mod = "mod4"$/;"	v
 mod	dot_config/qtile/config.py	/^mod = "mod4"$/;"	v
-mode	dot_config/nvim/lua/lazyplugins.lua	/^        { "<c-s>", mode = { "c" }, function() require("flash").toggle() end, desc = "Toggle Flas/;"	f
-mode	dot_config/nvim/lua/lazyplugins.lua	/^        { "R", mode = { "o", "x" }, function() require("flash").treesitter_search() end, desc = /;"	f
-mode	dot_config/nvim/lua/lazyplugins.lua	/^        { "S", mode = { "n", "x", "o" }, function() require("flash").treesitter() end, desc = "F/;"	f
-mode	dot_config/nvim/lua/lazyplugins.lua	/^        { "r", mode = "o", function() require("flash").remote() end, desc = "Remote Flash" },$/;"	f
-mode	dot_config/nvim/lua/lazyplugins.lua	/^        { "s", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash" /;"	f
-motion	README.md	/^### motion$/;"	S	section:dotfiles/dot_config/nvim""Plugins
+mode	dot_config/nvim/lua/plugins/lazy/lazyplugins.lua	/^            { "<c-s>", mode = { "c" },           function() require("flash").toggle() end,      /;"	f
+mode	dot_config/nvim/lua/plugins/lazy/lazyplugins.lua	/^            { "R",     mode = { "o", "x" },      function() require("flash").treesitter_search()/;"	f
+mode	dot_config/nvim/lua/plugins/lazy/lazyplugins.lua	/^            { "S",     mode = { "n", "x", "o" }, function() require("flash").treesitter() end,  /;"	f
+mode	dot_config/nvim/lua/plugins/lazy/lazyplugins.lua	/^            { "r",     mode = "o",               function() require("flash").remote() end,      /;"	f
+mode	dot_config/nvim/lua/plugins/lazy/lazyplugins.lua	/^            { "s",     mode = { "n", "x", "o" }, function() require("flash").jump() end,        /;"	f
+motion	dot_config/nvim/README.md	/^### motion$/;"	S	section:dotfiles/dot_config/nvim""Plugins
 mouse	.config/qtile/config-rofi.py	/^mouse = [$/;"	v
 mouse	.config/qtile/config.py	/^mouse = [$/;"	v
 mouse	dot_config/qtile/config-rofi.py	/^mouse = [$/;"	v
 mouse	dot_config/qtile/config.py	/^mouse = [$/;"	v
 neo-tree.nvim	.config/nvim/lazy-lock.json	/^  "neo-tree.nvim": { "branch": "v3.x", "commit": "7f2ebdef3b55374390714ac7c0a7fe6b0dae498a" },$/;"	o
+neo-tree.nvim	dot_config/nvim/lazy-lock.json	/^  "neo-tree.nvim": { "branch": "v3.x", "commit": "29f7c215332ba95e470811c380ddbce2cebe2af4" },$/;"	o
+neogen	dot_config/nvim/lazy-lock.json	/^  "neogen": { "branch": "main", "commit": "6de0add4805165317ab7d3d36b5cef48b1b865f3" },$/;"	o
 neoterm	.config/nvim/lazy-lock.json	/^  "neoterm": { "branch": "master", "commit": "eca22dc90a9db5e52d8baf91f31991ad540ffe36" },$/;"	o
+neoterm	dot_config/nvim/lazy-lock.json	/^  "neoterm": { "branch": "master", "commit": "eca22dc90a9db5e52d8baf91f31991ad540ffe36" },$/;"	o
 nightfox.nvim	.config/nvim/lazy-lock.json	/^  "nightfox.nvim": { "branch": "main", "commit": "e352a32e0f54feb2550ebdab815ae8f7f26ed63b" },$/;"	o
-note-taking	README.md	/^### note-taking$/;"	S	section:dotfiles/dot_config/nvim""Plugins
+nightfox.nvim	dot_config/nvim/lazy-lock.json	/^  "nightfox.nvim": { "branch": "main", "commit": "df75a6a94910ae47854341d6b5a6fd483192c0eb" },$/;"	o
+noice.nvim	dot_config/nvim/lazy-lock.json	/^  "noice.nvim": { "branch": "main", "commit": "cade1f972ba226e7753a7a113f3f1a942908e73c" },$/;"	o
+note-taking	dot_config/nvim/README.md	/^### note-taking$/;"	S	section:dotfiles/dot_config/nvim""Plugins
 notify	.config/sway/scripts/grimshot.sh	/^notify() {$/;"	f
 notify	dot_config/sway/scripts/executable_grimshot.sh	/^notify() {$/;"	f
 notifyError	.config/sway/scripts/grimshot.sh	/^notifyError() {$/;"	f
@@ -496,26 +640,39 @@ notifyOk	dot_config/sway/scripts/executable_grimshot.sh	/^notifyOk() {$/;"	f
 notify_view	.config/rofi/applets/bin/screenshot.sh	/^notify_view() {$/;"	f
 notify_view	dot_config/rofi/applets/bin/executable_screenshot.sh	/^notify_view() {$/;"	f
 nui.nvim	.config/nvim/lazy-lock.json	/^  "nui.nvim": { "branch": "main", "commit": "3dc46d725f7b94bee5117c0a699b57b1902b5d65" },$/;"	o
+nui.nvim	dot_config/nvim/lazy-lock.json	/^  "nui.nvim": { "branch": "main", "commit": "a2bc1e9d0359caa5d11ad967cd1e30e8d4676226" },$/;"	o
 null-ls.nvim	.config/nvim/lazy-lock.json	/^  "null-ls.nvim": { "branch": "main", "commit": "0010ea927ab7c09ef0ce9bf28c2b573fc302f5a7" },$/;"	o
 numbertoggle	.config/nvim/init.vim	/^augroup numbertoggle$/;"	a
 numbertoggle	dot_config/nvim/vs-setup.vim	/^augroup numbertoggle$/;"	a
 nvcode-color-schemes.vim	.config/nvim/lazy-lock.json	/^  "nvcode-color-schemes.vim": { "branch": "master", "commit": "3a0e624a67ecd2c7f990bc3c25a1044e8/;"	o
+nvcode-color-schemes.vim	dot_config/nvim/lazy-lock.json	/^  "nvcode-color-schemes.vim": { "branch": "master", "commit": "3a0e624a67ecd2c7f990bc3c25a1044e8/;"	o
+nvim-bqf	dot_config/nvim/lazy-lock.json	/^  "nvim-bqf": { "branch": "main", "commit": "1b24dc6050c34e8cd377b6b4cd6abe40509e0187" },$/;"	o
 nvim-cmp	.config/nvim/lazy-lock.json	/^  "nvim-cmp": { "branch": "main", "commit": "04e0ca376d6abdbfc8b52180f8ea236cbfddf782" },$/;"	o
-nvim-dev	README.md	/^### nvim-dev$/;"	S	section:dotfiles/dot_config/nvim""Plugins
+nvim-cmp	dot_config/nvim/lazy-lock.json	/^  "nvim-cmp": { "branch": "main", "commit": "a110e12d0b58eefcf5b771f533fc2cf3050680ac" },$/;"	o
+nvim-dap	dot_config/nvim/lazy-lock.json	/^  "nvim-dap": { "branch": "master", "commit": "6f79b822997f2e8a789c6034e147d42bc6706770" },$/;"	o
+nvim-dap-ui	dot_config/nvim/lazy-lock.json	/^  "nvim-dap-ui": { "branch": "master", "commit": "b7267003ba4dd860350be86f75b9d9ea287cedca" },$/;"	o
+nvim-dev	dot_config/nvim/README.md	/^### nvim-dev$/;"	S	section:dotfiles/dot_config/nvim""Plugins
+nvim-lint	dot_config/nvim/lazy-lock.json	/^  "nvim-lint": { "branch": "master", "commit": "941fa1220a61797a51f3af9ec6b7d74c8c7367ce" },$/;"	o
 nvim-lspconfig	.config/nvim/lazy-lock.json	/^  "nvim-lspconfig": { "branch": "master", "commit": "4bdd3800b4148f670c6cf55ef65f490148eeb550" }/;"	o
+nvim-lspconfig	dot_config/nvim/lazy-lock.json	/^  "nvim-lspconfig": { "branch": "master", "commit": "9c9eb07fecc578e25e28db8dc9002b43fff2ed79" }/;"	o
+nvim-notify	dot_config/nvim/lazy-lock.json	/^  "nvim-notify": { "branch": "master", "commit": "d333b6f167900f6d9d42a59005d82919830626bf" },$/;"	o
 nvim-treesitter	.config/nvim/lazy-lock.json	/^  "nvim-treesitter": { "branch": "master", "commit": "07a404570f3d912afdfe92bbf74ff55886293369" /;"	o
+nvim-treesitter	dot_config/nvim/lazy-lock.json	/^  "nvim-treesitter": { "branch": "master", "commit": "d4a888ae3cff358cb239643c45b2b38bb60e29c6" /;"	o
 nvim-treesitter-context	.config/nvim/lazy-lock.json	/^  "nvim-treesitter-context": { "branch": "master", "commit": "f19766163c18515fb4d3c12d572bf9cba6/;"	o
+nvim-treesitter-context	dot_config/nvim/lazy-lock.json	/^  "nvim-treesitter-context": { "branch": "master", "commit": "5efba33af0f39942e426340da7bc15d7de/;"	o
 nvim-web-devicons	.config/nvim/lazy-lock.json	/^  "nvim-web-devicons": { "branch": "master", "commit": "75df79feb02d5e0ec114e447453775d4d291ea03/;"	o
+nvim-web-devicons	dot_config/nvim/lazy-lock.json	/^  "nvim-web-devicons": { "branch": "master", "commit": "c0cfc1738361b5da1cd0a962dd6f774cc444f856/;"	o
 obj	.config/waybar/scripts/checkgmail.py	/^obj = imaplib.IMAP4_SSL('imap.gmail.com','993')$/;"	v
 obj	dot_config/waybar/scripts/executable_checkgmail.py	/^obj = imaplib.IMAP4_SSL('imap.gmail.com','993')$/;"	v
+oil.nvim	dot_config/nvim/lazy-lock.json	/^  "oil.nvim": { "branch": "master", "commit": "65c53dbe4f2140236590a7568a5f22a77d16be39" },$/;"	o
 on_attach	.config/nvim/ftplugin/gdscript.lua	/^    on_attach = function(client, bufnr)$/;"	f
 on_attach	.config/nvim/lua/user/init.lua	/^local on_attach = function(client, bufnr)$/;"	f
 on_attach	.config/nvim/lua/user/lsp/handlers.lua	/^M.on_attach = function(client, bufnr)$/;"	f	unknown:M
-on_attach	dot_config/nvim/lua/lazyplugins.lua	/^            local on_attach = function(_, bufnr)$/;"	f
 on_attach	dot_config/nvim/lua/plugins/lspconfig.lua	/^local function on_attach(client, bufnr)$/;"	f
 on_window_focus	.config/sway/scripts/inactive-windows-transparency.py	/^def on_window_focus(inactive_opacity, ipc, event):$/;"	f
 on_window_focus	dot_config/sway/scripts/executable_inactive-windows-transparency.py	/^def on_window_focus(inactive_opacity, ipc, event):$/;"	f
 onebuddy	.config/nvim/lazy-lock.json	/^  "onebuddy": { "branch": "main", "commit": "7e16006e7dde15e3cb72889f736c49409db6ff42" },$/;"	o
+onebuddy	dot_config/nvim/lazy-lock.json	/^  "onebuddy": { "branch": "main", "commit": "7e16006e7dde15e3cb72889f736c49409db6ff42" },$/;"	o
 orgmode	.config/nvim/lazy-lock.json	/^  "orgmode": { "branch": "master", "commit": "5a5b4864ce5883d7505139125cb40256b40ddc6e" },$/;"	o
 parse_style	.config/nvim/lua/user/ui/feline.lua	/^local function parse_style(style)$/;"	f
 parse_style	.config/nvim/lua/user/ui/tabby.lua	/^local function parse_style(style)$/;"	f
@@ -528,7 +685,9 @@ parser	dot_config/sway/scripts/executable_inactive-windows-transparency.py	/^   
 password	dot_config/nvim/lua/utils/sudo_write.lua	/^local function password()$/;"	f
 pf	dot_config/nvim/extern/measure_nvim.sh	/^pf() {$/;"	f
 plenary.nvim	.config/nvim/lazy-lock.json	/^  "plenary.nvim": { "branch": "master", "commit": "f7adfc4b3f4f91aab6caebf42b3682945fbc35be" },$/;"	o
-plugin-manager	README.md	/^### plugin-manager$/;"	S	section:dotfiles/dot_config/nvim""Plugins
+plenary.nvim	dot_config/nvim/lazy-lock.json	/^  "plenary.nvim": { "branch": "master", "commit": "a3e3bc82a3f95c5ed0d7201546d5d2c19b20d683" },$/;"	o
+plugin-manager	dot_config/nvim/README.md	/^### plugin-manager$/;"	S	section:dotfiles/dot_config/nvim""Plugins
+precognition.nvim	dot_config/nvim/lazy-lock.json	/^  "precognition.nvim": { "branch": "main", "commit": "02dcc8f8db677fe02d2dd68da6155177283fe711" /;"	o
 preserve_position	dot_config/nvim/lua/core/autocmds/utils.lua	/^local function preserve_position()$/;"	f
 prev_focused	.config/sway/scripts/inactive-windows-transparency.py	/^            prev_focused = window$/;"	v
 prev_focused	.config/sway/scripts/inactive-windows-transparency.py	/^    prev_focused = None$/;"	v
@@ -541,7 +700,8 @@ prompt	.config/qtile/config.py	/^prompt = "{0}@{1}: ".format(os.environ["USER"],
 prompt	dot_config/qtile/config-rofi.py	/^prompt = "{0}@{1}: ".format(os.environ["USER"], socket.gethostname())$/;"	v
 prompt	dot_config/qtile/config.py	/^prompt = "{0}@{1}: ".format(os.environ["USER"], socket.gethostname())$/;"	v
 provider	.config/nvim/lua/user/ui/feline.lua	/^        provider = function()$/;"	f
-quickfix	README.md	/^### quickfix$/;"	S	section:dotfiles/dot_config/nvim""Plugins
+provider	dot_config/nvim/lua/plugins/lazy/feline.lua	/^            provider = function()$/;"	f
+quickfix	dot_config/nvim/README.md	/^### quickfix$/;"	S	section:dotfiles/dot_config/nvim""Plugins
 reconfigure_screens	.config/qtile/config-rofi.py	/^reconfigure_screens = True$/;"	v
 reconfigure_screens	.config/qtile/config.py	/^reconfigure_screens = True$/;"	v
 reconfigure_screens	dot_config/qtile/config-rofi.py	/^reconfigure_screens = True$/;"	v
@@ -684,24 +844,31 @@ sinkInputType	.config/pavucontrol.ini	/^sinkInputType=1$/;"	k	section:window
 sinkInputType	dot_config/pavucontrol.ini	/^sinkInputType=1$/;"	k	section:window
 sinkType	.config/pavucontrol.ini	/^sinkType=0$/;"	k	section:window
 sinkType	dot_config/pavucontrol.ini	/^sinkType=0$/;"	k	section:window
-snippet	README.md	/^### snippet$/;"	S	section:dotfiles/dot_config/nvim""Plugins
+smart-open.nvim	dot_config/nvim/lazy-lock.json	/^  "smart-open.nvim": { "branch": "0.2.x", "commit": "87626ee8748b9bba22093adec7bb58c63e7214f0" }/;"	o
+snippet	dot_config/nvim/README.md	/^### snippet$/;"	S	section:dotfiles/dot_config/nvim""Plugins
 sonokai	.config/nvim/lazy-lock.json	/^  "sonokai": { "branch": "master", "commit": "da162343354fbd9bf9cd49293a856f0e3761e8ac" },$/;"	o
+sonokai	dot_config/nvim/lazy-lock.json	/^  "sonokai": { "branch": "master", "commit": "bceb820817b12d3441636f7cf76ab3f77557a662" },$/;"	o
 sourceOutputType	.config/pavucontrol.ini	/^sourceOutputType=1$/;"	k	section:window
 sourceOutputType	dot_config/pavucontrol.ini	/^sourceOutputType=1$/;"	k	section:window
 sourceType	.config/pavucontrol.ini	/^sourceType=1$/;"	k	section:window
 sourceType	dot_config/pavucontrol.ini	/^sourceType=1$/;"	k	section:window
+sqlite.lua	dot_config/nvim/lazy-lock.json	/^  "sqlite.lua": { "branch": "master", "commit": "d0ffd703b56d090d213b497ed4eb840495f14a11" },$/;"	o
 start_term_mode	dot_config/nvim/lua/core/autocmds.lua	/^local function start_term_mode()$/;"	f
-statusline	README.md	/^### statusline$/;"	S	section:dotfiles/dot_config/nvim""Plugins
+statusline	dot_config/nvim/README.md	/^### statusline$/;"	S	section:dotfiles/dot_config/nvim""Plugins
 switch_screens	.config/qtile/config-rofi.py	/^def switch_screens(qtile):$/;"	f
 switch_screens	.config/qtile/config.py	/^def switch_screens(qtile):$/;"	f
 switch_screens	dot_config/qtile/config-rofi.py	/^def switch_screens(qtile):$/;"	f
 switch_screens	dot_config/qtile/config.py	/^def switch_screens(qtile):$/;"	f
-syntax	README.md	/^### syntax$/;"	S	section:dotfiles/dot_config/nvim""Plugins
+syntax	dot_config/nvim/README.md	/^### syntax$/;"	S	section:dotfiles/dot_config/nvim""Plugins
 tabby.nvim	.config/nvim/lazy-lock.json	/^  "tabby.nvim": { "branch": "main", "commit": "c4df244245e116280c961112cf6ee221ca3bc294" },$/;"	o
-tabline	README.md	/^### tabline$/;"	S	section:dotfiles/dot_config/nvim""Plugins
+tabby.nvim	dot_config/nvim/lazy-lock.json	/^  "tabby.nvim": { "branch": "main", "commit": "229605a2ccf36798f77eb7d1b55b5905df487162" },$/;"	o
+tabline	dot_config/nvim/README.md	/^### tabline$/;"	S	section:dotfiles/dot_config/nvim""Plugins
 takeScreenshot	.config/sway/scripts/grimshot.sh	/^takeScreenshot() {$/;"	f
 takeScreenshot	dot_config/sway/scripts/executable_grimshot.sh	/^takeScreenshot() {$/;"	f
+telescope-fzf-native.nvim	dot_config/nvim/lazy-lock.json	/^  "telescope-fzf-native.nvim": { "branch": "main", "commit": "9ef21b2e6bb6ebeaf349a0781745549bbb/;"	o
+telescope-fzy-native.nvim	dot_config/nvim/lazy-lock.json	/^  "telescope-fzy-native.nvim": { "branch": "master", "commit": "282f069504515eec762ab6d6c8990337/;"	o
 telescope.nvim	.config/nvim/lazy-lock.json	/^  "telescope.nvim": { "branch": "master", "commit": "d90956833d7c27e73c621a61f20b29fdb7122709" }$/;"	o
+telescope.nvim	dot_config/nvim/lazy-lock.json	/^  "telescope.nvim": { "branch": "master", "commit": "d90956833d7c27e73c621a61f20b29fdb7122709" }/;"	o
 terminal	.config/qtile/config-rofi.py	/^terminal = guess_terminal()$/;"	v
 terminal	.config/qtile/config.py	/^terminal = guess_terminal()$/;"	v
 terminal	dot_config/qtile/config-rofi.py	/^terminal = guess_terminal()$/;"	v
@@ -709,20 +876,25 @@ terminal	dot_config/qtile/config.py	/^terminal = guess_terminal()$/;"	v
 test	dot_config/nvim/lua/utils/sudo_write.lua	/^local function test(pw, k)$/;"	f
 time	.config/nvim/plugin/packer_compiled.lua	/^  time = function(chunk, start) end$/;"	f
 time	.config/nvim/plugin/packer_compiled.lua	/^  time = function(chunk, start)$/;"	f
+todo-comments.nvim	dot_config/nvim/lazy-lock.json	/^  "todo-comments.nvim": { "branch": "main", "commit": "51e10f838e84b4756c16311d0b1ef0972c6482d2"/;"	o
 toggle_format_on_save	.config/nvim/lua/user/lsp/handlers.lua	/^function M.toggle_format_on_save()$/;"	f	unknown:M
 toggle_lsp_client	dot_config/nvim/lua/plugins/lspconfig.lua	/^local function toggle_lsp_client()$/;"	f
 transparency_val	.config/sway/scripts/inactive-windows-transparency.py	/^    transparency_val = "0.80"$/;"	v
 transparency_val	dot_config/sway/scripts/executable_inactive-windows-transparency.py	/^    transparency_val = "0.80"$/;"	v
+trouble.nvim	dot_config/nvim/lazy-lock.json	/^  "trouble.nvim": { "branch": "main", "commit": "88c3be40c061ce053ab326ce4fdcb973a1f785ff" },$/;"	o
 try_loadstring	.config/nvim/plugin/packer_compiled.lua	/^local function try_loadstring(s, component, name)$/;"	f
 typ	.config/waybar/scripts/checkgmail.py	/^typ, data = obj.search(None,'UnSeen')$/;"	v
 typ	dot_config/waybar/scripts/executable_checkgmail.py	/^typ, data = obj.search(None,'UnSeen')$/;"	v
+u	dot_config/nvim/lua/plugins/mini.lua	/^    u = "Use\/call function & method",$/;"	f
 undo_window_renaming	.config/sway/scripts/autoname-workspaces.py	/^def undo_window_renaming(ipc):$/;"	f
 undo_window_renaming	dot_config/sway/scripts/executable_autoname-workspaces.py	/^def undo_window_renaming(ipc):$/;"	f
-utility	README.md	/^### utility$/;"	S	section:dotfiles/dot_config/nvim""Plugins
+utility	dot_config/nvim/README.md	/^### utility$/;"	S	section:dotfiles/dot_config/nvim""Plugins
 vi_mode_hl	.config/nvim/lua/user/ui/feline.lua	/^local function vi_mode_hl()$/;"	f
 vi_sep_hl	.config/nvim/lua/user/ui/feline.lua	/^local function vi_sep_hl()$/;"	f
+vim-gutentags	dot_config/nvim/lazy-lock.json	/^  "vim-gutentags": { "branch": "master", "commit": "aa47c5e29c37c52176c44e61c780032dfacef3dd" },$/;"	o
 weather	.config/waybar/scripts/wttr.py	/^weather = requests.get("https:\/\/wttr.in\/Chicago, Illinois?format=j1").json()$/;"	v
 weather	dot_config/waybar/scripts/executable_wttr.py	/^weather = requests.get("https:\/\/wttr.in\/Chicago, Illinois?format=j1").json()$/;"	v
+which-key.nvim	dot_config/nvim/lazy-lock.json	/^  "which-key.nvim": { "branch": "main", "commit": "0099511294f16b81c696004fa6a403b0ae61f7a0" },$/;"	o
 widget_defaults	.config/qtile/config-rofi.py	/^widget_defaults = dict($/;"	v
 widget_defaults	.config/qtile/config.py	/^widget_defaults = dict($/;"	v
 widget_defaults	dot_config/qtile/config-rofi.py	/^widget_defaults = dict($/;"	v
@@ -777,3 +949,4 @@ wmname	dot_config/qtile/config-rofi.py	/^wmname = "LG3D"$/;"	v
 wmname	dot_config/qtile/config.py	/^wmname = "LG3D"$/;"	v
 write	dot_config/nvim/lua/utils/sudo_write.lua	/^function sudo_write.write()$/;"	f	unknown:sudo_write
 write	dot_config/nvim/lua/utils/sudo_write.lua	/^local function write(pw, buf, lines, k)$/;"	f
+xcodebuild.nvim	dot_config/nvim/lazy-lock.json	/^  "xcodebuild.nvim": { "branch": "main", "commit": "2c11361fae9b349665fcf2392164fe8706855a46" }$/;"	o
