@@ -27,7 +27,7 @@ return {
                 -- The first entry (without a key) will be the default handler
                 -- and will be called for each installed server that doesn't have
                 -- a dedicated handler.
-                function (server_name) -- default handler (optional)
+                function(server_name) -- default handler (optional)
                     require("lspconfig")[server_name].setup {}
                 end,
             }
@@ -327,6 +327,7 @@ return {
             'nvim-treesitter/nvim-treesitter',
         },
     },
+    { "https://git.sr.ht/~whynothugo/lsp_lines.nvim" },
     {
         "danielfalk/smart-open.nvim",
         branch = "0.2.x",
@@ -375,30 +376,14 @@ return {
         opts = {},
     },
     {
-        'nvim-orgmode/orgmode',
-        dependencies = {
-            { 'nvim-treesitter/nvim-treesitter', lazy = true },
-        },
-        event = 'VeryLazy',
-        config = function()
-            require('orgmode').setup_ts_grammar()
-            require('nvim-treesitter.configs').setup({
-                highlight = {
-                    enable = true,
-                },
-                ensure_installed = { 'org' },
-            })
-
-            require('orgmode').setup({
-                org_agenda_files = '~/orgfiles/**/*',
-                org_default_notes_file = '~/orgfiles/refile.org',
-            })
-        end,
-        opts = {},
-    },
-    {
         "tris203/precognition.nvim",
-        event = "VimEnter"
+        config = function()
+            require("precognition").toggle()
+        end,
+        opts = {
+            startVisible = true,
+        },
+        lazy = false
     },
     {
         "folke/which-key.nvim",
@@ -488,5 +473,5 @@ return {
     { 'EdenEast/nightfox.nvim' },
     { 'nvim-tree/nvim-web-devicons' },
 
-    { "ellisonleao/glow.nvim",                      config = true, cmd = "Glow" },                     -- Markdown preview, :Glow/:Glow!
+    { "ellisonleao/glow.nvim",                      config = true, cmd = "Glow" }, -- Markdown preview, :Glow/:Glow!
 }
