@@ -46,7 +46,6 @@
 !_TAG_KIND_DESCRIPTION!Vim	a,augroup	/autocommand groups/
 !_TAG_KIND_DESCRIPTION!Vim	c,command	/user-defined commands/
 !_TAG_KIND_DESCRIPTION!Vim	f,function	/function definitions/
-!_TAG_KIND_DESCRIPTION!Vim	k,class	/vim9script classes/
 !_TAG_KIND_DESCRIPTION!Vim	m,map	/maps/
 !_TAG_KIND_DESCRIPTION!Vim	n,filename	/vimball filename/
 !_TAG_KIND_DESCRIPTION!Vim	v,variable	/variable definitions/
@@ -62,14 +61,14 @@
 !_TAG_PARSER_VERSION!Markdown	1.1	/current.age/
 !_TAG_PARSER_VERSION!Python	0.0	/current.age/
 !_TAG_PARSER_VERSION!Sh	0.0	/current.age/
-!_TAG_PARSER_VERSION!Vim	1.1	/current.age/
+!_TAG_PARSER_VERSION!Vim	0.0	/current.age/
 !_TAG_PARSER_VERSION!Yaml	0.0	/current.age/
 !_TAG_PATTERN_LENGTH_LIMIT	96	/0 for no limit/
-!_TAG_PROC_CWD	/Users/jackhamilton/.local/share/chezmoi/	//
+!_TAG_PROC_CWD	/home/jack/.local/share/chezmoi/	//
 !_TAG_PROGRAM_AUTHOR	Universal Ctags Team	//
 !_TAG_PROGRAM_NAME	Universal Ctags	/Derived from Exuberant Ctags/
 !_TAG_PROGRAM_URL	https://ctags.io/	/official site/
-!_TAG_PROGRAM_VERSION	6.1.0	/8976ec3d2/
+!_TAG_PROGRAM_VERSION	6.1.0	/v6.1.0/
 !_TAG_ROLE_DESCRIPTION!Python!module	imported	/imported modules/
 !_TAG_ROLE_DESCRIPTION!Python!module	indirectlyImported	/module imported in alternative name/
 !_TAG_ROLE_DESCRIPTION!Python!module	namespace	/namespace from where classes\/variables\/functions are imported/
@@ -668,6 +667,7 @@ oil.nvim	dot_config/nvim/lazy-lock.json	/^  "oil.nvim": { "branch": "master", "c
 on_attach	.config/nvim/ftplugin/gdscript.lua	/^    on_attach = function(client, bufnr)$/;"	f
 on_attach	.config/nvim/lua/user/init.lua	/^local on_attach = function(client, bufnr)$/;"	f
 on_attach	.config/nvim/lua/user/lsp/handlers.lua	/^M.on_attach = function(client, bufnr)$/;"	f	unknown:M
+on_attach	dot_config/nvim/after/ftplugin/gdscript.lua	/^    on_attach = function(client, bufnr)$/;"	f
 on_attach	dot_config/nvim/lua/plugins/lspconfig.lua	/^local function on_attach(client, bufnr)$/;"	f
 on_window_focus	.config/sway/scripts/inactive-windows-transparency.py	/^def on_window_focus(inactive_opacity, ipc, event):$/;"	f
 on_window_focus	dot_config/sway/scripts/executable_inactive-windows-transparency.py	/^def on_window_focus(inactive_opacity, ipc, event):$/;"	f
@@ -885,7 +885,7 @@ trouble.nvim	dot_config/nvim/lazy-lock.json	/^  "trouble.nvim": { "branch": "mai
 try_loadstring	.config/nvim/plugin/packer_compiled.lua	/^local function try_loadstring(s, component, name)$/;"	f
 typ	.config/waybar/scripts/checkgmail.py	/^typ, data = obj.search(None,'UnSeen')$/;"	v
 typ	dot_config/waybar/scripts/executable_checkgmail.py	/^typ, data = obj.search(None,'UnSeen')$/;"	v
-u	dot_config/nvim/lua/plugins/mini.lua	/^    u = "Use\/call function & method",$/;"	f
+u	dot_config/nvim/lua/plugins/mini.lua	/^	u = "Use\/call function & method",$/;"	f
 undo_window_renaming	.config/sway/scripts/autoname-workspaces.py	/^def undo_window_renaming(ipc):$/;"	f
 undo_window_renaming	dot_config/sway/scripts/executable_autoname-workspaces.py	/^def undo_window_renaming(ipc):$/;"	f
 utility	dot_config/nvim/README.md	/^### utility$/;"	S	section:dotfiles/dot_config/nvim""Plugins

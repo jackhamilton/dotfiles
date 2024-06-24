@@ -37,7 +37,7 @@ local function config(_, opts)
                 return {
                     name = require('feline.providers.vi_mode').get_mode_highlight_name(),
                     bg = require('feline.providers.vi_mode').get_mode_color(),
-                    fg = 'black',
+                    fg = 'bg',
                     style = 'bold'
                 }
             end,
@@ -47,7 +47,7 @@ local function config(_, opts)
                 hl = function()
                     return {
                         bg = require('feline.providers.vi_mode').get_mode_color(),
-                        fg = 'black',
+                        fg = 'bg',
                     }
                 end,
             },
@@ -57,7 +57,7 @@ local function config(_, opts)
                 hl = function()
                     return {
                         bg = require('feline.providers.vi_mode').get_mode_color(),
-                        fg = 'black',
+                        fg = 'bg',
                     }
                 end,
             }
@@ -88,14 +88,13 @@ local function config(_, opts)
             provider = 'file_info',
             hl = {
                 bg = 'cyan',
-                fg = 'black',
-                style = 'bold'
+                fg = 'bg',
             },
             left_sep = {
                 always_visible = true,
                 hl = {
                     bg = 'cyan',
-                    fg = 'black',
+                    fg = 'bg',
                 },
                 str = ' ',
             },
@@ -103,7 +102,7 @@ local function config(_, opts)
                 always_visible = true,
                 hl = {
                     bg = 'cyan',
-                    fg = 'black',
+                    fg = 'bg',
                 },
                 str = ' ',
             },
