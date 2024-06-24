@@ -55,8 +55,15 @@ tree-sitter-vim = "scm"
 nvim-notify = "3.13.5"
 tree-sitter-regex = "scm"
 
+# smartopen dependencies
+[plugins."sqlite.lua"]
+git = "kkharji/sqlite.lua"
+[plugins."telescope-fzy-native.nvim"]
+git = "nvim-telescope/telescope-fzy-native.nvim"
+
 [plugins."smart-open"]
 git = "github:danielfalk/smart-open.nvim"
+opt = true
 
 [plugins.vim-gutentags]
 git = "github:ludovicchabant/vim-gutentags"
