@@ -117,41 +117,78 @@ local function config(_, opts)
                 fg = "fg",
             },
             left_sep = ' ',
-            right_sep = ' ',
             priority = -9
         },
 
         git_diff_added = {
             provider = 'git_diff_added',
+            hl = {
+                fg = "green",
+                bg = "bg",
+            },
             left_sep = ' ',
-            right_sep = ' '
         },
 
         git_diff_removed = {
             provider = 'git_diff_removed',
+            hl = {
+                fg = "red",
+                bg = "bg",
+            },
             left_sep = ' ',
-            right_sep = ' '
         },
 
         git_diff_changed = {
             provider = 'git_diff_changed',
+            hl = {
+                fg = "yellow",
+                bg = "bg",
+            },
             left_sep = ' ',
-            right_sep = ' '
+        },
+
+        diagnostic_hints = {
+            provider = 'diagnostic_hints',
+            left_sep = ' ',
+        },
+
+        diagnostic_errors = {
+            provider = 'diagnostic_errors',
+            hl = {
+                fg = "red",
+                bg = "bg",
+            },
+            left_sep = ' ',
+        },
+
+        diagnostic_warnings = {
+            provider = 'diagnostic_warnings',
+            hl = {
+                fg = "yellow",
+                bg = "bg",
+            },
+            left_sep = ' ',
         },
 
         diagnostic_info = {
             provider = 'diagnostic_info',
             left_sep = ' ',
-            right_sep = ' '
         },
 
         git_branch = {
             -- Component info here
             provider = 'git_branch',
             hl = {
-                fg = "fg",
+                fg = "green",
                 bg = "bg",
                 style = 'bold'
+            },
+            left_sep = {
+                str = '  ',
+                hl = {
+                    fg = 'NONE',
+                    bg = 'bg'
+                }
             },
             right_sep = {
                 str = ' ',
@@ -184,7 +221,7 @@ local function config(_, opts)
                 always_visible = true,
                 str = ' ',
                 hl = function()
-                    if not lsp.is_lsp_attached() then return { fg = 'fg', bg = 'none' } end
+                    if not lsp.is_lsp_attached() then return { fg = 'fg', bg = 'bg' } end
                     return { fg = 'green', bg = 'none' }
                 end,
             },
@@ -249,7 +286,9 @@ local function config(_, opts)
             c.vi_mode_info,
             c.file_info,
             c.lsp,
-            c.diagnostic_info,
+            c.file_size,
+            c.diagnostic_errors,
+            c.diagnostic_warnings,
         },
         {
             c.search_count,
