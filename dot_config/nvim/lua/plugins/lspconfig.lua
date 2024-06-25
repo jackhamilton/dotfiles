@@ -127,6 +127,11 @@ local function on_attach(client, bufnr)
     kbd("n", "<leader>lgd", vim.lsp.buf.definition, { buffer = true, desc = "Goto definition" })
     -- Go to declaration
     kbd("n", "<leader>lgD", vim.lsp.buf.declaration, { buffer = true, desc = "Goto declaration" })
+    kbd("n", "<leader>li", vim.lsp.buf.implementation, { buffer = true, desc = "List implementations" })
+    kbd("n", "<leader>lgt", vim.lsp.buf.type_definition, { buffer = true, desc = "Goto type definition" })
+    kbd("n", "<leader>lgr", vim.lsp.buf.references, { buffer = true, desc = "List type references" })
+    kbd("n", "<leader>ls", vim.lsp.buf.declaration, { buffer = true, desc = "Display function signature" })
+    kbd("n", "<leader>lf", vim.lsp.buf.format, { buffer = true, desc = "Format file" })
 
     --- Autocommands
     vim.api.nvim_create_augroup("Lsp", { clear = true })
@@ -146,12 +151,6 @@ local function on_attach(client, bufnr)
             vim.diagnostic.open_float(opts)
         end,
     })
-    --- Commands
-    vim.api.nvim_create_user_command(
-        "Format",
-        vim.lsp.buf.format,
-        { desc = "Format current buffer using LSP" }
-    )
 end
 
 --- Capabilities
@@ -316,6 +315,67 @@ end
 if vim.fn.executable("jedi-language-server") == 1 then
     lsp.jedi_language_server.setup(defaults)
 end
+
+-- Setup autoformat
+local fmt_group = vim.api.nvim_create_augroup('autoformat_cmds', { clear = true })
+
+local function setup_autoformat(event)
+    local id = vim.tbl_get(event, 'data', 'client_id')
+    local client = id and vim.lsp.get_client_by_id(id)
+    if client == nil then
+        return
+    end
+
+    vim.api.nvim_clear_autocmds({ group = fmt_group, buffer = event.buf })
+
+    local buf_format = function(e)
+        vim.lsp.buf.format({
+            bufnr = e.buf,
+            async = false,
+            timeout_ms = 10000,
+        })
+    end
+
+    vim.api.nvim_create_autocmd('BufWritePre', {
+        buffer = event.buf,
+        group = fmt_group,
+        desc = 'Format current buffer',
+        callback = buf_format,
+    })
+end
+
+vim.api.nvim_create_autocmd('LspAttach', {
+    desc = 'Setup format on save',
+    callback = setup_autoformat,
+})
+
+-- Disable diagnostics in insert and select mode
+vim.api.nvim_create_autocmd('ModeChanged', {
+    pattern = { 'n:i', 'v:s' },
+    desc = 'Disable diagnostics in insert and select mode',
+    callback = function(e) vim.diagnostic.disable(e.buf) end
+})
+
+vim.api.nvim_create_autocmd('ModeChanged', {
+    pattern = 'i:n',
+    desc = 'Enable diagnostics when leaving insert mode',
+    callback = function(e) vim.diagnostic.enable(e.buf) end
+})
+
+-- Enable inlay hints
+vim.api.nvim_create_autocmd('LspAttach', {
+  desc = 'Enable inlay hints',
+  callback = function(event)
+    local id = vim.tbl_get(event, 'data', 'client_id')
+    local client = id and vim.lsp.get_client_by_id(id)
+    if client == nil or not client.supports_method('textDocument/inlayHint') then
+      return
+    end
+
+    -- warning: this api is not stable yet
+    vim.lsp.inlay_hint.enable(true, {bufnr = event.buf})
+  end,
+})
 
 -- Toggle lsp client
 local function toggle_lsp_client()

@@ -47,31 +47,36 @@ return {
         end,
         dependencies = {
             'williamboman/mason-lspconfig.nvim',
+            'ray-x/lsp_signature.nvim',
         },
         init = function()
+            -- update lsp floating window settings
+            -- local max_width = 80
+            vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, {}) --, { max_width = max_width })
+
             -- cursorhold
             vim.opt.updatetime = 250
+
+            -- diagnostics
+            vim.diagnostic.config({
+                update_in_insert = false,
+                virtual_text = false,
+            })
         end,
         opts = {
             servers = {},
         },
     },
-    -- {
-    --     "ray-x/lsp_signature.nvim",
-    --     event = "VeryLazy",
-    --     opts = {},
-    --     config = function(_, opts) require'lsp_signature'.setup(opts) end
-    -- },
     {
         "hrsh7th/nvim-cmp",
         event = "InsertEnter",
         dependencies = {
-            "hrsh7th/cmp-buffer",           -- source for text in buffer
-            "hrsh7th/cmp-path",             -- source for file system paths
-            "L3MON4D3/LuaSnip",             -- snippet engine
-            "saadparwaiz1/cmp_luasnip",     -- for autocompletion
+            "hrsh7th/cmp-buffer",  -- source for text in buffer
+            "hrsh7th/cmp-path",    -- source for file system paths
+            "L3MON4D3/LuaSnip",    -- snippet engine
+            "saadparwaiz1/cmp_luasnip", -- for autocompletion
             "rafamadriz/friendly-snippets", -- useful snippets
-            "onsails/lspkind.nvim",         -- vs-code like pictograms
+            "onsails/lspkind.nvim", -- vs-code like pictograms
         },
         config = function()
             local cmp = require("cmp")
@@ -93,12 +98,12 @@ return {
                 mapping = cmp.mapping.preset.insert({
                     ["<C-k>"] = cmp.mapping.select_prev_item(), -- previous suggestion
                     ["<C-j>"] = cmp.mapping.select_next_item(), -- next suggestion
-                    ["<C-Space>"] = cmp.mapping.complete(),     -- show completion suggestions
-                    ["<C-e>"] = cmp.mapping.abort(),            -- close completion window
+                    ["<C-Space>"] = cmp.mapping.complete(), -- show completion suggestions
+                    ["<C-e>"] = cmp.mapping.abort(), -- close completion window
                     ["<CR>"] = cmp.mapping.confirm({
                         select = false,
                         behavior = cmp.ConfirmBehavior
-                        .Replace
+                            .Replace
                     }),
                     ["<C-b>"] = cmp.mapping(function(fallback)
                         if luasnip.jumpable(-1) then
@@ -119,8 +124,8 @@ return {
                 sources = cmp.config.sources({
                     { name = "nvim_lsp" },
                     { name = "luasnip" }, -- snippets
-                    { name = "buffer" },  -- text within current buffer
-                    { name = "path" },    -- file system paths
+                    { name = "buffer" }, -- text within current buffer
+                    { name = "path" }, -- file system paths
                 }),
                 -- configure lspkind for vs-code like pictograms in completion menu
                 formatting = {
@@ -191,16 +196,17 @@ return {
     },
 
     -- Lsp
-    {
-        'nvimdev/lspsaga.nvim',
-        config = function()
-            require('lspsaga').setup({})
-        end,
-        dependencies = {
-            'nvim-treesitter/nvim-treesitter',
-            'nvim-tree/nvim-web-devicons',
-        },
-    },
+    -- {
+    -- 	'nvimdev/lspsaga.nvim',
+    -- 	event = 'LspAttach',
+    -- 	config = function()
+    -- 		require('lspsaga').setup({})
+    -- 	end,
+    -- 	dependencies = {
+    -- 		'nvim-treesitter/nvim-treesitter',
+    -- 		'nvim-tree/nvim-web-devicons',
+    -- 	},
+    -- },
     {
         "wojciech-kulik/xcodebuild.nvim",
         dependencies = {
@@ -214,262 +220,319 @@ return {
             })
         end,
     },
-    --    {
-        --        "xbase-lab/xbase",
-        --        run = "make install",
-        --        requires = {
-            --            "nvim-lua/plenary.nvim",
-            --            "nvim-telescope/telescope.nvim",
-            --            "neovim/nvim-lspconfig",
-            --        },
-            --        config = function()
-                --            require("xbase").setup({})
-                --        end,
-                --    },
+    -- Debugging
+    {
+        "mfussenegger/nvim-dap",
+        event = 'LspAttach',
+        dependencies = {
+            "wojciech-kulik/xcodebuild.nvim"
+        },
+        config = function()
+            local xcodebuild = require("xcodebuild.integrations.dap")
 
-                -- Debugging
-                {
-                    "mfussenegger/nvim-dap",
-                    dependencies = {
-                        "wojciech-kulik/xcodebuild.nvim"
-                    },
-                    config = function()
-                        local xcodebuild = require("xcodebuild.integrations.dap")
+            -- TODO: change it to your local codelldb path
+            local codelldbPath = os.getenv("HOME") .. "/Documents/codelldb-aarch64-darwin.vsix"
 
-                        -- TODO: change it to your local codelldb path
-                        local codelldbPath = os.getenv("HOME") .. "/Documents/codelldb-aarch64-darwin.vsix"
+            xcodebuild.setup(codelldbPath)
 
-                        xcodebuild.setup(codelldbPath)
-
-                        vim.keymap.set("n", "<leader>dd", xcodebuild.build_and_debug, { desc = "Build & Debug" })
-                        vim.keymap.set("n", "<leader>dr", xcodebuild.debug_without_build,
-                        { desc = "Debug Without Building" })
-                        vim.keymap.set("n", "<leader>dt", xcodebuild.debug_tests, { desc = "Debug Tests" })
-                        vim.keymap.set("n", "<leader>dT", xcodebuild.debug_class_tests, { desc = "Debug Class Tests" })
-                        vim.keymap.set("n", "<leader>b", xcodebuild.toggle_breakpoint, { desc = "Toggle Breakpoint" })
-                        vim.keymap.set("n", "<leader>B", xcodebuild.toggle_message_breakpoint,
-                        { desc = "Toggle Message Breakpoint" })
-                        vim.keymap.set("n", "<leader>dx", xcodebuild.terminate_session, { desc = "Terminate Debugger" })
-                    end,
+            vim.keymap.set("n", "<leader>dd", xcodebuild.build_and_debug, { desc = "Build & Debug" })
+            vim.keymap.set("n", "<leader>dr", xcodebuild.debug_without_build,
+                { desc = "Debug Without Building" })
+            vim.keymap.set("n", "<leader>dt", xcodebuild.debug_tests, { desc = "Debug Tests" })
+            vim.keymap.set("n", "<leader>dT", xcodebuild.debug_class_tests, { desc = "Debug Class Tests" })
+            vim.keymap.set("n", "<leader>b", xcodebuild.toggle_breakpoint, { desc = "Toggle Breakpoint" })
+            vim.keymap.set("n", "<leader>B", xcodebuild.toggle_message_breakpoint,
+                { desc = "Toggle Message Breakpoint" })
+            vim.keymap.set("n", "<leader>dx", xcodebuild.terminate_session, { desc = "Terminate Debugger" })
+        end,
+    },
+    {
+        "rcarriga/nvim-dap-ui",
+        dependencies = { "mfussenegger/nvim-dap", },
+        lazy = true,
+        config = function()
+            require("dapui").setup({
+                controls = {
+                    element = "repl",
+                    enabled = true,
                 },
-                {
-                    "rcarriga/nvim-dap-ui",
-                    dependencies = { "mfussenegger/nvim-dap", },
-                    lazy = true,
-                    config = function()
-                        require("dapui").setup({
-                            controls = {
-                                element = "repl",
-                                enabled = true,
-                            },
-                            floating = {
-                                border = "single",
-                                mappings = {
-                                    close = { "q", "<Esc>" },
-                                },
-                            },
-                            icons = { collapsed = "", expanded = "", current_frame = "" },
-                            layouts = {
-                                {
-                                    elements = {
-                                        { id = "stacks",      size = 0.25 },
-                                        { id = "scopes",      size = 0.25 },
-                                        { id = "breakpoints", size = 0.25 },
-                                        { id = "watches",     size = 0.25 },
-                                    },
-                                    position = "left",
-                                    size = 60,
-                                },
-                                {
-                                    elements = {
-                                        { id = "repl",    size = 0.35 },
-                                        { id = "console", size = 0.65 },
-                                    },
-                                    position = "bottom",
-                                    size = 10,
-                                },
-                            },
-                        })
-
-                        local dap, dapui = require("dap"), require("dapui")
-
-                        dap.listeners.after.event_initialized["dapui_config"] = function()
-                            dapui.open()
-                        end
-                        dap.listeners.before.event_terminated["dapui_config"] = function()
-                            dapui.close()
-                        end
-                        dap.listeners.before.event_exited["dapui_config"] = function()
-                            dapui.close()
-                        end
-                    end,
-                },
-
-                -- Snippets
-                { 'L3MON4D3/LuaSnip' },
-                { 'rafamadriz/friendly-snippets' },
-
-                -- Misc
-                {
-                    'nvim-treesitter/nvim-treesitter',
-                    lazy = false,
-                },
-                {
-                    'nvim-treesitter/nvim-treesitter-context',
-                    lazy = false,
-                    dependencies = {
-                        'nvim-treesitter/nvim-treesitter',
+                floating = {
+                    border = "single",
+                    mappings = {
+                        close = { "q", "<Esc>" },
                     },
                 },
-                { "https://git.sr.ht/~whynothugo/lsp_lines.nvim" },
-                {
-                    "danielfalk/smart-open.nvim",
-                    branch = "0.2.x",
-                    config = function()
-                        require("telescope").load_extension("smart_open")
-                    end,
-                    dependencies = {
-                        "kkharji/sqlite.lua",
-                        -- Only required if using match_algorithm fzf
-                        { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
-                        -- Optional.  If installed, native fzy will be used when match_algorithm is fzy
-                        { "nvim-telescope/telescope-fzy-native.nvim" },
+                icons = { collapsed = "", expanded = "", current_frame = "" },
+                layouts = {
+                    {
+                        elements = {
+                            { id = "stacks",      size = 0.25 },
+                            { id = "scopes",      size = 0.25 },
+                            { id = "breakpoints", size = 0.25 },
+                            { id = "watches",     size = 0.25 },
+                        },
+                        position = "left",
+                        size = 60,
+                    },
+                    {
+                        elements = {
+                            { id = "repl",    size = 0.35 },
+                            { id = "console", size = 0.65 },
+                        },
+                        position = "bottom",
+                        size = 10,
                     },
                 },
-                {
-                    'nvim-telescope/telescope.nvim',
-                    tag = '0.1.5',
-                    lazy = false,
-                },
-                {
-                    'nvim-neo-tree/neo-tree.nvim',
-                    branch = "v3.x",
-                    dependencies = {
-                        "nvim-lua/plenary.nvim",
-                        "nvim-tree/nvim-web-devicons",
-                        "MunifTanjim/nui.nvim",
-                    }
-                },
-                { 'ludovicchabant/vim-gutentags' },
-                { 'kevinhwang91/nvim-bqf' },
-                {
-                    'stevearc/oil.nvim',
-                    opts = {},
-                    -- Optional dependencies
-                    dependencies = { "nvim-tree/nvim-web-devicons" },
-                },
-                { 'kassio/neoterm' },
-                {
-                    'nanozuki/tabby.nvim',
-                    event = 'VimEnter',
-                    dependencies = 'nvim-tree/nvim-web-devicons'
-                },
-                {
-                    'lewis6991/gitsigns.nvim',
-                    eqvent = 'VimEnter',
-                    opts = {},
-                },
-                {
-                    "tris203/precognition.nvim",
-                    config = function()
-                        require("precognition").toggle()
-                    end,
-                    opts = {
-                        startVisible = true,
-                    },
-                    lazy = false
-                },
-                {
-                    "folke/which-key.nvim",
-                    event = "VeryLazy",
-                    init = function()
-                        vim.o.timeout = true
-                        vim.o.timeoutlen = 300
-                    end,
-                    opts = {
-                        -- your configuration comes here
-                        -- or leave it empty to use the default settings
-                    }
-                },
-                {
-                    "numToStr/Comment.nvim",
-                    opts = {
-                        -- add any options here
-                    },
-                    lazy = false,
-                },
-                {
-                    "folke/trouble.nvim",
-                    dependencies = { "nvim-tree/nvim-web-devicons" },
-                    opts = {
-                        -- your configuration comes here
-                        -- or leave it empty to use the default settings
-                    },
-                },
-                {
-                    "folke/todo-comments.nvim",
-                    dependencies = { "nvim-lua/plenary.nvim" },
-                    opts = {
-                        -- your configuration comes here
-                        -- or leave it empty to use the default settings
-                        -- refer to the configuration section below
-                    }
-                },
-                {
-                    "folke/noice.nvim",
-                    event = "VeryLazy",
-                    opts = {
-                        -- add any options here
-                    },
-                    dependencies = {
-                        -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
-                        "MunifTanjim/nui.nvim",
-                        -- OPTIONAL:
-                        --   `nvim-notify` is only needed, if you want to use the notification view.
-                        --   If not available, we use `mini` as the fallback
-                        "rcarriga/nvim-notify",
-                    }
-                },
-                {
-                    "folke/flash.nvim",
-                    event = "VeryLazy",
-                    ---@type Flash.Config
-                    opts = {},
-                    -- stylua: ignore
-                    keys = {
-                        { "s",     mode = { "n", "x", "o" }, function() require("flash").jump() end,              desc = "Flash" },
-                        { "S",     mode = { "n", "x", "o" }, function() require("flash").treesitter() end,        desc = "Flash Treesitter" },
-                        { "r",     mode = "o",               function() require("flash").remote() end,            desc = "Remote Flash" },
-                        { "R",     mode = { "o", "x" },      function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
-                        { "<c-s>", mode = { "c" },           function() require("flash").toggle() end,            desc = "Toggle Flash Search" },
-                    },
-                },
-                {
-                    "danymat/neogen",
-                    config = true,
-                    -- Uncomment next line if you want to follow only stable versions
-                    -- version = "*"
-                },
-                {
-                    "nvim-neorg/neorg",
-                    opts = {}
-                },
-                -- {
-                    --   'stevearc/aerial.nvim',
-                    --   opts = {},
-                    --   -- Optional dependencies
-                    --   dependencies = {
-                        --      "nvim-treesitter/nvim-treesitter",
-                        --      "nvim-tree/nvim-web-devicons"
-                        --   },
-                        -- }
-                        -- Themes
-                        { 'christianchiarulli/nvcode-color-schemes.vim' },
-                        { 'Th3Whit3Wolf/onebuddy' },
-                        { 'sainnhe/edge' },
-                        { 'sainnhe/sonokai' },
-                        { 'EdenEast/nightfox.nvim' },
-                        { 'nvim-tree/nvim-web-devicons' },
+            })
 
-                        { "ellisonleao/glow.nvim",                      config = true, cmd = "Glow" }, -- Markdown preview, :Glow/:Glow!
-                    }
+            local dap, dapui = require("dap"), require("dapui")
+
+            dap.listeners.after.event_initialized["dapui_config"] = function()
+                dapui.open()
+            end
+            dap.listeners.before.event_terminated["dapui_config"] = function()
+                dapui.close()
+            end
+            dap.listeners.before.event_exited["dapui_config"] = function()
+                dapui.close()
+            end
+        end,
+    },
+    -- {
+    -- 	"linrongbin16/gentags.nvim",
+    -- 	event = 'LspAttach',
+    -- 	config = function()
+    -- 		require('gentags').setup()
+    -- 	end,
+    -- },
+
+    -- Snippets
+    { 'L3MON4D3/LuaSnip' },
+    { 'rafamadriz/friendly-snippets' },
+
+    -- Misc
+    {
+        'nvim-treesitter/nvim-treesitter',
+        lazy = false,
+    },
+    {
+        'nvim-treesitter/nvim-treesitter-context',
+        lazy = false,
+        dependencies = {
+            'nvim-treesitter/nvim-treesitter',
+        },
+    },
+    -- { "https://git.sr.ht/~whynothugo/lsp_lines.nvim" },
+    {
+        "danielfalk/smart-open.nvim",
+        branch = "0.2.x",
+        config = function()
+            local actions = require("telescope.actions")
+            require("telescope").setup {
+                defaults = {
+                    mappings = {
+                        i = {
+                            ["<esc>"] = actions.close
+                        },
+                    },
+                }
+            }
+            require("telescope").load_extension("smart_open")
+        end,
+        dependencies = {
+            "kkharji/sqlite.lua",
+            -- Only required if using match_algorithm fzf
+            { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
+            -- Optional.  If installed, native fzy will be used when match_algorithm is fzy
+            { "nvim-telescope/telescope-fzy-native.nvim" },
+        },
+    },
+    {
+        'nvim-telescope/telescope.nvim',
+        tag = '0.1.5',
+        lazy = true,
+    },
+    -- {
+    -- 	'nvim-neo-tree/neo-tree.nvim',
+    -- 	branch = "v3.x",
+    -- 	dependencies = {
+    -- 		"nvim-lua/plenary.nvim",
+    -- 		"nvim-tree/nvim-web-devicons",
+    -- 		"MunifTanjim/nui.nvim",
+    -- 	}
+    -- },
+    { 'kevinhwang91/nvim-bqf' },
+    {
+        'stevearc/oil.nvim',
+        opts = {},
+        -- Optional dependencies
+        dependencies = { "nvim-tree/nvim-web-devicons" },
+    },
+    { 'kassio/neoterm' },
+    {
+        'nanozuki/tabby.nvim',
+        event = 'VimEnter',
+        dependencies = 'nvim-tree/nvim-web-devicons'
+    },
+    {
+        'lewis6991/gitsigns.nvim',
+        event = 'VimEnter',
+        opts = {},
+    },
+    {
+        "tris203/precognition.nvim",
+        config = function()
+            require("precognition").toggle()
+        end,
+        opts = {
+            startVisible = true,
+        },
+        lazy = false
+    },
+    {
+        "folke/which-key.nvim",
+        event = "VeryLazy",
+        init = function()
+            vim.o.timeout = true
+            vim.o.timeoutlen = 300
+        end,
+        opts = {
+            -- your configuration comes here
+            -- or leave it empty to use the default settings
+        }
+    },
+    {
+        "numToStr/Comment.nvim",
+        opts = {
+            -- add any options here
+        },
+        lazy = false,
+    },
+    {
+        "folke/trouble.nvim",
+        dependencies = { "nvim-tree/nvim-web-devicons" },
+        opts = {
+            -- your configuration comes here
+            -- or leave it empty to use the default settings
+        },
+        cmd = "Trouble",
+        keys = {
+            {
+                "<leader>xx",
+                "<cmd>Trouble diagnostics toggle<cr>",
+                desc = "Diagnostics (Trouble)",
+            },
+            {
+                "<leader>xX",
+                "<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
+                desc = "Buffer Diagnostics (Trouble)",
+            },
+            {
+                "<leader>cs",
+                "<cmd>Trouble symbols toggle focus=false<cr>",
+                desc = "Symbols (Trouble)",
+            },
+            {
+                "<leader>cl",
+                "<cmd>Trouble lsp toggle focus=false win.position=right<cr>",
+                desc = "LSP Definitions / references / ... (Trouble)",
+            },
+            {
+                "<leader>xL",
+                "<cmd>Trouble loclist toggle<cr>",
+                desc = "Location List (Trouble)",
+            },
+            {
+                "<leader>xQ",
+                "<cmd>Trouble qflist toggle<cr>",
+                desc = "Quickfix List (Trouble)",
+            },
+        },
+    },
+    {
+        "folke/todo-comments.nvim",
+        dependencies = { "nvim-lua/plenary.nvim" },
+        opts = {
+            -- your configuration comes here
+            -- or leave it empty to use the default settings
+            -- refer to the configuration section below
+        }
+    },
+    {
+        "folke/noice.nvim",
+        event = "VeryLazy",
+        lsp = {
+            -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
+            override = {
+                ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
+                ["vim.lsp.util.stylize_markdown"] = true,
+                ["cmp.entry.get_documentation"] = true, -- requires hrsh7th/nvim-cmp
+            },
+        },
+        -- you can enable a preset for easier configuration
+        presets = {
+            bottom_search = true, -- use a classic bottom cmdline for search
+            command_palette = true, -- position the cmdline and popupmenu together
+            long_message_to_split = true, -- long messages will be sent to a split
+            inc_rename = false,  -- enables an input dialog for inc-rename.nvim
+            lsp_doc_border = false, -- add a border to hover docs and signature help
+        },
+        opts = {
+            -- add any options here
+        },
+        dependencies = {
+            -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
+            "MunifTanjim/nui.nvim",
+            -- OPTIONAL:
+            --   `nvim-notify` is only needed, if you want to use the notification view.
+            --   If not available, we use `mini` as the fallback
+            "rcarriga/nvim-notify",
+        }
+    },
+    {
+        "folke/flash.nvim",
+        event = "VeryLazy",
+        ---@type Flash.Config
+        opts = {},
+        -- stylua: ignore
+        keys = {
+            { "f",     mode = { "n", "x", "o" }, function() require("flash").jump() end,              desc = "Flash" },
+            { "F",     mode = { "n", "x", "o" }, function() require("flash").treesitter() end,        desc = "Flash Treesitter" },
+            { "r",     mode = "o",               function() require("flash").remote() end,            desc = "Remote Flash" },
+            { "R",     mode = { "o", "x" },      function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
+            { "<c-s>", mode = { "c" },           function() require("flash").toggle() end,            desc = "Toggle Flash Search" },
+        },
+    },
+    {
+        "danymat/neogen",
+        config = true,
+        -- Uncomment next line if you want to follow only stable versions
+        -- version = "*"
+    },
+    -- Themes
+    { 'christianchiarulli/nvcode-color-schemes.vim' },
+    { 'Th3Whit3Wolf/onebuddy' },
+    { 'sainnhe/edge' },
+    { 'sainnhe/sonokai' },
+    { 'EdenEast/nightfox.nvim' },
+    {
+        'codethread/qmk.nvim',
+        config = function()
+            ---@type qmk.UserConfig
+            local conf = {
+                name = 'LAYOUT_preonic_grid',
+                layout = {
+                    '_ x x x x x x _ x x x x x x',
+                    '_ x x x x x x _ x x x x x x',
+                    '_ x x x x x x _ x x x x x x',
+                    '_ x x x x x x _ x x x x x x',
+                    '_ x x x x x x _ x x x x x x',
+                }
+            }
+            require('qmk').setup(conf)
+        end
+    },
+    { 'nvim-tree/nvim-web-devicons' },
+
+    { "ellisonleao/glow.nvim",      config = true, cmd = "Glow" }, -- Markdown preview, :Glow/:Glow!
+}
