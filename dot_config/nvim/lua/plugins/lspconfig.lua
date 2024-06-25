@@ -128,10 +128,37 @@ local function on_attach(client, bufnr)
     -- Go to declaration
     kbd("n", "<leader>lgD", vim.lsp.buf.declaration, { buffer = true, desc = "Goto declaration" })
     kbd("n", "<leader>li", vim.lsp.buf.implementation, { buffer = true, desc = "List implementations" })
+    kbd("n", "<leader>lss", vim.lsp.buf.workspace_symbol, { buffer = true, desc = "Workspace symbol search" })
     kbd("n", "<leader>lgt", vim.lsp.buf.type_definition, { buffer = true, desc = "Goto type definition" })
-    kbd("n", "<leader>lgr", vim.lsp.buf.references, { buffer = true, desc = "List type references" })
-    kbd("n", "<leader>ls", vim.lsp.buf.declaration, { buffer = true, desc = "Display function signature" })
+    -- kbd("n", "<leader>lgh", vim.lsp.buf.type_hierarchy, { buffer = true, desc = "Show type hierarchy" })
+    kbd("n", "<leader>lgr", vim.lsp.buf.references, { buffer = true, desc = "List references" })
+    kbd("n", "<leader>lgo", vim.lsp.buf.outgoing_calls, { buffer = true, desc = "List outgoing calls" })
+
+    kbd("n", "<leader>lts", '<cmd>Telescope lsp_workspace_symbols<cr>', { buffer = true, desc = "Symbol search" })
+    kbd("n", "<leader>ltS", '<cmd>Telescope lsp_dynamic_workspace_symbols<cr>',
+        { buffer = true, desc = "Symbol search (all workspace)" })
+    kbd("n", "<leader>ltr", '<cmd>Telescope lsp_references<cr>', { buffer = true, desc = "References" })
+    kbd("n", "<leader>lsf", vim.lsp.buf.declaration, { buffer = true, desc = "Display function signature" })
     kbd("n", "<leader>lf", vim.lsp.buf.format, { buffer = true, desc = "Format file" })
+    kbd("n", "<leader>lh", vim.lsp.buf.signature_help, { buffer = true, desc = "Symbol signature help" })
+
+    -- local wk = require("which-key")
+    -- wk.register({
+    --     l = {
+    --         g = {
+    --             name = "Goto",
+    --         },
+    --         s = {
+    --             name = "Search",
+    --         },
+    --         t = {
+    --             name = "Telescope",
+    --         },
+    --         d = {
+    --             name = "Diagnostics",
+    --         },
+    --     },
+    -- }, { prefix = "<leader>" })
 
     --- Autocommands
     vim.api.nvim_create_augroup("Lsp", { clear = true })
@@ -416,6 +443,6 @@ vim.api.nvim_create_user_command("LspToggle", toggle_lsp_client, {
     desc = "Toggle LSP for the current buffer",
 })
 
-vim.keymap.set("n", "<leader>tl", "<cmd>LspToggle<cr>", {
+vim.keymap.set("n", "<leader>le", "<cmd>LspToggle<cr>", {
     desc = "Toggle LSP client",
 })

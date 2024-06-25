@@ -323,16 +323,6 @@ return {
         "danielfalk/smart-open.nvim",
         branch = "0.2.x",
         config = function()
-            local actions = require("telescope.actions")
-            require("telescope").setup {
-                defaults = {
-                    mappings = {
-                        i = {
-                            ["<esc>"] = actions.close
-                        },
-                    },
-                }
-            }
             require("telescope").load_extension("smart_open")
         end,
         dependencies = {
@@ -347,6 +337,18 @@ return {
         'nvim-telescope/telescope.nvim',
         tag = '0.1.5',
         lazy = true,
+        config = function()
+            local actions = require("telescope.actions")
+            require("telescope").setup {
+                defaults = {
+                    mappings = {
+                        i = {
+                            ["<esc>"] = actions.close
+                        },
+                    },
+                },
+            }
+        end,
     },
     -- {
     -- 	'nvim-neo-tree/neo-tree.nvim',

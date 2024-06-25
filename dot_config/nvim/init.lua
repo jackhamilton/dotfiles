@@ -16,6 +16,7 @@ if not rocks_enable then
     vim.opt.rtp:prepend(lazypath)
     require("lazy").setup("plugins.lazy")
     require("plugins.lspconfig")
+    require("plugins.telescope")
     require("plugins.mini")
     require("plugins.tabby")
     require("plugins.which-key")
