@@ -65,6 +65,7 @@ alias gcc="sccache gcc"
 alias cmake="cmake -DCMAKE_C_COMPILER_LAUNCHER=sccache -DCMAKE_CXX_COMPILER_LAUNCHER=sccache"
 alias vdiff="nvim -d"
 alias cedit="chezmoi edit"
+alias capply="chezmoi apply"
 
 eval "$(zoxide init zsh)"
 eval "$(direnv hook zsh)"
