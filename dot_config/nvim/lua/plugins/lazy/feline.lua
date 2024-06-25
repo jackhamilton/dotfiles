@@ -26,6 +26,7 @@ local function config(_, opts)
     local c = {
         vi_mode_info = {
             -- Component info here
+            priority = 100,
             provider = {
                 name = 'vi_mode',
                 opts = {
@@ -64,6 +65,7 @@ local function config(_, opts)
         },
 
         vim_status = {
+            priority = 1,
             provider = function()
                 local s
                 if require('lazy.status').has_updates() then
@@ -83,6 +85,7 @@ local function config(_, opts)
         },
 
         file_info = {
+            priority = 5,
             -- Component info here
             -- Component that shows file info
             provider = 'file_info',
@@ -111,16 +114,17 @@ local function config(_, opts)
         },
 
         file_size = {
+            priority = -15,
             provider = 'file_size',
             hl = {
                 bg = "bg",
                 fg = "fg",
             },
             left_sep = ' ',
-            priority = -9
         },
 
         git_diff_added = {
+            priority = -10,
             provider = 'git_diff_added',
             hl = {
                 fg = "green",
@@ -130,6 +134,7 @@ local function config(_, opts)
         },
 
         git_diff_removed = {
+            priority = -10,
             provider = 'git_diff_removed',
             hl = {
                 fg = "red",
@@ -139,6 +144,7 @@ local function config(_, opts)
         },
 
         git_diff_changed = {
+            priority = -10,
             provider = 'git_diff_changed',
             hl = {
                 fg = "yellow",
@@ -148,11 +154,13 @@ local function config(_, opts)
         },
 
         diagnostic_hints = {
+            priority = -10,
             provider = 'diagnostic_hints',
             left_sep = ' ',
         },
 
         diagnostic_errors = {
+            priority = -10,
             provider = 'diagnostic_errors',
             hl = {
                 fg = "red",
@@ -162,6 +170,7 @@ local function config(_, opts)
         },
 
         diagnostic_warnings = {
+            priority = -10,
             provider = 'diagnostic_warnings',
             hl = {
                 fg = "yellow",
@@ -171,6 +180,7 @@ local function config(_, opts)
         },
 
         diagnostic_info = {
+            priority = -10,
             provider = 'diagnostic_info',
             left_sep = ' ',
         },
@@ -197,10 +207,11 @@ local function config(_, opts)
                     bg = 'bg'
                 }
             },
-            priority = -10
+            priority = -9
         },
 
         lsp = {
+            priority = 2,
             provider = function()
                 if not lsp.is_lsp_attached() then return ' 󱏎 LSP ' end
                 return string.format(' %s ', require('lsp-progress').progress())
@@ -271,6 +282,7 @@ local function config(_, opts)
         },
 
         scroll_bar = {
+            priority = 4,
             provider = 'scroll_bar',
             hl = {
                 fg = "cyan",
