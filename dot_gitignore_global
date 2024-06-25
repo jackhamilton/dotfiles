@@ -4,3 +4,4 @@
 buildServer.json
 -workspace
 .nvim/*
+nvim_clean.sh

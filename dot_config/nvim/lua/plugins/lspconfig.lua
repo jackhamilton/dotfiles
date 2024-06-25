@@ -168,8 +168,31 @@ local defaults = {
     flags = { debounce_text_changes = 150 },
 }
 
-if vim.fn.executable("sourcekit-lsp") == 1 then
-    lsp.sourcekit.setup(defaults)
+local mac = vim.fn.has('macunix')
+if mac then
+    if vim.fn.executable("sourcekit-lsp") == 1 then
+        lsp.sourcekit.setup {
+            cmd = { "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/sourcekit-lsp" },
+            on_attach = on_attach,
+            capabilities = capabilities,
+            root_dir = require 'lspconfig'.util.root_pattern("Package.swift", ".git"),
+        }
+        local function refresh_xcodeproj()
+            io.popen("~/Documents/GitHub/grindr/scripts/nvim_clean.sh")
+        end
+        vim.api.nvim_create_user_command("Xcrefresh", refresh_xcodeproj, {
+            desc = "Clean, build, and generate buildServer.json for the grindr project.",
+        })
+    end
+
+else
+    if vim.fn.executable("sourcekit-lsp") == 1 then
+        lsp.sourcekit.setup {
+            on_attach = on_attach,
+            capabilities = capabilities,
+            root_dir = require 'lspconfig'.util.root_pattern("Package.swift", ".git"),
+        }
+    end
 end
 
 -- C/C++
@@ -364,17 +387,17 @@ vim.api.nvim_create_autocmd('ModeChanged', {
 
 -- Enable inlay hints
 vim.api.nvim_create_autocmd('LspAttach', {
-  desc = 'Enable inlay hints',
-  callback = function(event)
-    local id = vim.tbl_get(event, 'data', 'client_id')
-    local client = id and vim.lsp.get_client_by_id(id)
-    if client == nil or not client.supports_method('textDocument/inlayHint') then
-      return
-    end
+    desc = 'Enable inlay hints',
+    callback = function(event)
+        local id = vim.tbl_get(event, 'data', 'client_id')
+        local client = id and vim.lsp.get_client_by_id(id)
+        if client == nil or not client.supports_method('textDocument/inlayHint') then
+            return
+        end
 
-    -- warning: this api is not stable yet
-    vim.lsp.inlay_hint.enable(true, {bufnr = event.buf})
-  end,
+        -- warning: this api is not stable yet
+        vim.lsp.inlay_hint.enable(true, { bufnr = event.buf })
+    end,
 })
 
 -- Toggle lsp client
