@@ -184,7 +184,6 @@ if mac then
             desc = "Clean, build, and generate buildServer.json for the grindr project.",
         })
     end
-
 else
     if vim.fn.executable("sourcekit-lsp") == 1 then
         lsp.sourcekit.setup {
@@ -385,21 +384,21 @@ vim.api.nvim_create_autocmd('ModeChanged', {
     callback = function(e) vim.diagnostic.enable(e.buf) end
 })
 
--- Enable inlay hints
-vim.api.nvim_create_autocmd('LspAttach', {
-    desc = 'Enable inlay hints',
-    callback = function(event)
-        local id = vim.tbl_get(event, 'data', 'client_id')
-        local client = id and vim.lsp.get_client_by_id(id)
-        if client == nil or not client.supports_method('textDocument/inlayHint') then
-            return
-        end
-
-        -- warning: this api is not stable yet
-        vim.lsp.inlay_hint.enable(true, { bufnr = event.buf })
-    end,
-})
-
+-- -- Enable inlay hints
+-- vim.api.nvim_create_autocmd('LspAttach', {
+--     desc = 'Enable inlay hints',
+--     callback = function(event)
+--         local id = vim.tbl_get(event, 'data', 'client_id')
+--         local client = id and vim.lsp.get_client_by_id(id)
+--         if client == nil or not client.supports_method('textDocument/inlayHint') then
+--             return
+--         end
+--
+--         -- warning: this api is not stable yet
+--         vim.lsp.inlay_hint.enable(true, { bufnr = event.buf })
+--     end,
+-- })
+--
 -- Toggle lsp client
 local function toggle_lsp_client()
     local buf = vim.api.nvim_get_current_buf()
