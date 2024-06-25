@@ -222,7 +222,7 @@ local function config(_, opts)
                 str = ' ',
                 hl = function()
                     if not lsp.is_lsp_attached() then return { fg = 'fg', bg = 'bg' } end
-                    return { fg = 'green', bg = 'none' }
+                    return { fg = 'bg', bg = 'green' }
                 end,
             },
         },
