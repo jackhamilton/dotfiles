@@ -22,3 +22,5 @@ augroup numbertoggle
 augroup END
 
 filetype plugin indent on
+
+runtime vim/platform.vim
