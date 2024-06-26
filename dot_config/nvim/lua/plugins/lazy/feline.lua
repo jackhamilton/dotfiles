@@ -33,6 +33,12 @@ local function config(_, opts)
                     show_mode_name = true,
                 }
             },
+            short_provider = {
+                name = 'vi_mode',
+                opts = {
+                    show_mode_name = false,
+                }
+            },
             padding = 'center',
             hl = function()
                 return {
@@ -65,7 +71,7 @@ local function config(_, opts)
         },
 
         vim_status = {
-            priority = 1,
+            priority = -1,
             provider = function()
                 local s
                 if require('lazy.status').has_updates() then
@@ -207,7 +213,7 @@ local function config(_, opts)
                     bg = 'bg'
                 }
             },
-            priority = -9
+            priority = -14
         },
 
         lsp = {
