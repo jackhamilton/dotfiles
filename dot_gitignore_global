@@ -6,4 +6,5 @@ buildServer.json
 .nvim/*
 nvim_clean.sh
 *.swift~
-package.resolved
+Package.resolved
+*.xcworkspace/xcshareddata/swiftpm/Package.resolved
