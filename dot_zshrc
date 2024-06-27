@@ -66,6 +66,12 @@ alias cmake="cmake -DCMAKE_C_COMPILER_LAUNCHER=sccache -DCMAKE_CXX_COMPILER_LAUN
 alias vdiff="nvim -d"
 alias cedit="chezmoi edit"
 alias capply="chezmoi apply"
+gitup ()
+{
+    git add .
+    git commit -m "$2"
+    git push
+}
 
 eval "$(zoxide init zsh)"
 eval "$(direnv hook zsh)"

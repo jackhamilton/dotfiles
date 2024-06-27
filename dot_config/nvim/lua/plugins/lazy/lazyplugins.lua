@@ -231,15 +231,20 @@ return {
 
             xcodebuild.setup(codelldbPath)
 
-            vim.keymap.set("n", "<leader>dd", xcodebuild.build_and_debug, { desc = "Build & Debug" })
-            vim.keymap.set("n", "<leader>dr", xcodebuild.debug_without_build,
-                { desc = "Debug Without Building" })
-            vim.keymap.set("n", "<leader>dt", xcodebuild.debug_tests, { desc = "Debug Tests" })
-            vim.keymap.set("n", "<leader>dT", xcodebuild.debug_class_tests, { desc = "Debug Class Tests" })
-            vim.keymap.set("n", "<leader>b", xcodebuild.toggle_breakpoint, { desc = "Toggle Breakpoint" })
-            vim.keymap.set("n", "<leader>B", xcodebuild.toggle_message_breakpoint,
-                { desc = "Toggle Message Breakpoint" })
-            vim.keymap.set("n", "<leader>dx", xcodebuild.terminate_session, { desc = "Terminate Debugger" })
+            local wk = require('which-key')
+            wk.register({
+                d = {
+                    name = "Debugger",
+                    d = { xcodebuild.build_and_debug, "Build & Debug" },
+                    r = { xcodebuild.debug_without_build, "Debug without building" },
+                    d = { xcodebuild.debug_tests, "Debug Tests" },
+                    T = { xcodebuild.debug_class_tests, "Debug Class Tests" },
+                    b = { xcodebuild.toggle_breakpoint, "Toggle Breakpoint" },
+                    B = { xcodebuild.toggle_message_breakpoint, "Toggle message breakpoint" },
+                    x = { xcodebuild.terminate_session, "Terminate Debugger" },
+                }
+
+            }, { prefix = "<leader>" })
         end,
     },
     {
@@ -413,39 +418,23 @@ return {
             -- your configuration comes here
             -- or leave it empty to use the default settings
         },
+        event = "LspAttach",
         cmd = "Trouble",
-        keys = {
-            {
-                "<leader>xx",
-                "<cmd>Trouble diagnostics toggle<cr>",
-                desc = "Diagnostics (Trouble)",
-            },
-            {
-                "<leader>xX",
-                "<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
-                desc = "Buffer Diagnostics (Trouble)",
-            },
-            {
-                "<leader>cs",
-                "<cmd>Trouble symbols toggle focus=false<cr>",
-                desc = "Symbols (Trouble)",
-            },
-            {
-                "<leader>cl",
-                "<cmd>Trouble lsp toggle focus=false win.position=right<cr>",
-                desc = "LSP Definitions / references / ... (Trouble)",
-            },
-            {
-                "<leader>xL",
-                "<cmd>Trouble loclist toggle<cr>",
-                desc = "Location List (Trouble)",
-            },
-            {
-                "<leader>xQ",
-                "<cmd>Trouble qflist toggle<cr>",
-                desc = "Quickfix List (Trouble)",
-            },
-        },
+        config = function()
+            require('trouble').setup {}
+            local wk = require('which-key')
+            wk.register({
+                x = {
+                    name = "Trouble",
+                    x = { "<cmd>Trouble diagnostics toggle<cr>", "Diagnostics (Trouble)", },
+                    X = { "<cmd>Trouble diagnostics toggle filter<cr>", "Buffer Diagnostics (Trouble)", },
+                    s = { "<cmd>Trouble symbols toggle focus=false<cr>", "Symbols (Trouble)", },
+                    l = { "<cmd>Trouble lsp toggle focus=false win.position=right<cr>", "LSP Definitions / references / ... (Trouble)", },
+                    L = { "<cmd>Trouble loclist toggle<cr>", "Location List (Trouble)", },
+                    Q = { "<cmd>Trouble qflist toggle<cr>", "Quickfix List (Trouble)", },
+                }
+            }, { prefix = "<leader>" })
+        end,
     },
     {
         "folke/todo-comments.nvim",
