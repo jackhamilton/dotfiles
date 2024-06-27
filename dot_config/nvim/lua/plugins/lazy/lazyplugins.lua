@@ -193,15 +193,15 @@ return {
 
     -- Lsp
     -- {
-    -- 	'nvimdev/lspsaga.nvim',
-    -- 	event = 'LspAttach',
-    -- 	config = function()
-    -- 		require('lspsaga').setup({})
-    -- 	end,
-    -- 	dependencies = {
-    -- 		'nvim-treesitter/nvim-treesitter',
-    -- 		'nvim-tree/nvim-web-devicons',
-    -- 	},
+    --  'nvimdev/lspsaga.nvim',
+    --  event = 'LspAttach',
+    --  config = function()
+    --      require('lspsaga').setup({})
+    --  end,
+    --  dependencies = {
+    --      'nvim-treesitter/nvim-treesitter',
+    --      'nvim-tree/nvim-web-devicons',
+    --  },
     -- },
     {
         "wojciech-kulik/xcodebuild.nvim",
@@ -231,15 +231,20 @@ return {
 
             xcodebuild.setup(codelldbPath)
 
-            vim.keymap.set("n", "<leader>dd", xcodebuild.build_and_debug, { desc = "Build & Debug" })
-            vim.keymap.set("n", "<leader>dr", xcodebuild.debug_without_build,
-                { desc = "Debug Without Building" })
-            vim.keymap.set("n", "<leader>dt", xcodebuild.debug_tests, { desc = "Debug Tests" })
-            vim.keymap.set("n", "<leader>dT", xcodebuild.debug_class_tests, { desc = "Debug Class Tests" })
-            vim.keymap.set("n", "<leader>b", xcodebuild.toggle_breakpoint, { desc = "Toggle Breakpoint" })
-            vim.keymap.set("n", "<leader>B", xcodebuild.toggle_message_breakpoint,
-                { desc = "Toggle Message Breakpoint" })
-            vim.keymap.set("n", "<leader>dx", xcodebuild.terminate_session, { desc = "Terminate Debugger" })
+            local wk = require('which-key')
+            wk.register({
+                d = {
+                    name = "Debugger",
+                    d = { xcodebuild.build_and_debug, "Build & Debug" },
+                    r = { xcodebuild.debug_without_build, "Debug without building" },
+                    d = { xcodebuild.debug_tests, "Debug Tests" },
+                    T = { xcodebuild.debug_class_tests, "Debug Class Tests" },
+                    b = { xcodebuild.toggle_breakpoint, "Toggle Breakpoint" },
+                    B = { xcodebuild.toggle_message_breakpoint, "Toggle message breakpoint" },
+                    x = { xcodebuild.terminate_session, "Terminate Debugger" },
+                }
+
+            }, { prefix = "<leader>" })
         end,
     },
     {
@@ -295,11 +300,11 @@ return {
         end,
     },
     -- {
-    -- 	"linrongbin16/gentags.nvim",
-    -- 	event = 'LspAttach',
-    -- 	config = function()
-    -- 		require('gentags').setup()
-    -- 	end,
+    --  "linrongbin16/gentags.nvim",
+    --  event = 'LspAttach',
+    --  config = function()
+    --      require('gentags').setup()
+    --  end,
     -- },
 
     -- Snippets
@@ -433,39 +438,23 @@ return {
             -- your configuration comes here
             -- or leave it empty to use the default settings
         },
+        event = "LspAttach",
         cmd = "Trouble",
-        keys = {
-            {
-                "<leader>xx",
-                "<cmd>Trouble diagnostics toggle<cr>",
-                desc = "Diagnostics (Trouble)",
-            },
-            {
-                "<leader>xX",
-                "<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
-                desc = "Buffer Diagnostics (Trouble)",
-            },
-            {
-                "<leader>cs",
-                "<cmd>Trouble symbols toggle focus=false<cr>",
-                desc = "Symbols (Trouble)",
-            },
-            {
-                "<leader>cl",
-                "<cmd>Trouble lsp toggle focus=false win.position=right<cr>",
-                desc = "LSP Definitions / references / ... (Trouble)",
-            },
-            {
-                "<leader>xL",
-                "<cmd>Trouble loclist toggle<cr>",
-                desc = "Location List (Trouble)",
-            },
-            {
-                "<leader>xQ",
-                "<cmd>Trouble qflist toggle<cr>",
-                desc = "Quickfix List (Trouble)",
-            },
-        },
+        config = function()
+            require('trouble').setup {}
+            local wk = require('which-key')
+            wk.register({
+                x = {
+                    name = "Trouble",
+                    x = { "<cmd>Trouble diagnostics toggle<cr>", "Diagnostics (Trouble)", },
+                    X = { "<cmd>Trouble diagnostics toggle filter<cr>", "Buffer Diagnostics (Trouble)", },
+                    s = { "<cmd>Trouble symbols toggle focus=false<cr>", "Symbols (Trouble)", },
+                    l = { "<cmd>Trouble lsp toggle focus=false win.position=right<cr>", "LSP Definitions / references / ... (Trouble)", },
+                    L = { "<cmd>Trouble loclist toggle<cr>", "Location List (Trouble)", },
+                    Q = { "<cmd>Trouble qflist toggle<cr>", "Quickfix List (Trouble)", },
+                }
+            }, { prefix = "<leader>" })
+        end,
     },
     {
         "folke/todo-comments.nvim",
@@ -508,19 +497,36 @@ return {
         }
     },
     {
-        "folke/flash.nvim",
-        event = "VeryLazy",
-        ---@type Flash.Config
-        opts = {},
-        -- stylua: ignore
-        keys = {
-            { "s",     mode = { "n", "x", "o" }, function() require("flash").jump() end,              desc = "Flash" },
-            { "S",     mode = { "n", "x", "o" }, function() require("flash").treesitter() end,        desc = "Flash Treesitter" },
-            { "r",     mode = "o",               function() require("flash").remote() end,            desc = "Remote Flash" },
-            { "R",     mode = { "o", "x" },      function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
-            { "<c-s>", mode = { "c" },           function() require("flash").toggle() end,            desc = "Toggle Flash Search" },
+        'smoka7/hop.nvim',
+        version = "*",
+        opts = {
+            keys = 'arstgmneioxcdhwfpluy',
         },
+        keys = {
+            { "ss", mode = { "n", "x", "o" }, function() require('hop').hint_char1() end,                 desc = "Hop to character" },
+            { "sS", mode = { "n", "x", "o" }, function() require('hop').hint_char2() end,                 desc = "Hop to two characters" },
+            { "sl", mode = { "n", "x", "o" }, function() require('hop').hint_lines_skip_whitespace() end, desc = "Hop to line" },
+            { "sp", mode = { "n", "x", "o" }, function() require('hop').hint_patterns() end,              desc = "Hop to pattern" },
+            { "sw", mode = { "n", "x", "o" }, function() require('hop').hint_words() end,                 desc = "Hop to word" },
+            { "sy", mode = { "n", "x", "o" }, function() require('hop-yank').yank_char1() end,            desc = "Yank at character" },
+            { "sp", mode = { "n", "x", "o" }, function() require('hop-yank').paste_char1() end,           desc = "Paste at character" },
+            { "st", mode = { "n", "x", "o" }, function() require('hop-treesitter').hint_nodes() end,      desc = "Hop to treesitter obj" },
+        }
     },
+    -- {
+    --     "folke/flascolorscheme sonokaih.nvim",
+    --     event = "VeryLazy",
+    --     ---@type Flash.Config
+    --     opts = {},
+    --     -- stylua: ignore
+    --     keys = {
+    --         { "s",     mode = { "n", "x", "o" }, function() require("flash").jump() end,              desc = "Flash" },
+    --         { "S",     mode = { "n", "x", "o" }, function() require("flash").treesitter() end,        desc = "Flash Treesitter" },
+    --         { "r",     mode = "o",               function() require("flash").remote() end,            desc = "Remote Flash" },
+    --         { "R",     mode = { "o", "x" },      function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
+    --         { "<c-s>", mode = { "c" },           function() require("flash").toggle() end,            desc = "Toggle Flash Search" },
+    --     },
+    -- },
     {
         "danymat/neogen",
         config = true,
@@ -531,7 +537,14 @@ return {
     { 'christianchiarulli/nvcode-color-schemes.vim' },
     { 'Th3Whit3Wolf/onebuddy' },
     { 'sainnhe/edge' },
-    { 'sainnhe/sonokai' },
+    {
+        'sainnhe/sonokai',
+        config = function()
+            vim.cmd([[
+            colorscheme sonokai
+            ]])
+        end,
+    },
     { 'EdenEast/nightfox.nvim' },
     {
         'codethread/qmk.nvim',
