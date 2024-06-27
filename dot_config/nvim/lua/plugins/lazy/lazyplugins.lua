@@ -310,6 +310,11 @@ return {
     {
         'nvim-treesitter/nvim-treesitter',
         lazy = false,
+        config = function()
+            require('nvim-treesitter').setup {
+                indent = { enable = true }
+            }
+        end,
     },
     {
         'nvim-treesitter/nvim-treesitter-context',
@@ -350,16 +355,31 @@ return {
             }
         end,
     },
-    -- {
-    -- 	'nvim-neo-tree/neo-tree.nvim',
-    -- 	branch = "v3.x",
-    -- 	dependencies = {
-    -- 		"nvim-lua/plenary.nvim",
-    -- 		"nvim-tree/nvim-web-devicons",
-    -- 		"MunifTanjim/nui.nvim",
-    -- 	}
-    -- },
     { 'kevinhwang91/nvim-bqf' },
+    { 'nvim-pack/nvim-spectre', event = "VimEnter"},
+    {
+        'kevinhwang91/nvim-ufo',
+        event = "VimEnter",
+        dependencies = {
+            'kevinhwang91/promise-async'
+        },
+        config = function()
+            vim.o.foldcolumn = '1' -- '0' is not bad
+            vim.o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
+            vim.o.foldlevelstart = 99
+            vim.o.foldenable = true
+
+            local wk = require('which-key')
+            wk.register({
+                name = "UFO",
+                R = { require('ufo').openAllFolds, "Open all folds" },
+                M = { require('ufo').closeAllFolds, "Close all folds" },
+            }, { prefix = 'z' })
+
+            require('ufo').setup({})
+
+        end,
+    },
     {
         'stevearc/oil.nvim',
         opts = {},

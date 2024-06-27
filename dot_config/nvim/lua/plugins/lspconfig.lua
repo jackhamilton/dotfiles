@@ -172,7 +172,7 @@ end
 --- Capabilities
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.foldingRange = {
-	dynamicRegistration = true,
+	dynamicRegistration = false,
 	lineFoldingOnly = true,
 }
 capabilities.textDocument.completion.completionItem.snippetSupport = true
