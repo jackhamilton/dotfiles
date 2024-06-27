@@ -13,6 +13,10 @@ set ignorecase
 set autowrite
 "set expandtab
 
+set swapfile
+set backup
+set undofile
+
 set number
 augroup numbertoggle
     autocmd!
