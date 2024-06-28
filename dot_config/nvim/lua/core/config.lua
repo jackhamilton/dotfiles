@@ -107,9 +107,9 @@ vim.opt.smartcase = true
 vim.opt.ignorecase = true
 
 -- Indentation rules
--- vim.opt.copyindent = true
--- vim.opt.smartindent = true
--- vim.opt.preserveindent = true
+vim.opt.copyindent = true
+vim.opt.smartindent = true
+vim.opt.preserveindent = true
 
 -- Indentation level
 vim.opt.tabstop = 4
