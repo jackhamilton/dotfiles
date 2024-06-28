@@ -139,3 +139,5 @@ eval "$(direnv hook zsh)"
 
 # Created by `pipx` on 2024-04-21 17:00:31
 export PATH="$PATH:/home/jack/.local/bin"
+export PATH="$PATH:/home/linuxbrew/.linuxbrew/bin"
+[ -s ~/.luaver/luaver ] && . ~/.luaver/luaver

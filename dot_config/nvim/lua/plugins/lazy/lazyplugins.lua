@@ -316,9 +316,16 @@ return {
         'nvim-treesitter/nvim-treesitter',
         lazy = false,
         config = function()
-            require('nvim-treesitter').setup {
-                indent = { enable = true }
-            }
+            require('nvim-treesitter').setup()
+            require('nvim-treesitter.configs').setup({
+                highlight = {
+                    enable = true,
+                    additional_vim_regex_highlighting = false,
+                },
+                indent = {
+                    enable = true,
+                }
+            })
         end,
     },
     {
@@ -532,6 +539,15 @@ return {
         config = true,
         -- Uncomment next line if you want to follow only stable versions
         -- version = "*"
+    },
+    {
+        "OXY2DEV/markview.nvim",
+        dependencies = {
+            "nvim-tree/nvim-web-devicons",
+        },
+        config = function()
+            require("markview").setup()
+        end,
     },
     -- Themes
     { 'christianchiarulli/nvcode-color-schemes.vim' },

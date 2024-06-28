@@ -22,6 +22,15 @@ end
 vim.opt.mouse = "a"
 
 -- Disable swapfiles and enable undofiles
+vim.cmd([[
+if !isdirectory($HOME."/.vim")
+    call mkdir($HOME."/.vim", "", 0770)
+endif
+if !isdirectory($HOME."/.vim/undo")
+    call mkdir($HOME."/.vim/undo", "", 0700)
+endif
+set undodir=~/.vim/undo/
+]])
 vim.opt.swapfile = false
 vim.opt.undofile = true
 
@@ -43,10 +52,10 @@ vim.opt.relativenumber = true
 vim.opt.termguicolors = true
 
 -- Columns and characters
-vim.opt.signcolumn = "auto:1-3"
-vim.opt.foldenable = true
-vim.opt.foldlevel = 6
-vim.opt.foldcolumn = "auto:2"
+-- vim.opt.signcolumn = "auto:1-3"
+-- vim.opt.foldenable = true
+-- vim.opt.foldlevel = 99
+-- vim.opt.foldcolumn = "auto:2"
 
 vim.opt.fillchars = {
   eob = " ",
@@ -98,14 +107,17 @@ vim.opt.smartcase = true
 vim.opt.ignorecase = true
 
 -- Indentation rules
-vim.opt.copyindent = true
-vim.opt.smartindent = true
-vim.opt.preserveindent = true
+-- vim.opt.copyindent = true
+-- vim.opt.smartindent = true
+-- vim.opt.preserveindent = true
 
 -- Indentation level
 vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.softtabstop = 4
+
+-- Autowrite
+vim.opt.autowrite = true
 
 -- Expand tabs
 vim.opt.expandtab = true

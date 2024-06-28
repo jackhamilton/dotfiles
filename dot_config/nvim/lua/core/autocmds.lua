@@ -12,10 +12,10 @@ au({ "FocusGained", "TermClose", "TermLeave" }, {
 })
 
 -- Sync rocks.nvim on save
-au("BufWritePost", {
-  pattern = "rocks.toml",
-  command = "Rocks sync",
-})
+-- au("BufWritePost", {
+--   pattern = "rocks.toml",
+--   command = "Rocks sync",
+-- })
 
 -- Auto cd to current buffer path
 au("BufEnter", {
