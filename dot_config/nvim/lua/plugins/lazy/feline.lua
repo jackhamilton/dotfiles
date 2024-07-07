@@ -278,7 +278,7 @@ local function config(_, opts)
             left_sep = {
                 always_visible = true,
                 str = ' ',
-                hl = function() return { fg = 'fg', bg = 'bg' } end,
+                hl = { fg = 'fg', bg = 'bg' },
             },
             right_sep = {
                 always_visible = true,
@@ -286,7 +286,20 @@ local function config(_, opts)
                 hl = { fg = 'fg', bg = 'bg' },
             },
         },
-
+        position = {
+            provider = "position",
+            hl = { fg = 'fg', bg = 'bg' },
+            left_sep = {
+                always_visible = true,
+                str = ' ',
+                hl = { fg = 'fg', bg = 'bg' },
+            },
+            right_sep = {
+                always_visible = true,
+                str = ' ',
+                hl = { fg = 'fg', bg = 'bg' },
+            },
+        },
         scroll_bar = {
             priority = 4,
             provider = 'scroll_bar',
@@ -317,6 +330,7 @@ local function config(_, opts)
             c.git_diff_removed,
             c.git_diff_changed,
             c.git_branch,
+            c.position,
             c.scroll_bar,
         },
     }
