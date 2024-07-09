@@ -369,37 +369,33 @@ end
 
 -- Lua
 if vim.fn.executable("lua-language-server") == 1 then
-    local lua_config = {
-        cmd = {
-            "lua-language-server",
-            "-E",
-            -- MARK: causing issues on linux
-            vim.env.HOME .. "/Develop/Nvim/lua-language-server/main.lua",
-        },
-        settings = {
-            Lua = {
-                hint = {
-                    enable = true,
-                },
-                runtime = {
-                    version = "LuaJIT",
-                },
-                diagnostics = {
-                    globals = { "_G", "vim" },
-                },
-                workspace = {
-                    preloadFileSize = 500,
-                },
-            },
-        },
-    }
     -- I am installing lua LS through brew instead of manually compiling it like on my Linux machines.
     -- However, sometimes I use package managers to install lua lsp on my Linux machines so we gotta double check it
     if jit.os == "OSX" or vim.fn.executable("/usr/bin/lua-language-server") == 1 then
+        local lua_config = {
+            settings = {
+                Lua = {
+                    hint = {
+                        enable = true,
+                    },
+                    runtime = {
+                        version = "LuaJIT",
+                    },
+                    diagnostics = {
+                        globals = { "_G", "vim" },
+                    },
+                    workspace = {
+                        preloadFileSize = 500,
+                    },
+                },
+            },
+        }
         lua_config.cmd = { "lua-language-server" }
+        lsp.lua_ls.setup(vim.tbl_deep_extend("force", defaults, lua_config))
+    else
+        lsp.lua_ls.setup(defaults)
     end
 
-    lsp.lua_ls.setup(vim.tbl_deep_extend("force", defaults, lua_config))
     -- local coq = require "coq"
     -- lsp.lua_ls.setup(coq.lsp_ensure_capabilities {})
 end
@@ -424,7 +420,7 @@ end
 vim.api.nvim_create_autocmd('ModeChanged', {
     pattern = { 'n:i', 'v:s' },
     desc = 'Disable diagnostics in insert and select mode',
-    callback = function(e) vim.diagnostic.disable(e.buf) end
+    callback = function(e) vim.diagnostic.enable(false, e.buf) end
 })
 
 vim.api.nvim_create_autocmd('ModeChanged', {
