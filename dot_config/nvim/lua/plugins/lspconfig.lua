@@ -64,13 +64,14 @@ local icons = {
     Variable = " ",
 }
 
-local completion_kinds = vim.lsp.protocol.CompletionItemKind
-for i, kind in ipairs(completion_kinds) do
-    completion_kinds[i] = icons[kind] and icons[kind] .. kind or kind
-end
+-- local completion_kinds = vim.lsp.protocol.CompletionItemKind
+-- for i, kind in ipairs(completion_kinds) do
+--     completion_kinds[i] = icons[kind] and icons[kind] .. kind or kind
+-- end
 
 --- On attach
-local function on_attach(client, bufnr)
+---
+local function on_attach(client, buf)
     local capabilities = client.server_capabilities
     local formatting = {
         available = capabilities.document_formatting,
@@ -79,6 +80,10 @@ local function on_attach(client, bufnr)
 
     -- Enable omnifunc-completion
     vim.opt_local.omnifunc = "v:lua.vim.lsp.omnifunc"
+
+    -- if client.supports_method('textDocument/completion') then
+    --     vim.lsp.completion.enable(true, client.id, bufnr, {autotrigger = true})
+    -- end
 
     --- Keybindings
     local kbd = vim.keymap.set
@@ -129,7 +134,7 @@ local function on_attach(client, bufnr)
     kbd("n", "<leader>ltr", '<cmd>Telescope lsp_references<cr>', { buffer = true, desc = "References" })
     kbd("n", "<leader>lsf", vim.lsp.buf.declaration, { buffer = true, desc = "Display function signature" })
     kbd("n", "<leader>lf", vim.lsp.buf.format, { buffer = true, desc = "Format file" })
-    kbd("n", "<leader>lh", vim.lsp.buf.signature_help, { buffer = true, desc = "Symbol signature help" })
+    kbd("n", "<leader>lsh", vim.lsp.buf.signature_help, { buffer = true, desc = "Symbol signature help" })
 
     -- local wk = require("which-key")
     -- wk.register({
@@ -154,7 +159,7 @@ local function on_attach(client, bufnr)
     -- Display line diagnostics on hover
     vim.api.nvim_create_autocmd("CursorHold", {
         group = "Lsp",
-        buffer = bufnr,
+        buffer = buf,
         callback = function()
             local opts = {
                 focusable = false,
@@ -167,6 +172,14 @@ local function on_attach(client, bufnr)
             vim.diagnostic.open_float(opts)
         end,
     })
+    if client.supports_method("textDocument/formatting") then
+        vim.api.nvim_create_autocmd('BufWritePre', {
+            buffer = buf,
+            callback = function()
+                vim.lsp.buf.format({ bufnr = buf, id = client.id })
+            end,
+        })
+    end
 end
 
 --- Capabilities
@@ -193,6 +206,9 @@ if mac == 1 then
             capabilities = capabilities,
             root_dir = require 'lspconfig'.util.root_pattern("Package.swift", ".git"),
         }
+        local coq = require "coq"
+        lsp.sourcekit.setup(coq.lsp_ensure_capabilities {})
+
         local function refresh_xcodeproj()
             io.popen("~/Documents/GitHub/grindr/scripts/nvim_clean.sh")
         end
@@ -207,6 +223,8 @@ else
             capabilities = capabilities,
             root_dir = require 'lspconfig'.util.root_pattern("Package.swift", ".git"),
         }
+        local coq = require "coq"
+        lsp.sourcekit.setup(coq.lsp_ensure_capabilities {})
     end
 end
 
@@ -234,11 +252,15 @@ end
 -- Java
 if vim.fn.executable("jdtls") == 1 then
     lsp.jdtls.setup(defaults)
+    local coq = require "coq"
+    lsp.jdtls.setup(coq.lsp_ensure_capabilities {})
 end
 
 -- Zig
 if vim.fn.executable("zls") == 1 then
     lsp.zls.setup(defaults)
+    local coq = require "coq"
+    lsp.zls.setup(coq.lsp_ensure_capabilities {})
 end
 
 -- Rust, now managed by rustaceanvim
@@ -276,36 +298,48 @@ if vim.fn.executable("tsserver") == 1 then
     }
     settings = vim.tbl_deep_extend("force", defaults, settings)
     lsp.tsserver.setup(settings)
+    local coq = require "coq"
+    lsp.tsserver.setup(coq.lsp_ensure_capabilities {})
 end
 
 -- Vue
 -- Installation: npm i -g @volar/vue-language-server
 if vim.fn.executable("vue-language-server") == 1 then
     lsp.volar.setup(defaults)
+    local coq = require "coq"
+    lsp.volar.setup(coq.lsp_ensure_capabilities {})
 end
 
 -- ESLint, linting engine for JavaScript/TypeScript
 -- Installation: npm i -g vscode-langservers-extracted
 if vim.fn.executable("vscode-eslint-language-server") == 1 then
     lsp.eslint.setup(defaults)
+    local coq = require "coq"
+    lsp.eslint.setup(coq.lsp_ensure_capabilities {})
 end
 
 -- CSS
 -- Installation: npm i -g vscode-langservers-extracted
 if vim.fn.executable("vscode-css-language-server") == 1 then
     lsp.cssls.setup(defaults)
+    local coq = require "coq"
+    lsp.cssls.setup(coq.lsp_ensure_capabilities {})
 end
 
 -- TailwindCSS
 -- Installation: npm i -g @tailwindcss/language-server
 if vim.fn.executable("tailwindcss-language-server") == 1 then
     lsp.tailwindcss.setup(defaults)
+    local coq = require "coq"
+    lsp.tailwindcss.setup(coq.lsp_ensure_capabilities {})
 end
 
 -- HTML
 -- Installation: npm i -g vscode-langservers-extracted
 if vim.fn.executable("vscode-html-language-server") == 1 then
     lsp.html.setup(defaults)
+    local coq = require "coq"
+    lsp.html.setup(coq.lsp_ensure_capabilities {})
 end
 
 -- Lua
@@ -314,6 +348,7 @@ if vim.fn.executable("lua-language-server") == 1 then
         cmd = {
             "lua-language-server",
             "-E",
+            -- MARK: causing issues on linux
             vim.env.HOME .. "/Develop/Nvim/lua-language-server/main.lua",
         },
         settings = {
@@ -340,6 +375,8 @@ if vim.fn.executable("lua-language-server") == 1 then
     end
 
     lsp.lua_ls.setup(vim.tbl_deep_extend("force", defaults, lua_config))
+    local coq = require "coq"
+    lsp.lua_ls.setup(coq.lsp_ensure_capabilities {})
 end
 
 -- Elixir
@@ -347,45 +384,16 @@ if vim.fn.executable("elixir-ls") == 1 then
     lsp.elixirls.setup(
         vim.tbl_deep_extend("force", defaults, { cmd = { vim.env.HOME .. "/.local/bin/elixir-ls" } })
     )
+    local coq = require "coq"
+    lsp.elixirls.setup(coq.lsp_ensure_capabilities {})
 end
 
 -- Python
 if vim.fn.executable("jedi-language-server") == 1 then
     lsp.jedi_language_server.setup(defaults)
+    local coq = require "coq"
+    lsp.jedi_language_server.setup(coq.lsp_ensure_capabilities {})
 end
-
--- Setup autoformat
-local fmt_group = vim.api.nvim_create_augroup('autoformat_cmds', { clear = true })
-
-local function setup_autoformat(event)
-    local id = vim.tbl_get(event, 'data', 'client_id')
-    local client = id and vim.lsp.get_client_by_id(id)
-    if client == nil then
-        return
-    end
-
-    vim.api.nvim_clear_autocmds({ group = fmt_group, buffer = event.buf })
-
-    local buf_format = function(e)
-        vim.lsp.buf.format({
-            bufnr = e.buf,
-            async = false,
-            timeout_ms = 10000,
-        })
-    end
-
-    vim.api.nvim_create_autocmd('BufWritePre', {
-        buffer = event.buf,
-        group = fmt_group,
-        desc = 'Format current buffer',
-        callback = buf_format,
-    })
-end
-
-vim.api.nvim_create_autocmd('LspAttach', {
-    desc = 'Setup format on save',
-    callback = setup_autoformat,
-})
 
 -- Disable diagnostics in insert and select mode
 vim.api.nvim_create_autocmd('ModeChanged', {

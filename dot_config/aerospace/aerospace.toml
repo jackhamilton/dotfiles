@@ -7,13 +7,13 @@ default-root-container-layout = 'tiles'
 [workspace-to-monitor-force-assignment]
 1 = 'built-in'
 2 = 'P2723QE'
-3 = 'U2718Q'
+3 = ['U2718Q', 'BenQ']
 4 = 'built-in'
 5 = 'P2723QE'
-6 = 'U2718Q'
+6 = ['U2718Q', 'BenQ']
 7 = 'built-in'
 8 = 'P2723QE'
-9 = 'U2718Q'
+9 = ['U2718Q', 'BenQ']
 
 [mode.main.binding]
 cmd-tab = 'workspace-back-and-forth'
