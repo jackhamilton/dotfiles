@@ -420,7 +420,7 @@ end
 vim.api.nvim_create_autocmd('ModeChanged', {
     pattern = { 'n:i', 'v:s' },
     desc = 'Disable diagnostics in insert and select mode',
-    callback = function(e) vim.diagnostic.enable(false, e.buf) end
+    callback = function(e) vim.diagnostic.disable(e.buf) end
 })
 
 vim.api.nvim_create_autocmd('ModeChanged', {
