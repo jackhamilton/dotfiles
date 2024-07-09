@@ -16,6 +16,9 @@ if not rocks_enable then
     end
     vim.opt.rtp:prepend(lazypath)
     require("lazy").setup("plugins.lazy")
+    if vim.fn.OSX() == 1 then
+        require("lazy").setup("plugins.osxplugins")
+    end
     require("plugins.lspconfig")
     require("plugins.telescope")
     require("plugins.mini")
