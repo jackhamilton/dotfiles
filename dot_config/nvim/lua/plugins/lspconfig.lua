@@ -183,12 +183,15 @@ local function on_attach(client, buf)
 end
 
 --- Capabilities
-local capabilities = vim.lsp.protocol.make_client_capabilities()
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
 capabilities.textDocument.foldingRange = {
     dynamicRegistration = false,
     lineFoldingOnly = true,
 }
-capabilities.textDocument.completion.completionItem.snippetSupport = true
+local skCapabilities = capabilities
+skCapabilities.textDocument.foldingRange = {
+    dynamicRegistration = true
+}
 
 --- Setup servers
 local defaults = {
@@ -203,11 +206,11 @@ if mac == 1 then
         lsp.sourcekit.setup {
             cmd = { "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/sourcekit-lsp" },
             on_attach = on_attach,
-            capabilities = capabilities,
+            capabilities = skCapabilities,
             root_dir = require 'lspconfig'.util.root_pattern("Package.swift", ".git"),
         }
-        local coq = require "coq"
-        lsp.sourcekit.setup(coq.lsp_ensure_capabilities {})
+        -- local coq = require "coq"
+        -- lsp.sourcekit.setup(coq.lsp_ensure_capabilities {})
 
         local function refresh_xcodeproj()
             io.popen("~/Documents/GitHub/grindr/scripts/nvim_clean.sh")
@@ -220,11 +223,11 @@ else
     if vim.fn.executable("sourcekit-lsp") == 1 then
         lsp.sourcekit.setup {
             on_attach = on_attach,
-            capabilities = capabilities,
+            capabilities = skCapabilities,
             root_dir = require 'lspconfig'.util.root_pattern("Package.swift", ".git"),
         }
-        local coq = require "coq"
-        lsp.sourcekit.setup(coq.lsp_ensure_capabilities {})
+        -- local coq = require "coq"
+        -- lsp.sourcekit.setup(coq.lsp_ensure_capabilities {})
     end
 end
 
@@ -252,15 +255,15 @@ end
 -- Java
 if vim.fn.executable("jdtls") == 1 then
     lsp.jdtls.setup(defaults)
-    local coq = require "coq"
-    lsp.jdtls.setup(coq.lsp_ensure_capabilities {})
+    -- local coq = require "coq"
+    -- lsp.jdtls.setup(coq.lsp_ensure_capabilities {})
 end
 
 -- Zig
 if vim.fn.executable("zls") == 1 then
     lsp.zls.setup(defaults)
-    local coq = require "coq"
-    lsp.zls.setup(coq.lsp_ensure_capabilities {})
+    -- local coq = require "coq"
+    -- lsp.zls.setup(coq.lsp_ensure_capabilities {})
 end
 
 -- Rust, now managed by rustaceanvim
@@ -298,48 +301,48 @@ if vim.fn.executable("tsserver") == 1 then
     }
     settings = vim.tbl_deep_extend("force", defaults, settings)
     lsp.tsserver.setup(settings)
-    local coq = require "coq"
-    lsp.tsserver.setup(coq.lsp_ensure_capabilities {})
+    -- local coq = require "coq"
+    -- lsp.tsserver.setup(coq.lsp_ensure_capabilities {})
 end
 
 -- Vue
 -- Installation: npm i -g @volar/vue-language-server
 if vim.fn.executable("vue-language-server") == 1 then
     lsp.volar.setup(defaults)
-    local coq = require "coq"
-    lsp.volar.setup(coq.lsp_ensure_capabilities {})
+    -- local coq = require "coq"
+    -- lsp.volar.setup(coq.lsp_ensure_capabilities {})
 end
 
 -- ESLint, linting engine for JavaScript/TypeScript
 -- Installation: npm i -g vscode-langservers-extracted
 if vim.fn.executable("vscode-eslint-language-server") == 1 then
     lsp.eslint.setup(defaults)
-    local coq = require "coq"
-    lsp.eslint.setup(coq.lsp_ensure_capabilities {})
+    -- local coq = require "coq"
+    -- lsp.eslint.setup(coq.lsp_ensure_capabilities {})
 end
 
 -- CSS
 -- Installation: npm i -g vscode-langservers-extracted
 if vim.fn.executable("vscode-css-language-server") == 1 then
     lsp.cssls.setup(defaults)
-    local coq = require "coq"
-    lsp.cssls.setup(coq.lsp_ensure_capabilities {})
+    -- local coq = require "coq"
+    -- lsp.cssls.setup(coq.lsp_ensure_capabilities {})
 end
 
 -- TailwindCSS
 -- Installation: npm i -g @tailwindcss/language-server
 if vim.fn.executable("tailwindcss-language-server") == 1 then
     lsp.tailwindcss.setup(defaults)
-    local coq = require "coq"
-    lsp.tailwindcss.setup(coq.lsp_ensure_capabilities {})
+    -- local coq = require "coq"
+    -- lsp.tailwindcss.setup(coq.lsp_ensure_capabilities {})
 end
 
 -- HTML
 -- Installation: npm i -g vscode-langservers-extracted
 if vim.fn.executable("vscode-html-language-server") == 1 then
     lsp.html.setup(defaults)
-    local coq = require "coq"
-    lsp.html.setup(coq.lsp_ensure_capabilities {})
+    -- local coq = require "coq"
+    -- lsp.html.setup(coq.lsp_ensure_capabilities {})
 end
 
 -- Lua
@@ -375,8 +378,8 @@ if vim.fn.executable("lua-language-server") == 1 then
     end
 
     lsp.lua_ls.setup(vim.tbl_deep_extend("force", defaults, lua_config))
-    local coq = require "coq"
-    lsp.lua_ls.setup(coq.lsp_ensure_capabilities {})
+    -- local coq = require "coq"
+    -- lsp.lua_ls.setup(coq.lsp_ensure_capabilities {})
 end
 
 -- Elixir
@@ -384,15 +387,15 @@ if vim.fn.executable("elixir-ls") == 1 then
     lsp.elixirls.setup(
         vim.tbl_deep_extend("force", defaults, { cmd = { vim.env.HOME .. "/.local/bin/elixir-ls" } })
     )
-    local coq = require "coq"
-    lsp.elixirls.setup(coq.lsp_ensure_capabilities {})
+    -- local coq = require "coq"
+    -- lsp.elixirls.setup(coq.lsp_ensure_capabilities {})
 end
 
 -- Python
 if vim.fn.executable("jedi-language-server") == 1 then
     lsp.jedi_language_server.setup(defaults)
-    local coq = require "coq"
-    lsp.jedi_language_server.setup(coq.lsp_ensure_capabilities {})
+    -- local coq = require "coq"
+    -- lsp.jedi_language_server.setup(coq.lsp_ensure_capabilities {})
 end
 
 -- Disable diagnostics in insert and select mode

@@ -32,25 +32,23 @@ return {
     {
         'neovim/nvim-lspconfig',
         event = 'LspAttach',
-        dependencies = {
-            -- main one
-            { "ms-jpq/coq_nvim",                  branch = "coq" },
+        -- dependencies = {
+        --     -- main one
+        --     { "ms-jpq/coq_nvim",                  branch = "coq" },
 
-            -- 9000+ Snippets
-            { "ms-jpq/coq.artifacts",             branch = "artifacts" },
+        --     -- 9000+ Snippets
+        --     { "ms-jpq/coq.artifacts",             branch = "artifacts" },
 
-            -- lua & third party sources -- See https://github.com/ms-jpq/coq.thirdparty
-            -- Need to **configure separately**
-            { 'ms-jpq/coq.thirdparty',            branch = "3p" },
-            -- - shell repl
-            -- - nvim lua api
-            -- - scientific calculator
-            -- - comment banner
-            -- - etc
-            --
-            { 'williamboman/mason-lspconfig.nvim' },
-            -- 'ray-x/lsp_signature.nvim',
-        },
+        --     -- lua & third party sources -- See https://github.com/ms-jpq/coq.thirdparty
+        --     -- Need to **configure separately**
+        --     { 'ms-jpq/coq.thirdparty',            branch = "3p" },
+        --     -- - shell repl
+        --     -- - nvim lua api
+        --     -- - scientific calculator
+        --     -- - comment banner
+        --     -- - etc
+        --     --
+        -- },
         init = function()
             -- update lsp floating window settings
             -- local max_width = 80
@@ -65,91 +63,109 @@ return {
                 virtual_text = false,
             })
 
-            vim.g.coq_settings = {
-                auto_start = true, -- if you want to start COQ at startup
-                -- Your COQ settings here
-            }
+            -- vim.g.coq_settings = {
+            --     auto_start = true, -- if you want to start COQ at startup
+            --     -- Your COQ settings here
+            -- }
         end,
         config = function()
-            require("coq_3p") {
-                { src = "nvimlua", short_name = "nLUA" },
-                { src = "bc",      short_name = "MATH", precision = 6 },
-            }
+            -- require("coq_3p") {
+            --     { src = "nvimlua", short_name = "nLUA" },
+            --     { src = "bc",      short_name = "MATH", precision = 6 },
+            -- }
         end,
         opts = {
             servers = {},
         },
     },
-    -- {
-    --     "hrsh7th/nvim-cmp",
-    --     event = "InsertEnter",
-    --     dependencies = {
-    --         "hrsh7th/cmp-buffer",           -- source for text in buffer
-    --         "hrsh7th/cmp-path",             -- source for file system paths
-    --         "L3MON4D3/LuaSnip",             -- snippet engine
-    --         "saadparwaiz1/cmp_luasnip",     -- for autocompletion
-    --         "rafamadriz/friendly-snippets", -- useful snippets
-    --         "onsails/lspkind.nvim",         -- vs-code like pictograms
-    --     },
-    --     config = function()
-    --         local cmp = require("cmp")
-    --         local luasnip = require("luasnip")
-    --         local lspkind = require("lspkind")
+    {
+        "hrsh7th/nvim-cmp",
+        event = "InsertEnter",
+        dependencies = {
+            "hrsh7th/cmp-cmdline",          -- source for text in buffer
+            "hrsh7th/cmp-buffer",           -- source for text in buffer
+            "hrsh7th/cmp-path",             -- source for file system paths
+            "hrsh7th/cmp-nvim-lsp",         -- source for file system paths
+            "L3MON4D3/LuaSnip",             -- snippet engine
+            "saadparwaiz1/cmp_luasnip",     -- for autocompletion
+            "rafamadriz/friendly-snippets", -- useful snippets
+            "onsails/lspkind.nvim",         -- vs-code like pictograms
+        },
+        config = function()
+            local cmp = require("cmp")
+            local luasnip = require("luasnip")
+            local lspkind = require("lspkind")
 
-    --         -- loads vscode style snippets from installed plugins (e.g. friendly-snippets)
-    --         require("luasnip.loaders.from_vscode").lazy_load()
+            -- loads vscode style snippets from installed plugins (e.g. friendly-snippets)
+            require("luasnip.loaders.from_vscode").lazy_load()
 
-    --         cmp.setup({
-    --             completion = {
-    --                 completeopt = "menu,menuone,preview",
-    --             },
-    --             snippet = { -- configure how nvim-cmp interacts with snippet engine
-    --                 expand = function(args)
-    --                     luasnip.lsp_expand(args.body)
-    --                 end,
-    --             },
-    --             mapping = cmp.mapping.preset.insert({
-    --                 ["<C-k>"] = cmp.mapping.select_prev_item(), -- previous suggestion
-    --                 ["<C-j>"] = cmp.mapping.select_next_item(), -- next suggestion
-    --                 ["<C-Space>"] = cmp.mapping.complete(),     -- show completion suggestions
-    --                 ["<C-e>"] = cmp.mapping.abort(),            -- close completion window
-    --                 ["<CR>"] = cmp.mapping.confirm({
-    --                     select = false,
-    --                     behavior = cmp.ConfirmBehavior
-    --                         .Replace
-    --                 }),
-    --                 ["<C-b>"] = cmp.mapping(function(fallback)
-    --                     if luasnip.jumpable(-1) then
-    --                         luasnip.jump(-1)
-    --                     else
-    --                         fallback()
-    --                     end
-    --                 end, { "i", "s" }),
-    --                 ["<C-f>"] = cmp.mapping(function(fallback)
-    --                     if luasnip.jumpable(1) then
-    --                         luasnip.jump(1)
-    --                     else
-    --                         fallback()
-    --                     end
-    --                 end, { "i", "s" }),
-    --             }),
-    --             -- sources for autocompletion
-    --             sources = cmp.config.sources({
-    --                 { name = "nvim_lsp" },
-    --                 { name = "luasnip" }, -- snippets
-    --                 { name = "buffer" },  -- text within current buffer
-    --                 { name = "path" },    -- file system paths
-    --             }),
-    --             -- configure lspkind for vs-code like pictograms in completion menu
-    --             formatting = {
-    --                 format = lspkind.cmp_format({
-    --                     maxwidth = 50,
-    --                     ellipsis_char = "...",
-    --                 }),
-    --             },
-    --         })
-    --     end,
-    -- },
+            cmp.setup({
+                snippet = { -- configure how nvim-cmp interacts with snippet engine
+                    expand = function(args)
+                        luasnip.lsp_expand(args.body)
+                    end,
+                },
+                mapping = cmp.mapping.preset.insert({
+                    ["<C-e>"] = cmp.mapping.select_prev_item(), -- previous suggestion
+                    ["<C-n>"] = cmp.mapping.select_next_item(), -- next suggestion
+                    ["<C-Space>"] = cmp.mapping.complete(),     -- show completion suggestions
+                    ["<C-c>"] = cmp.mapping.abort(),            -- close completion window
+                    ["<CR>"] = cmp.mapping.confirm({
+                        select = false,
+                        behavior = cmp.ConfirmBehavior
+                            .Replace
+                    }),
+                    ["<C-b>"] = cmp.mapping(function(fallback)
+                        if luasnip.jumpable(-1) then
+                            luasnip.jump(-1)
+                        else
+                            fallback()
+                        end
+                    end, { "i", "s" }),
+                    ["<C-f>"] = cmp.mapping(function(fallback)
+                        if luasnip.jumpable(1) then
+                            luasnip.jump(1)
+                        else
+                            fallback()
+                        end
+                    end, { "i", "s" }),
+                }),
+                -- sources for autocompletion
+                sources = cmp.config.sources({
+                    { name = "nvim_lsp" },
+                    { name = "luasnip" }, -- snippets
+                    { name = "buffer" },  -- text within current buffer
+                    { name = "path" },    -- file system paths
+                }),
+
+                cmp.setup.cmdline({ '/', '?' }, {
+                    mapping = cmp.mapping.preset.cmdline(),
+                    sources = {
+                        { name = 'buffer' }
+                    }
+                }),
+
+                -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
+                cmp.setup.cmdline(':', {
+                    mapping = cmp.mapping.preset.cmdline(),
+                    sources = cmp.config.sources({
+                        { name = 'path' }
+                    }, {
+                        { name = 'cmdline' }
+                    }),
+                    matching = { disallow_symbol_nonprefix_matching = false }
+                }),
+
+                -- configure lspkind for vs-code like pictograms in completion menu
+                formatting = {
+                    format = lspkind.cmp_format({
+                        maxwidth = 50,
+                        ellipsis_char = "...",
+                    }),
+                },
+            })
+        end,
+    },
     {
         "mfussenegger/nvim-lint",
         event = { "BufReadPre", "BufNewFile" },
