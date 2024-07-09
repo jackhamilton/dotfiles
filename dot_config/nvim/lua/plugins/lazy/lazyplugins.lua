@@ -32,6 +32,7 @@ return {
     {
         'neovim/nvim-lspconfig',
         event = 'LspAttach',
+        event = .
         -- dependencies = {
         --     -- main one
         --     { "ms-jpq/coq_nvim",                  branch = "coq" },
@@ -89,8 +90,16 @@ return {
             "L3MON4D3/LuaSnip",             -- snippet engine
             "saadparwaiz1/cmp_luasnip",     -- for autocompletion
             "rafamadriz/friendly-snippets", -- useful snippets
+            "lukas-reineke/cmp-rg",
             "onsails/lspkind.nvim",         -- vs-code like pictograms
         },
+        opts = function(_, opts)
+            opts.sources = opts.sources or {}
+            table.insert(opts.sources, {
+                name = "lazydev",
+                group_index = 0,
+            })
+        end,
         config = function()
             local cmp = require("cmp")
             local luasnip = require("luasnip")
@@ -134,6 +143,7 @@ return {
                 sources = cmp.config.sources({
                     { name = "nvim_lsp" },
                     { name = "luasnip" }, -- snippets
+                    { name = "rg",      keyword_length = 3 },
                     { name = "buffer" },  -- text within current buffer
                     { name = "path" },    -- file system paths
                 }),
@@ -191,6 +201,18 @@ return {
             end, { desc = "Lint file" })
         end,
     },
+    {
+        "folke/lazydev.nvim",
+        ft = "lua", -- only load on lua files
+        opts = {
+            library = {
+                -- See the configuration section for more details
+                -- Load luvit types when the `vim.uv` word is found
+                { path = "luvit-meta/library", words = { "vim%.uv" } },
+            },
+        },
+    },
+    { "Bilal2453/luvit-meta", lazy = true },
     {
         "stevearc/conform.nvim",
         event = { "BufReadPre", "BufNewFile" },

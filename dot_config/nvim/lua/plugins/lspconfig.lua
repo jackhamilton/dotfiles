@@ -218,6 +218,14 @@ if mac == 1 then
         vim.api.nvim_create_user_command("Xcrefresh", refresh_xcodeproj, {
             desc = "Clean, build, and generate buildServer.json for the grindr project.",
         })
+        local function remake_buildserver()
+            os.execute(
+                'cd ~/Documents/GitHub/grindr & xcode-build-server config -scheme Grindr -workspace *.xcworkspace')
+            io.popen("~/Documents/GitHub/grindr/scripts/nvim_clean.sh")
+        end
+        vim.api.nvim_create_user_command("Xcbuildserver", remake_buildserver, {
+            desc = "Generate buildServer.json for the grindr project.",
+        })
     end
 else
     if vim.fn.executable("sourcekit-lsp") == 1 then
