@@ -190,7 +190,13 @@ if mac == 1 then
         lsp.sourcekit.setup {
             cmd = { "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/sourcekit-lsp" },
             on_attach = on_attach,
-            capabilities = capabilities,
+            capabilities = {
+                workspace = {
+                    didWatchChangedFiles = {
+                        dynamicRegistration = true,
+                    },
+                },
+            },
             root_dir = require 'lspconfig'.util.root_pattern("Package.swift", ".git"),
         }
         local function refresh_xcodeproj()
@@ -203,9 +209,13 @@ if mac == 1 then
 else
     if vim.fn.executable("sourcekit-lsp") == 1 then
         lsp.sourcekit.setup {
-            on_attach = on_attach,
-            capabilities = capabilities,
-            root_dir = require 'lspconfig'.util.root_pattern("Package.swift", ".git"),
+            capabilities = {
+                workspace = {
+                    didWatchChangedFiles = {
+                        dynamicRegistration = true,
+                    },
+                },
+            },
         }
     end
 end

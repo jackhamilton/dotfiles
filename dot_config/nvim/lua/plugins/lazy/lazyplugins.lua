@@ -64,6 +64,13 @@ return {
         },
     },
     {
+        "brenoprata10/nvim-highlight-colors",
+        event = "LspAttach",
+        config = function()
+            require('nvim-highlight-colors').setup({})
+        end,
+    },
+    {
         "hrsh7th/nvim-cmp",
         event = "InsertEnter",
         dependencies = {
@@ -211,9 +218,11 @@ return {
             "nvim-treesitter/nvim-treesitter", -- (optional) for Quick tests support (required Swift parser)
         },
         config = function()
-            require("xcodebuild").setup({
-                -- put some options here or leave it empty to use default settings
-            })
+            if jit.os == "OSX" then
+                require("xcodebuild").setup({
+                    -- put some options here or leave it empty to use default settings
+                })
+            end
         end,
     },
     -- Debugging
@@ -224,27 +233,28 @@ return {
             "wojciech-kulik/xcodebuild.nvim"
         },
         config = function()
+            if jit.os == "OSX" then
             local xcodebuild = require("xcodebuild.integrations.dap")
+                -- TODO: change it to your local codelldb path
+                local codelldbPath = os.getenv("HOME") .. "/Documents/codelldb-aarch64-darwin.vsix"
 
-            -- TODO: change it to your local codelldb path
-            local codelldbPath = os.getenv("HOME") .. "/Documents/codelldb-aarch64-darwin.vsix"
+                xcodebuild.setup(codelldbPath)
 
-            xcodebuild.setup(codelldbPath)
+                local wk = require('which-key')
+                wk.register({
+                    d = {
+                        name = "Debugger",
+                        d = { xcodebuild.build_and_debug, "Build & Debug" },
+                        r = { xcodebuild.debug_without_build, "Debug without building" },
+                        d = { xcodebuild.debug_tests, "Debug Tests" },
+                        T = { xcodebuild.debug_class_tests, "Debug Class Tests" },
+                        b = { xcodebuild.toggle_breakpoint, "Toggle Breakpoint" },
+                        B = { xcodebuild.toggle_message_breakpoint, "Toggle message breakpoint" },
+                        x = { xcodebuild.terminate_session, "Terminate Debugger" },
+                    }
 
-            local wk = require('which-key')
-            wk.register({
-                d = {
-                    name = "Debugger",
-                    d = { xcodebuild.build_and_debug, "Build & Debug" },
-                    r = { xcodebuild.debug_without_build, "Debug without building" },
-                    d = { xcodebuild.debug_tests, "Debug Tests" },
-                    T = { xcodebuild.debug_class_tests, "Debug Class Tests" },
-                    b = { xcodebuild.toggle_breakpoint, "Toggle Breakpoint" },
-                    B = { xcodebuild.toggle_message_breakpoint, "Toggle message breakpoint" },
-                    x = { xcodebuild.terminate_session, "Terminate Debugger" },
-                }
-
-            }, { prefix = "<leader>" })
+                }, { prefix = "<leader>" })
+            end
         end,
     },
     {
@@ -299,14 +309,6 @@ return {
             end
         end,
     },
-    -- {
-    --  "linrongbin16/gentags.nvim",
-    --  event = 'LspAttach',
-    --  config = function()
-    --      require('gentags').setup()
-    --  end,
-    -- },
-
     -- Snippets
     { 'L3MON4D3/LuaSnip' },
     { 'rafamadriz/friendly-snippets' },
