@@ -19,32 +19,36 @@ return {
         opts = { ensure_installed = {}, max_concurrent_installers = #vim.loop.cpu_info(), pip = { upgrade_pip = true } },
         build = ':MasonUpdate',
     },
-    {
-        'williamboman/mason-lspconfig.nvim',
-        config = function(_, opts)
-            require("mason-lspconfig").setup(opts)
-            require("mason-lspconfig").setup_handlers {
-                -- The first entry (without a key) will be the default handler
-                -- and will be called for each installed server that doesn't have
-                -- a dedicated handler.
-                function(server_name) -- default handler (optional)
-                    require("lspconfig")[server_name].setup {}
-                end,
-            }
-        end,
-        dependencies = {
-            'williamboman/mason.nvim',
-        },
-        opts = { ensure_installed = {}, automatic_installation = true },
-    },
+    -- {
+    --     'williamboman/mason-lspconfig.nvim',
+    --     config = function(_, opts)
+    --         require("mason-lspconfig").setup(opts)
+    --     end,
+    --     dependencies = {
+    --         'williamboman/mason.nvim',
+    --     },
+    --     opts = { ensure_installed = {}, automatic_installation = true },
+    -- },
     {
         'neovim/nvim-lspconfig',
-        config = function()
-        end,
-        dependencies = {
-            'williamboman/mason-lspconfig.nvim',
-            'ray-x/lsp_signature.nvim',
-        },
+        event = 'LspAttach',
+        -- dependencies = {
+        --     -- main one
+        --     { "ms-jpq/coq_nvim",                  branch = "coq" },
+
+        --     -- 9000+ Snippets
+        --     { "ms-jpq/coq.artifacts",             branch = "artifacts" },
+
+        --     -- lua & third party sources -- See https://github.com/ms-jpq/coq.thirdparty
+        --     -- Need to **configure separately**
+        --     { 'ms-jpq/coq.thirdparty',            branch = "3p" },
+        --     -- - shell repl
+        --     -- - nvim lua api
+        --     -- - scientific calculator
+        --     -- - comment banner
+        --     -- - etc
+        --     --
+        -- },
         init = function()
             -- update lsp floating window settings
             -- local max_width = 80
@@ -58,6 +62,17 @@ return {
                 update_in_insert = false,
                 virtual_text = false,
             })
+
+            -- vim.g.coq_settings = {
+            --     auto_start = true, -- if you want to start COQ at startup
+            --     -- Your COQ settings here
+            -- }
+        end,
+        config = function()
+            -- require("coq_3p") {
+            --     { src = "nvimlua", short_name = "nLUA" },
+            --     { src = "bc",      short_name = "MATH", precision = 6 },
+            -- }
         end,
         opts = {
             servers = {},
@@ -74,13 +89,23 @@ return {
         "hrsh7th/nvim-cmp",
         event = "InsertEnter",
         dependencies = {
+            "hrsh7th/cmp-cmdline",          -- source for text in buffer
             "hrsh7th/cmp-buffer",           -- source for text in buffer
             "hrsh7th/cmp-path",             -- source for file system paths
+            "hrsh7th/cmp-nvim-lsp",         -- source for file system paths
             "L3MON4D3/LuaSnip",             -- snippet engine
             "saadparwaiz1/cmp_luasnip",     -- for autocompletion
             "rafamadriz/friendly-snippets", -- useful snippets
+            "lukas-reineke/cmp-rg",
             "onsails/lspkind.nvim",         -- vs-code like pictograms
         },
+        opts = function(_, opts)
+            opts.sources = opts.sources or {}
+            table.insert(opts.sources, {
+                name = "lazydev",
+                group_index = 0,
+            })
+        end,
         config = function()
             local cmp = require("cmp")
             local luasnip = require("luasnip")
@@ -90,19 +115,16 @@ return {
             require("luasnip.loaders.from_vscode").lazy_load()
 
             cmp.setup({
-                completion = {
-                    completeopt = "menu,menuone,preview",
-                },
                 snippet = { -- configure how nvim-cmp interacts with snippet engine
                     expand = function(args)
                         luasnip.lsp_expand(args.body)
                     end,
                 },
                 mapping = cmp.mapping.preset.insert({
-                    ["<C-k>"] = cmp.mapping.select_prev_item(), -- previous suggestion
-                    ["<C-j>"] = cmp.mapping.select_next_item(), -- next suggestion
+                    ["<C-e>"] = cmp.mapping.select_prev_item(), -- previous suggestion
+                    ["<C-n>"] = cmp.mapping.select_next_item(), -- next suggestion
                     ["<C-Space>"] = cmp.mapping.complete(),     -- show completion suggestions
-                    ["<C-e>"] = cmp.mapping.abort(),            -- close completion window
+                    ["<C-c>"] = cmp.mapping.abort(),            -- close completion window
                     ["<CR>"] = cmp.mapping.confirm({
                         select = false,
                         behavior = cmp.ConfirmBehavior
@@ -127,9 +149,29 @@ return {
                 sources = cmp.config.sources({
                     { name = "nvim_lsp" },
                     { name = "luasnip" }, -- snippets
+                    { name = "rg",      keyword_length = 3 },
                     { name = "buffer" },  -- text within current buffer
                     { name = "path" },    -- file system paths
                 }),
+
+                cmp.setup.cmdline({ '/', '?' }, {
+                    mapping = cmp.mapping.preset.cmdline(),
+                    sources = {
+                        { name = 'buffer' }
+                    }
+                }),
+
+                -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
+                cmp.setup.cmdline(':', {
+                    mapping = cmp.mapping.preset.cmdline(),
+                    sources = cmp.config.sources({
+                        { name = 'path' }
+                    }, {
+                        { name = 'cmdline' }
+                    }),
+                    matching = { disallow_symbol_nonprefix_matching = false }
+                }),
+
                 -- configure lspkind for vs-code like pictograms in completion menu
                 formatting = {
                     format = lspkind.cmp_format({
@@ -165,6 +207,18 @@ return {
             end, { desc = "Lint file" })
         end,
     },
+    {
+        "folke/lazydev.nvim",
+        ft = "lua", -- only load on lua files
+        opts = {
+            library = {
+                -- See the configuration section for more details
+                -- Load luvit types when the `vim.uv` word is found
+                { path = "luvit-meta/library", words = { "vim%.uv" } },
+            },
+        },
+    },
+    { "Bilal2453/luvit-meta", lazy = true },
     {
         "stevearc/conform.nvim",
         event = { "BufReadPre", "BufNewFile" },
@@ -219,9 +273,31 @@ return {
         },
         config = function()
             if jit.os == "OSX" then
-                require("xcodebuild").setup({
-                    -- put some options here or leave it empty to use default settings
-                })
+            require("xcodebuild").setup({
+                -- put some options here or leave it empty to use default settings
+
+            })
+            vim.keymap.set("n", "<leader>Xf", "<cmd>XcodebuildProjectManager<cr>",
+                { desc = "Show Project Manager Actions" })
+
+            vim.keymap.set("n", "<leader>Xb", "<cmd>XcodebuildBuild<cr>", { desc = "Build Project" })
+            vim.keymap.set("n", "<leader>XB", "<cmd>XcodebuildBuildForTesting<cr>", { desc = "Build For Testing" })
+            vim.keymap.set("n", "<leader>Xr", "<cmd>XcodebuildBuildRun<cr>", { desc = "Build & Run Project" })
+            vim.keymap.set("n", "<leader>Xt", "<cmd>XcodebuildTest<cr>", { desc = "Run Tests" })
+            vim.keymap.set("v", "<leader>Xt", "<cmd>XcodebuildTestSelected<cr>", { desc = "Run Selected Tests" })
+            vim.keymap.set("n", "<leader>XT", "<cmd>XcodebuildTestClass<cr>", { desc = "Run Current Test Class" })
+            vim.keymap.set("n", "<leader>X.", "<cmd>XcodebuildTestRepeat<cr>", { desc = "Repeat Last Test Run" })
+            vim.keymap.set("n", "<leader>Xl", "<cmd>XcodebuildToggleLogs<cr>", { desc = "Toggle Xcodebuild Logs" })
+            vim.keymap.set("n", "<leader>Xc", "<cmd>XcodebuildToggleCodeCoverage<cr>", { desc = "Toggle Code Coverage" })
+            vim.keymap.set("n", "<leader>XC", "<cmd>XcodebuildShowCodeCoverageReport<cr>",
+                { desc = "Show Code Coverage Report" })
+            vim.keymap.set("n", "<leader>Xe", "<cmd>XcodebuildTestExplorerToggle<cr>", { desc = "Toggle Test Explorer" })
+            vim.keymap.set("n", "<leader>Xs", "<cmd>XcodebuildFailingSnapshots<cr>", { desc = "Show Failing Snapshots" })
+            vim.keymap.set("n", "<leader>Xd", "<cmd>XcodebuildSelectDevice<cr>", { desc = "Select Device" })
+            vim.keymap.set("n", "<leader>Xp", "<cmd>XcodebuildSelectTestPlan<cr>", { desc = "Select Test Plan" })
+            vim.keymap.set("n", "<leader>Xq", "<cmd>Telescope quickfix<cr>", { desc = "Show QuickFix List" })
+            vim.keymap.set("n", "<leader>Xx", "<cmd>XcodebuildQuickfixLine<cr>", { desc = "Quickfix Line" })
+            vim.keymap.set("n", "<leader>Xa", "<cmd>XcodebuildCodeActions<cr>", { desc = "Show Code Actions" })
             end
         end,
     },
@@ -239,27 +315,15 @@ return {
                 local codelldbPath = os.getenv("HOME") .. "/Documents/codelldb-aarch64-darwin.vsix"
 
                 xcodebuild.setup(codelldbPath)
-
-                local wk = require('which-key')
-                wk.register({
-                    d = {
-                        name = "Debugger",
-                        d = { xcodebuild.build_and_debug, "Build & Debug" },
-                        r = { xcodebuild.debug_without_build, "Debug without building" },
-                        d = { xcodebuild.debug_tests, "Debug Tests" },
-                        T = { xcodebuild.debug_class_tests, "Debug Class Tests" },
-                        b = { xcodebuild.toggle_breakpoint, "Toggle Breakpoint" },
-                        B = { xcodebuild.toggle_message_breakpoint, "Toggle message breakpoint" },
-                        x = { xcodebuild.terminate_session, "Terminate Debugger" },
-                    }
-
-                }, { prefix = "<leader>" })
-            end
+	        end
         end,
     },
     {
         "rcarriga/nvim-dap-ui",
-        dependencies = { "mfussenegger/nvim-dap", },
+        dependencies = {
+            "mfussenegger/nvim-dap",
+            "nvim-neotest/nvim-nio",
+        },
         lazy = true,
         config = function()
             require("dapui").setup({
@@ -308,6 +372,11 @@ return {
                 dapui.close()
             end
         end,
+    },
+    {
+        "akinsho/git-conflict.nvim",
+        version = "*",
+        config = true,
     },
     -- Snippets
     { 'L3MON4D3/LuaSnip' },
@@ -370,7 +439,7 @@ return {
         end,
     },
     { 'kevinhwang91/nvim-bqf' },
-    { 'nvim-pack/nvim-spectre', event = "VimEnter"},
+    { 'nvim-pack/nvim-spectre', event = "VimEnter" },
     {
         'kevinhwang91/nvim-ufo',
         event = "VimEnter",
@@ -379,7 +448,7 @@ return {
         },
         config = function()
             vim.o.foldcolumn = '1' -- '0' is not bad
-            vim.o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
+            vim.o.foldlevel = 99   -- Using ufo provider need a large value, feel free to decrease the value
             vim.o.foldlevelstart = 99
             vim.o.foldenable = true
 
@@ -391,7 +460,6 @@ return {
             }, { prefix = 'z' })
 
             require('ufo').setup({})
-
         end,
     },
     {

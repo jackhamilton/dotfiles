@@ -393,9 +393,6 @@ return {
             pattern = 'LspProgressStatusUpdated',
             callback = function() vim.opt.statusline = vim.opt.statusline end,
         })
-
-        -- hide search count on command line
-        vim.opt.shortmess:append({ S = true })
     end,
     opts = {
         force_inactive = { filetypes = { '^dapui_*', '^help$', '^neotest*', '^NvimTree$', '^qf$' } },

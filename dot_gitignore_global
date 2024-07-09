@@ -4,6 +4,6 @@
 buildServer.json
 -workspace
 .nvim/*
-nvim_clean.sh
+nvim_*.sh
 *.swift~
 Package.resolved
