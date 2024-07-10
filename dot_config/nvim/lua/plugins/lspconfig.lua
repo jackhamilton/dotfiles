@@ -184,13 +184,17 @@ end
 
 --- Capabilities
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
+local skCapabilities = require('cmp_nvim_lsp').default_capabilities()
 capabilities.textDocument.foldingRange = {
     dynamicRegistration = false,
     lineFoldingOnly = true,
 }
-local skCapabilities = capabilities
-skCapabilities.textDocument.foldingRange = {
-    dynamicRegistration = true
+skCapabilities = {
+    workspace = {
+        didChangeWatchedFiles = {
+            dynamicRegistration = true
+        }
+    }
 }
 
 --- Setup servers
