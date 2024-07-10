@@ -206,13 +206,6 @@ if mac == 1 then
         lsp.sourcekit.setup {
             cmd = { "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/sourcekit-lsp" },
             on_attach = on_attach,
-            capabilities = {
-                workspace = {
-                    didWatchChangedFiles = {
-                        dynamicRegistration = true,
-                    },
-                },
-            },
             capabilities = skCapabilities,
             root_dir = require 'lspconfig'.util.root_pattern("Package.swift", ".git"),
         }
@@ -235,19 +228,21 @@ if mac == 1 then
         })
     end
 else
-    if vim.fn.executable("sourcekit-lsp") == 1 then
+    if vim.fn.executable("/home/jack/Documents/GitHub/sourcekit-lsp/.build/x86_64-unknown-linux-gnu/debug/sourcekit-lsp") == 1 then
         lsp.sourcekit.setup {
-            capabilities = {
-                workspace = {
-                    didWatchChangedFiles = {
-                        dynamicRegistration = true,
-                    },
-                },
-            },
+            cmd = { "/home/jack/Documents/GitHub/sourcekit-lsp/.build/x86_64-unknown-linux-gnu/debug/sourcekit-lsp" },
             on_attach = on_attach,
             capabilities = skCapabilities,
             root_dir = require 'lspconfig'.util.root_pattern("Package.swift", ".git"),
         }
+    else
+        if vim.fn.executable("sourcekit-lsp") == 1 then
+            lsp.sourcekit.setup {
+                on_attach = on_attach,
+                capabilities = skCapabilities,
+                root_dir = require 'lspconfig'.util.root_pattern("Package.swift", ".git"),
+            }
+        end
         -- local coq = require "coq"
         -- lsp.sourcekit.setup(coq.lsp_ensure_capabilities {})
     end
