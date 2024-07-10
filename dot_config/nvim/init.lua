@@ -15,10 +15,15 @@ if not rocks_enable then
         })
     end
     vim.opt.rtp:prepend(lazypath)
-    require("lazy").setup("plugins.lazy")
+    local pluginDirectories = {
+        { import = "plugins.lazy" },
+    }
     if vim.fn.OSX() == 1 then
-        require("lazy").setup("plugins.osxplugins")
+        table.insert(pluginDirectories, { import = "plugins.osx" })
     end
+    require("lazy").setup({
+        spec = pluginDirectories
+    })
     require("plugins.lspconfig")
     require("plugins.telescope")
     require("plugins.mini")
