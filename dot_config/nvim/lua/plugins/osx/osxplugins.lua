@@ -8,7 +8,6 @@ return {
         },
         lazy = false,
         config = function()
-            require("notify")("Starting xcodebuild")
             require("xcodebuild").setup()
             vim.keymap.set("n", "<leader>Xf", "<cmd>XcodebuildProjectManager<cr>",
                 { desc = "Show Project Manager Actions" })

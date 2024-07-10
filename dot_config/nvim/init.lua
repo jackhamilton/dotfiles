@@ -1,4 +1,4 @@
-vim.cmd('runtime vs-setup.vim')
+vim.cmd('runtime vim/vs-setup.vim')
 local rocks_enable = false
 
 if not rocks_enable then
@@ -24,11 +24,6 @@ if not rocks_enable then
     require("lazy").setup({
         spec = pluginDirectories
     })
-    require("plugins.lspconfig")
-    require("plugins.telescope")
-    require("plugins.mini")
-    require("plugins.tabby")
-    require("plugins.which-key")
 else
     do
         -- Specifies where to install/use rocks.nvim
@@ -89,6 +84,14 @@ local loaded_core, core_err = xpcall(require, debug.traceback, "core")
 if not loaded_core then
     vim.notify_once(
         string.format("There was an error requiring 'core'. Traceback:\n%s", core_err),
+        vim.log.levels.ERROR
+    )
+end
+
+local loaded_plugin_config, config_err = xpcall(require, debug.traceback, "plugins.config")
+if not loaded_plugin_config then
+    vim.notify_once(
+        string.format("There was an error requiring 'plugin_config'. Traceback:\n%s", config_err),
         vim.log.levels.ERROR
     )
 end
