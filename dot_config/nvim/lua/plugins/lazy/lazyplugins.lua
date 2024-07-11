@@ -149,7 +149,7 @@ return {
                 sources = cmp.config.sources({
                     { name = "nvim_lsp" },
                     { name = "luasnip" }, -- snippets
-                    { name = "rg",      keyword_length = 3 },
+                    { name = "rg" },
                     { name = "buffer" },  -- text within current buffer
                     { name = "path" },    -- file system paths
                 }),
@@ -330,7 +330,16 @@ return {
         config = true,
     },
     -- Snippets
-    { 'L3MON4D3/LuaSnip' },
+    {
+        'L3MON4D3/LuaSnip',
+        event = "LspAttach",
+        dependencies = { "rafamadriz/friendly-snippets" },
+        postinstall = "make install_jsregexp",
+        config = function()
+            local luaload = require("luasnip.loaders.from_lua")
+            luaload.load({ paths = { "./lua/snippets" } })
+        end,
+    },
     { 'rafamadriz/friendly-snippets' },
 
     -- Misc
@@ -390,7 +399,7 @@ return {
         end,
     },
     { 'kevinhwang91/nvim-bqf' },
-    { 'nvim-pack/nvim-spectre', event = "VimEnter" },
+    { 'nvim-pack/nvim-spectre',      event = "VimEnter" },
     {
         'kevinhwang91/nvim-ufo',
         event = "VimEnter",
@@ -434,6 +443,9 @@ return {
                 ["g."] = "actions.toggle_hidden",
                 ["g\\"] = "actions.toggle_trash",
             },
+        },
+        keys = {
+            { "<leader>fo", mode = { "n" }, "<CMD>Oil<CR>", desc = "Oil" },
         },
         -- Optional dependencies
         dependencies = { "nvim-tree/nvim-web-devicons" },

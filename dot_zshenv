@@ -13,5 +13,6 @@ else
     export PATH="$PATH:$HOME/home/jack/.mint/bin"
 fi
 export RUSTC_WRAPPER=sccache
+export HOMEBREW_AUTO_UPDATE_SECS=604800
 alias gcc="sccache gcc"
 alias cmake="cmake -DCMAKE_C_COMPILER_LAUNCHER=sccache -DCMAKE_CXX_COMPILER_LAUNCHER=sccache"

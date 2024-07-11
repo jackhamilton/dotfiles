@@ -78,3 +78,5 @@ source <(fzf --zsh)
 export PATH="$PATH:/home/jack/.local/bin"
 export PATH="$PATH:/home/linuxbrew/.linuxbrew/bin"
 [ -s ~/.luaver/luaver ] && . ~/.luaver/luaver
+
+source /Users/jackhamilton/.config/broot/launcher/bash/br

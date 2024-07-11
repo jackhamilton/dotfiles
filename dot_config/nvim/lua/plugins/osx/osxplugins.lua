@@ -43,7 +43,6 @@ return {
         },
         config = function()
             local xcodebuild = require("xcodebuild.integrations.dap")
-            -- TODO: change it to your local codelldb path
             local codelldbPath = os.getenv("HOME") .. "/Downloads/codelldb-x86_64-darwin.vsix"
 
             xcodebuild.setup(codelldbPath)
