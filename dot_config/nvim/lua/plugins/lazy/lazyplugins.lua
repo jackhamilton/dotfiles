@@ -31,7 +31,6 @@ return {
     -- },
     {
         'neovim/nvim-lspconfig',
-        event = 'LspAttach',
         -- dependencies = {
         --     -- main one
         --     { "ms-jpq/coq_nvim",                  branch = "coq" },

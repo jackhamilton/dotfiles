@@ -72,6 +72,7 @@ local icons = {
 --- On attach
 ---
 local function on_attach(client, buf)
+    require("notify")("LSP attaching")
     local capabilities = client.server_capabilities
     local formatting = {
         available = capabilities.document_formatting,
@@ -232,24 +233,32 @@ if mac == 1 then
         })
     end
 else
-    if vim.fn.executable("/home/jack/Documents/GitHub/sourcekit-lsp/.build/x86_64-unknown-linux-gnu/debug/sourcekit-lsp") == 1 then
+    -- if vim.fn.executable("/home/jack/Documents/GitHub/sourcekit-lsp/.build/x86_64-unknown-linux-gnu/debug/sourcekit-lsp") == 1 then
+    --     lsp.sourcekit.setup {
+    --         cmd = { "/home/jack/Documents/GitHub/sourcekit-lsp/.build/x86_64-unknown-linux-gnu/debug/sourcekit-lsp --log-level debug" },
+    --         on_attach = on_attach,
+    --         capabilities = skCapabilities,
+    --         root_dir = require 'lspconfig'.util.root_pattern("Package.swift", ".git"),
+    --     }
+    -- else
+    if vim.fn.executable("sourcekit-lsp") == 1 then
         lsp.sourcekit.setup {
-            cmd = { "/home/jack/Documents/GitHub/sourcekit-lsp/.build/x86_64-unknown-linux-gnu/debug/sourcekit-lsp" },
             on_attach = on_attach,
             capabilities = skCapabilities,
-            root_dir = require 'lspconfig'.util.root_pattern("Package.swift", ".git"),
+            root_dir = require 'lspconfig'.util.root_pattern("Package.swift"),
+            filetypes = { "swift" },
         }
-    else
-        if vim.fn.executable("sourcekit-lsp") == 1 then
-            lsp.sourcekit.setup {
-                on_attach = on_attach,
-                capabilities = skCapabilities,
-                root_dir = require 'lspconfig'.util.root_pattern("Package.swift", ".git"),
-            }
-        end
-        -- local coq = require "coq"
-        -- lsp.sourcekit.setup(coq.lsp_ensure_capabilities {})
+        -- vim.api.nvim_create_autocmd('UIEnter', {
+        --     desc = 'Disable lsp when buffer changes, swift lsp is finnicky',
+        --     callback = function(e)
+        --         vim.lsp.stop_client(vim.lsp.get_clients())
+        --         require("notify")("Stopping lsp")
+        --     end
+        -- })
     end
+    -- local coq = require "coq"
+    -- lsp.sourcekit.setup(coq.lsp_ensure_capabilities {})
+    -- end
 end
 
 -- C/C++
