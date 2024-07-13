@@ -78,6 +78,30 @@ return {
         },
     },
     {
+        "nvimdev/lspsaga.nvim",
+        config = true,
+        event = 'LspAttach',
+        dependencies = {
+            "nvim-treesitter/nvim-treesitter",
+            "nvim-tree/nvim-web-devicons",
+        },
+        keys = {
+            { "<leader>Lf",  mode = { "n" }, "<CMD>Lspsaga finder<CR>",                   desc = "Finder" },
+            { "<leader>Lci", mode = { "n" }, "<CMD>Lspsaga incoming_calls<CR>",           desc = "Incoming Calls" },
+            { "<leader>Lco", mode = { "n" }, "<CMD>Lspsaga outgoing_calls<CR>",           desc = "Outgoing Calls" },
+            { "<leader>La",  mode = { "n" }, "<CMD>Lspsaga code_actions<CR>",             desc = "Code Actions" },
+            { "<leader>Ld",  mode = { "n" }, "<CMD>Lspsaga peek_definition<CR>",          desc = "Peek Definition" },
+            { "<leader>LD",  mode = { "n" }, "<CMD>Lspsaga peek_type_definition<CR>",     desc = "Peek Type Definition" },
+            { "<leader>Ln",  mode = { "n" }, "<CMD>Lspsaga diagnostic_jump_next<CR>",     desc = "Next Diagnostic" },
+            { "<leader>Lp",  mode = { "n" }, "<CMD>Lspsaga diagnostic_jump_previous<CR>", desc = "Previous Diagnostic" },
+            { "<leader>Lt",  mode = { "n" }, "<CMD>Lspsaga term_toggle<CR>",              desc = "Toggle Terminal" },
+            { "<leader>Lh",  mode = { "n" }, "<CMD>Lspsaga hover_doc<CR>",                desc = "Hover Documentation" },
+            { "<leader>Lo",  mode = { "n" }, "<CMD>Lspsaga outline<CR>",                  desc = "Outline" },
+            { "<leader>Lr",  mode = { "n" }, "<CMD>Lspsaga rename<CR>",                   desc = "Rename" },
+            { "<leader>Li",  mode = { "n" }, "<CMD>Lspsaga incoming_calls<CR>",           desc = "Incoming Calls" },
+        },
+    },
+    {
         "brenoprata10/nvim-highlight-colors",
         event = "LspAttach",
         config = function()
@@ -120,15 +144,43 @@ return {
                     end,
                 },
                 mapping = cmp.mapping.preset.insert({
+                    ['<CR>'] = cmp.mapping(function(fallback)
+                        if cmp.visible() then
+                            if luasnip.expandable() then
+                                luasnip.expand()
+                            else
+                                cmp.confirm({
+                                    select = true,
+                                })
+                            end
+                        else
+                            fallback()
+                        end
+                    end),
+
+                    ["<Tab>"] = cmp.mapping(function(fallback)
+                        if cmp.visible() then
+                            cmp.select_next_item()
+                        elseif luasnip.locally_jumpable(1) then
+                            luasnip.jump(1)
+                        else
+                            fallback()
+                        end
+                    end, { "i", "s" }),
+
+                    ["<S-Tab>"] = cmp.mapping(function(fallback)
+                        if cmp.visible() then
+                            cmp.select_prev_item()
+                        elseif luasnip.locally_jumpable(-1) then
+                            luasnip.jump(-1)
+                        else
+                            fallback()
+                        end
+                    end, { "i", "s" }),
                     ["<C-e>"] = cmp.mapping.select_prev_item(), -- previous suggestion
                     ["<C-n>"] = cmp.mapping.select_next_item(), -- next suggestion
                     ["<C-Space>"] = cmp.mapping.complete(),     -- show completion suggestions
                     ["<C-c>"] = cmp.mapping.abort(),            -- close completion window
-                    ["<CR>"] = cmp.mapping.confirm({
-                        select = false,
-                        behavior = cmp.ConfirmBehavior
-                            .Replace
-                    }),
                     ["<C-b>"] = cmp.mapping(function(fallback)
                         if luasnip.jumpable(-1) then
                             luasnip.jump(-1)
@@ -148,7 +200,7 @@ return {
                 sources = cmp.config.sources({
                     { name = "nvim_lsp" },
                     { name = "luasnip" }, -- snippets
-                    { name = "rg",      keyword_length = 3 },
+                    { name = "rg" },
                     { name = "buffer" },  -- text within current buffer
                     { name = "path" },    -- file system paths
                 }),
@@ -329,7 +381,16 @@ return {
         config = true,
     },
     -- Snippets
-    { 'L3MON4D3/LuaSnip' },
+    {
+        'L3MON4D3/LuaSnip',
+        event = "LspAttach",
+        dependencies = { "rafamadriz/friendly-snippets" },
+        postinstall = "make install_jsregexp",
+        config = function()
+            local luaload = require("luasnip.loaders.from_lua")
+            luaload.load({ paths = { "./lua/snippets" } })
+        end,
+    },
     { 'rafamadriz/friendly-snippets' },
 
     -- Misc
@@ -389,7 +450,7 @@ return {
         end,
     },
     { 'kevinhwang91/nvim-bqf' },
-    { 'nvim-pack/nvim-spectre', event = "VimEnter" },
+    { 'nvim-pack/nvim-spectre',      event = "VimEnter" },
     {
         'kevinhwang91/nvim-ufo',
         event = "VimEnter",
@@ -433,6 +494,9 @@ return {
                 ["g."] = "actions.toggle_hidden",
                 ["g\\"] = "actions.toggle_trash",
             },
+        },
+        keys = {
+            { "<leader>fo", mode = { "n" }, "<CMD>Oil<CR>", desc = "Oil" },
         },
         -- Optional dependencies
         dependencies = { "nvim-tree/nvim-web-devicons" },
