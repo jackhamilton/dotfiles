@@ -4,18 +4,18 @@ vim.g.c_syntax_for_h = true
 -- Use clipboard outside Neovim
 vim.opt.clipboard = "unnamedplus"
 if vim.fn.has("wsl") == 1 then
-  vim.g.clipboard = {
-    name = "WslClipboard",
-    copy = {
-      ["+"] = "clip.exe",
-      ["*"] = "clip.exe",
-    },
-    paste = {
-      ["+"] = 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
-      ["*"] = 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
-    },
-    cache_enabled = 0,
-  }
+    vim.g.clipboard = {
+        name = "WslClipboard",
+        copy = {
+            ["+"] = "clip.exe",
+            ["*"] = "clip.exe",
+        },
+        paste = {
+            ["+"] = 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
+            ["*"] = 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
+        },
+        cache_enabled = 0,
+    }
 end
 
 -- Enable mouse input
@@ -58,30 +58,30 @@ vim.opt.termguicolors = true
 -- vim.opt.foldcolumn = "auto:2"
 
 vim.opt.fillchars = {
-  eob = " ",
-  horiz = "━",
-  horizup = "┻",
-  horizdown = "┳",
-  vert = "┃",
-  vertleft = "┫",
-  vertright = "┣",
-  verthoriz = "╋",
-  fold = " ",
-  diff = "─",
-  msgsep = "‾",
-  foldsep = "│",
-  foldopen = "▾",
-  foldclose = "▸",
+    eob = " ",
+    horiz = "━",
+    horizup = "┻",
+    horizdown = "┳",
+    vert = "┃",
+    vertleft = "┫",
+    vertright = "┣",
+    verthoriz = "╋",
+    fold = " ",
+    diff = "─",
+    msgsep = "‾",
+    foldsep = "│",
+    foldopen = "▾",
+    foldclose = "▸",
 }
 
 local space = "·"
 vim.opt.list = true
 vim.opt.listchars = {
-  tab = "▸ ",
-  -- multispace = space,
-  -- lead = space,
-  trail = space,
-  -- nbsp = space
+    tab = "▸ ",
+    -- multispace = space,
+    -- lead = space,
+    trail = space,
+    -- nbsp = space
 }
 
 -- Set windows width
@@ -137,7 +137,7 @@ vim.opt.sidescrolloff = 8
 vim.opt.virtualedit = "block"
 
 -- Spelling
-vim.opt.spelllang = "en,es"
+vim.opt.spelllang = "en"
 vim.opt.spelloptions = "camel,noplainbuffer"
 vim.opt.spellsuggest = "best,6"
 

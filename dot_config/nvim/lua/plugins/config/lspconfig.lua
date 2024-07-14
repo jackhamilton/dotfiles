@@ -1,5 +1,8 @@
 local lsp = require("lspconfig")
 
+-- cursorhold
+vim.opt.updatetime = 250
+
 --- Diagnostics configuration
 local severity = vim.diagnostic.severity
 vim.diagnostic.config({
@@ -38,7 +41,6 @@ vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
     vim.lsp.handlers.hover,
     { border = "rounded", close_events = { "CursorMoved", "BufHidden" } }
 )
-
 local icons = {
     Class = " ",
     Color = " ",
@@ -72,7 +74,6 @@ local icons = {
 --- On attach
 ---
 local function on_attach(client, buf)
-    require("notify")("LSP attaching")
     local capabilities = client.server_capabilities
     local formatting = {
         available = capabilities.document_formatting,
@@ -87,73 +88,63 @@ local function on_attach(client, buf)
     -- end
 
     --- Keybindings
-    local kbd = vim.keymap.set
-    -- Show documentation
-    kbd("n", "<leader>lh", vim.lsp.buf.hover, { buffer = true, desc = "Hover documentation" })
-    -- Open code actions
-    kbd("n", "<leader>la", vim.lsp.buf.code_action, { buffer = true, desc = "Code actions" })
-    -- Rename symbol under cursor
-    kbd("n", "<leader>lr", vim.lsp.buf.rename, { buffer = true, desc = "Rename" })
-    -- Show line diagnostics
-    kbd("n", "<leader>ldl", function()
-        vim.diagnostic.open_float({
-            focusable = false,
-            close_events = { "BufLeave", "CursorMoved", "InsertEnter", "FocusLost" },
-            border = "rounded",
-            source = "always",
-            prefix = " ",
-            scope = "cursor",
-        })
-    end, { buffer = true, desc = "Show line diagnostics" })
-    -- Go to diagnostics
-    kbd(
-        "n",
-        "<leader>ldp",
-        vim.diagnostic.goto_prev,
-        { buffer = true, desc = "Goto next diagnostic" }
-    )
-    kbd(
-        "n",
-        "<leader>ldn",
-        vim.diagnostic.goto_next,
-        { buffer = true, desc = "Goto prev diagnostic" }
-    )
-    -- Go to definition
-    kbd("n", "<leader>lgd", vim.lsp.buf.definition, { buffer = true, desc = "Goto definition" })
-    -- Go to declaration
-    kbd("n", "<leader>lgD", vim.lsp.buf.declaration, { buffer = true, desc = "Goto declaration" })
-    kbd("n", "<leader>li", vim.lsp.buf.implementation, { buffer = true, desc = "List implementations" })
-    kbd("n", "<leader>lss", vim.lsp.buf.workspace_symbol, { buffer = true, desc = "Workspace symbol search" })
-    kbd("n", "<leader>lgt", vim.lsp.buf.type_definition, { buffer = true, desc = "Goto type definition" })
-    -- kbd("n", "<leader>lgh", vim.lsp.buf.type_hierarchy, { buffer = true, desc = "Show type hierarchy" })
-    kbd("n", "<leader>lgr", vim.lsp.buf.references, { buffer = true, desc = "List references" })
-    kbd("n", "<leader>lgo", vim.lsp.buf.outgoing_calls, { buffer = true, desc = "List outgoing calls" })
+    local wk = require("which-key")
 
-    kbd("n", "<leader>lts", '<cmd>Telescope lsp_workspace_symbols<cr>', { buffer = true, desc = "Symbol search" })
-    kbd("n", "<leader>ltS", '<cmd>Telescope lsp_dynamic_workspace_symbols<cr>',
-        { buffer = true, desc = "Symbol search (all workspace)" })
-    kbd("n", "<leader>ltr", '<cmd>Telescope lsp_references<cr>', { buffer = true, desc = "References" })
-    kbd("n", "<leader>lsf", vim.lsp.buf.declaration, { buffer = true, desc = "Display function signature" })
-    kbd("n", "<leader>lf", vim.lsp.buf.format, { buffer = true, desc = "Format file" })
-    kbd("n", "<leader>lsh", vim.lsp.buf.signature_help, { buffer = true, desc = "Symbol signature help" })
-
-    -- local wk = require("which-key")
-    -- wk.register({
-    --     l = {
-    --         g = {
-    --             name = "Goto",
-    --         },
-    --         s = {
-    --             name = "Search",
-    --         },
-    --         t = {
-    --             name = "Telescope",
-    --         },
-    --         d = {
-    --             name = "Diagnostics",
-    --         },
-    --     },
-    -- }, { prefix = "<leader>" })
+    wk.add({
+        mode = { "n" },
+        { "<leader>l",  group = "LSP" },
+        { "<leader>lh", vim.lsp.buf.hover,          desc = "Hover documentation" },
+        -- Open code actions
+        { "<leader>la", vim.lsp.buf.code_action,    desc = "Code actions" },
+        -- Rename symbol under cursor
+        { "<leader>lr", vim.lsp.buf.rename,         desc = "Rename" },
+        { "<leader>li", vim.lsp.buf.implementation, desc = "List implementations" },
+        { "<leader>lf", vim.lsp.buf.format,         desc = "Format file" },
+        {
+            { "<leader>ld", group = "Diagnostics" },
+            {
+                -- Show line diagnostics
+                "<leader>ldl",
+                function()
+                    vim.diagnostic.open_float({
+                        focusable = false,
+                        close_events = { "BufLeave", "CursorMoved", "InsertEnter", "FocusLost" },
+                        border = "rounded",
+                        source = "always",
+                        prefix = " ",
+                        scope = "cursor",
+                    })
+                end,
+                desc = "Show line diagnostics"
+            },
+            -- Go to diagnostics
+            { "<leader>ldp", vim.diagnostic.goto_prev, desc = "Goto next diagnostic" },
+            { "<leader>ldn", vim.diagnostic.goto_next, desc = "Goto prev diagnostic" },
+        },
+        {
+            { "<leader>lg", group = "Goto" },
+            -- Go to definition
+            { "<leader>lgd", vim.lsp.buf.definition,       desc = "Goto definition" },
+            -- Go to declaration
+            { "<leader>lgD", vim.lsp.buf.declaration,      desc = "Goto declaration" },
+            { "<leader>lss", vim.lsp.buf.workspace_symbol, desc = "Workspace symbol search" },
+            { "<leader>lgt", vim.lsp.buf.type_definition,  desc = "Goto type definition" },
+            -- kbd("n", "<leader>lgh", vim.lsp.buf.type_hierarchy, { buffer = true, desc = "Show type hierarchy" }),
+            { "<leader>lgr", vim.lsp.buf.references,       desc = "List references" },
+            { "<leader>lgo", vim.lsp.buf.outgoing_calls,   desc = "List outgoing calls" },
+        },
+        {
+            { "<leader>lt", group = "Telescope" },
+            { "<leader>lts", '<cmd>Telescope lsp_workspace_symbols<cr>',         desc = "Symbol search" },
+            { "<leader>ltS", '<cmd>Telescope lsp_dynamic_workspace_symbols<cr>', desc = "Symbol search (all workspace)" },
+            { "<leader>ltr", '<cmd>Telescope lsp_references<cr>',                desc = "References" },
+        },
+        {
+            { "<leader>ls", group = "Signature" },
+            { "<leader>lsf", vim.lsp.buf.declaration,    desc = "Display function signature" },
+            { "<leader>lsh", vim.lsp.buf.signature_help, desc = "Symbol signature help" },
+        }
+    })
 
     --- Autocommands
     vim.api.nvim_create_augroup("Lsp", { clear = true })
@@ -214,8 +205,6 @@ if mac == 1 then
             capabilities = skCapabilities,
             root_dir = require 'lspconfig'.util.root_pattern("Package.swift", ".git"),
         }
-        -- local coq = require "coq"
-        -- lsp.sourcekit.setup(coq.lsp_ensure_capabilities {})
 
         local function refresh_xcodeproj()
             io.popen("~/Documents/GitHub/grindr/scripts/nvim_clean.sh")
@@ -233,14 +222,6 @@ if mac == 1 then
         })
     end
 else
-    -- if vim.fn.executable("/home/jack/Documents/GitHub/sourcekit-lsp/.build/x86_64-unknown-linux-gnu/debug/sourcekit-lsp") == 1 then
-    --     lsp.sourcekit.setup {
-    --         cmd = { "/home/jack/Documents/GitHub/sourcekit-lsp/.build/x86_64-unknown-linux-gnu/debug/sourcekit-lsp --log-level debug" },
-    --         on_attach = on_attach,
-    --         capabilities = skCapabilities,
-    --         root_dir = require 'lspconfig'.util.root_pattern("Package.swift", ".git"),
-    --     }
-    -- else
     if vim.fn.executable("sourcekit-lsp") == 1 then
         lsp.sourcekit.setup {
             on_attach = on_attach,
@@ -248,17 +229,7 @@ else
             root_dir = require 'lspconfig'.util.root_pattern("Package.swift"),
             filetypes = { "swift" },
         }
-        -- vim.api.nvim_create_autocmd('UIEnter', {
-        --     desc = 'Disable lsp when buffer changes, swift lsp is finnicky',
-        --     callback = function(e)
-        --         vim.lsp.stop_client(vim.lsp.get_clients())
-        --         require("notify")("Stopping lsp")
-        --     end
-        -- })
     end
-    -- local coq = require "coq"
-    -- lsp.sourcekit.setup(coq.lsp_ensure_capabilities {})
-    -- end
 end
 
 -- C/C++
@@ -285,15 +256,11 @@ end
 -- Java
 if vim.fn.executable("jdtls") == 1 then
     lsp.jdtls.setup(defaults)
-    -- local coq = require "coq"
-    -- lsp.jdtls.setup(coq.lsp_ensure_capabilities {})
 end
 
 -- Zig
 if vim.fn.executable("zls") == 1 then
     lsp.zls.setup(defaults)
-    -- local coq = require "coq"
-    -- lsp.zls.setup(coq.lsp_ensure_capabilities {})
 end
 
 -- Rust, now managed by rustaceanvim
@@ -331,48 +298,36 @@ if vim.fn.executable("tsserver") == 1 then
     }
     settings = vim.tbl_deep_extend("force", defaults, settings)
     lsp.tsserver.setup(settings)
-    -- local coq = require "coq"
-    -- lsp.tsserver.setup(coq.lsp_ensure_capabilities {})
 end
 
 -- Vue
 -- Installation: npm i -g @volar/vue-language-server
 if vim.fn.executable("vue-language-server") == 1 then
     lsp.volar.setup(defaults)
-    -- local coq = require "coq"
-    -- lsp.volar.setup(coq.lsp_ensure_capabilities {})
 end
 
 -- ESLint, linting engine for JavaScript/TypeScript
 -- Installation: npm i -g vscode-langservers-extracted
 if vim.fn.executable("vscode-eslint-language-server") == 1 then
     lsp.eslint.setup(defaults)
-    -- local coq = require "coq"
-    -- lsp.eslint.setup(coq.lsp_ensure_capabilities {})
 end
 
 -- CSS
 -- Installation: npm i -g vscode-langservers-extracted
 if vim.fn.executable("vscode-css-language-server") == 1 then
     lsp.cssls.setup(defaults)
-    -- local coq = require "coq"
-    -- lsp.cssls.setup(coq.lsp_ensure_capabilities {})
 end
 
 -- TailwindCSS
 -- Installation: npm i -g @tailwindcss/language-server
 if vim.fn.executable("tailwindcss-language-server") == 1 then
     lsp.tailwindcss.setup(defaults)
-    -- local coq = require "coq"
-    -- lsp.tailwindcss.setup(coq.lsp_ensure_capabilities {})
 end
 
 -- HTML
 -- Installation: npm i -g vscode-langservers-extracted
 if vim.fn.executable("vscode-html-language-server") == 1 then
     lsp.html.setup(defaults)
-    -- local coq = require "coq"
-    -- lsp.html.setup(coq.lsp_ensure_capabilities {})
 end
 
 -- Lua
@@ -403,9 +358,6 @@ if vim.fn.executable("lua-language-server") == 1 then
     else
         lsp.lua_ls.setup(defaults)
     end
-
-    -- local coq = require "coq"
-    -- lsp.lua_ls.setup(coq.lsp_ensure_capabilities {})
 end
 
 -- Elixir
@@ -413,15 +365,11 @@ if vim.fn.executable("elixir-ls") == 1 then
     lsp.elixirls.setup(
         vim.tbl_deep_extend("force", defaults, { cmd = { vim.env.HOME .. "/.local/bin/elixir-ls" } })
     )
-    -- local coq = require "coq"
-    -- lsp.elixirls.setup(coq.lsp_ensure_capabilities {})
 end
 
 -- Python
 if vim.fn.executable("jedi-language-server") == 1 then
     lsp.jedi_language_server.setup(defaults)
-    -- local coq = require "coq"
-    -- lsp.jedi_language_server.setup(coq.lsp_ensure_capabilities {})
 end
 
 -- Disable diagnostics in insert and select mode

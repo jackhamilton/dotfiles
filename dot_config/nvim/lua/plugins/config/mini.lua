@@ -3,87 +3,17 @@
 
 --- Autopairs
 require("mini.pairs").setup({
-	modes = { insert = true, command = true, terminal = false },
+    modes = { insert = true, command = true, terminal = false },
 })
 
 --- Surround
-require("mini.surround").setup({
-	mappings = {
-		add = '<leader>sa',
-		delete = '<leader>sd',
-		find = '<leader>sf',
-		find_left = '<leader>sF',
-		highlight = '<leader>sh',
-		replace = '<leader>sr',
-		update_n_lines = '<leader>sn',
-	},
-})
-
-local wk = require("which-key")
-wk.register({
-	s = {
-		name = "surround",
-		a = { "Add" },
-		d = { "Delete" },
-		f = { "Find" },
-		F = { "Find left" },
-		h = { "Highlight" },
-		r = { "Replace" },
-		n = { "Update n lines" },
-	},
-}, { prefix = "<leader>" })
+require("mini.surround").setup({})
 
 require("mini.operators").setup()
 
 require("mini.move").setup()
 
 require("mini.ai").setup()
----@type table<string, string|table>
-local i = {
-	[" "] = "Whitespace",
-	['"'] = 'Balanced "',
-	["'"] = "Balanced '",
-	["`"] = "Balanced `",
-	["("] = "Balanced (",
-	[")"] = "Balanced ) including white-space",
-	[">"] = "Balanced > including white-space",
-	["<lt>"] = "Balanced <",
-	["]"] = "Balanced ] including white-space",
-	["["] = "Balanced [",
-	["}"] = "Balanced } including white-space",
-	["{"] = "Balanced {",
-	["?"] = "User Prompt",
-	_ = "Underscore",
-	a = "Argument",
-	b = "Balanced ), ], }",
-	c = "Class",
-	d = "Digit(s)",
-	e = "Word in CamelCase & snake_case",
-	f = "Function",
-	g = "Entire file",
-	i = "Indent",
-	o = "Block, conditional, loop",
-	q = "Quote `, \", '",
-	t = "Tag",
-	u = "Use/call function & method",
-	U = "Use/call without dot in name",
-}
-local a = vim.deepcopy(i)
-for k, v in pairs(a) do
-	a[k] = v:gsub(" including.*", "")
-end
-
-local ic = vim.deepcopy(i)
-local ac = vim.deepcopy(a)
-for key, name in pairs({ n = "Next", l = "Last" }) do
-	i[key] = vim.tbl_extend("force", { name = "Inside " .. name .. " textobject" }, ic)
-	a[key] = vim.tbl_extend("force", { name = "Around " .. name .. " textobject" }, ac)
-end
-require("which-key").register({
-	mode = { "o", "x" },
-	i = i,
-	a = a,
-})
 
 require("mini.files").setup()
 vim.keymap.set("n", "<leader>fs", function() MiniFiles.open() end, { silent = true, desc = "Open filesystem", })
@@ -129,5 +59,5 @@ vim.keymap.set("n", "<leader>fs", function() MiniFiles.open() end, { silent = tr
 
 --- Visualize and operate on indent scope
 -- require("mini.indentscope").setup({
-	--   symbol = "│",
-	-- })
+--   symbol = "│",
+-- })
