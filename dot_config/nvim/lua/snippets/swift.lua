@@ -50,7 +50,14 @@ return {
             "//",
             "// Copyright 2024 by Grindr LLC,",
             "// All rights reserved.",
-            "//",
+            "//"    s("example2", fmt([[
+  if {} then
+    {}
+  end
+  ]], {
+        -- i(1) is at nodes[1], i(2) at nodes[2].
+        i(1, "not now"), i(2, "when")
+    })),
             "// This software is confidential and proprietary information of",
             "// Grindr LLC (\"Confidential Information\").",
             "// You shall not disclose such Confidential Information and shall use",
@@ -82,14 +89,32 @@ return {
             "}",
         })
     }),
-    s("example2", fmt([[
-  if {} then
-    {}
-  end
-  ]], {
-        -- i(1) is at nodes[1], i(2) at nodes[2].
-        i(1, "not now"), i(2, "when")
-    })),
+    s("grtest", fmt([[
+    //
+    // Copyright 2024 by Grindr LLC,
+    // All rights reserved.
+    //
+    // This software is confidential and proprietary information of
+    // Grindr LLC ("Confidential Information").
+    // You shall not disclose such Confidential Information and shall use
+    // it only in accordance with the terms of the license agreement
+    // you entered into with Grindr LLC.
+
+    import Factory
+    @testable import grindrx
+    import XCTest
+
+    class <>: XCTestCase {
+        override func setUpWithError() throws {
+            try super.setUpWithError()
+            Container.shared.reset()
+        }
+    }
+    ]], {
+            i(1, "Name")
+        }, {
+            delimiters = "<>"
+        })),
     -- Grindr label
     s("grlabel", fmt([[
     private lazy var rateLabel = UILabel.with {
