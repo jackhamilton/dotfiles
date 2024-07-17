@@ -101,7 +101,7 @@ local function on_attach(client, buf)
         { "<leader>li", vim.lsp.buf.implementation, desc = "List implementations" },
         { "<leader>lf", vim.lsp.buf.format,         desc = "Format file" },
         {
-            { "<leader>ld", group = "Diagnostics" },
+            { "<leader>ld",  group = "Diagnostics" },
             {
                 -- Show line diagnostics
                 "<leader>ldl",
@@ -122,7 +122,7 @@ local function on_attach(client, buf)
             { "<leader>ldn", vim.diagnostic.goto_next, desc = "Goto prev diagnostic" },
         },
         {
-            { "<leader>lg", group = "Goto" },
+            { "<leader>lg",  group = "Goto" },
             -- Go to definition
             { "<leader>lgd", vim.lsp.buf.definition,       desc = "Goto definition" },
             -- Go to declaration
@@ -134,13 +134,13 @@ local function on_attach(client, buf)
             { "<leader>lgo", vim.lsp.buf.outgoing_calls,   desc = "List outgoing calls" },
         },
         {
-            { "<leader>lt", group = "Telescope" },
+            { "<leader>lt",  group = "Telescope" },
             { "<leader>lts", '<cmd>Telescope lsp_workspace_symbols<cr>',         desc = "Symbol search" },
             { "<leader>ltS", '<cmd>Telescope lsp_dynamic_workspace_symbols<cr>', desc = "Symbol search (all workspace)" },
             { "<leader>ltr", '<cmd>Telescope lsp_references<cr>',                desc = "References" },
         },
         {
-            { "<leader>ls", group = "Signature" },
+            { "<leader>ls",  group = "Signature" },
             { "<leader>lsf", vim.lsp.buf.declaration,    desc = "Display function signature" },
             { "<leader>lsh", vim.lsp.buf.signature_help, desc = "Symbol signature help" },
         }
@@ -265,7 +265,7 @@ end
 
 -- Rust, now managed by rustaceanvim
 -- if vim.fn.executable("rust-analyzer") == 1 then
---   lsp.rust_analyzer.setup(defaults)
+--     lsp.rust_analyzer.setup(defaults)
 -- end
 
 -- JavaScript/TypeScript
