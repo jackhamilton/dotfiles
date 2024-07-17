@@ -76,11 +76,10 @@ eval "$(direnv hook zsh)"
 source <(fzf --zsh)
 
 if [[ $(uname) == "Darwin" ]]; then
-
+    source /Users/jackhamilton/.config/broot/launcher/bash/br
 elif command -v pacman > /dev/null; then
     source ~/.config/broot/launcher/bash/br
     export PATH="$PATH:/home/linuxbrew/.linuxbrew/bin"
 fi
 export PATH="$PATH:/home/jack/.local/bin"
 [ -s ~/.luaver/luaver ] && . ~/.luaver/luaver
-
