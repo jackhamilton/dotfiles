@@ -48,12 +48,9 @@ return {
         lazy = true,
     },
     {
-        "sainnhe/everforest",
-        lazy = true,
-    },
-    {
-        "vague2k/vague.nvim",
-        lazy = true,
+        "neanias/everforest-nvim",
+        priority = 1000,
+        lazy = false,
     },
     {
         "morhetz/gruvbox",
