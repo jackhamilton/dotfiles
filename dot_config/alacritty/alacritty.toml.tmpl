@@ -8,7 +8,7 @@
 #]
 
 [shell]
-program               = "/usr/bin/zsh"
+program               = "zsh"
 
 #working_directory     = "None"
 #live_config_reload    = true
@@ -39,11 +39,20 @@ history               = 5000
 multiplier            = 3
 
 [font]
+{{ if eq .chezmoi.os "linux" }}
 normal                = { family = "Roboto Mono Nerd Font", style = "Medium" }
 bold                  = { family = "Roboto Mono Nerd Font", style = "Bold" }
 italic                = { family = "Roboto Mono Nerd Font", style = "Italic" }
 bold_italic           = { family = "Roboto Mono Nerd Font", style = "Bold Italic" }
 size                  = 13
+{{ end }}
+{{ if eq .chezmoi.os "darwin" }}
+normal                = { family = "RobotoMono Nerd Font Mono", style = "Medium" }
+bold                  = { family = "RobotoMono Nerd Font Mono", style = "Bold" }
+italic                = { family = "RobotoMono Nerd Font Mono", style = "Italic" }
+bold_italic           = { family = "RobotoMono Nerd Font Mono", style = "Bold Italic" }
+size                  = 16
+{{ end }}
 offset                = { x = 0, y = 0 }
 glyph_offset          = { x = 0, y = 0 }
 builtin_box_drawing   = true
