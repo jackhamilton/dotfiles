@@ -4,11 +4,6 @@ return {
     { 'sainnhe/edge' },
     {
         'sainnhe/sonokai',
-        config = function()
-            vim.cmd([[
-        colorscheme sonokai
-        ]])
-        end,
     },
     { 'EdenEast/nightfox.nvim' },
     {

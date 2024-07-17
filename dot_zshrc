@@ -85,4 +85,4 @@ export PATH="$PATH:/home/jack/.local/bin"
 [ -s ~/.luaver/luaver ] && . ~/.luaver/luaver
 
 
-
+echo "Reminder: random themes, remap colemak mnei to arrow keys in n mode"

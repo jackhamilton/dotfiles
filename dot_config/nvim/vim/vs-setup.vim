@@ -2,6 +2,7 @@
 let g:nvcode_termcolors = 256
 let g:sonokai_style = 'default'
 "syntax on
+"
 
 augroup numbertoggle
     autocmd!
