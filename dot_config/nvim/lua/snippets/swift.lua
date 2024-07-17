@@ -50,14 +50,7 @@ return {
             "//",
             "// Copyright 2024 by Grindr LLC,",
             "// All rights reserved.",
-            "//"    s("example2", fmt([[
-  if {} then
-    {}
-  end
-  ]], {
-        -- i(1) is at nodes[1], i(2) at nodes[2].
-        i(1, "not now"), i(2, "when")
-    })),
+            "//",
             "// This software is confidential and proprietary information of",
             "// Grindr LLC (\"Confidential Information\").",
             "// You shall not disclose such Confidential Information and shall use",
@@ -111,10 +104,36 @@ return {
         }
     }
     ]], {
-            i(1, "Name")
-        }, {
-            delimiters = "<>"
-        })),
+        i(1, "Name")
+    }, {
+        delimiters = "<>"
+    })),
+    -- Grindr constraint setup
+    s("grconstraint", fmt([[
+        <>
+            .addedToSuperview(self)
+            .disableAutoresizingMask()
+            .anchorToSuperviewLeading()
+            .anchorToSuperviewTop()
+            .anchorToSuperviewBottom()
+            .anchorToSuperviewTrailing()
+    ]], {
+        i(1, "Name")
+    }, {
+        delimiters = "<>"
+    })),
+    -- Attributed string
+    s("attributedstring", fmt([[
+        let attributes: [NSAttributedString.Key: Any] = [
+            .font: UIFont.<>
+        ]
+        let attributedText = NSAttributedString(string: "<>".localized())
+    ]], {
+        i(1, "Font"),
+        i(2, "Text")
+    }, {
+        delimiters = "<>"
+    })),
     -- Grindr label
     s("grlabel", fmt([[
     private lazy var rateLabel = UILabel.with {
@@ -129,6 +148,6 @@ return {
         i(3, "Text Color"),
         i(4, "Alignment"),
     }, {
-            delimiters = "<>"
-        })),
+        delimiters = "<>"
+    })),
 }
