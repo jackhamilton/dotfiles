@@ -326,9 +326,9 @@ end
 
 -- HTML
 -- Installation: npm i -g vscode-langservers-extracted
-if vim.fn.executable("vscode-html-language-server") == 1 then
-    lsp.html.setup(defaults)
-end
+-- if vim.fn.executable("vscode-html-language-server") == 1 then
+--     lsp.html.setup(defaults)
+-- end
 
 -- Lua
 if vim.fn.executable("lua-language-server") == 1 then

@@ -1,3 +1,6 @@
 return {
-    { 'nvim-pack/nvim-spectre',      event = "VimEnter" },
+    { 
+        'nvim-pack/nvim-spectre',      
+        lazy = true,
+    },
 }
