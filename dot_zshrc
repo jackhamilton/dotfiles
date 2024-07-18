@@ -3,15 +3,15 @@ export PATH=$HOME/bin:/usr/local/bin:$PATH
 export PATH="/opt/homebrew/bin:$PATH"
 
 # Path to your oh-my-zsh installation.
-export ZSH="$HOME/.oh-my-zsh"
-
-# Set name of the theme to load --- if set to "random", it will
-# load a random theme each time oh-my-zsh is loaded, in which case,
-# to know which specific one was loaded, run: echo $RANDOM_THEME
-# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="agnoster"
-
-ENABLE_CORRECTION="true"
+# export ZSH="$HOME/.oh-my-zsh"
+#
+# # Set name of the theme to load --- if set to "random", it will
+# # load a random theme each time oh-my-zsh is loaded, in which case,
+# # to know which specific one was loaded, run: echo $RANDOM_THEME
+# # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
+# ZSH_THEME="agnoster"
+#
+# ENABLE_CORRECTION="true"
 #
 # Set list of themes to pick from when loading at random
 [[ ! -d "$HOME/.antigen" ]] && git clone https://github.com/zsh-users/antigen.git "$HOME/.antigen"
@@ -34,7 +34,6 @@ antigen bundle akash329d/zsh-alias-finder
 antigen bundle Junker/zsh-archlinux@main
 antigen bundle desyncr/auto-ls
 antigen bundle zpm-zsh/undollar
-antigen bundle aubreypwd/zsh-plugin-fd@1.0.0
 antigen bundle jeffreytse/zsh-vi-mode
 antigen bundle zsh-users/zsh-autosuggestions
 
@@ -47,7 +46,7 @@ antigen bundle zsh-users/zsh-syntax-highlighting
 # Load everything
 antigen apply
 
-source $ZSH/oh-my-zsh.sh
+# source $ZSH/oh-my-zsh.sh
 
 prompt_context(){}
 
@@ -57,13 +56,14 @@ alias cd=z
 alias cat="bat -P"
 alias curl=curlie
 alias pacin="sudo pacman -S"
-alias find=fd
 alias ls=lsd
+alias find=fd
 alias gcc="sccache gcc"
 alias cmake="cmake -DCMAKE_C_COMPILER_LAUNCHER=sccache -DCMAKE_CXX_COMPILER_LAUNCHER=sccache"
 alias vdiff="nvim -d"
 alias cedit="chezmoi edit"
 alias capply="chezmoi apply"
+alias cp="xcp"
 gitup ()
 {
     git add .
@@ -73,6 +73,7 @@ gitup ()
 
 eval "$(zoxide init zsh)"
 eval "$(direnv hook zsh)"
+eval "$(starship init zsh)"
 source <(fzf --zsh)
 
 if [[ $(uname) == "Darwin" ]]; then
@@ -82,24 +83,26 @@ elif command -v pacman > /dev/null; then
     export PATH="$PATH:/home/linuxbrew/.linuxbrew/bin"
 fi
 export PATH="$PATH:/home/jack/.local/bin"
-[ -s ~/.luaver/luaver ] && . ~/.luaver/luaver
+[ -s ~/.luaver/luaver ] && . ~/.luaver/luaver > /dev/null
 
-credfile="$HOME/bitwarden.cred"
-while IFS=: read -r line
-do
-    if [[ $line != "" ]]; then
-        if [[ $line == *"user"* ]]; then
-            export BW_CLIENTID=$line
-        elif [[ $line == *"wegs"* ]]; then
-            export BW_CLIENTSECRET=$line
-        else
-            BW_PASS=$line
+if (( $+commands[bw] )); then
+    credfile="$HOME/bitwarden.cred"
+    while IFS=: read -r line
+    do
+        if [[ $line != "" ]]; then
+            if [[ $line == *"user"* ]]; then
+                export BW_CLIENTID=$line
+            elif [[ $line == *"wegs"* ]]; then
+                export BW_CLIENTSECRET=$line
+            else
+                BW_PASS=$line
+            fi
         fi
-    fi
-    if [[ $line != "" ]]; then
-    fi
-done <"$credfile"
-export BW_SESSION=$(bw unlock $BW_PASS --raw);
+        if [[ $line != "" ]]; then
+        fi
+    done <"$credfile"
+    export BW_SESSION=$(bw unlock $BW_PASS --raw);
+fi
 
 RANDOMSEED=$(date +%s)
 RANDOM=$(($RANDOMSEED/3600))
