@@ -118,16 +118,16 @@ case $THEMENUM in
         THEMESTR="tokyo-night-storm"
         ;;
     5)
-        THEMESTR="catpuccin_latte"
+        THEMESTR="catppuccin_latte"
         ;;
     6)
-        THEMESTR="catpuccin_frappe"
+        THEMESTR="catppuccin_frappe"
         ;;
     7)
-        THEMESTR="catpuccin_macchiato"
+        THEMESTR="catppuccin_macchiato"
         ;;
     8)
-        THEMESTR="catpuccin_mocha"
+        THEMESTR="catppuccin_mocha"
         ;;
     9)
         THEMESTR="gruvbox"
@@ -142,7 +142,7 @@ case $THEMENUM in
         THEMESTR="rose-pine"
         ;;
     13)
-        THEMESTR="catpuccin"
+        THEMESTR="catppuccin"
         ;;
     14)
         THEMESTR="everforest"

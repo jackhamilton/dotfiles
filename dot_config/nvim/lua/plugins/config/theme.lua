@@ -16,21 +16,21 @@ elseif themenum == 4 then
     vim.cmd [[colorscheme tokyonight-storm]]
     require("notify")("tokyonight-storm")
 elseif themenum == 5 then
-    require('catpuccin').setup({})
-    vim.cmd [[colorscheme catpuccin-latte]]
-    require("notify")("catpuccin-latte")
+    require('catppuccin').setup({})
+    vim.cmd [[colorscheme catppuccin]]
+    require("notify")("catppuccin")
 elseif themenum == 6 then
-    require('catpuccin').setup({})
-    vim.cmd [[colorscheme catpuccin-frappe]]
-    require("notify")("catpuccin-frappe")
+    require('catppuccin').setup({})
+    vim.cmd [[colorscheme catppuccin-frappe]]
+    require("notify")("catppuccin-frappe")
 elseif themenum == 7 then
-    require('catpuccin').setup({})
-    vim.cmd [[colorscheme catpuccin-macchiato]]
-    require("notify")("catpuccin-macchiato")
+    require('catppuccin').setup({})
+    vim.cmd [[colorscheme catppuccin-macchiato]]
+    require("notify")("catppuccin-macchiato")
 elseif themenum == 8 then
-    require('catpuccin').setup({})
-    vim.cmd [[colorscheme catpuccin-mocha]]
-    require("notify")("catpuccin-mocha")
+    require('catppuccin').setup({})
+    vim.cmd [[colorscheme catppuccin-mocha]]
+    require("notify")("catppuccin-mocha")
 elseif themenum == 9 then
     vim.cmd [[colorscheme gruvbox]]
     require("notify")("gruvbox")
@@ -46,9 +46,9 @@ elseif themenum == 12 then
     vim.cmd [[colorscheme rose-pine]]
     require("notify")("rose-pine")
 elseif themenum == 13 then
-    require('catpuccin').setup({})
-    vim.cmd [[colorscheme catpuccin]]
-    require("notify")("catpuccin")
+    require('catppuccin').setup({})
+    vim.cmd [[colorscheme catppuccin]]
+    require("notify")("catppuccin")
 elseif themenum == 14 then
     require('everforest').setup({})
     vim.cmd [[colorscheme everforest]]
