@@ -7,3 +7,4 @@ buildServer.json
 nvim_*.sh
 *.swift~
 Package.resolved
+.cred

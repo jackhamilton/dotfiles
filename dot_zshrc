@@ -78,11 +78,28 @@ source <(fzf --zsh)
 if [[ $(uname) == "Darwin" ]]; then
     source /Users/jackhamilton/.config/broot/launcher/bash/br
 elif command -v pacman > /dev/null; then
-    source ~/.config/broot/launcher/bash/br
+    #source /home/jack/.config/broot/launcher/bash/br
     export PATH="$PATH:/home/linuxbrew/.linuxbrew/bin"
 fi
 export PATH="$PATH:/home/jack/.local/bin"
 [ -s ~/.luaver/luaver ] && . ~/.luaver/luaver
+
+credfile="$HOME/bitwarden.cred"
+while IFS=: read -r line
+do
+    if [[ $line != "" ]]; then
+        if [[ $line == *"user"* ]]; then
+            export BW_CLIENTID=$line
+        elif [[ $line == *"wegs"* ]]; then
+            export BW_CLIENTSECRET=$line
+        else
+            BW_PASS=$line
+        fi
+    fi
+    if [[ $line != "" ]]; then
+    fi
+done <"$credfile"
+export BW_SESSION=$(bw unlock $BW_PASS --raw);
 
 RANDOMSEED=$(date +%s)
 RANDOM=$(($RANDOMSEED/3600))
@@ -122,7 +139,7 @@ case $THEMENUM in
         THEMESTR="nightfox"
         ;;
     12)
-        THEMESTR="rose_pine"
+        THEMESTR="rose-pine"
         ;;
     13)
         THEMESTR="catpuccin"
@@ -148,3 +165,4 @@ case $THEMENUM in
 esac
 rm "$HOME/.config/alacritty/themes/themes/current.toml"
 ln -s "$HOME/.config/alacritty/themes/themes/$THEMESTR.toml" "$HOME/.config/alacritty/themes/themes/current.toml"
+alacritty msg config -r -w -1

@@ -2,7 +2,7 @@
     border: none;
     border-radius: 0;
     /* `otf-font-awesome` is required to be installed for icons */
-    font-family: Liberation Mono;
+    font-family: Roboto Mono Nerd Font;
     min-height: 20px;
 }
 
@@ -18,7 +18,8 @@ window#waybar.hidden {
     margin-right: 8px;
     border-radius: 10px;
     transition: none;
-    background: #383c4a;
+    background: #1d1f21;
+    opacity: 0.9;
 }
 
 #workspaces button {
@@ -40,7 +41,7 @@ window#waybar.hidden {
     box-shadow: inherit;
     text-shadow: inherit;
     border-radius: inherit;
-    color: #383c4a;
+    color: #1d1f21;
     background: #7c818c;
 }
 
@@ -54,7 +55,8 @@ window#waybar.hidden {
     border-radius: 10px 0px 0px 10px;
     transition: none;
     color: #ffffff;
-    background: #383c4a;
+    background: #1d1f21;
+    opacity: 0.9;
 }
 
 #keyboard-state {
@@ -63,7 +65,8 @@ window#waybar.hidden {
     border-radius: 0px 10px 10px 0px;
     transition: none;
     color: #ffffff;
-    background: #383c4a;
+    background: #1d1f21;
+    opacity: 0.9;
 }
 
 #custom-pacman {
@@ -72,7 +75,8 @@ window#waybar.hidden {
     border-radius: 10px 0px 0px 10px;
     transition: none;
     color: #ffffff;
-    background: #383c4a;
+    background: #1d1f21;
+    opacity: 0.9;
 }
 
 #custom-mail {
@@ -81,7 +85,8 @@ window#waybar.hidden {
     border-radius: 0px 10px 10px 0px;
     transition: none;
     color: #ffffff;
-    background: #383c4a;
+    background: #1d1f21;
+    opacity: 0.9;
 }
 
 #mode {
@@ -90,7 +95,8 @@ window#waybar.hidden {
     border-radius: 10px;
     transition: none;
     color: #ffffff;
-    background: #383c4a;
+    background: #1d1f21;
+    opacity: 0.9;
 }
 
 #clock {
@@ -99,7 +105,8 @@ window#waybar.hidden {
     border-radius: 10px 0px 0px 10px;
     transition: none;
     color: #ffffff;
-    background: #383c4a;
+    background: #1d1f21;
+    opacity: 0.9;
 }
 
 #custom-weather {
@@ -107,7 +114,8 @@ window#waybar.hidden {
     border-radius: 0px 10px 10px 0px;
     transition: none;
     color: #ffffff;
-    background: #383c4a;
+    background: #1d1f21;
+    opacity: 0.9;
 }
 
 #pulseaudio {
@@ -117,7 +125,8 @@ window#waybar.hidden {
     border-radius: 10px;
     transition: none;
     color: #ffffff;
-    background: #383c4a;
+    background: #1d1f21;
+    opacity: 0.9;
 }
 
 #pulseaudio.muted {
@@ -131,7 +140,8 @@ window#waybar.hidden {
     border-radius: 10px 0px 0px 10px;
     transition: none;
     color: #ffffff;
-    background: #383c4a;
+    background: #1d1f21;
+    opacity: 0.9;
 }
 
 #cpu {
@@ -141,7 +151,8 @@ window#waybar.hidden {
     border-radius: 0px 10px 10px 0px;
     transition: none;
     color: #ffffff;
-    background: #383c4a;
+    background: #1d1f21;
+    opacity: 0.9;
 }
 
 #temperature {
@@ -151,7 +162,8 @@ window#waybar.hidden {
     border-radius: 10px;
     transition: none;
     color: #ffffff;
-    background: #383c4a;
+    background: #1d1f21;
+    opacity: 0.9;
 }
 
 #temperature.critical {
@@ -165,7 +177,8 @@ window#waybar.hidden {
     border-radius: 10px;
     transition: none;
     color: #ffffff;
-    background: #383c4a;
+    background: #1d1f21;
+    opacity: 0.9;
 }
 
 #battery {
@@ -175,7 +188,8 @@ window#waybar.hidden {
     border-radius: 10px;
     transition: none;
     color: #ffffff;
-    background: #383c4a;
+    background: #1d1f21;
+    opacity: 0.9;
 }
 
 #battery.charging {
@@ -204,7 +218,8 @@ window#waybar.hidden {
     border-radius: 10px;
     transition: none;
     color: #ffffff;
-    background: #383c4a;
+    background: #1d1f21;
+    opacity: 0.9;
 }
 
 @keyframes blink {

@@ -32,7 +32,6 @@ elseif themenum == 8 then
     vim.cmd [[colorscheme catpuccin-mocha]]
     require("notify")("catpuccin-mocha")
 elseif themenum == 9 then
-    require('gruvbox').setup({})
     vim.cmd [[colorscheme gruvbox]]
     require("notify")("gruvbox")
 elseif themenum == 10 then

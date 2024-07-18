@@ -3,7 +3,7 @@
 import imaplib,time
 cnt = 0
 obj = imaplib.IMAP4_SSL('imap.gmail.com','993')
-obj.login('username', 'app specific password')
+obj.login("{{ (bitwarden "item" "47ab5a51-b402-43c7-8a27-b1b10011330f").login.username }}", "{{ (bitwardenFields "item" "47ab5a51-b402-43c7-8a27-b1b10011330f").appspecific.value }}")
 obj.select()
 typ, data = obj.search(None,'UnSeen')
 for num in data[0].split():
