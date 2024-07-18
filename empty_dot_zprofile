@@ -1,6 +1,0 @@
-
-# Created by `pipx` on 2024-04-21 17:00:31
-export PATH="$PATH:/home/jack/.local/bin"
-
-# Added by `rbenv init` on Thu Jul 18 13:28:13 CDT 2024
-eval "$(rbenv init - --no-rehash zsh)"

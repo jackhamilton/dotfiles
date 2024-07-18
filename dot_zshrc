@@ -74,6 +74,7 @@ gitup ()
 eval "$(zoxide init zsh)"
 eval "$(direnv hook zsh)"
 eval "$(starship init zsh)"
+eval "$(rbenv init - --no-rehash zsh)"
 source <(fzf --zsh)
 
 if [[ $(uname) == "Darwin" ]]; then
@@ -83,7 +84,6 @@ elif command -v pacman > /dev/null; then
     export PATH="$PATH:/home/linuxbrew/.linuxbrew/bin"
 fi
 export PATH="$PATH:/home/jack/.local/bin"
-[ -s ~/.luaver/luaver ] && . ~/.luaver/luaver > /dev/null
 
 if (( $+commands[bw] )); then
     credfile="$HOME/bitwarden.cred"
