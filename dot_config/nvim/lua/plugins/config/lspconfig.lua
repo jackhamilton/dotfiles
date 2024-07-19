@@ -324,6 +324,10 @@ if vim.fn.executable("tailwindcss-language-server") == 1 then
     lsp.tailwindcss.setup(defaults)
 end
 
+if vim.fn.executable("nil") == 1 then
+    lsp.nil_ls.setup(defaults)
+end
+
 -- HTML
 -- Installation: npm i -g vscode-langservers-extracted
 -- if vim.fn.executable("vscode-html-language-server") == 1 then

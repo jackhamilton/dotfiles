@@ -2,3 +2,4 @@
 # Created by `pipx` on 2024-04-21 17:00:31
 export PATH="$PATH:/home/jack/.local/bin"
 
+. "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"
