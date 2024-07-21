@@ -50,10 +50,12 @@ alias vdiff="nvim -d"
 alias cedit="chezmoi edit"
 alias capply="chezmoi apply"
 alias cp="xcp"
+alias gtop="z $(git rev-parse --show-toplevel)"
+alias pls="sudo"
 gitup ()
 {
     git add .
-    git commit -m "$2"
+    git commit -m "$1"
     git push
 }
 
@@ -69,6 +71,10 @@ elif command -v pacman > /dev/null; then
     export PATH="$PATH:/home/linuxbrew/.linuxbrew/bin"
 fi
 export PATH="$PATH:/home/jack/.local/bin"
+
+# if command -v cowsay > /dev/null; then
+#     home-manager switch
+# fi
 
 if (( $+commands[bw] )); then
     credfile="$HOME/bitwarden.cred"
@@ -106,7 +112,7 @@ case $THEMENUM in
         THEMESTR="tokyo-night-storm"
         ;;
     5)
-        THEMESTR="catppuccin_latte"
+        THEMESTR="catppuccin_mocha"
         ;;
     6)
         THEMESTR="catppuccin_frappe"

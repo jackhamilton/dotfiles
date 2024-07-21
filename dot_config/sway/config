@@ -40,8 +40,8 @@ output DP-2 res 2560x1440
 output DP-3 res 2560x1440
 
 # TODO may cause crashing
-# output DP-1 adaptive_sync on
-# output DP-3 adaptive_sync on
+output DP-1 adaptive_sync on
+output DP-3 adaptive_sync on
 
 output DP-2 transform 270
 
