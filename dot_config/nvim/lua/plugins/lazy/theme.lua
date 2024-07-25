@@ -73,7 +73,6 @@ return {
     {
         "nyoom-engineering/oxocarbon.nvim",
         lazy = true,
-        opts = {},
     },
     {
         "0xstepit/flow.nvim",

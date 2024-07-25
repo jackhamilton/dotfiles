@@ -59,7 +59,6 @@ elseif themenum == 15 then
     vim.cmd [[colorscheme edge]]
     require("notify")("edge")
 elseif themenum == 16 then
-    require('oxocarbon').setup({})
     vim.cmd [[colorscheme oxocarbon]]
     require("notify")("oxocarbon")
 elseif themenum == 17 then

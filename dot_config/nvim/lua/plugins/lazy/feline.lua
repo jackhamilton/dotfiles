@@ -8,21 +8,31 @@ local function config(_, opts)
 
     local function GetHiVal(name, layer)
         local fn = vim.fn
-        return fn['synIDattr'](fn[('synIDtrans')](fn['hlID'](name)), layer .. '#')
+        local hival = fn['synIDattr'](fn[('synIDtrans')](fn['hlID'](name)), layer .. '#')
+        if (hival == nil or hival == '') then
+            if layer == 'bg' then
+                return fn['synIDattr'](fn[('synIDtrans')](fn['hlID'](name)), 'fg' .. '#')
+            else
+                return fn['synIDattr'](fn[('synIDtrans')](fn['hlID'](name)), 'bg' .. '#')
+            end
+        else
+            return hival
+        end
     end
 
     local themecolors = {
         fg = GetHiVal('Normal', "fg"),
-        bg = GetHiVal('Normal', "bg"),
+        bg = '#1A181A',
         black = "#1A181A",
         blue = GetHiVal('@keyword', "fg"),
-        darkgreen = GetHiVal('@comment.todo', "bg"),
-        green = GetHiVal('@diff.plus', "fg"),
+        oceanblue = GetHiVal('@keyword', "fg"),
+        cyan = GetHiVal('@keyword', "fg"),
+        green = GetHiVal('@comment.note', "fg"),
         magenta = GetHiVal('@include', "fg"),
         orange = GetHiVal('Constant', "fg"),
-        red = GetHiVal('@diff.minus', "fg"),
+        red = GetHiVal('@comment.error', "fg"),
         violet = GetHiVal('Conditional', "fg"),
-        yellow = GetHiVal('@diff.delta', "fg"),
+        yellow = GetHiVal('@comment.warning', "fg"),
     }
     require('feline').add_theme('themecolors', themecolors)
 
