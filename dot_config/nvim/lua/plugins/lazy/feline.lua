@@ -6,22 +6,27 @@ local function config(_, opts)
     local separators = require('feline.defaults').statusline.separators.default_value
     local lsp = require('feline.providers.lsp')
 
-    local sonokai = {
-        fg = "#E3E1E4",
-        bg = "#2D2A2E",
+    local function GetHiVal(name, layer)
+        local fn = vim.fn
+        return fn['synIDattr'](fn[('synIDtrans')](fn['hlID'](name)), layer .. '#')
+    end
+    -- require("notify")("" .. GetHiVal('Normal', "fg"))
+
+    local themecolors = {
+        fg = GetHiVal('Normal', "fg"),
+        bg = GetHiVal('Normal', "bg"),
         black = "#1A181A",
-        blue = "#354157",
-        skyblue = "#7ACCD7",
-        cyan = "#78DCE8",
-        green = "#9ECD6F",
-        oceanblue = "#354157",
-        magenta = "#55393D",
-        orange = "#EF9062",
-        red = "#F85E84",
-        violet = "#AB9DF2",
-        yellow = "#E5C463",
+        blue = GetHiVal('@function', "fg"),
+        cyan = GetHiVal('@constructor', "fg"),
+        darkgreen = GetHiVal('@comment.todo', "bg"),
+        green = GetHiVal('@diff.plus', "fg"),
+        magenta = GetHiVal('@include', "fg"),
+        orange = GetHiVal('Constant', "fg"),
+        red = GetHiVal('@diff.minus', "fg"),
+        violet = GetHiVal('Conditional', "fg"),
+        yellow = GetHiVal('@diff.delta', "fg"),
     }
-    require('feline').add_theme('sonokai', sonokai)
+    require('feline').add_theme('themecolors', themecolors)
 
     local c = {
         vi_mode_info = {
@@ -352,14 +357,13 @@ local function config(_, opts)
     opts.components = { active = active, inactive = inactive }
 
     feline.setup(opts)
-    feline.use_theme("sonokai")
+    feline.use_theme("themecolors")
 end
 
 return {
     'freddiehaddad/feline.nvim',
     config = config,
     dependencies = {
-        -- 'sainnhe/sonokai',
         'lewis6991/gitsigns.nvim',
         'nvim-tree/nvim-web-devicons',
         {

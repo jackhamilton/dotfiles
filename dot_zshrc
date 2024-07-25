@@ -97,64 +97,59 @@ fi
 
 RANDOMSEED=$(date +%s)
 RANDOM=$(($RANDOMSEED/3600))
-export THEMENUM=$((($RANDOM % 18) + 1))
-case $THEMENUM in
+export THEMENUM=$RANDOM
+LOCALTHEME=$((($THEMENUM % 17) + 1))
+case $LOCALTHEME in
     1)
-        THEMESTR="oceanic_next"
-        ;;
-    2)
         THEMESTR="tokyo-night"
         ;;
-    3)
+    2)
         THEMESTR="iris"
         ;;
-    4)
+    3)
         THEMESTR="tokyo-night-storm"
         ;;
-    5)
+    4)
         THEMESTR="catppuccin_mocha"
         ;;
-    6)
+    5)
         THEMESTR="catppuccin_frappe"
         ;;
-    7)
+    6)
         THEMESTR="catppuccin_macchiato"
         ;;
-    8)
+    7)
         THEMESTR="catppuccin_mocha"
         ;;
-    9)
+    8)
         THEMESTR="gruvbox"
         ;;
-    10)
+    9)
         THEMESTR="gruvbox_material"
         ;;
-    11)
+    10)
         THEMESTR="nightfox"
         ;;
-    12)
+    11)
         THEMESTR="rose-pine"
         ;;
-    13)
-        THEMESTR="catppuccin"
-        ;;
-    14)
-        THEMESTR="everforest"
-        ;;
-    15)
+    12)
         THEMESTR="kanagawa_wave"
         ;;
-    16)
+    13)
         THEMESTR="kanagawa_dragon"
         ;;
-    17)
+    14)
         THEMESTR="dracula"
         ;;
-    18)
+    15)
         THEMESTR="inferno"
         ;;
-    19)
+    16)
         THEMESTR="nordic"
+        ;;
+    17)
+        THEMESTR="oceanic_next"
         ;;
 esac
 rm "$HOME/.config/alacritty/themes/themes/current.toml"

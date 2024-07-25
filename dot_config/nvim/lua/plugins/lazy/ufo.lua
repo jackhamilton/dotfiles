@@ -14,8 +14,8 @@ return {
             local wk = require('which-key')
             wk.add({
                 { "z",  group = "UFO" },
-                { "zM", require('ufo').openAllFolds,  desc = "Close all folds" },
-                { "zR", require('ufo').closeAllFolds, desc = "Open all folds" },
+                { "zM", require('ufo').closeAllFolds,  desc = "Close all folds" },
+                { "zR", require('ufo').openAllFolds, desc = "Open all folds" },
             })
             require('ufo').setup({})
         end,
