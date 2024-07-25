@@ -20,6 +20,14 @@ local function config(_, opts)
         end
     end
 
+    local function getDistinctGreen(blueColor)
+        local ideal = GetHiVal('@comment.note', "fg")
+        if ideal == blueColor then
+            return GetHiVal('@diff.plus', "fg")
+        end
+        return ideal
+    end
+
     local themecolors = {
         fg = GetHiVal('Normal', "fg"),
         bg = '#1A181A',
@@ -27,7 +35,7 @@ local function config(_, opts)
         blue = GetHiVal('@keyword', "fg"),
         oceanblue = GetHiVal('@keyword', "fg"),
         cyan = GetHiVal('@keyword', "fg"),
-        green = GetHiVal('@comment.note', "fg"),
+        green = getDistinctGreen(GetHiVal('@keyword', "fg")),
         magenta = GetHiVal('@include', "fg"),
         orange = GetHiVal('Constant', "fg"),
         red = GetHiVal('@comment.error', "fg"),
