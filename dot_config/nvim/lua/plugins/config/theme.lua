@@ -1,5 +1,5 @@
 local themenum = tonumber(os.getenv("THEMENUM"))
-themenum = themenum % 24 + 1
+themenum = themenum % 23 + 1
 if themenum == 1 then
     require('tokyonight').setup({})
     vim.cmd [[colorscheme tokyonight-night]]
@@ -59,37 +59,34 @@ elseif themenum == 15 then
     vim.cmd [[colorscheme edge]]
     require("notify")("edge")
 elseif themenum == 16 then
-    vim.cmd [[colorscheme oxocarbon]]
-    require("notify")("oxocarbon")
-elseif themenum == 17 then
     require('flow').setup({})
     vim.cmd [[colorscheme flow]]
     require("notify")("flow")
-elseif themenum == 18 then
+elseif themenum == 17 then
     require('nightfly').setup({})
     vim.cmd [[colorscheme nightfly]]
     require("notify")("nightfly")
-elseif themenum == 19 then
+elseif themenum == 18 then
     require('cyberdream').setup({})
     vim.cmd [[colorscheme cyberdream]]
     require("notify")("cyberdream")
-elseif themenum == 20 then
+elseif themenum == 19 then
     require('solarized-osaka').setup({})
     vim.cmd [[colorscheme solarized-osaka]]
     require("notify")("solarized-osaka")
-elseif themenum == 21 then
+elseif themenum == 20 then
     require('fluoromachine').setup({})
     vim.cmd [[colorscheme fluoromachine]]
     require("notify")("fluoromachine")
-elseif themenum == 22 then
+elseif themenum == 21 then
     require('eldritch').setup({})
     vim.cmd [[colorscheme eldritch]]
     require("notify")("eldritch")
-elseif themenum == 23 then
+elseif themenum == 22 then
     require('kanagawa-paper').setup({})
     vim.cmd [[colorscheme kanagawa-paper]]
     require("notify")("kanagawa-paper")
-elseif themenum == 24 then
+elseif themenum == 23 then
     require('vim-winteriscoming').setup({})
     vim.cmd [[colorscheme vim-winteriscoming]]
     require("notify")("vim-winteriscoming")

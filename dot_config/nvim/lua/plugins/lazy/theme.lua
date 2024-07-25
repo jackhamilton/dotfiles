@@ -71,10 +71,6 @@ return {
         opts = {},
     },
     {
-        "nyoom-engineering/oxocarbon.nvim",
-        lazy = true,
-    },
-    {
         "0xstepit/flow.nvim",
         lazy = false,
         priority = 1000,
