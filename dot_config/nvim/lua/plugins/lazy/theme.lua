@@ -112,14 +112,6 @@ return {
         opts = {},
     },
     {
-        "uloco/bluloco.nvim",
-        dependencies = {
-            'rktjmp/lush.nvim'
-        },
-        lazy = true,
-        opts = {},
-    },
-    {
         "sho-87/kanagawa-paper.nvim",
         lazy = false,
         priority = 1000,
