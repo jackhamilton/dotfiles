@@ -91,9 +91,9 @@ return {
                 sources = cmp.config.sources({
                     { name = "nvim_lsp" },
                     { name = "luasnip" }, -- snippets
-                    { name = "rg" },
                     { name = "buffer" },  -- text within current buffer
                     { name = "path" },    -- file system paths
+                    { name = "rg" },
                 }),
 
                 cmp.setup.cmdline({ '/', '?' }, {
