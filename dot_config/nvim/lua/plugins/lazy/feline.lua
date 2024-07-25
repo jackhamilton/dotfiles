@@ -10,14 +10,12 @@ local function config(_, opts)
         local fn = vim.fn
         return fn['synIDattr'](fn[('synIDtrans')](fn['hlID'](name)), layer .. '#')
     end
-    -- require("notify")("" .. GetHiVal('Normal', "fg"))
 
     local themecolors = {
         fg = GetHiVal('Normal', "fg"),
         bg = GetHiVal('Normal', "bg"),
         black = "#1A181A",
-        blue = GetHiVal('@function', "fg"),
-        cyan = GetHiVal('@constructor', "fg"),
+        blue = GetHiVal('@keyword', "fg"),
         darkgreen = GetHiVal('@comment.todo', "bg"),
         green = GetHiVal('@diff.plus', "fg"),
         magenta = GetHiVal('@include', "fg"),
@@ -99,26 +97,51 @@ local function config(_, opts)
             priority = 5,
             -- Component info here
             -- Component that shows file info
-            provider = 'file_info',
+            provider = {
+                name = 'file_info',
+                opts = {
+                    colored_icon = false,
+                },
+            },
             hl = {
-                bg = 'cyan',
+                bg = 'blue',
                 fg = 'bg',
             },
             left_sep = {
-                always_visible = true,
-                hl = {
-                    bg = 'cyan',
-                    fg = 'bg',
-                },
-                str = ' ',
+                -- {
+                --     always_visible = true,
+                --     hl = {
+                --         bg = 'bg',
+                --         fg = 'fg',
+                --     },
+                --     str = ' ',
+                -- },
+                {
+                    always_visible = true,
+                    hl = {
+                        bg = 'blue',
+                        fg = 'bg',
+                    },
+                    str = ' ',
+                }
             },
             right_sep = {
-                always_visible = true,
-                hl = {
-                    bg = 'cyan',
-                    fg = 'bg',
+                {
+                    always_visible = true,
+                    hl = {
+                        bg = 'blue',
+                        fg = 'bg',
+                    },
+                    str = ' ',
                 },
-                str = ' ',
+                -- {
+                --     always_visible = true,
+                --     hl = {
+                --         bg = 'bg',
+                --         fg = 'fg',
+                --     },
+                --     str = ' ',
+                -- }
             },
             -- Uncomment the next line to disable file icons
             -- icon = ''
@@ -309,7 +332,7 @@ local function config(_, opts)
             priority = 4,
             provider = 'scroll_bar',
             hl = {
-                fg = "cyan",
+                fg = "blue",
                 bg = "bg"
             },
             left_sep = ' '
@@ -383,6 +406,7 @@ return {
             },
         },
     },
+    event = "VeryLazy",
     init = function()
         -- update statusbar when there's a plugin update
         vim.api.nvim_create_autocmd('User', {
