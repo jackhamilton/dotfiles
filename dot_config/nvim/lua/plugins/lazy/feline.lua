@@ -21,7 +21,7 @@ local function config(_, opts)
     end
 
     local function getDistinctGreen(blueColor)
-        local ideal = GetHiVal('@comment.note', "fg")
+        local ideal = GetHiVal('@comment.note', "bg")
         if ideal == blueColor then
             return GetHiVal('@diff.plus', "fg")
         end
@@ -32,10 +32,10 @@ local function config(_, opts)
         fg = GetHiVal('Normal', "fg"),
         bg = '#1A181A',
         black = "#1A181A",
-        blue = GetHiVal('@keyword', "fg"),
-        oceanblue = GetHiVal('@keyword', "fg"),
-        cyan = GetHiVal('@keyword', "fg"),
-        green = getDistinctGreen(GetHiVal('@keyword', "fg")),
+        blue = GetHiVal('@attribute', "fg"),
+        oceanblue = GetHiVal('@attribute', "fg"),
+        cyan = GetHiVal('@attribute', "fg"),
+        green = getDistinctGreen(GetHiVal('@attribute', "fg")),
         magenta = GetHiVal('@include', "fg"),
         orange = GetHiVal('Constant', "fg"),
         red = GetHiVal('@comment.error', "fg"),
