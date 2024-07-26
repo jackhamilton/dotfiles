@@ -9,7 +9,7 @@ alias vdiff="nvim -d"
 alias cedit="chezmoi edit"
 alias capply="chezmoi apply"
 alias cp="xcp"
-alias gtop="z $(git rev-parse --show-toplevel)"
+#alias gittop="cd $(git rev-parse --show-toplevel)"
 alias pls="sudo"
 gitup ()
 {
