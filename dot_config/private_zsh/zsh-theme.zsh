@@ -2,7 +2,7 @@
 RANDOMSEED=$(date +%s)
 RANDOM=$(($RANDOMSEED/3600))
 export THEMENUM=$RANDOM
-LOCALTHEME=$(((($THEMENUM % 23) % 17) + 1))
+LOCALTHEME=$(((($THEMENUM % 22) % 17) + 1))
 case $LOCALTHEME in
     1)
         THEMESTR="tokyo-night"
