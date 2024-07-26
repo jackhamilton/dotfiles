@@ -24,6 +24,7 @@ antigen bundle Junker/zsh-archlinux@main
 antigen bundle desyncr/auto-ls
 antigen bundle zpm-zsh/undollar
 antigen bundle jeffreytse/zsh-vi-mode
+antigen bundle marlonrichert/zsh-autocomplete
 antigen bundle zsh-users/zsh-autosuggestions
 
 lsdloc=$(which lsd)
@@ -36,6 +37,7 @@ antigen bundle zsh-users/zsh-syntax-highlighting
 antigen apply
 
 prompt_context(){}
+ZSH_AUTOSUGGEST_STRATEGY=(match_prev_cmd completion)
 
 export EDITOR='nvim'
 
