@@ -1,5 +1,6 @@
 source ~/.config/zsh/path.zsh
 
+zstyle ':znap:*' repos-dir ~/.znap/Repos/
 # Download Znap, if it's not there yet.
 [[ -r ~/Repos/znap/znap.zsh ]] ||
     git clone --depth 1 -- \
@@ -15,14 +16,14 @@ setopt INC_APPEND_HISTORY
 export EDITOR='nvim'
 export VISUAL='nvim'
 
+znap eval fzf "fzf --zsh"
+znap eval zoxide "zoxide init zsh"
+znap eval direnv "direnv hook zsh"
+znap eval starship "starship init zsh"
+znap eval rbenv "rbenv init - --no-rehash zsh"
+
 # MARK: Source extensions
 source ~/.config/zsh/alias.zsh
 source ~/.config/zsh/zsh-theme.zsh
 source ~/.config/zsh/zsh-bitwarden.zsh
 source ~/.config/zsh/plugins.zsh
-
-eval "$(zoxide init zsh)"
-eval "$(direnv hook zsh)"
-eval "$(starship init zsh)"
-eval "$(rbenv init - --no-rehash zsh)"
-source <(fzf --zsh)
