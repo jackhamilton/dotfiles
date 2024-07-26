@@ -1,159 +1,28 @@
-# If you come from bash you might have to change your $PATH.
-export PATH=$HOME/bin:/usr/local/bin:$PATH
-export PATH="/opt/homebrew/bin:$PATH"
+source ~/.config/zsh/path.zsh
 
-# Set list of themes to pick from when loading at random
-[[ ! -d "$HOME/.antigen" ]] && git clone https://github.com/zsh-users/antigen.git "$HOME/.antigen"
-source "$HOME/.antigen/antigen.zsh"
+# Download Znap, if it's not there yet.
+[[ -r ~/Repos/znap/znap.zsh ]] ||
+    git clone --depth 1 -- \
+        https://github.com/marlonrichert/zsh-snap.git ~/Repos/znap
+source ~/Repos/znap/znap.zsh  # Start Znap
 
-# Set the default plugin repo to be zsh-utils
-antigen use belak/zsh-utils --branch=main
-
-# Specify completions we want before the completion module
-antigen bundle zsh-users/zsh-completions
-
-# Specify plugins we want
-plugins=()
-antigen bundle editor@main
-antigen bundle history@main
-antigen bundle prompt@main
-antigen bundle utility@main
-antigen bundle completion@main
-antigen bundle akash329d/zsh-alias-finder
-antigen bundle Junker/zsh-archlinux@main
-antigen bundle desyncr/auto-ls
-antigen bundle zpm-zsh/undollar
-antigen bundle jeffreytse/zsh-vi-mode
-antigen bundle marlonrichert/zsh-autocomplete
-antigen bundle zsh-users/zsh-autosuggestions
-
-lsdloc=$(which lsd)
-AUTO_LS_COMMANDS=(git-status $lsdloc)
-
-# Specify additional external plugins we want
-antigen bundle zsh-users/zsh-syntax-highlighting
-
-# Load everything
-antigen apply
-
-prompt_context(){}
-ZSH_AUTOSUGGEST_STRATEGY=(match_prev_cmd completion)
+HISTFILE=~/.zsh_history
+HISTSIZE=10000
+SAVEHIST=10000
+setopt appendhistory
+setopt INC_APPEND_HISTORY
 
 export EDITOR='nvim'
+export VISUAL='nvim'
 
-alias cd=z
-alias cat="bat -P"
-alias curl=curlie
-alias pacin="sudo pacman -S"
-alias ls=lsd
-alias gcc="sccache gcc"
-alias cmake="cmake -DCMAKE_C_COMPILER_LAUNCHER=sccache -DCMAKE_CXX_COMPILER_LAUNCHER=sccache"
-alias vdiff="nvim -d"
-alias cedit="chezmoi edit"
-alias capply="chezmoi apply"
-alias cp="xcp"
-alias gtop="z $(git rev-parse --show-toplevel)"
-alias pls="sudo"
-gitup ()
-{
-    git add .
-    git commit -m "$1"
-    git push
-}
+# MARK: Source extensions
+source ~/.config/zsh/alias.zsh
+source ~/.config/zsh/zsh-theme.zsh
+source ~/.config/zsh/zsh-bitwarden.zsh
+source ~/.config/zsh/plugins.zsh
 
 eval "$(zoxide init zsh)"
 eval "$(direnv hook zsh)"
 eval "$(starship init zsh)"
 eval "$(rbenv init - --no-rehash zsh)"
 source <(fzf --zsh)
-
-if [[ $(uname) == "Darwin" ]]; then
-    source /Users/jackhamilton/.config/broot/launcher/bash/br
-elif command -v pacman > /dev/null; then
-    export PATH="$PATH:/home/linuxbrew/.linuxbrew/bin"
-fi
-export PATH="$PATH:/home/jack/.local/bin"
-
-# if command -v cowsay > /dev/null; then
-#     home-manager switch
-# fi
-
-if (( $+commands[bw] )); then
-    credfile="$HOME/bitwarden.cred"
-    while IFS=: read -r line
-    do
-        if [[ $line != "" ]]; then
-            if [[ $line == *"user"* ]]; then
-                export BW_CLIENTID=$line
-            elif [[ $line == *"wegs"* ]]; then
-                export BW_CLIENTSECRET=$line
-            else
-                BW_PASS=$line
-            fi
-        fi
-        if [[ $line != "" ]]; then
-        fi
-    done <"$credfile"
-    export BW_SESSION=$(bw unlock $BW_PASS --raw);
-fi
-
-RANDOMSEED=$(date +%s)
-RANDOM=$(($RANDOMSEED/3600))
-export THEMENUM=$RANDOM
-LOCALTHEME=$(((($THEMENUM % 23) % 17) + 1))
-case $LOCALTHEME in
-    1)
-        THEMESTR="tokyo-night"
-        ;;
-    2)
-        THEMESTR="iris"
-        ;;
-    3)
-        THEMESTR="tokyo-night-storm"
-        ;;
-    4)
-        THEMESTR="catppuccin_mocha"
-        ;;
-    5)
-        THEMESTR="catppuccin_frappe"
-        ;;
-    6)
-        THEMESTR="catppuccin_macchiato"
-        ;;
-    7)
-        THEMESTR="catppuccin_mocha"
-        ;;
-    8)
-        THEMESTR="gruvbox"
-        ;;
-    9)
-        THEMESTR="gruvbox_material"
-        ;;
-    10)
-        THEMESTR="nightfox"
-        ;;
-    11)
-        THEMESTR="rose-pine"
-        ;;
-    12)
-        THEMESTR="kanagawa_wave"
-        ;;
-    13)
-        THEMESTR="kanagawa_dragon"
-        ;;
-    14)
-        THEMESTR="dracula"
-        ;;
-    15)
-        THEMESTR="inferno"
-        ;;
-    16)
-        THEMESTR="nordic"
-        ;;
-    17)
-        THEMESTR="oceanic_next"
-        ;;
-esac
-rm "$HOME/.config/alacritty/themes/themes/current.toml"
-ln -s "$HOME/.config/alacritty/themes/themes/$THEMESTR.toml" "$HOME/.config/alacritty/themes/themes/current.toml"
-alacritty msg config -r -w -1
