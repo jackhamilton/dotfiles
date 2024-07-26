@@ -13,5 +13,5 @@ znap source desyncr/auto-ls
 znap source zpm-zsh/undollar
 znap source jeffreytse/zsh-vi-mode
 #znap source Junker/zsh-archlinux@main
-#
+
 znap install zsh-users/zsh-completions

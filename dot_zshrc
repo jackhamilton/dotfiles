@@ -1,8 +1,7 @@
 source ~/.config/zsh/path.zsh
 
-zstyle ':znap:*' repos-dir ~/.znap/Repos/
 # Download Znap, if it's not there yet.
-[[ -r ~/Repos/znap/znap.zsh ]] ||
+[[ -r ~/Repos/znap.zsh ]] ||
     git clone --depth 1 -- \
         https://github.com/marlonrichert/zsh-snap.git ~/Repos/znap
 source ~/Repos/znap/znap.zsh  # Start Znap
@@ -26,4 +25,7 @@ znap eval rbenv "rbenv init - --no-rehash zsh"
 source ~/.config/zsh/alias.zsh
 source ~/.config/zsh/zsh-theme.zsh
 source ~/.config/zsh/zsh-bitwarden.zsh
+source ~/.config/zsh/completion.zsh
 source ~/.config/zsh/plugins.zsh
+
+setopt interactivecomments
