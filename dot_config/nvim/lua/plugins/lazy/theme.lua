@@ -79,8 +79,8 @@ return {
     {
         "bluz71/vim-nightfly-colors",
         name = "nightfly",
-        lazy = true,
-        opts = {},
+        lazy = false,
+        priority = 1000,
     },
     {
         "scottmckendry/cyberdream.nvim",

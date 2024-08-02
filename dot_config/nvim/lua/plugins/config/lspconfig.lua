@@ -164,14 +164,14 @@ local function on_attach(client, buf)
             vim.diagnostic.open_float(opts)
         end,
     })
-    if client.supports_method("textDocument/formatting") then
-        vim.api.nvim_create_autocmd('BufWritePre', {
-            buffer = buf,
-            callback = function()
-                vim.lsp.buf.format({ bufnr = buf, id = client.id })
-            end,
-        })
-    end
+    -- if client.supports_method("textDocument/formatting") then
+    --     vim.api.nvim_create_autocmd('BufWritePre', {
+    --         buffer = buf,
+    --         callback = function()
+    --             vim.lsp.buf.format({ bufnr = buf, id = client.id })
+    --         end,
+    --     })
+    -- end
 end
 
 --- Capabilities

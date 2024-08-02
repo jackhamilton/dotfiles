@@ -63,7 +63,7 @@ elseif themenum == 16 then
     vim.cmd [[colorscheme flow]]
     require("notify")("flow")
 elseif themenum == 17 then
-    require('nightfly').setup({})
+    -- require('nightfly').setup({})
     vim.cmd [[colorscheme nightfly]]
     require("notify")("nightfly")
 elseif themenum == 18 then
