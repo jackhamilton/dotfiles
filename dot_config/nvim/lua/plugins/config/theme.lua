@@ -55,7 +55,6 @@ elseif themenum == 14 then
     vim.cmd [[colorscheme sonokai]]
     require("notify")("sonokai")
 elseif themenum == 15 then
-    require('edge').setup({})
     vim.cmd [[colorscheme edge]]
     require("notify")("edge")
 elseif themenum == 16 then
