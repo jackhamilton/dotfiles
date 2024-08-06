@@ -28,6 +28,33 @@ local k = require("luasnip.nodes.key_indexer").new_key
 local r = require("luasnip.extras").rep
 
 return {
+    -- Attributed string
+    s("subscribe", fmt([[
+        .subscribe(<>
+            <>
+        }
+        .disposed(by: disposeBag)
+    ]], {
+        c(1, {
+            t("with: self, onNext: { base, _ in"),
+            t("onNext: { _ in"),
+        }),
+        i(0)
+    }, {
+        delimiters = "<>"
+    })),
+    -- Attributed string
+    s("attributedstring", fmt([[
+        let attributes: [NSAttributedString.Key: Any] = [
+            .font: UIFont.<>
+        ]
+        let attributedText = NSAttributedString(string: "<>".localized())
+    ]], {
+        i(1, "Font"),
+        i(2, "Text")
+    }, {
+        delimiters = "<>"
+    })),
     s("grheader", {
         t({
             "//",
@@ -98,13 +125,28 @@ return {
     import XCTest
 
     class <>: XCTestCase {
-        override func setUpWithError() throws {
-            try super.setUpWithError()
+        var sut: <>
+
+        override func setUp() {
+            super.setUp()
             Container.shared.reset()
+
+            sut = <>(<>)
+        }
+
+        override func tearDown() {
+            sut = nil
         }
     }
     ]], {
-        i(1, "Name")
+        i(1, "Class Name"),
+        i(2, "SUT Type"),
+        d(3, function(args)
+            return sn(nil, {
+                i(1, args[1])
+            })
+        end, { 2 }),
+        i(0)
     }, {
         delimiters = "<>"
     })),
@@ -119,18 +161,6 @@ return {
             .anchorToSuperviewTrailing()
     ]], {
         i(1, "Name")
-    }, {
-        delimiters = "<>"
-    })),
-    -- Attributed string
-    s("attributedstring", fmt([[
-        let attributes: [NSAttributedString.Key: Any] = [
-            .font: UIFont.<>
-        ]
-        let attributedText = NSAttributedString(string: "<>".localized())
-    ]], {
-        i(1, "Font"),
-        i(2, "Text")
     }, {
         delimiters = "<>"
     })),

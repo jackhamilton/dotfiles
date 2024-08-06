@@ -14,6 +14,13 @@ return {
         },
     },
     {
+        "nvim-telescope/telescope-ui-select.nvim",
+        event = "LspAttach",
+        config = function()
+            require("telescope").load_extension("ui-select")
+        end,
+    },
+    {
         'nvim-telescope/telescope.nvim',
         tag = '0.1.5',
         lazy = true,
@@ -26,6 +33,13 @@ return {
                             ["<esc>"] = actions.close
                         },
                     },
+                },
+                extensions = {
+                    ["ui-select"] = {
+                        require("telescope.themes").get_dropdown {
+
+                        }
+                    }
                 },
             }
         end,

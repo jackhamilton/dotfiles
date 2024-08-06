@@ -1,6 +1,5 @@
 *.DS_STORE
 *.envrc
-*.resolved
 buildServer.json
 -workspace
 .nvim/*
@@ -8,3 +7,7 @@ nvim_*.sh
 *.swift~
 Package.resolved
 .cred
+/.swiftpm
+xcuserdata/
+/Packages
+/.build

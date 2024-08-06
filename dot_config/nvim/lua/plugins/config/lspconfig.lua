@@ -143,7 +143,7 @@ local function on_attach(client, buf)
             { "<leader>ls",  group = "Signature" },
             { "<leader>lsf", vim.lsp.buf.declaration,    desc = "Display function signature" },
             { "<leader>lsh", vim.lsp.buf.signature_help, desc = "Symbol signature help" },
-        }
+        },
     })
 
     --- Autocommands
