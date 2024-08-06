@@ -8,7 +8,11 @@ local config = wezterm.config_builder()
 
 -- For example, changing the color scheme:
 config.font = wezterm.font 'RobotoMono Nerd Font Mono'
-config.font_size = 15
+{{ if eq .chezmoi.os "darwin"}}
+config.font_size = 16
+{{ else }}
+config.font_size = 14
+{{ end }}
 config.enable_kitty_graphics = true
 config.enable_tab_bar = false
 
