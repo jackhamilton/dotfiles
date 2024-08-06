@@ -6,8 +6,8 @@ return {
     },
     {
         'sainnhe/edge',
-        lazy = true,
-        opts = {},
+        lazy = false,
+        priority = 1000,
     },
     {
         'sainnhe/sonokai',

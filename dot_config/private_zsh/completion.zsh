@@ -1,2 +1,3 @@
-znap fpath _cargo 'rustup completions zsh cargo'
-znap fpath _rustup 'rustup completions zsh'
+if command -v rustup > /dev/null; then
+    znap fpath _cargo 'rustup completions zsh cargo'
+fi
