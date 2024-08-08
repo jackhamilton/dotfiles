@@ -51,7 +51,6 @@ elseif themenum == 13 then
     vim.cmd [[colorscheme everblush]]
     require("notify")("everblush")
 elseif themenum == 14 then
-    require('sonokai').setup({})
     vim.cmd [[colorscheme sonokai]]
     require("notify")("sonokai")
 elseif themenum == 15 then

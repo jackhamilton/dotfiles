@@ -6,6 +6,9 @@ source ~/.config/zsh/path.zsh
         https://github.com/marlonrichert/zsh-snap.git ~/Repos/znap
 source ~/Repos/znap/znap.zsh  # Start Znap
 
+# Immediately source completions
+source ~/.config/zsh/completion.zsh
+
 HISTFILE=~/.zsh_history
 HISTSIZE=10000
 SAVEHIST=10000
@@ -25,7 +28,6 @@ znap eval rbenv "rbenv init - --no-rehash zsh"
 source ~/.config/zsh/alias.zsh
 source ~/.config/zsh/zsh-theme.zsh
 #source ~/.config/zsh/zsh-bitwarden.zsh
-source ~/.config/zsh/completion.zsh
 source ~/.config/zsh/plugins.zsh
 
 setopt interactivecomments

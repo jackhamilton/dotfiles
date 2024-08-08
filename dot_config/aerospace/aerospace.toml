@@ -3,17 +3,19 @@ start-at-login = true
 enable-normalization-flatten-containers = true
 enable-normalization-opposite-orientation-for-nested-containers = true
 default-root-container-layout = 'tiles'
+default-root-container-orientation = 'auto'
+on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
 
 [workspace-to-monitor-force-assignment]
-1 = 'built-in'
+1 = ['U2718Q', 'BenQ']
 2 = 'P2723QE'
-3 = ['U2718Q', 'BenQ']
-4 = 'built-in'
+3 = 'built-in'
+4 = ['U2718Q', 'BenQ']
 5 = 'P2723QE'
-6 = ['U2718Q', 'BenQ']
-7 = 'built-in'
+6 = 'built-in'
+7 = ['U2718Q', 'BenQ']
 8 = 'P2723QE'
-9 = ['U2718Q', 'BenQ']
+9 = 'built-in'
 
 [mode.main.binding]
 cmd-tab = 'workspace-back-and-forth'

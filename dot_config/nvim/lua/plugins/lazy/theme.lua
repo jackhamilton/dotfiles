@@ -11,8 +11,8 @@ return {
     },
     {
         'sainnhe/sonokai',
-        lazy = true,
-        opts = {},
+        lazy = false,
+        priority = 1000,
     },
     {
         'EdenEast/nightfox.nvim',

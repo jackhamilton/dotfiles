@@ -1,3 +1,5 @@
+
+
 if [[ $(uname) == "Darwin" ]]; then
     source /Users/jackhamilton/.config/broot/launcher/bash/br
 elif command -v pacman > /dev/null; then
