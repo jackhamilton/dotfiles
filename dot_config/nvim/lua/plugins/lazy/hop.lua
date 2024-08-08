@@ -10,17 +10,7 @@ return {
                 "sc",
                 mode = { "n", "x", "o" },
                 function()
-                    local directions = require("hop.hint").HintDirection
-                    require('hop').hint_char1({ direction = directions.AFTER_CURSOR })
-                end,
-                desc = "Hop to character"
-            },
-            {
-                "sC",
-                mode = { "n", "x", "o" },
-                function()
-                    local directions = require("hop.hint").HintDirection
-                    require('hop').hint_char1({ direction = directions.BEFORE_CURSOR })
+                    require('hop').hint_char1()
                 end,
                 desc = "Hop to character"
             },
@@ -28,17 +18,7 @@ return {
                 "ss",
                 mode = { "n", "x", "o" },
                 function()
-                    local directions = require("hop.hint").HintDirection
-                    require('hop').hint_char2({ direction = directions.AFTER_CURSOR })
-                end,
-                desc = "Hop to two characters"
-            },
-            {
-                "sS",
-                mode = { "n", "x", "o" },
-                function()
-                    local directions = require("hop.hint").HintDirection
-                    require('hop').hint_char2({ direction = directions.BEFORE_CURSOR })
+                    require('hop').hint_char2()
                 end,
                 desc = "Hop to two characters"
             },
@@ -46,17 +26,7 @@ return {
                 "sl",
                 mode = { "n", "x", "o" },
                 function()
-                    local directions = require("hop.hint").HintDirection
-                    require('hop').hint_lines_skip_whitespace({ direction = directions.AFTER_CURSOR })
-                end,
-                desc = "Hop to line"
-            },
-            {
-                "sL",
-                mode = { "n", "x", "o" },
-                function()
-                    local directions = require("hop.hint").HintDirection
-                    require('hop').hint_lines_skip_whitespace({ direction = directions.BEFORE_CURSOR })
+                    require('hop').hint_lines_skip_whitespace()
                 end,
                 desc = "Hop to line"
             },
@@ -64,17 +34,7 @@ return {
                 "sp",
                 mode = { "n", "x", "o" },
                 function()
-                    local directions = require("hop.hint").HintDirection
-                    require('hop').hint_patterns({ direction = directions.AFTER_CURSOR })
-                end,
-                desc = "Hop to pattern"
-            },
-            {
-                "sP",
-                mode = { "n", "x", "o" },
-                function()
-                    local directions = require("hop.hint").HintDirection
-                    require('hop').hint_patterns({ direction = directions.BEFORE_CURSOR })
+                    require('hop').hint_patterns()
                 end,
                 desc = "Hop to pattern"
             },
@@ -82,17 +42,7 @@ return {
                 "sw",
                 mode = { "n", "x", "o" },
                 function()
-                    local directions = require("hop.hint").HintDirection
-                    require('hop').hint_words({ direction = directions.AFTER_CURSOR })
-                end,
-                desc = "Hop to word"
-            },
-            {
-                "sW",
-                mode = { "n", "x", "o" },
-                function()
-                    local directions = require("hop.hint").HintDirection
-                    require('hop').hint_words({ direction = directions.BEFORE_CURSOR })
+                    require('hop').hint_words()
                 end,
                 desc = "Hop to word"
             },
@@ -100,17 +50,7 @@ return {
                 "sy",
                 mode = { "n", "x", "o" },
                 function()
-                    local directions = require("hop.hint").HintDirection
-                    require('hop-yank').yank_char1({ direction = directions.AFTER_CURSOR })
-                end,
-                desc = "Yank at character"
-            },
-            {
-                "sY",
-                mode = { "n", "x", "o" },
-                function()
-                    local directions = require("hop.hint").HintDirection
-                    require('hop-yank').yank_char1({ direction = directions.BEFORE_CURSOR })
+                    require('hop-yank').yank_char1()
                 end,
                 desc = "Yank at character"
             },
@@ -118,17 +58,7 @@ return {
                 "sp",
                 mode = { "n", "x", "o" },
                 function()
-                    local directions = require("hop.hint").HintDirection
-                    require('hop-yank').paste_char1({ direction = directions.AFTER_CURSOR })
-                end,
-                desc = "Paste at character"
-            },
-            {
-                "sP",
-                mode = { "n", "x", "o" },
-                function()
-                    local directions = require("hop.hint").HintDirection
-                    require('hop-yank').paste_char1({ direction = directions.BEFORE_CURSOR })
+                    require('hop-yank').paste_char1()
                 end,
                 desc = "Paste at character"
             },

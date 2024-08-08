@@ -34,6 +34,11 @@ return {
                         },
                     },
                 },
+                pickers = {
+                    buffers = {
+                        sort_lastused = true
+                    }
+                },
                 extensions = {
                     ["ui-select"] = {
                         require("telescope.themes").get_dropdown {
