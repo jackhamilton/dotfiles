@@ -11,10 +11,22 @@ alias capply="chezmoi apply"
 alias cp="xcp"
 alias gittop="git rev-parse --show-toplevel | cd"
 alias pls="sudo"
+alias q="exit"
+alias tatt="tmuxAttach"
+alias tmain="tmuxAttachMain"
 gitup ()
 {
     git add .
     git commit -m "$1"
     git push
 }
-
+tmuxAttachMain ()
+{
+    tmux new -s "main"
+    tmux attach -d -t "main"
+}
+tmuxAttach ()
+{
+    tmux new -s "$1"
+    tmux attach -d -t "$1"
+}
