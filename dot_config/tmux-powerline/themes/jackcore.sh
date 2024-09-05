@@ -102,14 +102,15 @@ fi
 # shellcheck disable=SC1143,SC2128
 if [ -z "$TMUX_POWERLINE_LEFT_STATUS_SEGMENTS" ]; then
 	TMUX_POWERLINE_LEFT_STATUS_SEGMENTS=(
-		"tmux_session_info green black"
-		"pwd blue black"
+		"tmux_session_info magenta black"
+		# "pwd blue black"
 		# "hostname 33 0"
 		#"mode_indicator 165 0"
 		#"ifstat 30 255"
 		#"ifstat_sys 30 255"
 		#"vpn 24 255 ${TMUX_POWERLINE_SEPARATOR_RIGHT_THIN}"
 		"vcs_branch green black"
+		#"time yellow black ${TMUX_POWERLINE_SEPARATOR_RIGHT_THIN} no_sep_bg_color yellow no_spacing_disable no_separator_disable"
 		#"vcs_compare 60 255"
 		#"vcs_staged 64 255"
 		#"vcs_modified 9 255"
@@ -120,8 +121,8 @@ fi
 # shellcheck disable=SC1143,SC2128
 if [ -z "$TMUX_POWERLINE_RIGHT_STATUS_SEGMENTS" ]; then
 	TMUX_POWERLINE_RIGHT_STATUS_SEGMENTS=(
-		"lan_ip yellow black"
-		"wan_ip yellow black ${TMUX_POWERLINE_SEPARATOR_LEFT_THIN}"
+		"lan_ip magenta black"
+		"wan_ip magenta black ${TMUX_POWERLINE_SEPARATOR_LEFT_THIN}"
 		#"earthquake 3 0"
 		#"macos_notification_count 29 255"
 		#"mailcount 9 255"
@@ -137,6 +138,5 @@ if [ -z "$TMUX_POWERLINE_RIGHT_STATUS_SEGMENTS" ]; then
 		# "date_day 235 136"
 		# "date 235 136 ${TMUX_POWERLINE_SEPARATOR_LEFT_THIN}"
 		# "time 235 136 ${TMUX_POWERLINE_SEPARATOR_LEFT_THIN}"
-		#"utc_time 235 136 ${TMUX_POWERLINE_SEPARATOR_LEFT_THIN}"
 	)
 fi

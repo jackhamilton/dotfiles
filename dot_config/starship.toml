@@ -6,16 +6,16 @@ $os\
 $username\
 [](bg:blue fg:purple)\
 $directory\
-[](fg:blue bg:green)\
-$git_branch\
-$git_status\
-[](fg:green bg:yellow)\
+[](fg:blue bg:yellow)\
 $direnv\
 $docker_context\
 $conda\
 [](fg:yellow bg:bright-yellow)\
 $time\
 [ ](fg:bright-yellow)"""
+# [](fg:blue bg:green)\
+# $git_branch\
+# $git_status\
 # [](fg:green bg:blue)\
 # $c\
 # $rust\
