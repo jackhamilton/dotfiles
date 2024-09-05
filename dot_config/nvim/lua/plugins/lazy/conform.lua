@@ -9,9 +9,9 @@ return {
                 formatters_by_ft = {
                     swift = { "swiftformat" },
                 },
-                format_on_save = function(bufnr)
-                    return { timeout_ms = 500, lsp_fallback = true }
-                end,
+                -- format_on_save = function(bufnr)
+                --     return { timeout_ms = 500, lsp_fallback = true }
+                -- end,
                 log_level = vim.log.levels.ERROR,
             })
 

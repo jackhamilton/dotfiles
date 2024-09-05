@@ -118,9 +118,9 @@ else
         17)
             THEMESTR="nordfox"
             ;;
-        18)
-            THEMESTR="cyberpunk"
-            ;;
+        # 18)
+        #     THEMESTR="cyberpunk"
+        #     ;;
         19)
             THEMESTR="Solarized Dark (Gogh)"
             ;;
