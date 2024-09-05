@@ -12,6 +12,8 @@ alias cp="xcp"
 alias gittop="git rev-parse --show-toplevel | cd"
 alias pls="sudo"
 alias q="exit"
+alias tlist="tmux list-sessions"
+alias tdet="tmux detach"
 alias tatt="tmuxAttach"
 alias tmain="tmuxAttachMain"
 gitup ()
@@ -22,11 +24,11 @@ gitup ()
 }
 tmuxAttachMain ()
 {
-    tmux new -s "main"
+    tmux new -s "main" -d
     tmux attach -d -t "main"
 }
 tmuxAttach ()
 {
-    tmux new -s "$1"
+    tmux new -s "$1" -d
     tmux attach -d -t "$1"
 }
