@@ -1,13 +1,13 @@
 RANDOMSEED=$(date +%s)
 RANDOM=$(($RANDOMSEED/3600))
 export THEMENUM=$RANDOM
-LOCALTHEME=$((($THEMENUM % 22) + 1))
 
 # export TERMEMU=$(ps -p $PPID -o comm=)
 local alacritty=0
 
 # if [[ $TERMEMU ~= "alacritty" ]] then
 if [ $alacritty -eq 1 ]; then
+    LOCALTHEME=$((($THEMENUM % 16) + 1))
     case $LOCALTHEME in
         1)
             THEMESTR="tokyo-night"
@@ -19,45 +19,42 @@ if [ $alacritty -eq 1 ]; then
             THEMESTR="tokyo-night-storm"
             ;;
         4)
-            THEMESTR="catppuccin_mocha"
-            ;;
-        5)
             THEMESTR="catppuccin_frappe"
             ;;
-        6)
+        5)
             THEMESTR="catppuccin_macchiato"
             ;;
-        7)
+        6)
             THEMESTR="catppuccin_mocha"
             ;;
-        8)
+        7)
             THEMESTR="gruvbox"
             ;;
-        9)
+        8)
             THEMESTR="gruvbox_material"
             ;;
-        10)
+        9)
             THEMESTR="nightfox"
             ;;
-        11)
+        10)
             THEMESTR="rose-pine"
             ;;
-        12)
+        11)
             THEMESTR="kanagawa_wave"
             ;;
-        13)
+        12)
             THEMESTR="kanagawa_dragon"
             ;;
-        14)
+        13)
             THEMESTR="dracula"
             ;;
-        15)
+        14)
             THEMESTR="inferno"
             ;;
-        16)
+        15)
             THEMESTR="nordic"
             ;;
-        17)
+        16)
             THEMESTR="oceanic_next"
             ;;
     esac
@@ -66,6 +63,7 @@ if [ $alacritty -eq 1 ]; then
     alacritty msg config -r -w -1
 else
     #if [[ $TERMEMU =~ "wezterm" ]] then
+    LOCALTHEME=$((($THEMENUM % 19) + 1))
     case $LOCALTHEME in
         1)
             THEMESTR="tokyonight-night"
@@ -118,19 +116,10 @@ else
         17)
             THEMESTR="nordfox"
             ;;
-        # 18)
-        #     THEMESTR="cyberpunk"
-        #     ;;
-        19)
+        18)
             THEMESTR="Solarized Dark (Gogh)"
             ;;
-        20)
-            THEMESTR="Fairy Floss (Gogh)"
-            ;;
-        21)
-            THEMESTR="Eldritch"
-            ;;
-        22)
+        19)
             THEMESTR="kanagawabones"
             ;;
     esac

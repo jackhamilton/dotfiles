@@ -101,12 +101,6 @@ return {
         opts = {},
     },
     {
-        "eldritch-theme/eldritch.nvim",
-        lazy = false,
-        priority = 1000,
-        opts = {},
-    },
-    {
         "sho-87/kanagawa-paper.nvim",
         lazy = false,
         priority = 1000,
