@@ -20,5 +20,9 @@ config.window_decorations = "RESIZE"
 local theme = require('dynamic_theme')
 config.color_scheme = "" .. theme
 
+{{ if eq .chezmoi.os "darwin"}}
+config.default_cwd = "/Users/jackhamilton/Documents/GitHub/grindr/"
+{{ end }}
+
 -- and finally, return the configuration to wezterm
 return config
