@@ -233,25 +233,25 @@ else
 end
 
 -- C/C++
-if vim.fn.executable("clangd") == 1 then
-    local clangd_defaults = require("lspconfig.server_configurations.clangd")
-    local clangd_configs = vim.tbl_deep_extend("force", clangd_defaults.default_config, defaults, {
-        cmd = {
-            "clangd",
-            "-j=4",
-            "--background-index",
-            "--clang-tidy",
-            "--inlay-hints",
-            "--fallback-style=llvm",
-            "--all-scopes-completion",
-            "--completion-style=detailed",
-            "--header-insertion=iwyu",
-            "--header-insertion-decorators",
-            "--pch-storage=memory",
-        },
-    })
-    -- require("clangd_extensions").setup({ server = clangd_configs })
-end
+-- if vim.fn.executable("clangd") == 1 then
+--     local clangd_defaults = require("lspconfig.server_configurations.clangd")
+--     local clangd_configs = vim.tbl_deep_extend("force", clangd_defaults.default_config, defaults, {
+--         cmd = {
+--             "clangd",
+--             "-j=4",
+--             "--background-index",
+--             "--clang-tidy",
+--             "--inlay-hints",
+--             "--fallback-style=llvm",
+--             "--all-scopes-completion",
+--             "--completion-style=detailed",
+--             "--header-insertion=iwyu",
+--             "--header-insertion-decorators",
+--             "--pch-storage=memory",
+--         },
+--     })
+--     -- require("clangd_extensions").setup({ server = clangd_configs })
+-- end
 
 -- Java
 if vim.fn.executable("jdtls") == 1 then

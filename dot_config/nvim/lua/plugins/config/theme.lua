@@ -1,5 +1,5 @@
 local themenum = tonumber(os.getenv("THEMENUM"))
-themenum = themenum % 20 + 1
+themenum = themenum % 19 + 1
 if themenum == 1 then
     require('tokyonight').setup({})
     vim.cmd [[colorscheme tokyonight-night]]
@@ -77,10 +77,6 @@ elseif themenum == 18 then
     vim.cmd [[colorscheme fluoromachine]]
     require("notify")("fluoromachine")
 elseif themenum == 19 then
-    require('eldritch').setup({})
-    vim.cmd [[colorscheme eldritch]]
-    require("notify")("eldritch")
-elseif themenum == 20 then
     require('kanagawa-paper').setup({})
     vim.cmd [[colorscheme kanagawa-paper]]
     require("notify")("kanagawa-paper")
