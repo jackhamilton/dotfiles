@@ -18,7 +18,7 @@ window#waybar.hidden {
     margin-right: 8px;
     border-radius: 10px;
     transition: none;
-    background: #1d1f21;
+    background: #2d1f0f;
     opacity: 0.9;
 }
 
@@ -55,7 +55,7 @@ window#waybar.hidden {
     border-radius: 10px 0px 0px 10px;
     transition: none;
     color: #ffffff;
-    background: #1d1f21;
+    background: #2f2d0d;
     opacity: 0.9;
 }
 
@@ -65,7 +65,7 @@ window#waybar.hidden {
     border-radius: 0px 10px 10px 0px;
     transition: none;
     color: #ffffff;
-    background: #1d1f21;
+    background: #2f2d0d;
     opacity: 0.9;
 }
 
@@ -75,7 +75,7 @@ window#waybar.hidden {
     border-radius: 10px 0px 0px 10px;
     transition: none;
     color: #ffffff;
-    background: #1d1f21;
+    background: #0f2f0d;
     opacity: 0.9;
 }
 
@@ -85,7 +85,7 @@ window#waybar.hidden {
     border-radius: 0px 10px 10px 0px;
     transition: none;
     color: #ffffff;
-    background: #1d1f21;
+    background: #0f2f0d;
     opacity: 0.9;
 }
 
@@ -125,7 +125,7 @@ window#waybar.hidden {
     border-radius: 10px;
     transition: none;
     color: #ffffff;
-    background: #1d1f21;
+    background: #0d1d2f;
     opacity: 0.9;
 }
 
@@ -140,7 +140,7 @@ window#waybar.hidden {
     border-radius: 10px 0px 0px 10px;
     transition: none;
     color: #ffffff;
-    background: #1d1f21;
+    background: #1d0d2f;
     opacity: 0.9;
 }
 
@@ -151,7 +151,7 @@ window#waybar.hidden {
     border-radius: 0px 10px 10px 0px;
     transition: none;
     color: #ffffff;
-    background: #1d1f21;
+    background: #1d0d2f;
     opacity: 0.9;
 }
 
@@ -218,7 +218,7 @@ window#waybar.hidden {
     border-radius: 10px;
     transition: none;
     color: #ffffff;
-    background: #1d1f21;
+    background: #2d0f19;
     opacity: 0.9;
 }
 
