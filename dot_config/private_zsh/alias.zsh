@@ -16,6 +16,7 @@ alias tlist="tmux list-sessions"
 alias tdet="tmux detach"
 alias tatt="tmuxAttach"
 alias tmain="tmuxAttachMain"
+alias lg="lazygit"
 gitup ()
 {
     git add .

@@ -18,10 +18,10 @@ au({ "FocusGained", "TermClose", "TermLeave" }, {
 -- })
 
 -- Auto cd to current buffer path
-au("BufEnter", {
-    pattern = "*",
-    command = "silent! lcd %:p:h",
-})
+-- au("BufEnter", {
+--     pattern = "*",
+--     command = "silent! lcd %:p:h",
+-- })
 
 -- Automatically create directory when saving a file in case it does not exist
 au("BufWritePre", {
