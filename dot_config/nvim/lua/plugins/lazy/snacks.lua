@@ -37,7 +37,7 @@ return {
                     local cmds = {
                         {
                             title = "Notifications",
-                            cmd = "gh notify -s -ap -n5",
+                            cmd = "gh notify -s -ap -n5 -e \"review_requested\"",
                             action = function()
                                 vim.ui.open("https://github.com/notifications")
                             end,
