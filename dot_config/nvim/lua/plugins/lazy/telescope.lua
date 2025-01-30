@@ -18,6 +18,7 @@ return {
         event = "LspAttach",
         config = function()
             require("telescope").load_extension("ui-select")
+            require("telescope").load_extension("aerial")
         end,
     },
     {
@@ -44,7 +45,7 @@ return {
                         require("telescope.themes").get_dropdown {
 
                         }
-                    }
+                    },
                 },
             }
         end,

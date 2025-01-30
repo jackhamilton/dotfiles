@@ -21,6 +21,7 @@ local wk = require('which-key')
 wk.add({
     { "<leader>t",    group = "Telescope" },
     { "<leader>tb",   "<cmd>Telescope buffers<cr>",                       desc = "Buffers" },
+    { "<leader>ta",   "<cmd>Telescope aerial<cr>",                        desc = "Aerial" },
     { "<leader>tc",   "<cmd>Telescope commands<cr>",                      desc = "Commands" },
     { "<leader>te",   "<cmd>Telescope treesitter<cr>",                    desc = "Treesitter" },
     { "<leader>tf",   "<cmd>Telescope find_files<cr>",                    desc = "Find files" },

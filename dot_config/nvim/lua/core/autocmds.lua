@@ -23,6 +23,14 @@ au({ "FocusGained", "TermClose", "TermLeave" }, {
 --     command = "silent! lcd %:p:h",
 -- })
 
+--minifiles rename integrations
+vim.api.nvim_create_autocmd("User", {
+  pattern = "MiniFilesActionRename",
+  callback = function(event)
+    Snacks.rename.on_rename_file(event.data.from, event.data.to)
+  end,
+})
+
 -- Automatically create directory when saving a file in case it does not exist
 au("BufWritePre", {
     pattern = "*",
