@@ -17,6 +17,7 @@ alias tdet="tmux detach"
 alias tatt="tmuxAttach"
 alias tmain="tmuxAttachMain"
 alias lg="lazygit"
+alias gdvim="nvim --listen /tmp/godot.pipe"
 gitup ()
 {
     git add .
