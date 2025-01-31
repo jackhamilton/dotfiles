@@ -1,5 +1,10 @@
 [Default Applications]
 text/html=firefox.desktop
+image/png=krita_png.desktop
+application/vnd.microsoft.portable-executable=wine.desktop
 
 [Added Associations]
 text/html=firefox.desktop;
+video/x-matroska=vlc.desktop;
+image/png=krita_png.desktop;
+application/vnd.microsoft.portable-executable=wine.desktop;

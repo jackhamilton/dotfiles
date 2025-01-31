@@ -22,7 +22,9 @@ znap eval fzf "fzf --zsh"
 znap eval zoxide "zoxide init zsh"
 znap eval direnv "direnv hook zsh"
 znap eval starship "starship init zsh"
+{{ if eq .chezmoi.os "Darwin" }}
 znap eval rbenv "rbenv init - --no-rehash zsh"
+{{ end }}
 
 # MARK: Source extensions
 source ~/.config/zsh/alias.zsh
@@ -31,8 +33,3 @@ source ~/.config/zsh/zsh-theme.zsh
 source ~/.config/zsh/plugins.zsh
 
 setopt interactivecomments
-
-# if command -v tmux &> /dev/null && [[ -z "$TMUX" ]]
-# then
-#     tmux new-session -c $PWD
-# fi
