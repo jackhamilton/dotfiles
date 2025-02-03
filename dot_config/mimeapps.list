@@ -2,9 +2,13 @@
 text/html=firefox.desktop
 image/png=krita_png.desktop
 application/vnd.microsoft.portable-executable=wine.desktop
+application/x-msdownload=wine.desktop
+inode/directory=thunar.desktop
 
 [Added Associations]
 text/html=firefox.desktop;
 video/x-matroska=vlc.desktop;
 image/png=krita_png.desktop;
 application/vnd.microsoft.portable-executable=wine.desktop;
+application/x-msdownload=wine.desktop;
+inode/directory=thunar.desktop;

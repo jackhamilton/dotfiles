@@ -10,6 +10,40 @@ return {
             "nvim-neotest/nvim-nio",
         },
         lazy = true,
+        keys = {
+            {
+                "<leader>Do",
+                mode = "n",
+                function()
+                    require("dapui").open()
+                end,
+                desc = "Open"
+            },
+            {
+                "<leader>Dc",
+                mode = "n",
+                function()
+                    require("dapui").close()
+                end,
+                desc = "Close"
+            },
+            {
+                "<leader>Dt",
+                mode = "n",
+                function()
+                    require("dapui").toggle()
+                end,
+                desc = "Toggle"
+            },
+            {
+                "<leader>Db",
+                mode = "n",
+                function()
+                    require("dap").toggle_breakpoint()
+                end,
+                desc = "Breakpoint"
+            }
+        },
         config = function()
             require("dapui").setup({
                 controls = {

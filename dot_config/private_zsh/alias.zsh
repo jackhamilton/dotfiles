@@ -2,6 +2,7 @@ alias cd=z
 alias cat="bat -P"
 alias curl=curlie
 alias pacin="sudo pacman -S"
+alias pacupd="paru -Syu"
 alias ls=lsd
 alias gcc="sccache gcc"
 alias cmake="cmake -DCMAKE_C_COMPILER_LAUNCHER=sccache -DCMAKE_CXX_COMPILER_LAUNCHER=sccache"
@@ -18,6 +19,8 @@ alias tatt="tmuxAttach"
 alias tmain="tmuxAttachMain"
 alias lg="lazygit"
 alias gdvim="nvim --listen /tmp/godot.pipe"
+alias ovpn="sudo openvpn --config /$HOME/Downloads/uk-644.protonvpn.udp.ovpn --auth-user-pass /opt/ovpn/login.conf"
+alias gdbeta="$HOME/Downloads/Godot_v4.4-beta1_linux.x86_64"
 gitup ()
 {
     git add .

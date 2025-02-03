@@ -347,6 +347,7 @@ for_window [app_id="pavucontrol"] floating enable, resize set width 680 height 4
     move position center
 for_window [app_id="nm-connection-editor"] floating enable, move position center
 for_window [app_id="gnome-calculator"] floating enable, move center
+for_window [class="Aztec DST"] floating enable, move position top
 for_window [class="^.*"] inhibit_idle fullscreen
 for_window [app_id="^.*"] inhibit_idle fullscreen
 
