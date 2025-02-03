@@ -37,7 +37,7 @@ nvim_themename = "catppuccin-mocha"
 
 [[theme]]
 term = "GruvboxDark"
-nvim_plugin = "gruvbox" # none?
+nvim_plugin = "none" # none?
 nvim_themename = "gruvbox"
 
 [[theme]]
@@ -77,7 +77,7 @@ nvim_themename = "sonokai"
 
 [[theme]]
 term = "Edge Dark (base16)"
-nvim_plugin = "edge" # none
+nvim_plugin = "none" # none
 nvim_themename = "edge"
 
 [[theme]]

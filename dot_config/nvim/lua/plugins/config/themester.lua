@@ -1,6 +1,8 @@
 local plug = os.getenv("NVIM_THEME_PLUGIN") or "nightfox"
 local theme = os.getenv("NVIM_THEME") or "nightfox"
 
-require(plug).setup({})
+if plug ~= "none" then
+    require(plug).setup({})
+end
 vim.cmd("colorscheme " .. theme)
 require("notify")(theme)
