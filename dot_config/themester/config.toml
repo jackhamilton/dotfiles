@@ -1,3 +1,5 @@
+cache_file_location = "~/.config/themester/.themecache"
+
 term_env_var_name = "TERM_THEME"
 nvim_plugin_env_var_name = "NVIM_THEME_PLUGIN"
 nvim_theme_env_var_name = "NVIM_THEME"

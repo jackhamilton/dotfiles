@@ -13,6 +13,6 @@ znap source desyncr/auto-ls
 znap source zpm-zsh/undollar
 znap source jeffreytse/zsh-vi-mode
 #znap source Junker/zsh-archlinux@main
-themer
+eval $(themester -l)
 
 znap install zsh-users/zsh-completions
