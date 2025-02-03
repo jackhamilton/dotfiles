@@ -1,3 +1,5 @@
+# Replaced by themester, no longer loaded
+
 RANDOMSEED=$(date +%s)
 RANDOM=$(($RANDOMSEED/3600))
 export THEMENUM=$RANDOM
@@ -86,7 +88,7 @@ else
         7)
             THEMESTR="GruvboxDark"
             ;;
-        8)
+       8)
             THEMESTR="Gruvbox Dark (Gogh)"
             ;;
         9)
