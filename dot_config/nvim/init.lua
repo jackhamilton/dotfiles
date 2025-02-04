@@ -22,7 +22,14 @@ if not rocks_enable then
         table.insert(pluginDirectories, { import = "plugins.osx" })
     end
     require("lazy").setup({
-        spec = pluginDirectories
+        spec = pluginDirectories,
+        checker = {
+            enabled = true,
+            frequency = 14400,
+        },
+        dev = {
+            path = "~/Documents/GitHub/"
+        }
     })
 else
     do
