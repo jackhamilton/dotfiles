@@ -74,7 +74,7 @@ nvim_themename = "everblush"
 
 [[theme]]
 term = "Sonokai (Gogh)"
-nvim_plugin = "sonokai"
+nvim_plugin = "none"
 nvim_themename = "sonokai"
 
 [[theme]]
