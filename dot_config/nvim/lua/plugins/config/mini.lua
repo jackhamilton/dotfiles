@@ -9,13 +9,13 @@ require("mini.pairs").setup({
 --- Surround
 require("mini.surround").setup({
     mappings = {
-        add = '<leader>sa',
-        delete = '<leader>sd',
-        find = '<leader>sf',
-        find_left = '<leader>sF',
-        highlight = '<leader>sh',
-        replace = '<leader>sr',
-        update_n_lines = '<leader>sn',
+        add = '<leader>Sa',
+        delete = '<leader>Sd',
+        find = '<leader>Sf',
+        find_left = '<leader>SF',
+        highlight = '<leader>Sh',
+        replace = '<leader>Sr',
+        update_n_lines = '<leader>Sn',
     }
 })
 
