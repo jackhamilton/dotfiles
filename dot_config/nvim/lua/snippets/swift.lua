@@ -59,7 +59,7 @@ return {
         t({
             "//",
             "//",
-            "// Copyright 2024 by Grindr LLC,",
+            "// Copyright 2025 by Grindr LLC,",
             "// All rights reserved.",
             "//",
             "// This software is confidential and proprietary information of",
@@ -75,7 +75,7 @@ return {
         t({
             "//",
             "//",
-            "// Copyright 2024 by Grindr LLC,",
+            "// Copyright 2025 by Grindr LLC,",
             "// All rights reserved.",
             "//",
             "// This software is confidential and proprietary information of",
@@ -86,21 +86,18 @@ return {
             "//",
             "import Foundation",
             "import GrindrDesignKit",
+            "import GrindrMacros",
             "import RxCocoa",
-            "import RxSwift",
-            ""
+            "import RxSwift"
         }),
+        t({"", "@RequiredCoderInit"}),
         t("class "), i(1, "Name"), t(": UIView {"),
         t({
+            "",
             "   init() {",
             "       super.init(frame: .zero)",
             "",
             "       installSubviews()",
-            "   }",
-            "",
-            "   @available(*, unavailable)",
-            "   required init?(coder: NSCoder) {",
-            "       fatalError(\"init(coder:) has not been implemented\")",
             "   }",
             "",
             "   private func installSubviews() {",
@@ -109,9 +106,85 @@ return {
             "}",
         })
     }),
+    s("grvc", fmt([[
+    //
+    // Copyright 2025 by Grindr LLC,
+    // All rights reserved.
+    //
+    // This software is confidential and proprietary information of
+    // Grindr LLC ("Confidential Information").
+    // You shall not disclose such Confidential Information and shall use
+    // it only in accordance with the terms of the license agreement
+    // you entered into with Grindr LLC.
+
+    import Foundation
+    import GrindrMacros
+    import RxSwift
+
+    @RequiredCoderInit
+    class <>Controller: UIViewController {
+        let viewModel: <>ViewModel
+        private lazy var hostedView = <>View()
+        private let disposeBag = DisposeBag()
+
+        //MARK: Lifecycle
+        init(viewModel: <>ViewModel) {
+            self.viewModel = viewModel
+
+            super.init(nibName: nil, bundle: nil)
+        }
+
+        override func viewDidLoad() {
+            super.viewDidLoad()
+
+            installSubviews()
+            installBindings()
+        }
+
+        func installSubviews() {
+            hostedView
+                .disableAutoresizingMask()
+                .addedToSuperview(view)
+                .anchorToSuperviewEdges()
+        }
+
+        //MARK: Bindings
+        func installBindings() {
+
+        }
+    }
+
+    class <>ViewModel {
+
+    }
+    ]], {
+        i(1, "Name"),
+        d(2, function(args)
+            return sn(nil, {
+                i(1, args[1])
+            })
+        end, { 1 }),
+        d(3, function(args)
+            return sn(nil, {
+                i(1, args[1])
+            })
+        end, { 1 }),
+        d(4, function(args)
+            return sn(nil, {
+                i(1, args[1])
+            })
+        end, { 1 }),
+        d(5, function(args)
+            return sn(nil, {
+                i(1, args[1])
+            })
+        end, { 1 }),
+    }, {
+        delimiters = "<>"
+    })),
     s("grtest", fmt([[
     //
-    // Copyright 2024 by Grindr LLC,
+    // Copyright 2025 by Grindr LLC,
     // All rights reserved.
     //
     // This software is confidential and proprietary information of

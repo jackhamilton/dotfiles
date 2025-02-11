@@ -39,11 +39,13 @@ cmd-shift-right = 'move right'
 cmd-f = 'fullscreen'
 
 cmd-s = 'layout v_accordion' # 'layout stacking' in i3
-cmd-w = 'layout h_accordion' # 'layout tabbed' in i3
+cmd-a = 'layout h_accordion' # 'layout tabbed' in i3
 cmd-e = 'layout tiles horizontal vertical' # 'layout toggle split' in i3
 
 cmd-shift-space = 'layout floating tiling' # 'floating toggle' in i3
 
+cmd-w = 'exec-and-forget open -n /Applications/Firefox.app'
+cmd-enter = 'exec-and-forget open -n /Applications/WezTerm.app'
 # Not supported, because this command is redundant in AeroSpace mental model.
 # See: https://nikitabobko.github.io/AeroSpace/guide#floating-windows
 #cmd-space = 'focus toggle_tiling_floating'
