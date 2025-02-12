@@ -75,6 +75,9 @@ exec xrandr --output DP-1 --primary
 output * background ~/Downloads/mountain.jpg fill
 bindsym $mod+ctrl+0 resize set width 2560px height 1440px
 
+input 9011:26214:ydotoold_virtual_device {
+    accel_profile "flat"
+}
 ### Input configuration
 #
 # Example configuration:
@@ -149,6 +152,8 @@ bindsym $mod+w exec firefox
 # Start your file manager
 bindsym $mod+e exec nautilus
 
+bindsym $mod+i exec /home/jack/.local/bin/hints
+bindsym $mod+y exec /home/jack/.local/bin/hints --mode scroll
 # Start LibreOffice
 # bindsym $mod+o exec libreoffice
 

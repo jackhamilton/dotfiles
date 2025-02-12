@@ -13,41 +13,41 @@ return {
     --         { "nvim-telescope/telescope-fzy-native.nvim" },
     --     },
     -- },
-    {
-        "nvim-telescope/telescope-ui-select.nvim",
-        event = "LspAttach",
-        config = function()
-            require("telescope").load_extension("ui-select")
-            require("telescope").load_extension("aerial")
-        end,
-    },
-    {
-        'nvim-telescope/telescope.nvim',
-        tag = '0.1.5',
-        lazy = true,
-        config = function()
-            local actions = require("telescope.actions")
-            require("telescope").setup {
-                defaults = {
-                    mappings = {
-                        i = {
-                            ["<esc>"] = actions.close
-                        },
-                    },
-                },
-                pickers = {
-                    buffers = {
-                        sort_lastused = true
-                    }
-                },
-                extensions = {
-                    ["ui-select"] = {
-                        require("telescope.themes").get_dropdown {
-
-                        }
-                    },
-                },
-            }
-        end,
-    },
+    -- {
+    --     "nvim-telescope/telescope-ui-select.nvim",
+    --     event = "LspAttach",
+    --     config = function()
+    --         require("telescope").load_extension("ui-select")
+    --         require("telescope").load_extension("aerial")
+    --     end,
+    -- },
+    -- {
+    --     'nvim-telescope/telescope.nvim',
+    --     tag = '0.1.5',
+    --     lazy = true,
+    --     config = function()
+    --         local actions = require("telescope.actions")
+    --         require("telescope").setup {
+    --             defaults = {
+    --                 mappings = {
+    --                     i = {
+    --                         ["<esc>"] = actions.close
+    --                     },
+    --                 },
+    --             },
+    --             pickers = {
+    --                 buffers = {
+    --                     sort_lastused = true
+    --                 }
+    --             },
+    --             extensions = {
+    --                 ["ui-select"] = {
+    --                     require("telescope.themes").get_dropdown {
+    --
+    --                     }
+    --                 },
+    --             },
+    --         }
+    --     end,
+    -- },
 }

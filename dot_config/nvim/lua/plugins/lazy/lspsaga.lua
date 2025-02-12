@@ -52,10 +52,6 @@ return {
                 -- kbd("n", "<leader>lgh", vim.lsp.buf.type_hierarchy, { buffer = true, desc = "Show type hierarchy" }),
                 { "<leader>lgr", vim.lsp.buf.references,       desc = "List references" },
                 { "<leader>lgo", vim.lsp.buf.outgoing_calls,   desc = "List outgoing calls" },
-                { "<leader>lt",  group = "Telescope" },
-                { "<leader>lts", '<cmd>Telescope lsp_workspace_symbols<cr>',         desc = "Symbol search" },
-                { "<leader>ltS", '<cmd>Telescope lsp_dynamic_workspace_symbols<cr>', desc = "Symbol search (all workspace)" },
-                { "<leader>ltr", '<cmd>Telescope lsp_references<cr>',                desc = "References" },
         },
     },
 }
