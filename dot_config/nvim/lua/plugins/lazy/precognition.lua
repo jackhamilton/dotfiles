@@ -1,12 +1,12 @@
 return {
-    -- {
-    --     "tris203/precognition.nvim",
-    --     config = function()
-    --         require("precognition").toggle()
-    --     end,
-    --     opts = {
-    --         startVisible = true,
-    --     },
-    --     lazy = false
-    -- },
+    {
+        "tris203/precognition.nvim",
+        opts = {
+            startVisible = true,
+        },
+        keys = {
+            { "<leader>tP", function() require("precognition").toggle() end, desc = "Precognition"},
+        },
+        lazy = false
+    },
 }
