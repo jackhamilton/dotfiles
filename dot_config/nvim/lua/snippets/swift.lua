@@ -237,6 +237,17 @@ return {
     }, {
         delimiters = "<>"
     })),
+    s("grimagebutton", fmt([[
+    private let <> = UIButton.with {
+        $0.setImageType(.<>, for: .normal)
+        $0.tintColor = .swatch(.pureWhite)
+    }
+    ]], {
+        i(1, "Variable name"),
+        i(2, "ImageType"),
+    }, {
+        delimiters = "<>"
+    })),
     -- Grindr label
     s("grlabel", fmt([[
     private lazy var rateLabel = UILabel.with {
