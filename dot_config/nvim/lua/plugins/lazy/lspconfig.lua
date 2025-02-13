@@ -3,7 +3,6 @@ local function get_sourcekit()
     if mac == 1 then
         return {
             cmd = { "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/sourcekit-lsp" },
-            -- root_dir = require 'lspconfig'.util.root_pattern("Package.swift", ".git"),
             capabilities = {
                 workspace = {
                     didChangeWatchedFiles = {
@@ -11,7 +10,7 @@ local function get_sourcekit()
                     }
                 }
             },
-            filetypes = { "swift" },
+            root_dir = vim.fs.root(0, "*.xcworkspace"),
         }
     else
         return {
@@ -22,8 +21,7 @@ local function get_sourcekit()
                     }
                 }
             },
-            -- root_dir = require 'lspconfig'.util.root_pattern("Package.swift"),
-            filetypes = { "swift" },
+            root_dir = vim.fs.root(0, "*.xcworkspace"),
         }
     end
 end
@@ -38,7 +36,7 @@ return {
                 sourcekit = get_sourcekit(),
                 gdscript = {
                     name = "godot",
-                    cmd = vim.lsp.rpc.connect("127.0.0.1", "6005"),
+                    cmd = vim.lsp.rpc.connect("127.0.0.1", 6005),
                 },
             }
         },
