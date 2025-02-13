@@ -1,6 +1,6 @@
 return {
     'jackhamilton/themester.nvim',
-    dir = "~/Documents/GitHub/themester.nvim",
+    -- dir = "~/Documents/GitHub/themester.nvim",
     lazy = false,
     opts = {
         themester_plugin_env_var = "NVIM_THEME_PLUGIN",
