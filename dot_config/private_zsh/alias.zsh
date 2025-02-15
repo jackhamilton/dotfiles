@@ -20,7 +20,7 @@ alias tmain="tmuxAttachMain"
 alias lg="lazygit"
 alias gdvim="nvim --listen /tmp/godot.pipe"
 alias ovpn="sudo openvpn --config /$HOME/Downloads/uk-644.protonvpn.udp.ovpn --auth-user-pass /opt/ovpn/login.conf"
-alias gdbeta="$HOME/Downloads/Godot_v4.4-beta1_linux.x86_64"
+alias gdbeta="$HOME/Downloads/Godot_v4.4-beta2_linux.x86_64"
 alias themer="eval \$(themester -r)"
 gitup ()
 {
