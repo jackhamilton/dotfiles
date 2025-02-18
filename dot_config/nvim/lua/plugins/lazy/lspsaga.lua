@@ -1,7 +1,12 @@
 return {
     {
         "nvimdev/lspsaga.nvim",
-        config = true,
+        opts = {
+            lightbulb = {
+                enable = false,
+                enable_in_insert = false,
+            },
+        },
         event = 'LspAttach',
         dependencies = {
             "nvim-treesitter/nvim-treesitter",
@@ -30,7 +35,7 @@ return {
                             focusable = false,
                             close_events = { "BufLeave", "CursorMoved", "InsertEnter", "FocusLost" },
                             border = "rounded",
-                            source = "always",
+                            source = true,
                             prefix = " ",
                             scope = "cursor",
                         })

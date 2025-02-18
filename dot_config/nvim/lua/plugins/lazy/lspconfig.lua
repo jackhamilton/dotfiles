@@ -2,7 +2,13 @@ local function get_sourcekit()
     local mac = vim.fn.OSX()
     if mac == 1 then
         return {
-            cmd = { "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/sourcekit-lsp" },
+            cmd = { "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/sourcekit-lsp",
+                "-Xclangd",
+                "-DCMAKE_C_COMPILER_LAUNCHER=$(which sccache)",
+                "-Xclangd",
+                "-DCMAKE_CXX_COMPILER_LAUNCHER=$(which sccache)",
+                "--default-workspace-type",
+                "buildServer" },
             capabilities = {
                 workspace = {
                     didChangeWatchedFiles = {
