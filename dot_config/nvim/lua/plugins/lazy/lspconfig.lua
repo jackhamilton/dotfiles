@@ -39,6 +39,7 @@ return {
         opts = {
             servers = {
                 lua_ls = {},
+                ts_ls = {},
                 sourcekit = get_sourcekit(),
                 gdscript = {
                     name = "godot",
