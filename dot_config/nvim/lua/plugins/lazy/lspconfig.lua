@@ -40,6 +40,7 @@ return {
             servers = {
                 lua_ls = {},
                 ts_ls = {},
+                pyright = {},
                 sourcekit = get_sourcekit(),
                 gdscript = {
                     name = "godot",

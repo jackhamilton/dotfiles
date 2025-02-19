@@ -123,9 +123,9 @@ exec nm-applet --indicator
 exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec autotiling && sleep 1.5s
 workspace 3
-exec armcord
+exec vesktop --force-renderer-accessibility
 workspace 1
-exec firefox
+exec zen-browser
 # exec_always {
 #     gsettings set $gnome-schema gtk-theme 'Arc-Dark'
 #     gsettings set $gnome-schema icon-theme 'Papirus'
@@ -146,7 +146,8 @@ bindsym $mod+q kill
 bindsym $mod+d exec ~/.config/rofi/launchers/type-6/launcher.sh
 
 # Start your browser
-bindsym $mod+w exec firefox
+bindsym $mod+w exec zen-browser
+
 # bindsym $mod+Shift+w exec microsoft-edge-beta --enable-features=UseOzonePlatform --ozone-platform=wayland
 
 # Start your file manager
@@ -266,8 +267,9 @@ bindsym $mod+Shift+Ctrl+0 move container to workspace number 0; workspace number
 exec sworkstyle &> /tmp/sworkstyle.log
 
 #gaps and borders
-default_border pixel 3
-# client.focused #4c7899 #285577 #ffffff #2e9ef4 #01fd1b
+default_border pixel 4
+client.focused #4c7899 #285577 #ffffff #2e9ef4 #2e9ef4
+#01fd1b
 default_floating_border normal 2
 gaps inner 10
 
