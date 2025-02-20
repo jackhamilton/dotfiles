@@ -3,7 +3,7 @@ return {
         'smoka7/hop.nvim',
         version = "*",
         opts = {
- arstgmneio           keys = 'arstgmneioxcdhwfpluy',
+            keys = 'arstneiogmzxcdhvkqwfpluyjb',
         },
         keys = {
             {
