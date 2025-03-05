@@ -44,7 +44,7 @@ cmd-e = 'layout tiles horizontal vertical' # 'layout toggle split' in i3
 
 cmd-shift-space = 'layout floating tiling' # 'floating toggle' in i3
 
-cmd-w = 'exec-and-forget open -n /Applications/Firefox.app'
+cmd-w = 'exec-and-forget open -n /Applications/Zen\ Browser.app'
 cmd-enter = 'exec-and-forget open -n /Applications/WezTerm.app'
 # Not supported, because this command is redundant in AeroSpace mental model.
 # See: https://nikitabobko.github.io/AeroSpace/guide#floating-windows
@@ -74,6 +74,17 @@ cmd-shift-7 = 'move-node-to-workspace 7'
 cmd-shift-8 = 'move-node-to-workspace 8'
 cmd-shift-9 = 'move-node-to-workspace 9'
 cmd-shift-0 = 'move-node-to-workspace 10'
+
+cmd-ctrl-shift-1 = 'move-node-to-workspace 1 --focus-follows-window'
+cmd-ctrl-shift-2 = 'move-node-to-workspace 2 --focus-follows-window'
+cmd-ctrl-shift-3 = 'move-node-to-workspace 3 --focus-follows-window'
+cmd-ctrl-shift-4 = 'move-node-to-workspace 4 --focus-follows-window'
+cmd-ctrl-shift-5 = 'move-node-to-workspace 5 --focus-follows-window'
+cmd-ctrl-shift-6 = 'move-node-to-workspace 6 --focus-follows-window'
+cmd-ctrl-shift-7 = 'move-node-to-workspace 7 --focus-follows-window'
+cmd-ctrl-shift-8 = 'move-node-to-workspace 8 --focus-follows-window'
+cmd-ctrl-shift-9 = 'move-node-to-workspace 9 --focus-follows-window'
+cmd-ctrl-shift-0 = 'move-node-to-workspace 10 --focus-follows-window'
 
 cmd-shift-c = 'reload-config'
 
