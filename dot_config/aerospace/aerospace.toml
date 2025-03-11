@@ -43,6 +43,7 @@ cmd-shift-a = 'layout h_accordion' # 'layout tabbed' in i3
 cmd-e = 'layout tiles horizontal vertical' # 'layout toggle split' in i3
 
 cmd-shift-space = 'layout floating tiling' # 'floating toggle' in i3
+cmd-alt-q = 'close-all-windows-but-current'
 
 cmd-w = 'exec-and-forget open -n /Applications/Zen\ Browser.app'
 cmd-enter = 'exec-and-forget open -n /Applications/WezTerm.app'
