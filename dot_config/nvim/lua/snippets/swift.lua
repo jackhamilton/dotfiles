@@ -71,7 +71,7 @@ return {
         })
     }),
     -- Grindr simple view snippet
-    s("grview", {
+    s("gruiview", {
         t({
             "//",
             "//",
@@ -106,7 +106,7 @@ return {
             "}",
         })
     }),
-    s("grvc", fmt([[
+    s("gruivc", fmt([[
     //
     // Copyright 2025 by Grindr LLC,
     // All rights reserved.
@@ -182,7 +182,7 @@ return {
     }, {
         delimiters = "<>"
     })),
-    s("grtest", fmt([[
+    s("grunittest", fmt([[
     //
     // Copyright 2025 by Grindr LLC,
     // All rights reserved.
@@ -197,12 +197,12 @@ return {
     @testable import grindrx
     import XCTest
 
-    class <>: XCTestCase {
-        var sut: <>
+    class <>Tests: XCTestCase {
+        var sut: <>!
 
         override func setUp() {
             super.setUp()
-            Container.shared.reset()
+            @resetDependencies
 
             sut = <>(<>)
         }
@@ -212,17 +212,228 @@ return {
         }
     }
     ]], {
-        i(1, "Class Name"),
-        i(2, "SUT Type"),
+        i(1, "SUT Type"),
+        d(2, function(args)
+            return sn(nil, {
+                i(1, args[1])
+            })
+        end, { 1 }),
         d(3, function(args)
             return sn(nil, {
                 i(1, args[1])
             })
-        end, { 2 }),
+        end, { 1 }),
         i(0)
     }, {
         delimiters = "<>"
     })),
+    -- Grindr SwiftUI View
+    s({trig="grview", dscr="Grindr SwiftUI View"},
+        fmt([[
+        //
+        // Copyright 2025 by Grindr LLC,
+        // All rights reserved.
+        //
+        // This software is confidential and proprietary information of
+        // Grindr LLC ("Confidential Information").
+        // You shall not disclose such Confidential Information and shall use
+        // it only in accordance with the terms of the license agreement
+        // you entered into with Grindr LLC.
+        //
+
+        import SwiftUI
+
+        /// <>
+        public struct <>View: View {
+            // MARK: Data
+            <>
+
+            public init(<>) {
+                self.<>
+            }
+
+            public var body: some View {
+                // body
+            }
+        }
+
+        #Preview {
+            <>View_Previews.previews
+        }
+        ]], {
+            i(1, "Description"),
+            i(2, "Name"),
+            i(0),
+            i(3, "Parameters"),
+            i(4, "Set parameters"),
+            d(5, function(args)
+                return sn(nil, {
+                    i(2, args[1])
+                })
+            end, { 2 }),
+        }, {
+            delimiters = "<>"
+        })
+    ),
+    -- Grindr View Model
+    s({trig="grviewmodel", dscr="Grindr View Model"},
+        fmt([[
+        //
+        // Copyright 2025 by Grindr LLC,
+        // All rights reserved.
+        //
+        // This software is confidential and proprietary information of
+        // Grindr LLC ("Confidential Information").
+        // You shall not disclose such Confidential Information and shall use
+        // it only in accordance with the terms of the license agreement
+        // you entered into with Grindr LLC.
+        //
+
+        import Combine
+
+        public struct <>ViewModel {
+            // MARK: Data
+            <>
+
+            public init(<>) {
+                self.<>
+            }
+        }
+        ]], {
+            i(1,"Name"),
+            i(0),
+            i(2,"Parameters"),
+            i(3,"Sets")
+        }, {
+            delimiters = "<>"
+        })
+    ),
+    -- Grindr Preview Provider
+    s({trig="grpreview", dscr="Grindr Preview Provider"},
+        fmt([[
+        //
+        // Copyright 2025 by Grindr LLC,
+        // All rights reserved.
+        //
+        // This software is confidential and proprietary information of
+        // Grindr LLC ("Confidential Information").
+        // You shall not disclose such Confidential Information and shall use
+        // it only in accordance with the terms of the license agreement
+        // you entered into with Grindr LLC.
+        //
+
+        import SwiftUI
+
+        public struct <>View_Previews: PreviewProvider {
+            public static var snapshots: PreviewSnapshots<<PreviewState>> {
+                PreviewSnapshots(
+                    states: [
+                        .init(name: "basic"),
+                    ],
+                    configure: { config in
+                        <>View()
+                    }
+                )
+            }
+
+            public struct PreviewState: NamedPreviewState {
+                public var name: String
+            }
+        }
+        ]], {
+            i(1,"Name"),
+            d(2, function(args)
+                return sn(nil, {
+                    i(1, args[1])
+                })
+            end, { 1 }),
+        }, {
+            delimiters = "<>"
+        })
+    ),
+    -- Grindr Snapshot Test
+    s({trig="grsnapshot", dscr="Grindr Snapshot Test"},
+        fmt([[
+        //
+        // Copyright 2025 by Grindr LLC,
+        // All rights reserved.
+        //
+        // This software is confidential and proprietary information of
+        // Grindr LLC ("Confidential Information").
+        // You shall not disclose such Confidential Information and shall use
+        // it only in accordance with the terms of the license agreement
+        // you entered into with Grindr LLC.
+        //
+
+        import GrindrSwiftUI
+        import SwiftUI
+        import XCTest
+
+        final class <>SnapshotTests: BaseSnapshotTestCase {
+            func test_<>Snapshots() {
+                <>_Previews
+                    .snapshots
+                    .assertSnapshots(as: .testStrategy())
+            }
+        }
+        ]], {
+            i(1,"Name"),
+            d(2, function(args)
+                return sn(nil, {
+                    i(1, args[1])
+                })
+            end, { 1 }),
+            d(3, function(args)
+                return sn(nil, {
+                    i(1, args[1])
+                })
+            end, { 1 }),
+        }, {
+            delimiters = "<>"
+        })
+    ),
+    -- Grindr UIKit Snapshot Test
+    s({trig="gruikitsnapshot", dscr="Grindr Snapshot Test"},
+        fmt([[
+        //
+        // Copyright 2025 by Grindr LLC,
+        // All rights reserved.
+        //
+        // This software is confidential and proprietary information of
+        // Grindr LLC ("Confidential Information").
+        // You shall not disclose such Confidential Information and shall use
+        // it only in accordance with the terms of the license agreement
+        // you entered into with Grindr LLC.
+        //
+
+        import Foundation
+        import UIKit
+        import XCTest
+
+        final class <>SnapshotTests: BaseSnapshotTestCase {
+            func test_<>Snapshots() {
+                let vc = <>ViewController
+                vc.loadViewIfNeeded()
+                vc.view.layoutIfNeeded()
+                assertSnapshot(of: vc)
+            }
+        }
+        ]], {
+            i(1,"Name"),
+            d(2, function(args)
+                return sn(nil, {
+                    i(1, args[1])
+                })
+            end, { 1 }),
+            d(3, function(args)
+                return sn(nil, {
+                    i(1, args[1])
+                })
+            end, { 1 }),
+        }, {
+            delimiters = "<>"
+        })
+    ),
     -- Grindr constraint setup
     s("grconstraint", fmt([[
         <>

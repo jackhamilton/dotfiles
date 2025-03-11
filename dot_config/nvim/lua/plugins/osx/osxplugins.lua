@@ -7,8 +7,25 @@ return {
             "nvim-treesitter/nvim-treesitter", -- (optional) for Quick tests support (required Swift parser)
         },
         lazy = false,
+        opts = {
+          integrations = {
+            pymobiledevice = {
+              enabled = true,
+            },
+          }
+        },
+    },
+    {
+        "mfussenegger/nvim-dap",
+        event = 'LspAttach',
+        dependencies = {
+            { "wojciech-kulik/xcodebuild.nvim" },
+        },
         config = function()
-            require("xcodebuild").setup()
+            local xcodebuild = require("xcodebuild.integrations.dap")
+            local codelldbPath = os.getenv("HOME") .. "/Documents/codelldb-darwin-arm64/extension/adapter/codelldb"
+
+            xcodebuild.setup(codelldbPath)
             vim.keymap.set("n", "<leader>Xf", "<cmd>XcodebuildProjectManager<cr>",
                 { desc = "Show Project Manager Actions" })
 
@@ -33,19 +50,6 @@ return {
             vim.keymap.set("n", "<leader>Xq", "<cmd>Telescope quickfix<cr>", { desc = "Show QuickFix List" })
             vim.keymap.set("n", "<leader>Xx", "<cmd>XcodebuildQuickfixLine<cr>", { desc = "Quickfix Line" })
             vim.keymap.set("n", "<leader>Xa", "<cmd>XcodebuildCodeActions<cr>", { desc = "Show Code Actions" })
-        end,
-    },
-    {
-        "mfussenegger/nvim-dap",
-        event = 'LspAttach',
-        dependencies = {
-            { "wojciech-kulik/xcodebuild.nvim" },
-        },
-        config = function()
-            local xcodebuild = require("xcodebuild.integrations.dap")
-            local codelldbPath = os.getenv("HOME") .. "/Downloads/codelldb-x86_64-darwin.vsix"
-
-            xcodebuild.setup(codelldbPath)
         end,
     },
 }
