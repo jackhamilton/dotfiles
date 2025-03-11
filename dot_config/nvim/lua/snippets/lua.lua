@@ -74,4 +74,25 @@ return {
             delimiters = "<>"
         })
     ),
+    -- nvim plugin
+    -- s({trig="lazyplugin", dscr="nvim plugin"},
+    --     fmt([[
+    --         return {
+    --             {
+    --                 "<>/<>.nvim",
+    --                 keys = {
+    --                     { "<leader><>", function() <> end, desc = "<>"},
+    --                 },
+    --             }
+    --         }
+    --     ]], {
+    --         i(1,"author"),
+    --         i(2,"name"),
+    --         i(3,"keys"),
+    --         i(4,"function"),
+    --         i(5,"description"),
+    --     }, {
+    --         delimiters = "<>"
+    --     })
+    -- ),
 }
