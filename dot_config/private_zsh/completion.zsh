@@ -7,5 +7,6 @@ if command -v rustup > /dev/null; then
     znap fpath _cargo 'rustup completions zsh cargo'
 fi
 
-
-FPATH="${HOME}/.config/zsh/completions:${FPATH}"
+if command -v sass > /dev/null; then
+    znap fpath _sass 'sass --completions'
+fi
