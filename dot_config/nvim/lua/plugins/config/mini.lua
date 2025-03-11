@@ -1,4 +1,4 @@
---- Buffer removing (unshow, delete, wipeout), which saves window layout
+-- Buffer removing (unshow, delete, wipeout), which saves window layout
 -- require("mini.bufremove").setup()
 
 --- Autopairs
@@ -9,45 +9,46 @@ require("mini.pairs").setup({
 --- Surround
 require("mini.surround").setup({
     mappings = {
-        add = '<leader>Sa',
-        delete = '<leader>Sd',
-        find = '<leader>Sf',
-        find_left = '<leader>SF',
-        highlight = '<leader>Sh',
-        replace = '<leader>Sr',
-        update_n_lines = '<leader>Sn',
+        add = 'Sa',
+        delete = 'Sd',
+        find = 'Sf',
+        find_left = 'SF',
+        highlight = 'Sh',
+        replace = 'Sr',
+        update_n_lines = 'Sn',
     }
 })
 
-require("mini.operators").setup()
+require("mini.splitjoin").setup()
 
-require("mini.move").setup()
+require("mini.move").setup(
+    {
+        -- Module mappings. Use `''` (empty string) to disable one.
+        mappings = {
+            -- Move visual selection in Visual mode. Defaults are Alt (Meta) + hjkl.
+            left = '<M-m>',
+            right = '<M-i>',
+            down = '<M-n>',
+            up = '<M-e>',
 
-require("mini.ai").setup()
+            -- Move current line in Normal mode
+            line_left = '',
+            line_right = '',
+            line_down = '',
+            line_up = '',
+        },
 
-require("mini.files").setup()
-vim.keymap.set("n", "<leader>fs", function() MiniFiles.open() end, { silent = true, desc = "Open filesystem", })
+        -- Options which control moving behavior
+        options = {
+            -- Automatically reindent selection during linewise vertical move
+            reindent_linewise = true,
+        },
+    }
+)
 
---- Completion
--- require("mini.completion").setup({
--- 	window = {
--- 		info = { border = "single" },
--- 		signature = { border = "single" },
--- 	},
--- })
--- vim.keymap.set("n", "<leader>tc", function()
--- 	local is_completion_disabled = vim.b.minicompletion_disable
--- 	if not is_completion_disabled then
--- 		vim.b.minicompletion_disable = true
--- 		vim.notify("[nvim] Completion has been temporarily disabled in this buffer")
--- 	else
--- 		vim.b.minicompletion_disable = false
--- 		vim.notify("[nvim] Completion has been enabled again in this buffer")
--- 	end
--- end, {
--- silent = true,
--- desc = "Toggle completion",
--- })
+require("mini.ai").setup({
+    search_method = "cover_or_nearest"
+})
 
 -- More consistent behavior of <CR>
 -- local keys = {
