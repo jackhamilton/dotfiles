@@ -8,7 +8,7 @@ return {
         notify = true,
     },
     dependencies = {
-        'rcarriga/nvim-notify'
+        'folke/snacks.nvim'
     },
     -- keys = {
     --     { "<leader>a",  mode = { "n" }, "<CMD>AerialToggle<CR>",                   desc = "Aerial toggle" },
