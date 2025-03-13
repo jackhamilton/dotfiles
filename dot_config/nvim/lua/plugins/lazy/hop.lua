@@ -26,6 +26,7 @@ return {
                 "sl",
                 mode = { "n", "x", "o" },
                 function()
+
                     require('hop').hint_lines_skip_whitespace()
                 end,
                 desc = "Hop to line"
