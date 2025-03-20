@@ -12,6 +12,8 @@ kbd("n", "<C-A-n>", "<C-w>j")
 kbd("n", "<C-A-e>", "<C-w>k")
 kbd("n", "<C-A-i>", "<C-w>l")
 
+kbd("n", "<leader>qq", "<CMD>cclose<CR>")
+
 -- Resizing
 kbd("n", "<C-A-Shift-Left>", "<C-w><")
 kbd("n", "<C-A-Shift-Right>", "<C-w>>")
