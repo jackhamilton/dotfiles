@@ -12,7 +12,13 @@ return {
             enabled = true,
             timeout = 3000,
         },
-        picker = { enabled = true },
+        picker = {
+            enabled = true,
+            matcher = {
+                cwd_bonus = true,
+                sort_empty = true
+            },
+        },
         quickfile = { enabled = true },
         scope = { enabled = true },
         scroll = { enabled = false },
@@ -243,4 +249,7 @@ return {
             end,
         })
     end,
+    dependencies = {
+		"nvim-tree/nvim-web-devicons",
+    }
 }
