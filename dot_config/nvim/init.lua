@@ -102,3 +102,12 @@ if not loaded_plugin_config then
         vim.log.levels.ERROR
     )
 end
+
+local Snacks = require("snacks")
+_G.dd = function(...)
+  Snacks.debug.inspect(...)
+end
+_G.bt = function()
+  Snacks.debug.backtrace()
+end
+vim.print = _G.dd
