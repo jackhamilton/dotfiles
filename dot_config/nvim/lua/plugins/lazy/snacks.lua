@@ -16,7 +16,9 @@ return {
             enabled = true,
             matcher = {
                 cwd_bonus = true,
-                sort_empty = true
+                sort_empty = true,
+                frecency = true,
+                history_bonus = true
             },
         },
         quickfile = { enabled = true },
