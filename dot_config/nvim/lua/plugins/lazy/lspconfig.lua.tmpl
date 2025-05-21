@@ -49,6 +49,22 @@ return {
                 },
             }
         },
+        keys = {
+            {
+                "<leader>la",
+                function ()
+                    vim.lsp.buf.code_action()
+                end,
+                desc = "Code action"
+            },
+            {
+                "<leader>lsS",
+                function ()
+                    vim.lsp.buf.signature_help()
+                end,
+                desc = "Vim signature help"
+            }
+        },
         config = function(_, opts)
             local lspconfig = require('lspconfig')
             for server, config in pairs(opts.servers) do

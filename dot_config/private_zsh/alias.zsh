@@ -22,6 +22,7 @@ alias gdvim="nvim --listen /tmp/godot.pipe"
 alias ovpn="sudo openvpn --config /$HOME/Downloads/uk-644.protonvpn.udp.ovpn --auth-user-pass /opt/ovpn/login.conf"
 alias gdbeta="$HOME/Downloads/Godot_v4.4-beta2_linux.x86_64"
 alias themer="eval \$(themester -r)"
+alias smbmount="sudo mount -v -t cifs //192.168.1.11/jack /mnt/media -o credentials=/home/jack/.credentials"
 gitup ()
 {
     git add .
