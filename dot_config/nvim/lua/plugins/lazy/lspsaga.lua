@@ -1,12 +1,13 @@
 return {
     {
         "nvimdev/lspsaga.nvim",
-        -- opts = {
-        --     lightbulb = {
-        --         enable = false,
-        --         enable_in_insert = false,
-        --     },
-        -- },
+        opts = {
+            devicon = true,
+            -- lightbulb = {
+            --     enable = false,
+            --     enable_in_insert = false,
+            -- },
+        },
         event = 'LspAttach',
         dependencies = {
             "nvim-treesitter/nvim-treesitter",

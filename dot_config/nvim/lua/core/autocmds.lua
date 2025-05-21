@@ -114,3 +114,39 @@ au("TermOpen", {
     pattern = "term://*",
     callback = start_term_mode,
 })
+
+local function toggle_lsp_client()
+    local buf = vim.api.nvim_get_current_buf()
+    local clients = vim.lsp.get_clients({ bufnr = buf })
+    if not vim.tbl_isempty(clients) then
+        vim.cmd("LspStop")
+        vim.notify("[nvim] LSP client has been temporarily disabled in this buffer")
+    else
+        vim.cmd("LspStart")
+        vim.notify("[nvim] LSP client has been enabled again in this buffer")
+    end
+end
+
+vim.api.nvim_create_user_command("LspToggle", toggle_lsp_client, {
+    desc = "Toggle LSP for the current buffer",
+})
+
+local mac = vim.fn.OSX()
+if mac == 1 then
+    if vim.fn.executable("sourcekit-lsp") == 1 then
+        local function refresh_xcodeproj()
+            io.popen("~/Documents/GitHub/grindr/scripts/nvim_clean.sh")
+        end
+        vim.api.nvim_create_user_command("Xcrefresh", refresh_xcodeproj, {
+            desc = "Clean, build, and generate buildServer.json for the grindr project.",
+        })
+        local function remake_buildserver()
+            os.execute(
+                'cd ~/Documents/GitHub/grindr & xcode-build-server config -scheme Grindr -workspace *.xcworkspace')
+            io.popen("~/Documents/GitHub/grindr/scripts/nvim_clean.sh")
+        end
+        vim.api.nvim_create_user_command("Xcbuildserver", remake_buildserver, {
+            desc = "Generate buildServer.json for the grindr project.",
+        })
+    end
+end

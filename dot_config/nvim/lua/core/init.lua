@@ -9,6 +9,9 @@ require("core.autocmds")
 --- Keybindings
 require("core.maps")
 
+--- LSP
+require("core.lsp")
+
 --- Better notifications
 local ok, notify = pcall(require, "notify")
 if ok then

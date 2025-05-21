@@ -27,6 +27,19 @@ local ms = ls.multi_snippet
 local k = require("luasnip.nodes.key_indexer").new_key
 local r = require("luasnip.extras").rep
 
+local function to_uppercase(args)
+    local str = args[1][1]
+    local snacks = require('snacks')
+    if str == nil or str == "" then
+        return str
+    end
+    local converted = str:gsub("^([a-z])", function(char)
+        return char:upper()
+    end)
+    snacks.notify.info(converted)
+    return converted
+end
+
 return {
     -- Attributed string
     s("subscribe", fmt([[
@@ -475,4 +488,99 @@ return {
     }, {
         delimiters = "<>"
     })),
+    -- Grindr event tracking
+    s({trig="grtracking", dscr="Grindr event tracking"},
+        fmt([[
+//
+// Copyright 2025 by Grindr LLC,
+// All rights reserved.
+//
+// This software is confidential and proprietary information of
+// Grindr LLC ("Confidential Information").
+// You shall not disclose such Confidential Information and shall use
+// it only in accordance with the terms of the license agreement
+// you entered into with Grindr LLC.
+//
+import Factory
+import GrindrCore
+import GrindrDataModels
+import GrindrMacros
+
+protocol *;Tracking {
+    func track*;()
+}
+
+@ResolveDependencies(immediate: \.eventTracker)
+final class *;Tracker: *;Tracking {
+    func track*;() {
+        eventTracker.track(
+            *;Event.*;()
+        )
+    }
+}
+
+private enum *;Event: EventLoggable {
+    case *;
+
+    func toEvents() -> [any RoutedEvent] {
+        switch self {
+        case .*;:
+            [
+                IdentifiableEvent(
+                    name: "*;",
+                    attributes: [
+                        *;
+                    ]
+                ),
+            ]
+}
+        ]], {
+            i(1,"EventType", {key="type"}),
+            d(3, function()
+                return sn(nil, {
+                    f(to_uppercase, k("name")),
+                })
+            end, k("name")),
+            d(4, function(args)
+                return sn(nil, {
+                    t(args[1])
+                })
+            end, k("type")),
+            d(5, function(args)
+                return sn(nil, {
+                    t(args[1])
+                })
+            end, k("type")),
+            d(6, function()
+                return sn(nil, {
+                    f(to_uppercase, k("name")),
+                })
+            end, k("name")),
+            d(7, function(args)
+                return sn(nil, {
+                    t(args[1])
+                })
+            end, k("type")),
+            d(8, function(args)
+                return sn(nil, {
+                    t(args[1])
+                })
+            end, k("name")),
+            d(9, function(args)
+                return sn(nil, {
+                    t(args[1])
+                })
+            end, k("type")),
+            i(2, "eventName", {key="name"}),
+            d(10, function(args)
+                return sn(nil, {
+                    t(args[1])
+                })
+            end, k("name")),
+            i(11, "event_tracking_id"),
+            i(0)
+        }, {
+            delimiters = "*;"
+        })
+    ),
 }
