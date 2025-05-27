@@ -408,7 +408,6 @@ return {
                             <>View()
                                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                                 .background(.swatch(\.fill.secondaryDarkBg))
-                                .presentationDetents([.large])
                         }
                     }
                 )
