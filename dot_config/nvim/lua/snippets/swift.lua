@@ -337,6 +337,13 @@ return {
 
         import SwiftUI
 
+        public static var previews: some View {
+            snapshots.previews
+#if DEBUG
+                .grindrPreviews()
+#endif
+        }
+
         public struct <>View_Previews: PreviewProvider {
             public static var snapshots: PreviewSnapshots<<PreviewState>> {
                 PreviewSnapshots(
