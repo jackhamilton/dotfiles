@@ -16,7 +16,7 @@ return {
         keys = {
             { "<leader>l",  group = "LSP" },
             { "<leader>lf", mode = { "n" }, "<CMD>Lspsaga finder<CR>",                   desc = "Finder" },
-            { "<leader>la", mode = { "n" }, "<CMD>Lspsaga code_action<CR>",             desc = "Code Actions" },
+            -- { "<leader>la", mode = { "n" }, "<CMD>Lspsaga code_action<CR>",             desc = "Code Actions" },
             { "<leader>ld", mode = { "n" }, "<CMD>Lspsaga peek_definition<CR>",          desc = "Peek Definition" },
             { "<leader>lD", mode = { "n" }, "<CMD>Lspsaga peek_type_definition<CR>",     desc = "Peek Type Definition" },
             { "<leader>ln", mode = { "n" }, "<CMD>Lspsaga diagnostic_jump_next<CR>",     desc = "Next Diagnostic" },
