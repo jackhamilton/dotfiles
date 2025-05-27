@@ -335,6 +335,7 @@ return {
         // you entered into with Grindr LLC.
         //
 
+        import GrindrSwiftUI
         import SwiftUI
 
         public static var previews: some View {
