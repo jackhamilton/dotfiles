@@ -372,6 +372,63 @@ return {
             delimiters = "<>"
         })
     ),
+    -- Grindr Sheet Preview Provider
+    s({trig="grsheetpreview", dscr="Grindr Sheet-Style Preview Provider"},
+        fmt([[
+        //
+        // Copyright 2025 by Grindr LLC,
+        // All rights reserved.
+        //
+        // This software is confidential and proprietary information of
+        // Grindr LLC ("Confidential Information").
+        // You shall not disclose such Confidential Information and shall use
+        // it only in accordance with the terms of the license agreement
+        // you entered into with Grindr LLC.
+        //
+
+        import GrindrSwiftUI
+        import SwiftUI
+
+        public static var previews: some View {
+            snapshots.previews
+#if DEBUG
+                .grindrPreviews()
+#endif
+        }
+
+        public struct <>View_Previews: PreviewProvider {
+            public static var snapshots: PreviewSnapshots<<PreviewState>> {
+                PreviewSnapshots(
+                    states: [
+                        .init(name: "basic"),
+                    ],
+                    configure: { config in
+                        Color.swatch(\.fill.highlightPrimary)
+                        .sheet(isPresented: .constant(true)) {
+                            <>View()
+                                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                                .background(.swatch(\.fill.secondaryDarkBg))
+                                .presentationDetents([.large])
+                        }
+                    }
+                )
+            }
+
+            public struct PreviewState: NamedPreviewState {
+                public var name: String
+            }
+        }
+        ]], {
+            i(1,"Name"),
+            d(2, function(args)
+                return sn(nil, {
+                    i(1, args[1])
+                })
+            end, { 1 }),
+        }, {
+            delimiters = "<>"
+        })
+    ),
     -- Grindr Snapshot Test
     s({trig="grsnapshot", dscr="Grindr Snapshot Test"},
         fmt([[
@@ -496,6 +553,55 @@ return {
     }, {
         delimiters = "<>"
     })),
+
+    -- Grindr SwiftUI View
+    s({trig="grview", dscr="Grindr SwiftUI View"},
+        fmt([[
+        //
+        // Copyright 2025 by Grindr LLC,
+        // All rights reserved.
+        //
+        // This software is confidential and proprietary information of
+        // Grindr LLC ("Confidential Information").
+        // You shall not disclose such Confidential Information and shall use
+        // it only in accordance with the terms of the license agreement
+        // you entered into with Grindr LLC.
+        //
+
+        import SwiftUI
+
+        /// <>
+        public struct <>View: View {
+            // MARK: Data
+            <>
+
+            public init(<>) {
+                self.<>
+            }
+
+            public var body: some View {
+                // body
+            }
+        }
+
+        #Preview {
+            <>View_Previews.previews
+        }
+        ]], {
+            i(1, "Description"),
+            i(2, "Name"),
+            i(0),
+            i(3, "Parameters"),
+            i(4, "Set parameters"),
+            d(5, function(args)
+                return sn(nil, {
+                    i(2, args[1])
+                })
+            end, { 2 }),
+        }, {
+            delimiters = "<>"
+        })
+    ),
     -- Grindr event tracking
     s({trig="grtracking", dscr="Grindr event tracking"},
         fmt([[
