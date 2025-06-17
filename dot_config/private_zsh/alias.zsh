@@ -20,9 +20,10 @@ alias tmain="tmuxAttachMain"
 alias lg="lazygit"
 alias gdvim="nvim --listen /tmp/godot.pipe"
 alias ovpn="sudo openvpn --config /$HOME/Downloads/uk-644.protonvpn.udp.ovpn --auth-user-pass /opt/ovpn/login.conf"
-alias gdbeta="$HOME/Downloads/Godot_v4.4-beta2_linux.x86_64"
 alias themer="eval \$(themester -r)"
 alias smbmount="sudo mount -v -t cifs //192.168.1.11/jack /mnt/media -o credentials=/home/jack/.credentials"
+alias gitunskip="git update-index --no-skip-worktree $(git ls-files $(git rev-parse --show-toplevel))"
+alias gitskips="git update-index --skip-worktree Grindr.xcworkspace/xcshareddata/swiftpm/Package.resolved"
 gitup ()
 {
     git add .

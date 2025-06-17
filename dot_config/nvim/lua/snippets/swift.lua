@@ -258,15 +258,8 @@ return {
 
         /// <>
         public struct <>View: View {
-            // MARK: Data
-            <>
-
-            public init(<>) {
-                self.<>
-            }
-
             public var body: some View {
-                // body
+                <>
             }
         }
 
@@ -277,9 +270,7 @@ return {
             i(1, "Description"),
             i(2, "Name"),
             i(0),
-            i(3, "Parameters"),
-            i(4, "Set parameters"),
-            d(5, function(args)
+            d(3, function(args)
                 return sn(nil, {
                     i(2, args[1])
                 })
@@ -305,18 +296,13 @@ return {
         import Combine
 
         public struct <>ViewModel {
-            // MARK: Data
-            <>
-
-            public init(<>) {
-                self.<>
+            public init() {
+                <>
             }
         }
         ]], {
             i(1,"Name"),
             i(0),
-            i(2,"Parameters"),
-            i(3,"Sets")
         }, {
             delimiters = "<>"
         })
@@ -338,14 +324,14 @@ return {
         import GrindrSwiftUI
         import SwiftUI
 
-        public static var previews: some View {
-            snapshots.previews
-#if DEBUG
-                .grindrPreviews()
-#endif
-        }
-
         public struct <>View_Previews: PreviewProvider {
+            public static var previews: some View {
+                snapshots.previews
+#if DEBUG
+                    .grindrPreview()
+#endif
+            }
+
             public static var snapshots: PreviewSnapshots<<PreviewState>> {
                 PreviewSnapshots(
                     states: [
