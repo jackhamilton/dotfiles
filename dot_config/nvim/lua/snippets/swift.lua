@@ -41,6 +41,7 @@ local function to_uppercase(args)
 end
 
 return {
+    s("lorem", t("Lorem ipsum dolor sit amet consectetur adipiscing elot sed do eiusmod tempor.")),
     -- Attributed string
     s("subscribe", fmt([[
         .subscribe(<>
@@ -321,6 +322,7 @@ return {
         // you entered into with Grindr LLC.
         //
 
+        import GrindrxFeatureUI
         import GrindrSwiftUI
         import SwiftUI
 
