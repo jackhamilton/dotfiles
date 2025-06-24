@@ -14,6 +14,9 @@ return {
                 }
             })
         end,
+        dependencies = {
+		    "OXY2DEV/markview.nvim",
+        }
     },
     {
         'nvim-treesitter/nvim-treesitter-context',
