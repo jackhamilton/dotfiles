@@ -329,9 +329,9 @@ return {
         public struct <>View_Previews: PreviewProvider {
             public static var previews: some View {
                 snapshots.previews
-#if DEBUG
+        #if DEBUG
                     .grindrPreview()
-#endif
+        #endif
             }
 
             public static var snapshots: PreviewSnapshots<<PreviewState>> {
@@ -379,9 +379,9 @@ return {
 
         public static var previews: some View {
             snapshots.previews
-#if DEBUG
+        #if DEBUG
                 .grindrPreviews()
-#endif
+        #endif
         }
 
         public struct <>View_Previews: PreviewProvider {
@@ -541,54 +541,6 @@ return {
         delimiters = "<>"
     })),
 
-    -- Grindr SwiftUI View
-    s({trig="grview", dscr="Grindr SwiftUI View"},
-        fmt([[
-        //
-        // Copyright 2025 by Grindr LLC,
-        // All rights reserved.
-        //
-        // This software is confidential and proprietary information of
-        // Grindr LLC ("Confidential Information").
-        // You shall not disclose such Confidential Information and shall use
-        // it only in accordance with the terms of the license agreement
-        // you entered into with Grindr LLC.
-        //
-
-        import SwiftUI
-
-        /// <>
-        public struct <>View: View {
-            // MARK: Data
-            <>
-
-            public init(<>) {
-                self.<>
-            }
-
-            public var body: some View {
-                // body
-            }
-        }
-
-        #Preview {
-            <>View_Previews.previews
-        }
-        ]], {
-            i(1, "Description"),
-            i(2, "Name"),
-            i(0),
-            i(3, "Parameters"),
-            i(4, "Set parameters"),
-            d(5, function(args)
-                return sn(nil, {
-                    i(2, args[1])
-                })
-            end, { 2 }),
-        }, {
-            delimiters = "<>"
-        })
-    ),
     -- Grindr event tracking
     s({trig="grtracking", dscr="Grindr event tracking"},
         fmt([[
