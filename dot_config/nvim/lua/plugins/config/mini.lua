@@ -19,6 +19,20 @@ require("mini.surround").setup({
     }
 })
 
+local wk = require("which-key")
+
+wk.add({
+  { "S",  group = "Surround", mode = { "n", "x" } },
+
+  { "Sa", desc = "Add surround", mode = { "n", "x" } },
+  { "Sd", desc = "Delete surround", mode = { "n", "x" } },
+  { "Sf", desc = "Find right surround", mode = "n" },
+  { "SF", desc = "Find left surround", mode = "n" },
+  { "Sh", desc = "Highlight surround", mode = { "n", "x" } },
+  { "Sr", desc = "Replace surround", mode = { "n", "x" } },
+  { "Sn", desc = "Update n_lines", mode = "n" },
+})
+
 require("mini.splitjoin").setup()
 
 require("mini.move").setup(

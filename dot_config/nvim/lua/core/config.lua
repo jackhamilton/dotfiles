@@ -18,6 +18,9 @@ if vim.fn.has("wsl") == 1 then
     }
 end
 
+vim.o.timeout = true
+vim.o.timeoutlen = 300
+
 -- Enable mouse input
 vim.opt.mouse = "a"
 

@@ -2,13 +2,12 @@ return {
     {
         "folke/which-key.nvim",
         event = "VeryLazy",
-        init = function()
-            vim.o.timeout = true
-            vim.o.timeoutlen = 300
-        end,
         opts = {
-            -- your configuration comes here
-            -- or leave it empty to use the default settings
+            delay = 300,                      -- optional; matches timeoutlen nicely
+            triggers = {
+                { "<auto>", mode = "nxsot" }, -- keep auto detection
+                { "S",      mode = { "n", "x" } }, -- explicitly trigger on S
+            },
         }
     },
 }

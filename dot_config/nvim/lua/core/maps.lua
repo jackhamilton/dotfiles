@@ -20,3 +20,5 @@ kbd("n", "<C-A-Shift-Right>", "<C-w>>")
 kbd("n", "<C-A-Shift-Up>", "<C-w>+")
 kbd("n", "<C-A-Shift-Down>", "<C-w>-")
 
+vim.keymap.set("n", "S", "<Nop>")
+vim.keymap.set("x", "S", "<Nop>")
