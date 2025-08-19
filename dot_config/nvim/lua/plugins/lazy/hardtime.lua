@@ -9,14 +9,16 @@ return {
                 ["<Down>"] = { "n", "x" },
                 ["<Left>"] = { "n", "x" },
                 ["<Right>"] = { "n", "x" },
+                ["h"] = false,
+                ["j"] = false,
+                ["k"] = false,
+                ["l"] = false,
 		    },
 		    disabled_keys = {
                 ["<Up>"] = false, -- Allow <Up> key
                 ["<Down>"] = false,
                 ["<Left>"] = false,
                 ["<Right>"] = false,
-		        wqa
-
 		    },
 		}
 	},
