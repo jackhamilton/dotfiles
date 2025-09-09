@@ -40,17 +40,10 @@ return {
                             ["al"] = "@loop.outer",
                             ["il"] = "@loop.inner",
 
-                            ["a@"] = "@attribute.outer",
-                            ["i@"] = "@attribute.inner",
-
                             ["aa"] = "@parameter.outer",
                             ["ia"] = "@parameter.inner",
 
-                            ["aR"] = "@regex.outer",
-                            ["iR"] = "@regex.inner",
-
-                            ["a."] = "@statement.outer",
-                            ["i^"] = "@scopename.inner",
+                            ["as"] = "@statement.outer",
                         },
                     },
                 },
