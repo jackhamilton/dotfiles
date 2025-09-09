@@ -42,7 +42,7 @@ end
 
 return {
     s("lorem", t("Lorem ipsum dolor sit amet consectetur adipiscing elot sed do eiusmod tempor.")),
-    -- Attributed string
+    -- Subscription
     s("subscribe", fmt([[
         .subscribe(<>
             <>

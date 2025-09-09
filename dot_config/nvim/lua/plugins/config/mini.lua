@@ -61,7 +61,7 @@ require("mini.move").setup(
 )
 
 require("mini.ai").setup({
-    search_method = "cover_or_nearest"
+    search_method = "cover_or_nearest",
 })
 
 -- More consistent behavior of <CR>
