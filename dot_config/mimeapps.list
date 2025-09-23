@@ -1,6 +1,6 @@
 [Default Applications]
 text/html=zen.desktop
-image/png=krita_png.desktop
+image/png=org.gnome.Loupe.desktop
 application/vnd.microsoft.portable-executable=wine.desktop
 application/x-msdownload=wine.desktop
 inode/directory=thunar.desktop
@@ -16,11 +16,12 @@ application/xhtml+xml=zen.desktop
 application/x-extension-xhtml=zen.desktop
 application/x-extension-xht=zen.desktop
 x-scheme-handler/discord=vesktop.desktop
+image/bmp=org.gnome.Loupe.desktop
 
 [Added Associations]
 text/html=firefox.desktop;zen.desktop;
 video/x-matroska=vlc.desktop;
-image/png=krita_png.desktop;
+image/png=krita_png.desktop;org.gnome.Loupe.desktop;
 application/vnd.microsoft.portable-executable=wine.desktop;
 application/x-msdownload=wine.desktop;
 inode/directory=thunar.desktop;
@@ -33,3 +34,7 @@ application/x-extension-shtml=zen.desktop;
 application/xhtml+xml=zen.desktop;
 application/x-extension-xhtml=zen.desktop;
 application/x-extension-xht=zen.desktop;
+image/bmp=org.gnome.Loupe.desktop;
+application/x-compressed-tar=org.gnome.Nautilus.desktop;
+application/zip=org.gnome.Nautilus.desktop;
+image/jpeg=krita_jpeg.desktop;

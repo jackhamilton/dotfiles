@@ -3,3 +3,4 @@
 export PATH="$PATH:/home/jack/.local/bin"
 
 . "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"
+export _JAVA_AWT_WM_NONREPARENTING=1

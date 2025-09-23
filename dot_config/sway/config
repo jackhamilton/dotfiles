@@ -110,9 +110,11 @@ input type:touchpad {
 #
 #
 
+exec_always "killall swayidle; swayidle -w -d"
+
 # exec swayidle -w \
 #      timeout 300 'swaylock -f -i $HOME/.config/sway/wallpapers/lockscreen_wallpaper.jpg' \
-#      timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
+#      timeout 599 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
 #      before-sleep 'swaylock -f -c 000000'
 # exec_always $HOME/.config/sway/scripts/get_bing_image.sh
 exec /usr/lib/geoclue-2.0/demos/agent
