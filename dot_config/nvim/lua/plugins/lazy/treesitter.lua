@@ -193,7 +193,7 @@ return {
             })
         end,
         dependencies = {
-		    "<leader>eOXY2DEV/markview.nvim",
+		    "OXY2DEV/markview.nvim",
         }
     },
     {

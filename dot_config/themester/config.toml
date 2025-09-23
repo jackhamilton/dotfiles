@@ -39,7 +39,7 @@ nvim_themename = "catppuccin-mocha"
 
 [[theme]]
 term = "GruvboxDark"
-nvim_plugin = "none" # none?
+nvim_plugin = "gruvbox-material" # none?
 nvim_themename = "gruvbox"
 
 [[theme]]
@@ -62,10 +62,10 @@ term = "Kanagawa (Gogh)"
 nvim_plugin = "kanagawa"
 nvim_themename = "kanagawa-wave"
 
-[[theme]]
-term = "Kanagawa Dragon (Gogh)"
-nvim_plugin = "kanagawa"
-nvim_themename = "kanagawa-dragon"
+# [[theme]]
+# term = "Kanagawa Dragon (Gogh)"
+# nvim_plugin = "kanagawa"
+# nvim_themename = "kanagawa-dragon"
 
 [[theme]]
 term = "Everblush"
@@ -92,12 +92,12 @@ term = "nordfox"
 nvim_plugin = "nightfox"
 nvim_themename = "nightfox"
 
-[[theme]]
-term = "Solarized Dark (Gogh)"
-nvim_plugin = "solarized-osaka"
-nvim_themename = "solarized-osaka"
+# [[theme]]
+# term = "Solarized Dark (Gogh)"
+# nvim_plugin = "solarized-osaka"
+# nvim_themename = "solarized-osaka"
 
-[[theme]]
-term = "kanagawabones"
-nvim_plugin = "kanagawa-paper"
-nvim_themename = "kanagawa-paper"
+# [[theme]]
+# term = "kanagawabones"
+# nvim_plugin = "kanagawa-paper"
+# nvim_themename = "kanagawa-paper"

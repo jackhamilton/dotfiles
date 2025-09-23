@@ -89,18 +89,6 @@ return {
     --     opts = {},
     -- },
     {
-        "craftzdog/solarized-osaka.nvim",
-        lazy = false,
-        priority = 1000,
-        opts = {},
-    },
-    {
-        "maxmx03/fluoromachine.nvim",
-        lazy = false,
-        priority = 1000,
-        opts = {},
-    },
-    {
         "sho-87/kanagawa-paper.nvim",
         lazy = false,
         priority = 1000,
