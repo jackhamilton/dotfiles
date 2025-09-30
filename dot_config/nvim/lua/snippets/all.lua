@@ -29,10 +29,16 @@ local r = require("luasnip.extras").rep
 
 return {
     -- Chezmoi OS check
-    s("oscheck", c(1, {
-        isn(nil,
-            t({"", "{{ if eq .chezmoi.os \"darwin\" }}"}, "$PARENT_INDENT//"),
-            i(0),
-            t"{{ end }}")
-    }))
+    s("oscheck",
+        c(1, {
+            isn(nil, {
+                t({"", "{{ if eq .chezmoi.os \"linux\" }}", "" }),
+                t({ "", "{{ end }}" }),
+            }, ""),
+            isn(nil, {
+                t({"", "{{ if eq .chezmoi.os \"darwin\" }}", "" }),
+                t({ "", "{{ end }}" }),
+            }, "") -- tells isn to ignore parent indent
+        })
+    ),
 }
