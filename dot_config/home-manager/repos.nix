@@ -15,8 +15,6 @@ in {
     #   echo "Updating dotfiles"
     #   ${pkgs.git}/bin/git -C "$HOME/Documents/GitHub/dotfiles" pull
     # fi
-    # echo "Applying chezmoi template"
-    # ${czWrap} apply
 
     ${czWrap} init --apply https://github.com/jackhamilton/dotfiles.git
     '';
