@@ -12,7 +12,7 @@ set -g @tmux_window_name_shells "['bash', 'fish', 'sh', 'zsh', 'tmux']"
 # set -g @tmux_window_dir_programs "['nvim', 'vim', 'vi', 'git', 'lg']"
 set -g @tmux_window_name_icon_style "'name_and_icon'"
 set -g default-shell /bin/zsh
-{{ if .eq .chezmoi.os "darwin" }}
+{{ if eq .chezmoi.os "darwin" }}
 set -g default-command "reattach-to-user-namespace -l zsh"
 {{ end }}
 

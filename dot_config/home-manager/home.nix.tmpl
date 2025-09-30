@@ -21,12 +21,46 @@
         # # Adds the 'hello' command to your environment. It prints a friendly
         # # "Hello, world!" when run.
         # pkgs.hello
+        # MARK: CLI Utilities
         pkgs.lsd
         pkgs.bat
-        pkgs.htop
+        pkgs.curlie
+        pkgs.zoxide
+        pkgs.bitwarden-cli
+        pkgs.chezmoi
+        pkgs.cloc
+        pkgs.fzf
+        pkgs.difftastic
         pkgs.cowsay
         pkgs.fd
         pkgs.github-cli
+        pkgs.imagemagick
+        pkgs.pipx
+        pkgs.ripgrep
+        pkgs.sccache
+        pkgs.wget
+        pkgs.swiftformat
+        pkgs.direnv
+
+{{ if eq .chezmoi.os "darwin" }}
+        pkgs.xcbeautify
+{{ end }}
+
+        # MARK: CLI Programs
+        pkgs.lazygit
+        pkgs.neovim
+        pkgs.htop
+        pkgs.tmux
+
+        # MARK: Software
+        pkgs.handbrake
+        pkgs.wezterm
+        pkgs.krita
+        pkgs.inkscape
+
+{{ if eq .chezmoi.os "darwin" }}
+        pkgs.aerospace
+{{ end }}
 
         # # It is sometimes useful to fine-tune packages, for example, by applying
         # # overrides. You can do that directly here, just don't forget the
