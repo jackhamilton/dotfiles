@@ -8,14 +8,16 @@ let
   '')}/bin/chezmoi";
 in {
     home.activation.repoClone = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-    if [ ! -d "$HOME/Documents/GitHub/dotfiles/.git" ]; then
-      echo "Cloning dotfiles..."
-      ${pkgs.git}/bin/git clone https://github.com/jackhamilton/dotfiles.git "$HOME/Documents/GitHub/dotfiles"
-    else
-      echo "Updating dotfiles"
-      ${pkgs.git}/bin/git -C "$HOME/Documents/GitHub/dotfiles" pull
-    fi
-    echo "Applying chezmoi template"
-    ${czWrap} apply
+    # if [ ! -d "$HOME/Documents/GitHub/dotfiles/.git" ]; then
+    #   echo "Cloning dotfiles..."
+    #   ${pkgs.git}/bin/git clone https://github.com/jackhamilton/dotfiles.git "$HOME/Documents/GitHub/dotfiles"
+    # else
+    #   echo "Updating dotfiles"
+    #   ${pkgs.git}/bin/git -C "$HOME/Documents/GitHub/dotfiles" pull
+    # fi
+    # echo "Applying chezmoi template"
+    # ${czWrap} apply
+
+    ${czWrap} init --apply https://github.com/jackhamilton/dotfiles.git
     '';
 }
