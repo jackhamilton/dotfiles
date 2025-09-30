@@ -1,17 +1,10 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, username, homeDirectory, ... }:
 
 let
   isDarwin = pkgs.stdenv.hostPlatform.isDarwin or pkgs.stdenv.isDarwin;
-  username  = if isDarwin then "jackhamilton" else "jack";
-  homedir  = if isDarwin then "/Users/${username}" else "/home/${username}";
-in
-{
-  imports = [
-    ./repos.nix
-  ];
-
+in {
   home.username      = username;
-  home.homeDirectory = homedir;
+  home.homeDirectory = homeDirectory;
   home.stateVersion  = "24.05";
 
   home.packages = with pkgs;
