@@ -12,6 +12,7 @@ AUTO_LS_COMMANDS=(git-status $lsdloc)
 znap source desyncr/auto-ls
 znap source zpm-zsh/undollar
 znap source jeffreytse/zsh-vi-mode
+znap source nix-community/nix-zsh-completions
 #znap source Junker/zsh-archlinux@main
 eval $(themester -l)
 
