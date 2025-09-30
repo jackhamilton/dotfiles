@@ -17,3 +17,4 @@ znap source nix-community/nix-zsh-completions
 eval $(themester -l)
 
 znap install zsh-users/zsh-completions
+znap install chisui/zsh-nix-shell
