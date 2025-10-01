@@ -4,6 +4,7 @@ return {
         dependencies = {
             "nvim-telescope/telescope.nvim",
             "MunifTanjim/nui.nvim",
+            "ibhagwan/fzf-lua",
             "nvim-treesitter/nvim-treesitter", -- (optional) for Quick tests support (required Swift parser)
         },
         lazy = false,

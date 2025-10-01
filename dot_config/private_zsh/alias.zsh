@@ -41,3 +41,7 @@ tmuxAttach ()
     tmux new -s "$1" -d
     tmux attach -d -t "$1"
 }
+flake()
+{
+    nix flake init --template "https://flakehub.com/f/the-nix-way/dev-templates/*#$1"
+}

@@ -12,10 +12,11 @@ require("core.maps")
 --- LSP
 require("core.lsp")
 
---- Better notifications
-local ok, notify = pcall(require, "notify")
-if ok then
-  ---@diagnostic disable-next-line
-  notify.setup({ level = 0 })
-  vim.notify = notify
+--- FILETYPE
+require("core.filetypes")
+
+---- Make all vim.notify calls use Snacks' notifier
+local Snacks = require("snacks")
+vim.notify = function(msg, level, opts)
+  Snacks.notifier.notify(msg, level, opts)
 end

@@ -1,7 +1,7 @@
 return {
     {
         'L3MON4D3/LuaSnip',
-        event = "LspAttach",
+        event = "BufEnter",
         dependencies = { "rafamadriz/friendly-snippets" },
         postinstall = "make install_jsregexp",
         config = function()

@@ -7,6 +7,8 @@ nvim_theme_env_var_name = "NVIM_THEME"
 write_term_lua = true
 term_lua_path = "~/.config/wezterm/dynamic_theme.lua"
 
+hours_per_randomization = 1
+
 [[theme]]
 term = "tokyonight-night"
 nvim_plugin = "tokyonight"
