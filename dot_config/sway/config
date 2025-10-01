@@ -128,6 +128,7 @@ workspace 3
 exec vesktop --force-renderer-accessibility
 workspace 1
 exec zen-browser
+exec fcitx5 -d
 # exec_always {
 #     gsettings set $gnome-schema gtk-theme 'Arc-Dark'
 #     gsettings set $gnome-schema icon-theme 'Papirus'
