@@ -75,8 +75,13 @@ exec xrandr --output DP-1 --primary
 output * background ~/Downloads/mountain.jpg fill
 bindsym $mod+ctrl+0 resize set width 2560px height 1440px
 
-input 9011:26214:ydotoold_virtual_device {
-    accel_profile "flat"
+input 046d:c099 {
+    left_handed false
+    tap enabled
+    natural_scroll disabled
+    dwt enabled
+    accel_profile "flat" # disable mouse acceleration (enabled by default; to set it manually, use "adaptive" instead of "flat")
+    pointer_accel 0.5 # set mouse sensitivity (between -1 and 1)
 }
 ### Input configuration
 #
