@@ -2,6 +2,7 @@
 # Created by `pipx` on 2024-04-21 17:00:31
 export PATH="$PATH:/home/jack/.local/bin"
 
+export XDG_CURRENT_DESKTOP=sway
 . "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"
 export _JAVA_AWT_WM_NONREPARENTING=1
 export GTK_IM_MODULE=fcitx

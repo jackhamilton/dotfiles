@@ -123,6 +123,7 @@ exec blueman-applet
 exec nm-applet --indicator
 # exec $HOME/.config/sway/scripts/inactive-windows-transparency.py
 exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+exec --no-startup-id /usr/lib/xdg-desktop-portal -r
 exec autotiling && sleep 1.5s
 workspace 3
 exec vesktop --force-renderer-accessibility
