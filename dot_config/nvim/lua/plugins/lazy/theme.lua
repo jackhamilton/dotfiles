@@ -94,4 +94,18 @@ return {
         priority = 1000,
         opts = {},
     },
+    {
+        "Yazeed1s/oh-lucy.nvim"
+    },
+    {
+        "mhartington/oceanic-next"
+    },
+    {
+        "olivercederborg/poimandres.nvim",
+        lazy = false,
+        priority = 1000
+    },
+    {
+        "tiagovla/tokyodark.nvim"
+    },
 }

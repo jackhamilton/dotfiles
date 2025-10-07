@@ -10,19 +10,42 @@ term_lua_path = "~/.config/wezterm/dynamic_theme.lua"
 hours_per_randomization = 1
 
 [[theme]]
-term = "tokyonight-night"
+term = "Tokyo Night"
 nvim_plugin = "tokyonight"
 nvim_themename = "tokyonight-night"
 
 [[theme]]
-term = "toykonight_moon"
+term = "Tokyo Night Moon"
 nvim_plugin = "tokyonight"
 nvim_themename = "tokyonight-moon"
 
 [[theme]]
-term = "toykonight_storm"
+term = "Tokyo Night Storm"
 nvim_plugin = "tokyonight"
 nvim_themename = "tokyonight-storm"
+
+[[theme]]
+term = "Tokyo Night (Gogh)"
+nvim_plugin = "tokyodark"
+nvim_themename = "tokyodark"
+
+[[theme]]
+term = "Poimandres Storm"
+nvim_plugin = "poimandres"
+nvim_themename = "poimandres"
+
+[[theme]]
+term = "Oceanic-Next"
+nvim_plugin = "oceanic-next"
+nvim_themename = "OceanicNext"
+
+[[theme]]
+term = "nordfox"
+nvim_themename = "oh-lucy"
+
+[[theme]]
+term = "nordfox"
+nvim_themename = "oh-lucy-evening"
 
 [[theme]]
 term = "catppuccin-frappe"
@@ -41,18 +64,26 @@ nvim_themename = "catppuccin-mocha"
 
 [[theme]]
 term = "GruvboxDark"
-nvim_plugin = "gruvbox-material" # none?
-nvim_themename = "gruvbox"
+nvim_themename = "gruvbox-material"
 
 [[theme]]
 term = "Gruvbox Dark (Gogh)"
-nvim_plugin = "gruvbox-material"
 nvim_themename = "gruvbox-material"
 
 [[theme]]
 term = "nightfox"
 nvim_plugin = "nightfox"
 nvim_themename = "nightfox"
+
+[[theme]]
+term = "nordfox"
+nvim_plugin = "nightfox"
+nvim_themename = "nordfox"
+
+[[theme]]
+term = "nordfox"
+nvim_plugin = "nightfox"
+nvim_themename = "terafox"
 
 [[theme]]
 term = "rose-pine"
@@ -84,15 +115,10 @@ term = "Edge Dark (base16)"
 nvim_plugin = "none" # none
 nvim_themename = "edge"
 
-[[theme]]
-term = "firewatch"
-nvim_plugin = "flow"
-nvim_themename = "flow"
-
-[[theme]]
-term = "nordfox"
-nvim_plugin = "nightfox"
-nvim_themename = "nightfox"
+# [[theme]]
+# term = "Firewatch"
+# nvim_plugin = "flow"
+# nvim_themename = "flow"
 
 # [[theme]]
 # term = "Solarized Dark (Gogh)"

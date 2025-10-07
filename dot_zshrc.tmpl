@@ -1,5 +1,3 @@
-source :q
-
 source ~/.config/zsh/path.zsh
 
 # Download Znap, if it's not there yet.
@@ -10,6 +8,9 @@ source ~/Repos/znap/znap.zsh  # Start Znap
 
 # Immediately source completions
 source ~/.config/zsh/completion.zsh
+
+# Load themester cache
+eval $(themester -l)
 
 HISTFILE=~/.zsh_history
 HISTSIZE=10000
