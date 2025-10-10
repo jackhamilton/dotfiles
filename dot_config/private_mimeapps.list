@@ -17,6 +17,9 @@ application/x-extension-xhtml=zen.desktop
 application/x-extension-xht=zen.desktop
 x-scheme-handler/discord=vesktop.desktop
 image/bmp=org.gnome.Loupe.desktop
+x-scheme-handler/mailto=userapp-Thunderbird-PSZDD3.desktop
+message/rfc822=userapp-Thunderbird-PSZDD3.desktop
+x-scheme-handler/mid=userapp-Thunderbird-PSZDD3.desktop
 
 [Added Associations]
 text/html=firefox.desktop;zen.desktop;
@@ -38,3 +41,5 @@ image/bmp=org.gnome.Loupe.desktop;
 application/x-compressed-tar=org.gnome.Nautilus.desktop;
 application/zip=org.gnome.Nautilus.desktop;
 image/jpeg=krita_jpeg.desktop;
+x-scheme-handler/mailto=userapp-Thunderbird-PSZDD3.desktop;
+x-scheme-handler/mid=userapp-Thunderbird-PSZDD3.desktop;

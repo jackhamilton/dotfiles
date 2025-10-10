@@ -50,3 +50,8 @@ switch()
 {
     home-manager switch --flake ~/.config/home-manager/.#$1
 }
+cleanup ()
+{
+    nix-collect-garbage
+    paru -Sccd
+}
