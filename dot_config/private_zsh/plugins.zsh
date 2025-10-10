@@ -8,7 +8,7 @@ znap source zsh-users/zsh-syntax-highlighting
 
 znap source akash329d/zsh-alias-finder
 lsdloc=$(which lsd)
-AUTO_LS_COMMANDS=(git-status $lsdloc)
+# AUTO_LS_COMMANDS=(git-status $lsdloc)
 znap source desyncr/auto-ls
 znap source zpm-zsh/undollar
 znap source jeffreytse/zsh-vi-mode
