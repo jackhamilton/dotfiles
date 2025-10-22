@@ -1,13 +1,5 @@
-# alacritty.toml
-# commented lines are the defaults
-# man 5 alacritty (>0.13) for full config manual
 
-import = [
-    "~/.config/alacritty/themes/themes/current.toml"
-    #"~/.config/alacritty/themes/themes/{theme}.toml"
-]
-
-[shell]
+[terminal.shell]
 program               = "zsh"
 
 #working_directory     = "None"
@@ -53,6 +45,9 @@ italic                = { family = "RobotoMono Nerd Font Mono", style = "Italic"
 bold_italic           = { family = "RobotoMono Nerd Font Mono", style = "Bold Italic" }
 size                  = 16
 {{ end }}
+size                  = 13
+
+
 offset                = { x = 0, y = 0 }
 glyph_offset          = { x = 0, y = 0 }
 builtin_box_drawing   = true
@@ -123,6 +118,16 @@ bindings = [
 
 
 [debug]
+
+[general]
+# alacritty.toml
+# commented lines are the defaults
+# man 5 alacritty (>0.13) for full config manual
+
+import = [
+    "~/.config/alacritty/themes/themes/current.toml"
+    #"~/.config/alacritty/themes/themes/{theme}.toml"
+]
 #render_timer          = false
 #persistent_logging    = false
 #log_level             = "Warn"

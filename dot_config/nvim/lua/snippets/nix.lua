@@ -28,20 +28,20 @@ local k = require("luasnip.nodes.key_indexer").new_key
 local r = require("luasnip.extras").rep
 
 return {
-    -- Nix config
-    s({trig="nixconf", dscr="Nix config"},
-        fmt([[
-{ config, pkgs, pkgs-unstable, lib, ... }:
-
-let
-in {
-    <>
-}
-        ]], {
-            i(1,""),
-            i(0)
-        }, {
-            delimiters = "<>"
-        })
-    ),
+--     -- Nix config
+--     s({trig="nixconf", dscr="Nix config"},
+--         fmt([[
+-- { config, pkgs, pkgs-unstable, lib, ... }:
+--
+-- let
+-- in {
+--     <>
+-- }
+--         ]], {
+--             i(1,""),
+--             i(0)
+--         }, {
+--             delimiters = "<>"
+--         })
+--     ),
 }
