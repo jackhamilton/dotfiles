@@ -26,6 +26,7 @@ alias gitunskip="git update-index --no-skip-worktree $(git ls-files $(git rev-pa
 alias gitskips="git update-index --skip-worktree Grindr.xcworkspace/xcshareddata/swiftpm/Package.resolved"
 alias archive="yt-dlp --live-from-start --cookies-from-browser firefox --extractor-args youtubetab:skip=authcheck --windows-filenames --write-thumbnail --embed-thumbnail --embed-metadata --embed-info-json"
 alias killall="pkill -9 -f"
+alias replace="git checkout origin/main"
 gitup ()
 {
     git add .
