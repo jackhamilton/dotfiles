@@ -189,7 +189,8 @@ def get_current_program(running_programs: List[bytes], pane: TmuxPane, options: 
             if re.match(r'.*\bnvim(\b|$)', parsable):
                 cwd = pane.pane_current_path or ''
                 cwd = re.sub(r'^/nix/store/[^/]+/', '', cwd)
-                return f"nvim:{cwd}"
+                last_dir = os.path.basename(cwd.rstrip('/')) or cwd
+                return f"nvim: {last_dir}"
 
             cleaned = re.sub(NIX_STORE_REMOVER[0], NIX_STORE_REMOVER[1], parsable)
 

@@ -636,4 +636,35 @@ private enum *;Event: EventLoggable {
             delimiters = "*;"
         })
     ),
+    -- Feature flag macro
+    s({trig="grfeatureflag", dscr="Feature flag macro"},
+        fmt([[
+extension AssignmentsKeyPathBase {
+    #FeatureFlag(
+        key: "<>",
+        exposureLogging: .onAccess,
+        owner: AssignmentOwner(.user("Jack Hamilton"), .removeAfter("<>", cleanupTicket: "<>"))
+    )
+}
+        ]], {
+            i(1,"assignment-key"),
+            i(2,"version"),
+            i(3,"ticket"),
+        }, {
+            delimiters = "<>"
+        })
+    ),
+    -- Feature flag check
+    s({trig="grflagcheck", dscr="Feature flag check"},
+        fmt([[
+if assignmentManager.getFeatureFlag(keyPath: \.<>).isOn {
+    <>
+}
+        ]], {
+            i(1,"keyPath"),
+            i(0)
+        }, {
+            delimiters = "<>"
+        })
+    ),
 }
