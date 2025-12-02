@@ -56,3 +56,10 @@ cleanup ()
     nix-collect-garbage
     paru -Sccd
 }
+# nix-upgrade 25.11 ex.
+nix-upgrade()
+{
+    nix-channel --add https://channels.nixos.org/nixos-$1 nixos
+    nix-channel --update
+    nix-collect-garbage -d
+}
