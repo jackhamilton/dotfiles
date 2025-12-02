@@ -402,7 +402,7 @@ local function config(_, opts)
 end
 
 return {
-    'freddiehaddad/feline.nvim',
+    'second2050/feline.nvim',
     config = config,
     dependencies = {
         'lewis6991/gitsigns.nvim',

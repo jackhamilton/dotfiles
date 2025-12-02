@@ -3,7 +3,6 @@ return {
         'L3MON4D3/LuaSnip',
         event = "BufEnter",
         dependencies = { "rafamadriz/friendly-snippets" },
-        postinstall = "make install_jsregexp",
         config = function()
             local luaload = require("luasnip.loaders.from_lua")
             luaload.lazy_load({ paths = { "./lua/snippets" } })
