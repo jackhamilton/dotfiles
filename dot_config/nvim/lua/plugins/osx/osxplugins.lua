@@ -24,9 +24,8 @@ return {
         },
         config = function()
             local xcodebuild = require("xcodebuild.integrations.dap")
-            local codelldbPath = os.getenv("HOME") .. "/Documents/codelldb-darwin-arm64/extension/adapter/codelldb"
 
-            xcodebuild.setup(codelldbPath)
+            xcodebuild.setup()
             vim.keymap.set("n", "<leader>Xf", "<cmd>XcodebuildProjectManager<cr>",
                 { desc = "Show Project Manager Actions" })
 
