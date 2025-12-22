@@ -3,8 +3,7 @@ return {
         'nvim-treesitter/nvim-treesitter',
         lazy = false,
         config = function()
-            require('nvim-treesitter').setup()
-            require('nvim-treesitter.configs').setup({
+            require('nvim-treesitter.config').setup({
                 textobjects = {
                     select = {
                         enable = true,
@@ -192,9 +191,6 @@ return {
                 }
             })
         end,
-        dependencies = {
-		    "OXY2DEV/markview.nvim",
-        }
     },
     {
         'nvim-treesitter/nvim-treesitter-context',
@@ -205,9 +201,9 @@ return {
     },
     {
         'nvim-treesitter/nvim-treesitter-textobjects',
-        lazy = false,
-        dependencies = {
-            'nvim-treesitter/nvim-treesitter',
-        },
+        branch = 'main',
+        init = function()
+            vim.g.no_plugin_maps = true
+        end,
     }
 }
