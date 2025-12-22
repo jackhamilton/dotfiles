@@ -16,5 +16,8 @@ znap source nix-community/nix-zsh-completions
 #znap source Junker/zsh-archlinux@main
 eval $(themester -l)
 
+{{ if eq .chezmoi.hostname "nixos" }}
+{{ else }}
 znap install zsh-users/zsh-completions
 znap install chisui/zsh-nix-shell
+{{ end }}

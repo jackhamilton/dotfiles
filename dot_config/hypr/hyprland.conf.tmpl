@@ -15,10 +15,14 @@
 
 # 3 is left, 1 is middle, HDMI-A-1 is right
 # See https://wiki.hypr.land/Configuring/Monitors/
-monitor = DP-1, 2560x1440@120, auto, 1
 # monitor = DP-2, 2560x1440@144, auto, 1, transform, 3
+{{ if eq .chezmoi.hostname "nixos"}}
+monitor = eDP-1, 1920x1080@60.02, auto, 1
+{{ else }}
+monitor = DP-1, 2560x1440@120, auto, 1
 monitor = DP-3, 2560x1440@120, auto-left, 1
 monitor = HDMI-A-1, 2560x1440@60, auto-center-right, 1, transform, 1
+{{ end }}
 
 ###################
 ### MY PROGRAMS ###
@@ -28,9 +32,13 @@ monitor = HDMI-A-1, 2560x1440@60, auto-center-right, 1, transform, 1
 
 # Set programs that you use
 $terminal = wezterm
+{{ if eq .chezmoi.hostname "nixos"}}
+$browser = firefox
+{{ else }}
 $browser = zen-browser
+{{ end }}
 $fileManager = nautilus
-$menu = exec ~/.config/rofi/launchers/type-6/launcher.sh
+$menu = exec ~/.config/rofi/launchers/type-6/launcher.sh -icon-theme "Numix-Circle"
 
 
 #################
@@ -213,7 +221,9 @@ misc {
 # https://wiki.hypr.land/Configuring/Variables/#input
 input {
     kb_layout = us
-    # kb_variant =
+    {{ if eq .chezmoi.hostname "nixos" }}
+    kb_variant = colemak_dh
+    {{ end }}
     # kb_model =
     # kb_options =
     # kb_rules =

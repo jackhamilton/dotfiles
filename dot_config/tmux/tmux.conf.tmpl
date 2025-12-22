@@ -1,17 +1,24 @@
 # List of plugins
 set -g @plugin 'tmux-plugins/tpm'
 set -g @plugin 'tmux-plugins/tmux-sensible'
-set -g @plugin 'ofirgall/tmux-window-name'
 set -g @plugin 'schasse/tmux-jump'
 set -g @plugin 'tmux-plugins/tmux-yank'
 set -g @plugin 'anghootys/tmux-ip-address'
 set -g @plugin 'erikw/tmux-powerline'
 set -g @plugin 'idevtier/tmux-cargo'
+{{ if eq .chezmoi.hostname "nixos" }}
+{{ else }}
+set -g @plugin 'ofirgall/tmux-window-name'
+{{ end }}
 
 set -g @tmux_window_name_shells "['bash', 'fish', 'sh', 'zsh', 'tmux']"
 # set -g @tmux_window_dir_programs "['nvim', 'vim', 'vi', 'git', 'lg']"
 set -g @tmux_window_name_icon_style "'name_and_icon'"
+{{ if eq .chezmoi.hostname "nixos" }}
+set -g default-shell /run/current-system/sw/bin/zsh
+{{ else }}
 set -g default-shell /bin/zsh
+{{ end }}
 {{ if eq .chezmoi.os "darwin" }}
 set -g default-command "reattach-to-user-namespace -l zsh"
 {{ end }}
