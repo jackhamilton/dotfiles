@@ -10,10 +10,20 @@ vim.diagnostic.config({
     }
 })
 
-vim.lsp.config('*', { capabilities = require('blink.cmp').get_lsp_capabilities()})
-
+-- vim.lsp.config('*', { capabilities = require('blink.cmp').get_lsp_capabilities()})
 vim.lsp.enable({
     'clangd',
     'sourcekit',
-    'lua_ls'
+    'lua_ls',
+    'nixd'
+})
+
+vim.lsp.config('nixd', {
+   settings = {
+      nixd = {
+         formatting = {
+            command = { "nixfmt" },
+         },
+      },
+   },
 })
