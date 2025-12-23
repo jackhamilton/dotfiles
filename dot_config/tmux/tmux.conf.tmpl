@@ -13,6 +13,9 @@ set -g @plugin 'idevtier/tmux-cargo'
 set -g @plugin 'ofirgall/tmux-window-name'
 {{ end }}
 
+set -g default-terminal "tmux-256color"
+set -ag terminal-overrides ",*:RGB"
+
 set -g @tmux_window_name_shells "['bash', 'fish', 'sh', 'zsh', 'tmux']"
 # set -g @tmux_window_dir_programs "['nvim', 'vim', 'vi', 'git', 'lg']"
 set -g @tmux_window_name_icon_style "'name_and_icon'"
