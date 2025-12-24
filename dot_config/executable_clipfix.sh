@@ -13,6 +13,9 @@
 # pkill -9 -f wl-paste
 # /bin/sh -c 'wl-paste --type text --watch /home/jack/.config/clipfix.sh' &
 # wl-paste --type image --watch cliphist store &
+#
+#
+# Oh, and make sure you chmod +x the script when you copy it.
 
 orig="$(cat)"
 [ -n "$orig" ] || exit 0
