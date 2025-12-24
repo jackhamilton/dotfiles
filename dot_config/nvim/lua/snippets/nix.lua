@@ -44,4 +44,21 @@ return {
 --             delimiters = "<>"
 --         })
 --     ),
+-- nixconf
+s({trig="nixconf", dscr="Empty nixos config"},
+    fmt([[
+<>
+{
+    <>
+}
+    ]], {
+        c(1, {
+            t("{ config, lib, pkgs, pkgs-unstable, ... }:"),
+            t("{ config, lib, pkgs, modulesPath, ... }:"),
+        }),
+        i(0)
+    }, {
+        delimiters = "<>"
+    })
+),
 }

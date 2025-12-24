@@ -2,7 +2,7 @@
     // "layer": "top", // Waybar at top layer
     // "position": "top", // Waybar position (top|bottom|left|right)
     // "height": 30, // Waybar height (to be removed for auto height)
-    "margin": "00 10 10 10",
+    "margin": "00 00 10 10",
     // "width": 1280, // Waybar width
     // Choose the order of the modules
     {{ if eq .chezmoi.hostname "nixos" }}
@@ -52,7 +52,7 @@
                 "orientation": "horizontal",
 
                 // List of regexes. A window will NOT be shown if its window class or title match one or more items. Default: []
-                "ignore-list": [],
+                "ignore-list": [ "xwaylandvideobridge" ],
 
                 // Command to run when a window is clicked. Default: "" (switch to the workspace as usual). Allowed variables: {address}, {button}
                 "on-click-window": ""

@@ -38,10 +38,13 @@ source ~/.config/zsh/env.zsh
 
 setopt interactivecomments
 
+{{ if eq .chezmoi.hostname "nixos" }}
+{{ else }}
 tmux-window-name() {
 	($TMUX_PLUGIN_MANAGER_PATH/tmux-window-name/scripts/rename_session_windows.py &)
 }
 
 add-zsh-hook chpwd tmux-window-name
+{{ end }}
 
 [ -f "/home/jack/.ghcup/env" ] && . "/home/jack/.ghcup/env" # ghcup-env

@@ -48,11 +48,11 @@ $menu = exec ~/.config/rofi/launchers/type-6/launcher.sh -icon-theme "Numix-Circ
 # Autostart necessary processes (like notifications daemons, status bars, etc.)
 # Or execute your favorite apps at launch like this:
 
+exec-once = waypaper --restore
 exec-once = waybar & hyprpaper
-# may not be needed, dbus
 exec-once = swaync
 exec-once = blueman-applet
-exec-once = wl-paste --type text --watch cliphist store # Stores only text data
+exec-once = /bin/sh -c 'wl-paste --type text --watch /home/jack/.config/clipfix.sh'
 exec-once = wl-paste --type image --watch cliphist store # Stores only image data
 exec-once = hyprsunset
 exec-once = systemctl --user start hyprpolkitagent
@@ -60,9 +60,8 @@ exec-once = blueman-applet
 exec-once = nm-applet --indicator &
 exec-once = /usr/lib/polkit-tnome/polkit-gnome-authentication-agent-1 &
 exec-once = --no-startup-id /usr/lib/xdg-desktop-portal -r
-exec-once = vesktop --force-renderer-accessibility
-exec-once = zen-browser
-# exec-once = nm-applet &
+# exec-once = vesktop --force-renderer-accessibility
+# exec-once = zen-browser
 
 
 #############################
@@ -178,6 +177,10 @@ animations {
 }
 
 # Ref https://wiki.hypr.land/Configuring/Workspace-Rules/
+{{ if eq .chezmoi.hostname "nixos"}}
+workspace = 1, on-created-empty: $browser
+workspace = 2, on-created-empty: vesktop --force-renderer-accessibility
+{{ else }}
 workspace = 1, monitor:DP-3
 workspace = 2, monitor:DP-1
 workspace = 3, monitor:HDMI-A-1
@@ -188,6 +191,7 @@ workspace = 7, monitor:DP-3
 workspace = 8, monitor:DP-1
 workspace = 9, monitor:HDMI-A-1
 workspace = 10, monitor:DP-1
+{{ end }}
 
 # "Smart gaps" / "No gaps when only"
 # uncomment all if you wish to use that.
@@ -211,8 +215,8 @@ master {
 
 # https://wiki.hypr.land/Configuring/Variables/#misc
 misc {
-    force_default_wallpaper = -1 # Set to 0 or 1 to disable the anime mascot wallpapers
-    disable_hyprland_logo = false # If true disables the random hyprland logo / anime girl background. :(
+    force_default_wallpaper = 0 # Set to 0 or 1 to disable the anime mascot wallpapers
+    disable_hyprland_logo = true # If true disables the random hyprland logo / anime girl background. :(
 }
 
 
