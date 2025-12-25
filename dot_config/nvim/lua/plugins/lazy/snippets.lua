@@ -6,8 +6,12 @@ return {
         config = function()
             local luaload = require("luasnip.loaders.from_lua")
             luaload.lazy_load({ paths = { "./lua/snippets" } })
-            local kbd = vim.keymap.set
-            kbd("i", "<C-s>", "<cmd>lua require(\"luasnip.extras.select_choice\")()<cr>")
+            local ls = require("luasnip")
+            vim.keymap.set({"i", "s"}, "<C-E>", function()
+	            if ls.choice_active() then
+		            ls.change_choice(1)
+	            end
+            end, {silent = true})
             local types = require("luasnip.util.types")
             require'luasnip'.config.setup({
                 ext_opts = {
