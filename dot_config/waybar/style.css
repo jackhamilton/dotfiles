@@ -84,6 +84,17 @@ window#waybar.hidden {
     opacity: 0.9;
 }
 
+#custom-power {
+    margin-right: 8px;
+    padding-right: 16px;
+    padding-left: 16px;
+    border-radius: 0px 0px 10px 10px;
+    transition: none;
+    color: #ffffff;
+    background: #1d1f21;
+    opacity: 0.9;
+}
+
 #custom-mail {
     margin-right: 8px;
     padding-right: 16px;

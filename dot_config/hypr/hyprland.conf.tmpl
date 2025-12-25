@@ -359,3 +359,5 @@ windowrule = noinitialfocus, class:^(xwaylandvideobridge)$
 windowrule = maxsize 1 1, class:^(xwaylandvideobridge)$
 windowrule = noblur, class:^(xwaylandvideobridge)$
 windowrule = nofocus, class:^(xwaylandvideobridge)$
+
+exec-once = systemctl --user start hyprland-session.target

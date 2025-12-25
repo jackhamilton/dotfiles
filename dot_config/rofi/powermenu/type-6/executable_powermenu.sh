@@ -19,20 +19,20 @@ uptime="`uptime -p | sed -e 's/up //g'`"
 host=`hostname`
 
 # Options
-hibernate=''
-shutdown=''
-reboot=''
-lock=''
-suspend=''
-logout=''
-yes=''
-no=''
+hibernate='󰒲'
+shutdown=''
+reboot='󰜉'
+lock=''
+suspend='󰤄'
+logout='󰍃'
+yes=''
+no=''
 
 # Rofi CMD
 rofi_cmd() {
 	rofi -dmenu \
-		-p " $USER@$host" \
-		-mesg " Uptime: $uptime" \
+		-p "$USER@$host" \
+		-mesg "Uptime: $uptime" \
 		-theme ${dir}/${theme}.rasi
 }
 
@@ -74,7 +74,9 @@ run_cmd() {
 			amixer set Master mute
 			systemctl suspend
 		elif [[ $1 == '--logout' ]]; then
-			if [[ "$DESKTOP_SESSION" == 'openbox' ]]; then
+		    if [[ "$DESKTOP_SESSION" == 'hyprland' ]]; then
+                loginctl kill-session $XDG_SESSION_ID
+			elif [[ "$DESKTOP_SESSION" == 'openbox' ]]; then
 				openbox --exit
 			elif [[ "$DESKTOP_SESSION" == 'bspwm' ]]; then
 				bspc quit

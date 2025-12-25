@@ -8,11 +8,11 @@
     {{ if eq .chezmoi.hostname "nixos" }}
     "modules-left": ["clock", "custom/weather", "hyprland/language", "keyboard-state", "tray"],
     "modules-center": ["hyprland/workspaces"],
-    "modules-right": ["pulseaudio", "backlight", "battery", "custom/mem", "cpu"],
+    "modules-right": ["pulseaudio", "backlight", "battery", "custom/mem", "cpu", "custom/power"],
     {{ else }}
     "modules-left": ["hyprland/workspaces", "hyprland/language", "keyboard-state", "custom/pacman", "custom/mail", "sway/mode"],
     "modules-center": ["clock", "custom/weather"],
-    "modules-right": ["pulseaudio", "custom/mem", "cpu", "battery", "tray"],
+    "modules-right": ["pulseaudio", "custom/mem", "cpu", "battery", "tray", "custom/power"],
     {{ end }}
 
 
@@ -97,6 +97,12 @@
         "interval": 120,
         "on-click": "betterbird ; pkill -SIGRTMIN+9 waybar",
         "signal": 9,
+        "tooltip": false,
+    },
+
+    "custom/power": {
+	    "format": "⏻",
+        "on-click": "$HOME/.config/rofi/powermenu/type-6/powermenu.sh",
         "tooltip": false,
     },
 
