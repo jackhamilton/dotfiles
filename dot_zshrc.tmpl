@@ -23,8 +23,8 @@ export VISUAL='nvim'
 
 znap eval fzf "fzf --zsh"
 znap eval zoxide "zoxide init zsh"
-znap eval direnv "direnv hook zsh"
 znap eval starship "starship init zsh"
+znap eval direnv-instant "$(direnv-instant hook zsh)"
 {{ if eq .chezmoi.os "Darwin" }}
 znap eval rbenv "rbenv init - --no-rehash zsh"
 {{ end }}

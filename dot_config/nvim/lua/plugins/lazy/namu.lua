@@ -3,6 +3,7 @@ return {
         "bassamsdata/namu.nvim",
         keys = {
             { "<leader>ss", function() require("namu.namu_symbols").show() end, desc = "LSP Symbol Jump"},
+            { "<leader>sW", function() require("namu.namu_workspace").show() end, desc = "Namu workspace"},
         },
         config = function()
             require("namu").setup({
