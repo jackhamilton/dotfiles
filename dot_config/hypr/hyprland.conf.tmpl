@@ -73,6 +73,10 @@ exec-once = --no-startup-id /usr/lib/xdg-desktop-portal -r
 env = XCURSOR_SIZE,24
 env = HYPRCURSOR_SIZE,24
 
+env = XDG_DATA_DIRS,$HOME/.nix-profile/share:$HOME/.local/share:/usr/local/share:/usr/share
+env = PATH,$HOME/.nix-profile/bin:$PATH
+env = XDG_CONFIG_DIRS,$HOME/.nix-profile/etc/xdg:/etc/xdg
+
 
 ###################
 ### PERMISSIONS ###

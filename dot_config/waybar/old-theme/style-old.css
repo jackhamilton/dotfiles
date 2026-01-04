@@ -1,64 +1,66 @@
-@import "mocha.css";
-
 * {
     border: none;
     border-radius: 0;
-    font-family: MesloLG Nerd Font;
+    /* `otf-font-awesome` is required to be installed for icons */
+    font-family: Roboto Mono Nerd Font;
     min-height: 20px;
 }
 
-#waybar {
-  background: transparent;
-  color: @text;
-  margin: 5px 5px;
+window#waybar {
+    background: transparent;
 }
 
-#memory {
-  border-radius: 1rem;
-  margin-right: 1rem;
-  color: @green;
-  padding-left: 1rem;
-  padding-right: 1rem;
+window#waybar.hidden {
+    opacity: 0.2;
 }
 
 #workspaces {
     margin-right: 8px;
-    border-radius: 0px 0px 10px 10px;
-    padding-left: 16px;
-    padding-right: 16px;
+    border-radius: 10px;
+    transition: none;
+    background: #2d1f0f;
+    opacity: 0.9;
+}
+
+#hyprland/workspaces {
+    margin-right: 8px;
+    border-radius: 10px;
     transition: none;
     background: #2d1f0f;
     opacity: 0.9;
 }
 
 #workspaces button {
-  color: @lavender;
-  border-radius: 1rem;
-  padding: 0.4rem;
+    transition: none;
+    color: #7c818c;
+    background: transparent;
+    padding: 5px;
+    font-size: 18px;
 }
 
-#workspaces button.active {
-  color: @sky;
-  border-radius: 1rem;
+#workspaces button.persistent {
+    color: #7c818c;
+    font-size: 12px;
 }
 
+/* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
 #workspaces button:hover {
-  color: @sapphire;
-  border-radius: 1rem;
+    transition: none;
+    box-shadow: inherit;
+    text-shadow: inherit;
+    border-radius: inherit;
+    color: #1d1f21;
+    background: #7c818c;
 }
 
 #workspaces button.focused {
     color: white;
 }
 
-#workspaces button.active {
-    color: white;
-}
-
 #language {
     padding-left: 16px;
     padding-right: 8px;
-    border-radius: 0px 0px 0px 10px;
+    border-radius: 10px 0px 0px 10px;
     transition: none;
     color: #ffffff;
     background: #2f2d0d;
@@ -68,7 +70,7 @@
 #keyboard-state {
     margin-right: 8px;
     padding-right: 16px;
-    border-radius: 0px 0px 10px 0px;
+    border-radius: 0px 10px 10px 0px;
     transition: none;
     color: #ffffff;
     background: #2f2d0d;
@@ -82,17 +84,6 @@
     transition: none;
     color: #ffffff;
     background: #0f2f0d;
-    opacity: 0.9;
-}
-
-#custom-power {
-    margin-right: 8px;
-    padding-right: 16px;
-    padding-left: 16px;
-    border-radius: 0px 0px 10px 10px;
-    transition: none;
-    color: #ffffff;
-    background: #1d1f21;
     opacity: 0.9;
 }
 
@@ -119,8 +110,7 @@
 #clock {
     padding-left: 16px;
     padding-right: 16px;
-    margin-right: 8px;
-    border-radius: 0px 0px 10px 10px;
+    border-radius: 10px 0px 0px 10px;
     transition: none;
     color: #ffffff;
     background: #1d1f21;
@@ -140,7 +130,7 @@
     margin-right: 8px;
     padding-left: 16px;
     padding-right: 16px;
-    border-radius: 0px 0px 10px 10px;
+    border-radius: 10px;
     transition: none;
     color: #ffffff;
     background: #0d1d2f;
@@ -154,8 +144,8 @@
 
 #custom-mem {
     padding-left: 16px;
-    padding-right: 16px;
-    border-radius: 0px 0px 0px 10px;
+    padding-right: 8px;
+    border-radius: 10px 0px 0px 10px;
     transition: none;
     color: #ffffff;
     background: #1d0d2f;
@@ -166,7 +156,7 @@
     margin-right: 8px;
     padding-left: 0px;
     padding-right: 16px;
-    border-radius: 0px 0px 10px 0px;
+    border-radius: 0px 10px 10px 0px;
     transition: none;
     color: #ffffff;
     background: #1d0d2f;
@@ -192,10 +182,10 @@
     margin-right: 8px;
     padding-left: 16px;
     padding-right: 16px;
-    border-radius: 0px 0px 10px 10px;
+    border-radius: 10px;
     transition: none;
     color: #ffffff;
-    background: #3b3e09;
+    background: #1d1f21;
     opacity: 0.9;
 }
 
@@ -203,56 +193,37 @@
     margin-right: 8px;
     padding-left: 16px;
     padding-right: 16px;
-    border-radius: 0px 0px 10px 10px;
+    border-radius: 10px;
     transition: none;
     color: #ffffff;
-    background: #0d3a20;
+    background: #1d1f21;
     opacity: 0.9;
 }
 
 #battery.charging {
     color: #ffffff;
-    background-color: #1e8549;
+    background-color: #26A65B;
 }
 
 #battery.warning:not(.charging) {
-  color: @red;
+    background-color: #ffbe61;
+    color: black;
 }
 
-#backlight {
-  color: @yellow;
-}
-
-#backlight, #battery {
-    border-radius: 0;
-}
-
-#pulseaudio {
-  color: @maroon;
-  border-radius: 1rem 0px 0px 1rem;
-  margin-left: 1rem;
-}
-
-#custom-music {
-  color: @mauve;
-  border-radius: 1rem;
-}
-
-#custom-lock {
-    border-radius: 1rem 0px 0px 1rem;
-    color: @lavender;
-}
-
-#custom-power {
-    margin-right: 1rem;
-    border-radius: 0px 1rem 1rem 0px;
-    color: @red;
+#battery.critical:not(.charging) {
+    background-color: #f53c3c;
+    color: #ffffff;
+    animation-name: blink;
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
 }
 
 #tray {
     padding-left: 16px;
     padding-right: 16px;
-    border-radius: 0px 0px 10px 10px;
+    border-radius: 10px;
     transition: none;
     color: #ffffff;
     background: #2d0f19;
