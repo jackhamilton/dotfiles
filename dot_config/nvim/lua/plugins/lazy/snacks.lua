@@ -15,6 +15,8 @@ return {
         picker = {
             enabled = true,
             matcher = {
+                smartcase = true,
+                ignorecase = true,
                 cwd_bonus = true,
                 sort_empty = true,
                 frecency = true,
