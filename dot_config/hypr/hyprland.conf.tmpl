@@ -16,9 +16,9 @@
 # 3 is left, 1 is middle, HDMI-A-1 is right
 # See https://wiki.hypr.land/Configuring/Monitors/
 # monitor = DP-2, 2560x1440@144, auto, 1, transform, 3
-{{ if eq .chezmoi.hostname "nixos"}}
+{{ if eq .chezmoi.hostname "nixos-laptop" }}
 monitor = eDP-1, 1920x1080@60.02, auto, 1
-{{ else }}
+{{ else if eq .chezmoi.hostname "nixos-desktop" }}
 monitor = DP-1, 2560x1440@120, auto, 1
 monitor = DP-3, 2560x1440@120, auto-left, 1
 monitor = HDMI-A-1, 2560x1440@60, auto-center-right, 1, transform, 1
@@ -32,8 +32,10 @@ monitor = HDMI-A-1, 2560x1440@60, auto-center-right, 1, transform, 1
 
 # Set programs that you use
 $terminal = wezterm
-{{ if eq .chezmoi.hostname "nixos"}}
+{{ if eq .chezmoi.hostname "nixos-laptop" }}
 $browser = firefox
+{{ else if eq .chezmoi.hostname "nixos-desktop" }}
+$browser = zen-browser
 {{ else }}
 $browser = zen-browser
 {{ end }}
@@ -181,12 +183,12 @@ animations {
 }
 
 # Ref https://wiki.hypr.land/Configuring/Workspace-Rules/
-{{ if eq .chezmoi.hostname "nixos"}}
+{{ if eq .chezmoi.hostname "nixos-laptop" }}
 workspace = 1, on-created-empty: $browser
 workspace = 2, on-created-empty: vesktop --force-renderer-accessibility
-{{ else }}
-workspace = 1, monitor:DP-3
-workspace = 2, monitor:DP-1
+{{ else if eq .chezmoi.hostname "nixos-desktop" }}
+workspace = 1, monitor:DP-3, on-created-empty: $browser
+workspace = 2, monitor:DP-1, on-created-empty: vesktop --force-renderer-accessibility
 workspace = 3, monitor:HDMI-A-1
 workspace = 4, monitor:DP-3
 workspace = 5, monitor:DP-1
@@ -231,7 +233,7 @@ misc {
 # https://wiki.hypr.land/Configuring/Variables/#input
 input {
     kb_layout = us
-    {{ if eq .chezmoi.hostname "nixos" }}
+    {{ if eq .chezmoi.hostname "nixos-laptop" }}
     kb_variant = colemak_dh
     {{ end }}
     # kb_model =
@@ -269,7 +271,7 @@ bind = $mainMod, D, exec, $menu
 bind = $mainMod, P, pseudo, # dwindle
 bind = $mainMod, J, togglesplit, # dwindle
 # bind = $mainMod, X, exec, ~/.config/rofi/powermenu/type-6/powermenu.sh
-{{ if eq .chezmoi.hostname "nixos"  }}
+{{ if eq .chezmoi.hostname "nixos-laptop" }}
 {{ else }}
 bind = CTRL, V, exec, cliphist list | rofi -dmenu -display-columns 2 | cliphist decode | wl-copy
 {{ end }}

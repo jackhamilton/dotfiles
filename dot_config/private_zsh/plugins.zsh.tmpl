@@ -14,7 +14,12 @@ znap source nix-community/nix-zsh-completions
 #znap source Junker/zsh-archlinux@main
 eval $(themester -l)
 
-{{ if eq .chezmoi.hostname "nixos" }}
+{{ if eq .chezmoi.hostname "nixos-laptop" }}
+znap install zsh-users/zsh-completions
+znap install chisui/zsh-nix-shell
+{{ else if eq .chezmoi.hostname "nixos-desktop" }}
+znap install zsh-users/zsh-completions
+znap install chisui/zsh-nix-shell
 {{ else }}
 znap install zsh-users/zsh-completions
 znap install chisui/zsh-nix-shell

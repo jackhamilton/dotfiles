@@ -38,7 +38,8 @@ source ~/.config/zsh/env.zsh
 
 setopt interactivecomments
 
-{{ if eq .chezmoi.hostname "nixos" }}
+{{ if eq .chezmoi.hostname "nixos-laptop" }}
+{{ else if eq .chezmoi.hostname "nixos-desktop" }}
 {{ else }}
 tmux-window-name() {
 	($TMUX_PLUGIN_MANAGER_PATH/tmux-window-name/scripts/rename_session_windows.py &)
