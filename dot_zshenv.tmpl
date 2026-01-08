@@ -1,11 +1,9 @@
 if [[ $(uname) == "Darwin" ]]; then
     . "$HOME/.cargo/env"
-    export PATH="$PATH:/Library/Developer/CommandLineTools/usr/bin/sourcekit-lsp"
+    # export PATH="$PATH:/Library/Developer/CommandLineTools/usr/bin/sourcekit-lsp"
     export PATH="$PATH:/opt/homebrew/bin"
     export PATH="$PATH:/$HOME/.cargo/bin"
 else
-    export PATH="$HOME/.rbenv/bin:$PATH"
-    export PATH="$PATH:$HOME/.rvm/bin"
     export PATH="$PATH:$HOME/.cargo/bin"
     export PATH="$PATH:$HOME/.local/bin"
     export PATH="$PATH:$HOME/Android/Sdk/platform-tools"
@@ -17,3 +15,10 @@ export RUSTC_WRAPPER=sccache
 export HOMEBREW_AUTO_UPDATE_SECS=604800
 alias gcc="sccache gcc"
 alias cmake="cmake -DCMAKE_C_COMPILER_LAUNCHER=sccache -DCMAKE_CXX_COMPILER_LAUNCHER=sccache"
+
+{{ if eq .chezmoi.os "darwin" }}
+export ANDROID_HOME="/$HOME/Library/Android/sdk"
+{{ else }}
+export ANDROID_HOME="$HOME/Android/sdk"
+{{ end }}
+
