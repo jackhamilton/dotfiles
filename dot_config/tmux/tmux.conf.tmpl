@@ -22,14 +22,19 @@ set -ag terminal-overrides ",*:RGB"
 set -g @tmux_window_name_shells "['bash', 'fish', 'sh', 'zsh', 'tmux']"
 # set -g @tmux_window_dir_programs "['nvim', 'vim', 'vi', 'git', 'lg']"
 set -g @tmux_window_name_icon_style "'name_and_icon'"
-{{ if eq .chezmoi.hostname "nixos" }}
+set -g @tmux_window_name_ignored_programs "['reattach-to-user-namespace']"
+set -g @tmux_window_name_show_program_args "False"
+
+{{ if eq .chezmoi.hostname "nixos-laptop" }}
+set -g default-shell /run/current-system/sw/bin/zsh
+{{ else if eq .chezmoi.hostname "nixos-desktop" }}
 set -g default-shell /run/current-system/sw/bin/zsh
 {{ else }}
 set -g default-shell /bin/zsh
 {{ end }}
-{{ if eq .chezmoi.os "darwin" }}
-set -g default-command "reattach-to-user-namespace -l zsh"
-{{ end }}
+# {{ if eq .chezmoi.os "darwin" }}
+# set -g default-command "reattach-to-user-namespace -l zsh"
+# {{ end }}
 
 set -g @jump-key 's'
 
