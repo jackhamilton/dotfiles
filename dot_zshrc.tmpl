@@ -21,13 +21,11 @@ setopt INC_APPEND_HISTORY
 export EDITOR='nvim'
 export VISUAL='nvim'
 
+eval "$(direnv hook zsh)"
+
 znap eval fzf "fzf --zsh"
 znap eval zoxide "zoxide init zsh"
 znap eval starship "starship init zsh"
-znap eval direnv-instant "$(direnv-instant hook zsh)"
-{{ if eq .chezmoi.os "Darwin" }}
-znap eval rbenv "rbenv init - --no-rehash zsh"
-{{ end }}
 
 # MARK: Source extensions
 source ~/.config/zsh/alias.zsh
@@ -37,14 +35,5 @@ source ~/.config/zsh/plugins.zsh
 source ~/.config/zsh/env.zsh
 
 setopt interactivecomments
-
-{{ if eq .chezmoi.hostname "nixos" }}
-{{ else }}
-tmux-window-name() {
-	($TMUX_PLUGIN_MANAGER_PATH/tmux-window-name/scripts/rename_session_windows.py &)
-}
-
-add-zsh-hook chpwd tmux-window-name
-{{ end }}
 
 [ -f "/home/jack/.ghcup/env" ] && . "/home/jack/.ghcup/env" # ghcup-env
