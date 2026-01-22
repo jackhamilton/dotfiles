@@ -24,6 +24,7 @@ alias themer="eval \$(themester -r)"
 alias smbmount="sudo mount -v -t cifs -o credentials=/home/jack/.credentials,gid=1000,uid=1000,username=jack //192.168.1.11/jack /mnt/media"
 alias archive="yt-dlp --live-from-start --cookies-from-browser firefox --extractor-args youtubetab:skip=authcheck --windows-filenames --write-thumbnail --embed-thumbnail --embed-metadata --embed-info-json"
 alias killall="pkill -9 -f"
+alias skrg="sk --ansi -i -c 'rg --color=always --line-number \"{}\"'"
 gitup ()
 {
     git add .
