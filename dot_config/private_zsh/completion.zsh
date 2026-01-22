@@ -12,5 +12,5 @@ if command -v sass > /dev/null; then
 fi
 
 if command -v sk > /dev/null; then
-    znap fpath 'sk --shell zsh'
+    znap fpath _skim 'sk --shell zsh'
 fi
