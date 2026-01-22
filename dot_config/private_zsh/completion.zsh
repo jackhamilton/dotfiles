@@ -10,3 +10,7 @@ fi
 if command -v sass > /dev/null; then
     znap fpath _sass 'sass --completions'
 fi
+
+if command -v sk > /dev/null; then
+    znap fpath sk --shell zsh
+fi
