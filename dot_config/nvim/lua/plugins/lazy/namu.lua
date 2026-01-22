@@ -5,8 +5,11 @@ return {
             { "<leader>ss", function() require("namu.namu_symbols").show() end, desc = "LSP Symbol Jump"},
             { "<leader>sS", function() require("namu.namu_watchtower").show() end, desc = "All buffer symbols"},
             { "<leader>sW", function() require("namu.namu_workspace").show() end, desc = "Namu workspace"},
-            { "<leader>snd", function() require("namu.namu_diagnostics").show() end, desc = "Namu diagnostics"},
-            { "<leader>snc", function() require("namu.namu_callhierarchy").show_both_calls() end, desc = "Namu call hierarchy"},
+            { "<leader>sD", function() require("namu.namu_diagnostics").show() end, desc = "Buffer diagnostics"},
+            { "<leader>sc", group = "Namu calls"},
+            { "<leader>scb", function() require("namu.namu_callhierarchy").show_both_calls() end, desc = "call hierarchy"},
+            { "<leader>sci", function() require("namu.namu_callhierarchy").show_incoming_calls() end, desc = "incoming calls"},
+            { "<leader>sco", function() require("namu.namu_callhierarchy").show_outgoing_calls() end, desc = "outgoing calls"},
         },
         config = function()
             require("namu").setup({
