@@ -6,7 +6,7 @@ return {
             { "<leader>sS", function() require("namu.namu_watchtower").show() end, desc = "All buffer symbols"},
             { "<leader>sW", function() require("namu.namu_workspace").show() end, desc = "Namu workspace"},
             { "<leader>snd", function() require("namu.namu_diagnostics").show() end, desc = "Namu diagnostics"},
-            { "<leader>snc", function() require("namu.namu_callhierarchy").show_both_calls() end, desc = "Namu diagnostics"},
+            { "<leader>snc", function() require("namu.namu_callhierarchy").show_both_calls() end, desc = "Namu call hierarchy"},
         },
         config = function()
             require("namu").setup({
