@@ -15,7 +15,7 @@
 
         buildInputs = with pkgs; [
           lua
-          sumneko-lua-language-server
+          lua-language-server
         ];
       };
     }
