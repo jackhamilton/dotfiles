@@ -45,9 +45,9 @@ return {
             },
             { "<leader>lsf", vim.lsp.buf.declaration,      desc = "Display function signature" },
             { "<leader>lsh", vim.lsp.buf.signature_help,   desc = "Symbol signature help" },
-            { "<leader>lc",  group = "Calls" },
-            { "<leader>lci", mode = { "n" },               "<CMD>Lspsaga incoming_calls<CR>",  desc = "Incoming Calls" },
-            { "<leader>lco", mode = { "n" },               "<CMD>Lspsaga outgoing_calls<CR>",  desc = "Outgoing Calls" },
+            -- { "<leader>lc",  group = "Calls" },
+            -- { "<leader>lci", mode = { "n" },               "<CMD>Lspsaga incoming_calls<CR>",  desc = "Incoming Calls" },
+            -- { "<leader>lco", mode = { "n" },               "<CMD>Lspsaga outgoing_calls<CR>",  desc = "Outgoing Calls" },
             { "<leader>lg",  group = "Goto" },
             -- Go to definition
             { "<leader>lgd", vim.lsp.buf.definition,       desc = "Goto definition" },

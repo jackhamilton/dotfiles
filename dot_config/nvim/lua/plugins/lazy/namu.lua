@@ -10,6 +10,9 @@ return {
             { "<leader>scb", function() require("namu.namu_callhierarchy").show_both_calls() end, desc = "call hierarchy"},
             { "<leader>sci", function() require("namu.namu_callhierarchy").show_incoming_calls() end, desc = "incoming calls"},
             { "<leader>sco", function() require("namu.namu_callhierarchy").show_outgoing_calls() end, desc = "outgoing calls"},
+            { "<leader>lcb", function() require("namu.namu_callhierarchy").show_both_calls() end, desc = "call hierarchy"},
+            { "<leader>lci", function() require("namu.namu_callhierarchy").show_incoming_calls() end, desc = "incoming calls"},
+            { "<leader>lco", function() require("namu.namu_callhierarchy").show_outgoing_calls() end, desc = "outgoing calls"},
         },
         config = function()
             require("namu").setup({
