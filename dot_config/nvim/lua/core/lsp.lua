@@ -16,7 +16,7 @@ vim.lsp.enable({
     'sourcekit',
     'lua_ls',
     'nixd',
-    "tsserver"
+    "ts_ls"
 })
 
 vim.lsp.config('nixd', {
