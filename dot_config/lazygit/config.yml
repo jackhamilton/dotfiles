@@ -1,3 +1,62 @@
+customCommands:
+  - key: 'f'
+    command: "git difftool -y {{.SelectedLocalCommit.Sha}} -- {{.SelectedCommitFile.Name}}"
+    context: 'commitFiles'
+    description: 'Compare (difftool) with local copy'
+  - key: "b"
+    command: "git branch --merged master | grep -v '^[ *]*master$' | xargs -r git branch -d"
+    context: "localBranches"
+    loadingText: "Pruning..."
+    description: "prune local branches that have been merged to master"
+  - key: "M"
+    command: "git mergetool {{ .SelectedFile.Name }}"
+    context: "files"
+    loadingText: "opening git mergetool"
+    output: terminal
+  - key: "<c-p>"
+    command: "git remote prune {{.SelectedRemote.Name}}"
+    context: "remotes"
+    loadingText: "Pruning..."
+    description: "prune deleted remote branches"
+  - key: 'D'
+    command: git diff {{.SelectedLocalBranch.Name}} > /tmp/lazygit.patch && git reset --hard {{.SelectedLocalBranch.Name}} && git apply /tmp/lazygit.patch
+    context: localBranches
+    description: Extract diff into index
+  - key: 'K'
+    description: "Disentangle: Squash all changes into a single commit and rebase onto the selected branch"
+    context: localBranches
+    command: |
+      #!/bin/bash
+
+      # Set the base branch
+      BASE_BRANCH="{{.SelectedLocalBranch.Name}}"
+
+      # Check if the working tree is dirty
+      if [[ -n $(git status --porcelain) ]]; then
+          echo "Error: Working tree is dirty. Please commit or stash your changes before running this script."
+          exit 1
+      fi
+
+      # Get the merge base commit
+      merge_base=$(git merge-base $BASE_BRANCH HEAD)
+
+      # Get the first commit hash, message, and author details
+      first_commit_hash=$(git rev-list --reverse $merge_base..HEAD | head -n 1)
+      first_commit_message=$(git log -1 --format=%B $first_commit_hash)
+
+      # Reset to the merge base
+      git reset $merge_base
+
+      # Stage all changes
+      git add -A
+
+      # Create a new commit with all the changes, using the first commit's message and author
+      GIT_AUTHOR_NAME="$(git log -1 --format='%an' $first_commit_hash)" \
+      GIT_AUTHOR_EMAIL="$(git log -1 --format='%ae' $first_commit_hash)" \
+      git commit -m "$first_commit_message"
+
+      # Rebase onto the base branch
+      git rebase $BASE_BRANCH
 git:
   pagers:
     - externalDiffCommand: "difft"

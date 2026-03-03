@@ -311,42 +311,21 @@ return {
     -- Grindr Preview Provider
     s({trig="grpreview", dscr="Grindr Preview Provider"},
         fmt([[
-        //
-        // Copyright 2025 by Grindr LLC,
-        // All rights reserved.
-        //
-        // This software is confidential and proprietary information of
-        // Grindr LLC ("Confidential Information").
-        // You shall not disclose such Confidential Information and shall use
-        // it only in accordance with the terms of the license agreement
-        // you entered into with Grindr LLC.
-        //
-
-        import GrindrxFeatureUI
         import GrindrSwiftUI
+        import GrindrxFeatureUI
         import SwiftUI
 
-        public struct <>View_Previews: PreviewProvider {
-            public static var previews: some View {
-                snapshots.previews
-        #if DEBUG
-                    .grindrPreview()
-        #endif
-            }
+        public struct []View_Previews: PreviewProvider, CaseIterablePreviewProvider {
+            public enum PreviewCase: String, CaseIterablePreviewState {
+                case basic
 
-            public static var snapshots: PreviewSnapshots<<PreviewState>> {
-                PreviewSnapshots(
-                    states: [
-                        .init(name: "basic"),
-                    ],
-                    configure: { config in
-                        <>View()
+                @MainActor
+                public func generatePreview() -> some View {
+                    switch self {
+                    case .basic:
+                        return []View()
                     }
-                )
-            }
-
-            public struct PreviewState: NamedPreviewState {
-                public var name: String
+                }
             }
         }
         ]], {
@@ -357,7 +336,7 @@ return {
                 })
             end, { 1 }),
         }, {
-            delimiters = "<>"
+            delimiters = "[]"
         })
     ),
     -- Grindr Sheet Preview Provider
@@ -377,34 +356,25 @@ return {
         import GrindrSwiftUI
         import SwiftUI
 
-        public static var previews: some View {
-            snapshots.previews
-        #if DEBUG
-                .grindrPreviews()
-        #endif
-        }
+        public struct []View_Previews: PreviewProvider, CaseIterablePreviewProvider {
+            public enum PreviewCase: String, CaseIterablePreviewState {
+                case basic
 
-        public struct <>View_Previews: PreviewProvider {
-            public static var snapshots: PreviewSnapshots<<PreviewState>> {
-                PreviewSnapshots(
-                    states: [
-                        .init(name: "basic"),
-                    ],
-                    configure: { config in
-                        Color.swatch(\.fill.highlightPrimary)
+                @MainActor
+                public func generatePreview() -> some View {
+                    switch self {
+                    case .basic:
+                        return Color.swatch(\.fill.highlightPrimary)
                         .sheet(isPresented: .constant(true)) {
-                            <>View()
+                            []View()
                                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                                 .background(.swatch(\.fill.secondaryDarkBg))
                         }
                     }
-                )
-            }
-
-            public struct PreviewState: NamedPreviewState {
-                public var name: String
+                }
             }
         }
+
         ]], {
             i(1,"Name"),
             d(2, function(args)
@@ -413,14 +383,14 @@ return {
                 })
             end, { 1 }),
         }, {
-            delimiters = "<>"
+            delimiters = "[]"
         })
     ),
     -- Grindr Snapshot Test
     s({trig="grsnapshot", dscr="Grindr Snapshot Test"},
         fmt([[
         //
-        // Copyright 2025 by Grindr LLC,
+        // Copyright 2026 by Grindr LLC,
         // All rights reserved.
         //
         // This software is confidential and proprietary information of
@@ -430,29 +400,23 @@ return {
         // you entered into with Grindr LLC.
         //
 
-        import GrindrSwiftUI
+        import GrindrMacros
+        import GrindrSnapshot
+        import GrindrxFeatureUI
+        import SnapshotTesting
         import SwiftUI
         import XCTest
 
-        final class <>SnapshotTests: BaseSnapshotTestCase {
-            func test_<>Snapshots() {
-                <>_Previews
-                    .snapshots
-                    .assertSnapshots(as: .testStrategy())
+        @GenerateSnapshotTests(fromPreviews: <>View_Previews.PreviewCase.self,
+                               withStrategy: .minimumSize,
+                               testDescriptors: { previewCase in
+            switch previewCase {
+            case .basic:
+                "Basic"
             }
-        }
+        })
         ]], {
             i(1,"Name"),
-            d(2, function(args)
-                return sn(nil, {
-                    i(1, args[1])
-                })
-            end, { 1 }),
-            d(3, function(args)
-                return sn(nil, {
-                    i(1, args[1])
-                })
-            end, { 1 }),
         }, {
             delimiters = "<>"
         })
