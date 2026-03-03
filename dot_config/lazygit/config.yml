@@ -4,10 +4,10 @@ customCommands:
     context: 'commitFiles'
     description: 'Compare (difftool) with local copy'
   - key: "b"
-    command: "git branch --merged master | grep -v '^[ *]*master$' | xargs -r git branch -d"
+    command: "git branch --merged main | grep -v '^[ *]*main$' | xargs -r git branch -d"
     context: "localBranches"
     loadingText: "Pruning..."
-    description: "prune local branches that have been merged to master"
+    description: "prune local branches that have been merged to main"
   - key: "M"
     command: "git mergetool {{ .SelectedFile.Name }}"
     context: "files"
