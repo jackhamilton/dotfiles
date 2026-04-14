@@ -1,8 +1,6 @@
 if [[ $(uname) == "Darwin" ]]; then
-    . "$HOME/.cargo/env"
     # export PATH="$PATH:/Library/Developer/CommandLineTools/usr/bin/sourcekit-lsp"
     export PATH="$PATH:/opt/homebrew/bin"
-    export PATH="$PATH:/$HOME/.cargo/bin"
 else
     export PATH="$PATH:$HOME/.cargo/bin"
     export PATH="$PATH:$HOME/.local/bin"
