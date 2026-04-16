@@ -36,8 +36,16 @@ source ~/.config/zsh/env.zsh
 
 setopt interactivecomments
 
+[[ if eq .chezmoi.os "darwin" ]]
+# Maestro + Java
+export JAVA_HOME="/opt/homebrew/opt/openjdk/libexec/openjdk.jdk/Contents/Home"
+export PATH="$JAVA_HOME/bin:$HOME/.maestro/maestro/bin:$PATH"
+[[ end ]]
+
 tmux-window-name() {
-	($TMUX_PLUGIN_MANAGER_PATH/tmux-window-name/scripts/rename_session_windows.py &)
+    if ! { [ "$TERM" = "screen" ] && [ -n "$TMUX" ]; } then
+	    ($TMUX_PLUGIN_MANAGER_PATH/tmux-window-name/scripts/rename_session_windows.py &)
+	fi
 }
 
 add-zsh-hook chpwd tmux-window-name
