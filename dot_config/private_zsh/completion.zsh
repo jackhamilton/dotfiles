@@ -14,3 +14,7 @@ fi
 if command -v sk > /dev/null; then
     znap fpath _skim 'sk --shell zsh'
 fi
+
+if command -v jj > /dev/null; then
+    znap fpath _jj 'jj util completion zsh'
+fi
