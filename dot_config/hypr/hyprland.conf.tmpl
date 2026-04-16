@@ -32,13 +32,7 @@ monitor = HDMI-A-1, 2560x1440@60, auto-center-right, 1, transform, 1
 
 # Set programs that you use
 $terminal = wezterm
-{{ if eq .chezmoi.hostname "nixos-laptop" }}
-$browser = firefox
-{{ else if eq .chezmoi.hostname "nixos-desktop" }}
-$browser = zen-browser
-{{ else }}
-$browser = zen-browser
-{{ end }}
+$browser = zen
 $fileManager = nautilus
 $menu = exec ~/.config/rofi/launchers/type-6/launcher.sh -icon-theme "Numix-Circle"
 

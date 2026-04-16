@@ -11,11 +11,7 @@ set -g @plugin 'anghootys/tmux-ip-address'
 set -g @plugin 'erikw/tmux-powerline'
 set -g @plugin 'idevtier/tmux-cargo'
 set -g @plugin 'alexwforsythe/tmux-which-key'
-{{ if eq .chezmoi.hostname "nixos-laptop" }}
-{{ else if eq .chezmoi.hostname "nixos-desktop" }}
-{{ else }}
 set -g @plugin 'ofirgall/tmux-window-name'
-{{ end }}
 
 set -g default-terminal "tmux-256color"
 set -ag terminal-overrides ",*:RGB"

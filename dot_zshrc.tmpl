@@ -22,10 +22,9 @@ export EDITOR='nvim'
 export VISUAL='nvim'
 
 eval "$(direnv-instant hook zsh)"
-
-znap eval fzf "fzf --zsh"
-znap eval zoxide "zoxide init zsh"
-znap eval starship "starship init zsh"
+eval "$(fzf --zsh)"
+eval "$(zoxide init zsh)"
+eval "$(starship init zsh)"
 
 # MARK: Source extensions
 source ~/.config/zsh/alias.zsh
@@ -36,9 +35,6 @@ source ~/.config/zsh/env.zsh
 
 setopt interactivecomments
 
-{{ if eq .chezmoi.hostname "nixos-laptop" }}
-{{ else if eq .chezmoi.hostname "nixos-desktop" }}
-{{ else }}
 tmux-window-name() {
 	($TMUX_PLUGIN_MANAGER_PATH/tmux-window-name/scripts/rename_session_windows.py &)
 }

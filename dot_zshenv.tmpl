@@ -10,6 +10,7 @@ else
     export PATH="$PATH:$HOME/home/linuxbrew/.linuxbrew/bin"
     export PATH="$PATH:$HOME/home/jack/.mint/bin"
     export PATH="$PATH:/usr/local/bin"
+    export XDG_DATA_DIRS=$XDG_DATA_DIRS:/usr/share:/var/lib/flatpak/exports/share:$HOME/.local/share/flatpak/exports/share
 fi
 export RUSTC_WRAPPER=sccache
 export HOMEBREW_AUTO_UPDATE_SECS=604800
