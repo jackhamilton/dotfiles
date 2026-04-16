@@ -5,10 +5,10 @@ return {
     init = function()
         vim.g.rustaceanvim = {
             server = {
-                capabilities = require('blink.cmp').get_lsp_capabilities(),
                 settings = {
                     ["rust-analyzer"] = {
                         files = {
+                            watcher = "client",
                             exclude = {
                                 "**/.direnv",
                                 "**/target",

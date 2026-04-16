@@ -15,7 +15,8 @@ vim.lsp.enable({
     'clangd',
     'sourcekit',
     'lua_ls',
-    'nixd'
+    'nixd',
+    "ts_ls"
 })
 
 vim.lsp.config('nixd', {
