@@ -21,7 +21,6 @@ setopt INC_APPEND_HISTORY
 export EDITOR='nvim'
 export VISUAL='nvim'
 
-eval "$(direnv-instant hook zsh)"
 eval "$(fzf --zsh)"
 eval "$(zoxide init zsh)"
 eval "$(starship init zsh)"
@@ -41,12 +40,20 @@ export JAVA_HOME="/opt/homebrew/opt/openjdk/libexec/openjdk.jdk/Contents/Home"
 export PATH="$JAVA_HOME/bin:$HOME/.maestro/maestro/bin:$PATH"
 {{ end }}
 
+add-zsh-hook chpwd tmux-window-name
 tmux-window-name() {
     if [ "$TERM_PROGRAM" = tmux ]; then
 	    ($TMUX_PLUGIN_MANAGER_PATH/tmux-window-name/scripts/rename_session_windows.py &)
 	fi
 }
 
-add-zsh-hook chpwd tmux-window-name
+eval "$(direnv-instant hook zsh)"
+_direnv_retrap_widget() {
+    trap '_direnv_handler' USR1
+    return 0
+}
+zle -N _direnv_retrap_widget
+autoload -Uz add-zle-hook-widget
+add-zle-hook-widget line-pre-redraw _direnv_retrap_widget
 
 [ -f "/home/jack/.ghcup/env" ] && . "/home/jack/.ghcup/env" # ghcup-env
