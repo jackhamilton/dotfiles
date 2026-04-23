@@ -5,7 +5,11 @@
     "margin": "00 00 10 10",
     // "width": 1280, // Waybar width
     // Choose the order of the modules
-    {{ if eq .chezmoi.hostname "nixos" }}
+    {{ if eq .chezmoi.hostname "nixos-laptop" }}
+    "modules-left": ["clock", "custom/weather", "hyprland/language", "keyboard-state", "tray"],
+    "modules-center": ["hyprland/workspaces"],
+    "modules-right": ["pulseaudio", "backlight", "battery", "custom/mem", "cpu", "custom/power"],
+    {{ else if eq .chezmoi.hostname "nixos-desktop" }}
     "modules-left": ["clock", "custom/weather", "hyprland/language", "keyboard-state", "tray"],
     "modules-center": ["hyprland/workspaces"],
     "modules-right": ["pulseaudio", "backlight", "battery", "custom/mem", "cpu", "custom/power"],
