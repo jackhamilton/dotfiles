@@ -21,8 +21,6 @@ setopt INC_APPEND_HISTORY
 export EDITOR='nvim'
 export VISUAL='nvim'
 
-eval "$(direnv-instant hook zsh)"
-
 znap eval fzf "fzf --zsh"
 znap eval zoxide "zoxide init zsh"
 znap eval starship "starship init zsh"
@@ -51,3 +49,15 @@ tmux-window-name() {
 add-zsh-hook chpwd tmux-window-name
 
 [ -f "/home/jack/.ghcup/env" ] && . "/home/jack/.ghcup/env" # ghcup-env
+
+unset __DIRENV_INSTANT_HOOKED
+eval "$(direnv-instant hook zsh)"
+
+# Re-register USR1 trap after zsh-autocomplete's async clears it
+_direnv_retrap_widget() {
+  trap '_direnv_handler' USR1
+  return 0
+}
+zle -N _direnv_retrap_widget
+autoload -Uz add-zle-hook-widget
+add-zle-hook-widget line-pre-redraw _direnv_retrap_widget
