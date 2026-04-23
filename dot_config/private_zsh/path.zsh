@@ -1,4 +1,5 @@
 if [[ $(uname) == "Darwin" ]]; then
+    export PATH="$PATH:/Users/jackhamilton/.cargo/bin"
     source /Users/jackhamilton/.config/broot/launcher/bash/br
 elif command -v pacman > /dev/null; then
     export PATH="$PATH:/home/linuxbrew/.linuxbrew/bin"

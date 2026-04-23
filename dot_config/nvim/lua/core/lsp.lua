@@ -10,13 +10,14 @@ vim.diagnostic.config({
     }
 })
 
--- vim.lsp.config('*', { capabilities = require('blink.cmp').get_lsp_capabilities()})
+vim.lsp.config('*', { capabilities = require('blink.cmp').get_lsp_capabilities()})
 vim.lsp.enable({
     'clangd',
     'sourcekit',
     'lua_ls',
     'nixd',
-    "ts_ls"
+    'ts_ls',
+    'yamlls',
 })
 
 vim.lsp.config('nixd', {

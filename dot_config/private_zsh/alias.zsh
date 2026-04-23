@@ -26,6 +26,7 @@ alias smbmount="sudo mount -v -t cifs -o credentials=/home/jack/.credentials,gid
 alias archive="yt-dlp --live-from-start --cookies-from-browser firefox --extractor-args youtubetab:skip=authcheck --windows-filenames --write-thumbnail --embed-thumbnail --embed-metadata --embed-info-json"
 alias killall="pkill -9 -f"
 alias skrg="sk --ansi -i -c 'rg --color=always --line-number \"{}\"'"
+alias jira="jiratui ui --search-on-startup --focus-item-on-startup 1"
 gitup ()
 {
     git add .
