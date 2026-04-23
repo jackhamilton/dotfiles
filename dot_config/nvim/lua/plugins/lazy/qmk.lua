@@ -4,13 +4,13 @@ return {
         config = function()
             ---@type qmk.UserConfig
             local conf = {
-                name = 'LAYOUT_preonic_grid',
+                name = 'LAYOUT',
                 layout = {
-                    '_ x x x x x x _ x x x x x x',
-                    '_ x x x x x x _ x x x x x x',
-                    '_ x x x x x x _ x x x x x x',
-                    '_ x x x x x x _ x x x x x x',
-                    '_ x x x x x x _ x x x x x x',
+                    'x x x x x x _ _ x x x x x x',
+                    'x x x x x x _ _ x x x x x x',
+                    'x x x x x x _ _ x x x x x x',
+                    'x x x x x x x x x x x x x x',
+                    '_ _ _ _ x x x x x x _ _ _ _',
                 }
             }
             require('qmk').setup(conf)
