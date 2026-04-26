@@ -1,6 +1,6 @@
 local Snacks = require("snacks")
 local Job = require("plenary.job")
-local function jj_global_picker()
+local function jj_pr_diff()
     local items = {}
     Snacks.notify("Diffing")
       local diffed = Job:new({
@@ -24,9 +24,34 @@ local function jj_global_picker()
       })
 end
 
+local function jj_main_diff()
+    local items = {}
+    Snacks.notify("Diffing")
+      local diffed = Job:new({
+        command = "jj",
+        args = { "diff", "--from", "main", "--name-only" },
+      }):sync()
+      if diffed ~= nil then
+          for i, item in ipairs(diffed) do
+            table.insert(items, {
+              idx = i,
+              score = i,
+              text = item,
+              name = item,
+              file = item,
+            })
+          end
+      end
+
+      return Snacks.picker({
+        items = items,
+      })
+end
+
 local wk = require("which-key")
 wk.add({
-  -- { "<leader>j",  group = "Jujutsu", mode = { "n", "x" } },
-   { "<leader>j", function() jj_global_picker() end, desc = "Jujutsu", mode = { "n", "x" } },
+   { "<leader>j",  group = "Jujutsu", mode = { "n", "x" } },
+   { "<leader>jp", function() jj_pr_diff() end, desc = "Files changed in PR", mode = { "n", "x" } },
+   { "<leader>jm", function() jj_main_diff() end, desc = "Files changed from main", mode = { "n", "x" } },
 })
 
