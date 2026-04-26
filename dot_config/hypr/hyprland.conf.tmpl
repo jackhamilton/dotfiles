@@ -268,13 +268,13 @@ bind = $mainMod, J, togglesplit, # dwindle
 # bind = $mainMod, X, exec, ~/.config/rofi/powermenu/type-6/powermenu.sh
 {{ if eq .chezmoi.hostname "nixos-laptop" }}
 {{ else }}
-bind = CTRL, V, exec, cliphist list | rofi -dmenu -display-columns 2 | cliphist decode | wl-copy
+bind = CTRL&SHIFT, V, exec, cliphist list | rofi -dmenu -display-columns 2 | cliphist decode | wl-copy
 {{ end }}
 
 # Screenshots
 bind = , Print, exec, grimblast copy active
-bind = CTRL, Print, exec, grimblast copy window
-bind = CTRL&SHIFT, Print, exec, grimblast copy output
+bind = CTRL, S, exec, grimblast copy window
+bind = CTRL&SHIFT, S, exec, grimblast copy output
 bind = $mainMod&SHIFT, S, exec, grimblast -f copy area
 
 # Move focus with mainMod + arrow keys

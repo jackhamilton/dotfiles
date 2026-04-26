@@ -16,11 +16,14 @@ set -g @plugin 'ofirgall/tmux-window-name'
 set -g default-terminal "tmux-256color"
 set -ag terminal-overrides ",*:RGB"
 
-set -g @tmux_window_name_shells "['bash', 'fish', 'sh', 'zsh', 'tmux']"
-# set -g @tmux_window_dir_programs "['nvim', 'vim', 'vi', 'git', 'lg']"
+set -g @tmux_window_name_shells "['bash', 'fish', 'sh', 'zsh', 'tmux', 'chezmoi']"
+set -g @tmux_window_dir_programs "['nvim', 'vim', 'vi', 'nano']"
 set -g @tmux_window_name_icon_style "'name_and_icon'"
 set -g @tmux_window_name_ignored_programs "['reattach-to-user-namespace']"
 set -g @tmux_window_name_show_program_args "False"
+# set -g @tmux_window_name_max_name_len "25"
+set -g @tmux_window_name_use_tilde "True"
+set -g @tmux_window_name_substitute_sets "[('\/nix\/store\/[0-9a-z]{32}-[-.+_?=0-9a-zA-Z]+\/(bin\/|)', ''), ('edit ', '')]"
 
 {{ if eq .chezmoi.hostname "nixos-laptop" }}
 set -g default-shell /run/current-system/sw/bin/zsh
