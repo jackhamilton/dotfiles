@@ -2,7 +2,6 @@ local Snacks = require("snacks")
 local Job = require("plenary.job")
 local function jj_pr_diff()
     local items = {}
-    Snacks.notify("Diffing")
       local diffed = Job:new({
         command = "jj",
         args = { "diff", "-r", "pr", "--name-only" },
@@ -26,7 +25,6 @@ end
 
 local function jj_main_diff()
     local items = {}
-    Snacks.notify("Diffing")
       local diffed = Job:new({
         command = "jj",
         args = { "diff", "--from", "main", "--name-only" },
