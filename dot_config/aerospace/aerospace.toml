@@ -7,15 +7,12 @@ default-root-container-orientation = 'auto'
 on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
 
 [workspace-to-monitor-force-assignment]
-1 = ['U2718Q', 'BenQ']
-2 = 'P2723QE'
+1 = 'built-in'
+2 = 'studio'
 3 = 'built-in'
-4 = ['U2718Q', 'BenQ']
-5 = 'P2723QE'
-6 = 'built-in'
-7 = ['U2718Q', 'BenQ']
-8 = 'P2723QE'
-9 = 'built-in'
+4 = 'studio'
+5 = 'built-in'
+6 = 'studio'
 
 [mode.main.binding]
 cmd-tab = 'workspace-back-and-forth'
