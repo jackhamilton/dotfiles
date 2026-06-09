@@ -42,21 +42,6 @@ end
 
 return {
     s("lorem", t("Lorem ipsum dolor sit amet consectetur adipiscing elot sed do eiusmod tempor.")),
-    -- Subscription
-    s("subscribe", fmt([[
-        .subscribe(<>
-            <>
-        }
-        .disposed(by: disposeBag)
-    ]], {
-        c(1, {
-            t("with: self, onNext: { base, _ in"),
-            t("onNext: { _ in"),
-        }),
-        i(0)
-    }, {
-        delimiters = "<>"
-    })),
     -- Attributed string
     s("attributedstring", fmt([[
         let attributes: [NSAttributedString.Key: Any] = [
@@ -69,40 +54,12 @@ return {
     }, {
         delimiters = "<>"
     })),
-    s("grheader", {
+    -- simple view snippet
+    s("uiview", {
         t({
             "//",
+            "// Created 2026 by Jack Hamilton",
             "//",
-            "// Copyright 2025 by Grindr LLC,",
-            "// All rights reserved.",
-            "//",
-            "// This software is confidential and proprietary information of",
-            "// Grindr LLC (\"Confidential Information\").",
-            "// You shall not disclose such Confidential Information and shall use",
-            "// it only in accordance with the terms of the license agreement",
-            "// you entered into with Grindr LLC.",
-            "//",
-        })
-    }),
-    -- Grindr simple view snippet
-    s("gruiview", {
-        t({
-            "//",
-            "//",
-            "// Copyright 2025 by Grindr LLC,",
-            "// All rights reserved.",
-            "//",
-            "// This software is confidential and proprietary information of",
-            "// Grindr LLC (\"Confidential Information\").",
-            "// You shall not disclose such Confidential Information and shall use",
-            "// it only in accordance with the terms of the license agreement",
-            "// you entered into with Grindr LLC.",
-            "//",
-            "import Foundation",
-            "import GrindrDesignKit",
-            "import GrindrMacros",
-            "import RxCocoa",
-            "import RxSwift"
         }),
         t({"", "@RequiredCoderInit"}),
         t("class "), i(1, "Name"), t(": UIView {"),
@@ -122,17 +79,10 @@ return {
     }),
     s("gruivc", fmt([[
     //
-    // Copyright 2025 by Grindr LLC,
-    // All rights reserved.
+    // Created 2026 by Jack Hamilton
     //
-    // This software is confidential and proprietary information of
-    // Grindr LLC ("Confidential Information").
-    // You shall not disclose such Confidential Information and shall use
-    // it only in accordance with the terms of the license agreement
-    // you entered into with Grindr LLC.
 
     import Foundation
-    import GrindrMacros
     import RxSwift
 
     @RequiredCoderInit
@@ -198,14 +148,8 @@ return {
     })),
     s("grunittest", fmt([[
     //
-    // Copyright 2025 by Grindr LLC,
-    // All rights reserved.
+    // Created 2026 by Jack Hamilton
     //
-    // This software is confidential and proprietary information of
-    // Grindr LLC ("Confidential Information").
-    // You shall not disclose such Confidential Information and shall use
-    // it only in accordance with the terms of the license agreement
-    // you entered into with Grindr LLC.
 
     import Factory
     @testable import grindrx
@@ -241,18 +185,11 @@ return {
     }, {
         delimiters = "<>"
     })),
-    -- Grindr SwiftUI View
-    s({trig="grview", dscr="Grindr SwiftUI View"},
+    -- SwiftUI View
+    s({trig="grview", dscr="SwiftUI View"},
         fmt([[
         //
-        // Copyright 2025 by Grindr LLC,
-        // All rights reserved.
-        //
-        // This software is confidential and proprietary information of
-        // Grindr LLC ("Confidential Information").
-        // You shall not disclose such Confidential Information and shall use
-        // it only in accordance with the terms of the license agreement
-        // you entered into with Grindr LLC.
+        // Created 2026 by Jack Hamilton
         //
 
         import SwiftUI
@@ -280,18 +217,11 @@ return {
             delimiters = "<>"
         })
     ),
-    -- Grindr View Model
-    s({trig="grviewmodel", dscr="Grindr View Model"},
+    -- View Model
+    s({trig="grviewmodel", dscr="View Model"},
         fmt([[
         //
-        // Copyright 2025 by Grindr LLC,
-        // All rights reserved.
-        //
-        // This software is confidential and proprietary information of
-        // Grindr LLC ("Confidential Information").
-        // You shall not disclose such Confidential Information and shall use
-        // it only in accordance with the terms of the license agreement
-        // you entered into with Grindr LLC.
+        // Created 2026 by Jack Hamilton
         //
 
         import Combine
@@ -308,11 +238,9 @@ return {
             delimiters = "<>"
         })
     ),
-    -- Grindr Preview Provider
-    s({trig="grpreview", dscr="Grindr Preview Provider"},
+    -- Preview Provider
+    s({trig="swpreview", dscr="Preview Provider"},
         fmt([[
-        import GrindrSwiftUI
-        import GrindrxFeatureUI
         import SwiftUI
 
         public struct []View_Previews: PreviewProvider, CaseIterablePreviewProvider {
@@ -339,21 +267,13 @@ return {
             delimiters = "[]"
         })
     ),
-    -- Grindr Sheet Preview Provider
-    s({trig="grsheetpreview", dscr="Grindr Sheet-Style Preview Provider"},
+    -- Sheet Preview Provider
+    s({trig="grsheetpreview", dscr="Sheet-Style Preview Provider"},
         fmt([[
         //
-        // Copyright 2025 by Grindr LLC,
-        // All rights reserved.
-        //
-        // This software is confidential and proprietary information of
-        // Grindr LLC ("Confidential Information").
-        // You shall not disclose such Confidential Information and shall use
-        // it only in accordance with the terms of the license agreement
-        // you entered into with Grindr LLC.
+        // Created 2026 by Jack Hamilton
         //
 
-        import GrindrSwiftUI
         import SwiftUI
 
         public struct []View_Previews: PreviewProvider, CaseIterablePreviewProvider {
@@ -386,23 +306,13 @@ return {
             delimiters = "[]"
         })
     ),
-    -- Grindr Snapshot Test
-    s({trig="grsnapshot", dscr="Grindr Snapshot Test"},
+    -- Snapshot Test
+    s({trig="swsnapshot", dscr="Snapshot Test"},
         fmt([[
         //
-        // Copyright 2026 by Grindr LLC,
-        // All rights reserved.
-        //
-        // This software is confidential and proprietary information of
-        // Grindr LLC ("Confidential Information").
-        // You shall not disclose such Confidential Information and shall use
-        // it only in accordance with the terms of the license agreement
-        // you entered into with Grindr LLC.
+        // Created 2026 by Jack Hamilton
         //
 
-        import GrindrMacros
-        import GrindrSnapshot
-        import GrindrxFeatureUI
         import SnapshotTesting
         import SwiftUI
         import XCTest
@@ -421,18 +331,11 @@ return {
             delimiters = "<>"
         })
     ),
-    -- Grindr UIKit Snapshot Test
-    s({trig="gruikitsnapshot", dscr="Grindr Snapshot Test"},
+    -- UIKit Snapshot Test
+    s({trig="swuikitsnapshot", dscr="Snapshot Test"},
         fmt([[
         //
-        // Copyright 2025 by Grindr LLC,
-        // All rights reserved.
-        //
-        // This software is confidential and proprietary information of
-        // Grindr LLC ("Confidential Information").
-        // You shall not disclose such Confidential Information and shall use
-        // it only in accordance with the terms of the license agreement
-        // you entered into with Grindr LLC.
+        // Created 2026 by Jack Hamilton
         //
 
         import Foundation
@@ -463,8 +366,8 @@ return {
             delimiters = "<>"
         })
     ),
-    -- Grindr constraint setup
-    s("grconstraint", fmt([[
+    -- constraint setup
+    s("swconstraint", fmt([[
         <>
             .addedToSuperview(self)
             .disableAutoresizingMask()
@@ -477,7 +380,7 @@ return {
     }, {
         delimiters = "<>"
     })),
-    s("grimagebutton", fmt([[
+    s("swimagebutton", fmt([[
     private let <> = UIButton.with {
         $0.setImageType(.<>, for: .normal)
         $0.tintColor = .swatch(.pureWhite)
@@ -488,8 +391,8 @@ return {
     }, {
         delimiters = "<>"
     })),
-    -- Grindr label
-    s("grlabel", fmt([[
+    --label
+    s("swlabel", fmt([[
     private lazy var rateLabel = UILabel.with {
          $0.text = "<>".localized()
          $0.font = .<>
@@ -505,23 +408,12 @@ return {
         delimiters = "<>"
     })),
 
-    -- Grindr event tracking
-    s({trig="grtracking", dscr="Grindr event tracking"},
+    -- event tracking
+    s({trig="swtracking", dscr="Event tracking"},
         fmt([[
 //
-// Copyright 2025 by Grindr LLC,
-// All rights reserved.
+// Created 2026 by Jack Hamilton
 //
-// This software is confidential and proprietary information of
-// Grindr LLC ("Confidential Information").
-// You shall not disclose such Confidential Information and shall use
-// it only in accordance with the terms of the license agreement
-// you entered into with Grindr LLC.
-//
-import Factory
-import GrindrCore
-import GrindrDataModels
-import GrindrMacros
 
 protocol *;Tracking {
     func track*;()
@@ -598,37 +490,6 @@ private enum *;Event: EventLoggable {
             i(0)
         }, {
             delimiters = "*;"
-        })
-    ),
-    -- Feature flag macro
-    s({trig="grfeatureflag", dscr="Feature flag macro"},
-        fmt([[
-extension AssignmentsKeyPathBase {
-    #FeatureFlag(
-        key: "<>",
-        exposureLogging: .onAccess,
-        owner: AssignmentOwner(.user("Jack Hamilton"), .removeAfter("<>", cleanupTicket: "<>"))
-    )
-}
-        ]], {
-            i(1,"assignment-key"),
-            i(2,"version"),
-            i(3,"ticket"),
-        }, {
-            delimiters = "<>"
-        })
-    ),
-    -- Feature flag check
-    s({trig="grflagcheck", dscr="Feature flag check"},
-        fmt([[
-if assignmentManager.getFeatureFlag(keyPath: \.<>).isOn {
-    <>
-}
-        ]], {
-            i(1,"keyPath"),
-            i(0)
-        }, {
-            delimiters = "<>"
         })
     ),
 }
