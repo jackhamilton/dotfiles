@@ -7,12 +7,15 @@ default-root-container-orientation = 'auto'
 on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
 
 [workspace-to-monitor-force-assignment]
-1 = 'built-in'
-2 = 'studio'
-3 = 'built-in'
-4 = 'studio'
-5 = 'built-in'
-6 = 'studio'
+1 = 1
+2 = 2
+3 = 3
+4 = 1
+5 = 2
+6 = 3
+7 = 1
+8 = 2
+9 = 3
 
 [mode.main.binding]
 cmd-tab = 'workspace-back-and-forth'
