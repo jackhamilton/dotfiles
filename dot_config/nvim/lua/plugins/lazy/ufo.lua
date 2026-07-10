@@ -17,7 +17,11 @@ return {
                 { "zM", require('ufo').closeAllFolds,  desc = "Close all folds" },
                 { "zR", require('ufo').openAllFolds, desc = "Open all folds" },
             })
-            require('ufo').setup({})
+            require('ufo').setup({
+                provider_selector = function()
+                    return { 'treesitter', 'indent' }
+                end,
+            })
         end,
     },
 }
