@@ -1,4 +1,4 @@
-load-zsh-plugin() {
+_load_zsh_plugin() {
     local repo="$1"
     local entrypoint="$2"
     local plugin="$HOME/Repos/$repo/$entrypoint"
@@ -10,22 +10,39 @@ load-zsh-plugin() {
     fi
 }
 
-load-zsh-plugin marlonrichert/zsh-autocomplete zsh-autocomplete.plugin.zsh
+# Interactive editing
+_load_zsh_plugin marlonrichert/zsh-autocomplete zsh-autocomplete.plugin.zsh
 
-#ZSH_AUTOSUGGEST_STRATEGY=(match_prev_cmd completion)
 ZSH_AUTOSUGGEST_STRATEGY=(completion history)
-load-zsh-plugin zsh-users/zsh-autosuggestions zsh-autosuggestions.plugin.zsh
+_load_zsh_plugin zsh-users/zsh-autosuggestions zsh-autosuggestions.plugin.zsh
+_load_zsh_plugin zsh-users/zsh-syntax-highlighting zsh-syntax-highlighting.plugin.zsh
 
-load-zsh-plugin zsh-users/zsh-syntax-highlighting zsh-syntax-highlighting.plugin.zsh
+_load_zsh_plugin akash329d/zsh-alias-finder zsh-alias-finder.plugin.zsh
+_load_zsh_plugin zpm-zsh/undollar undollar.plugin.zsh
 
-load-zsh-plugin akash329d/zsh-alias-finder zsh-alias-finder.plugin.zsh
-load-zsh-plugin zpm-zsh/undollar undollar.plugin.zsh
-load-zsh-plugin jeffreytse/zsh-vi-mode zsh-vi-mode.plugin.zsh
-load-zsh-plugin nix-community/nix-zsh-completions nix-zsh-completions.plugin.zsh
-#znap source Junker/zsh-archlinux@main
-eval $(themester -l)
+# Start in Zsh's built-in vi mode, then load zsh-vi-mode only when the keymap
+# first switches to command mode. Insert-mode command entry stays immediate.
+bindkey -v
+_lazy_load_zsh_vi_mode() {
+    add-zle-hook-widget -d keymap-select _lazy_load_zsh_vi_mode
 
-load-zsh-plugin zsh-users/zsh-completions zsh-completions.plugin.zsh
-load-zsh-plugin chisui/zsh-nix-shell nix-shell.plugin.zsh
+    local plugin="$HOME/Repos/jeffreytse/zsh-vi-mode/zsh-vi-mode.plugin.zsh"
+    if [[ -r "$plugin" ]]; then
+        source "$plugin"
+    else
+        znap source jeffreytse/zsh-vi-mode
+    fi
 
-unfunction load-zsh-plugin
+    zvm_init
+    precmd_functions=(${precmd_functions:#zvm_init})
+}
+autoload -Uz add-zle-hook-widget
+add-zle-hook-widget keymap-select _lazy_load_zsh_vi_mode
+
+# Environment and completions
+[[ -r ~/.config/themester/.themecache ]] && source ~/.config/themester/.themecache
+_load_zsh_plugin nix-community/nix-zsh-completions nix-zsh-completions.plugin.zsh
+_load_zsh_plugin zsh-users/zsh-completions zsh-completions.plugin.zsh
+_load_zsh_plugin chisui/zsh-nix-shell nix-shell.plugin.zsh
+
+unfunction _load_zsh_plugin

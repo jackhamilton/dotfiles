@@ -1,20 +1,5 @@
-# if type brew &>/dev/null
-# then
-#   FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
-# fi
-
-if command -v rustup > /dev/null; then
-    znap fpath _cargo 'rustup completions zsh cargo'
-fi
-
-if command -v sass > /dev/null; then
-    znap fpath _sass 'sass --completions'
-fi
-
-if command -v sk > /dev/null; then
-    znap fpath _skim 'sk --shell zsh'
-fi
-
-if command -v jj > /dev/null; then
-    znap fpath _jj 'jj util completion zsh'
-fi
+# Register cached completion generators without scanning PATH at startup.
+[[ -x ~/.cargo/bin/rustup ]] && znap fpath _cargo 'rustup completions zsh cargo'
+znap fpath _sass 'sass --completions'
+znap fpath _skim 'sk --shell zsh'
+znap fpath _jj 'jj util completion zsh'
