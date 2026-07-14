@@ -9,6 +9,14 @@ return {
                 formatters_by_ft = {
                     swift = { "swiftformat" },
                 },
+                formatters = {
+                    swiftformat = {
+                        prepend_args = {
+                            "--wrap-parameters", "after-first",
+                            "--wrap-arguments", "after-first",
+                        },
+                    },
+                },
                 -- format_on_save = function(bufnr)
                 --     return { timeout_ms = 500, lsp_fallback = true }
                 -- end,
