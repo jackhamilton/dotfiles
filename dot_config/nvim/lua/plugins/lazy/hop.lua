@@ -56,7 +56,7 @@ return {
                 desc = "Yank at character"
             },
             {
-                "sp",
+                "sP",
                 mode = { "n", "x", "o" },
                 function()
                     require('hop-yank').paste_char1()

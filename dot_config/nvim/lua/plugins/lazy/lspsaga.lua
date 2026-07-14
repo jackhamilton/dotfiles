@@ -14,7 +14,6 @@ return {
             "nvim-tree/nvim-web-devicons",
         },
         keys = {
-            { "<leader>l",  group = "LSP" },
             { "<leader>lf", mode = { "n" }, "<CMD>Lspsaga finder<CR>",                   desc = "Finder" },
             { "<leader>la", mode = { "n" }, "<CMD>Lspsaga code_action<CR>",             desc = "Code Actions" },
             { "<leader>ld", mode = { "n" }, "<CMD>Lspsaga peek_definition<CR>",          desc = "Peek Definition" },
@@ -25,9 +24,8 @@ return {
             { "<leader>lh", mode = { "n" }, "<CMD>Lspsaga hover_doc<CR>",                desc = "Hover Documentation" },
             { "<leader>lo", mode = { "n" }, "<CMD>Lspsaga outline<CR>",                  desc = "Outline" },
             { "<leader>lr", mode = { "n" }, "<CMD>Lspsaga rename<CR>",                   desc = "Rename" },
-            { "<leader>li", mode = { "n" }, vim.lsp.buf.implementation,                  desc = "Incoming Calls" },
+            { "<leader>li", mode = { "n" }, vim.lsp.buf.implementation,                  desc = "Goto implementation" },
             { "<leader>lF", mode = { "n" }, vim.lsp.buf.format,                          desc = "Format file" },
-            { "<leader>ls", group = "Show" },
             {
                 -- Show line diagnostics
                 "<leader>lsd",
@@ -43,12 +41,10 @@ return {
                 end,
                 desc = "Show line diagnostics"
             },
-            { "<leader>lsf", vim.lsp.buf.declaration,      desc = "Display function signature" },
             { "<leader>lsh", vim.lsp.buf.signature_help,   desc = "Symbol signature help" },
             -- { "<leader>lc",  group = "Calls" },
             -- { "<leader>lci", mode = { "n" },               "<CMD>Lspsaga incoming_calls<CR>",  desc = "Incoming Calls" },
             -- { "<leader>lco", mode = { "n" },               "<CMD>Lspsaga outgoing_calls<CR>",  desc = "Outgoing Calls" },
-            { "<leader>lg",  group = "Goto" },
             -- Go to definition
             { "<leader>lgd", vim.lsp.buf.definition,       desc = "Goto definition" },
             -- Go to declaration

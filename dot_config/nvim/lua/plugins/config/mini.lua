@@ -107,11 +107,26 @@ for key, name in pairs({ n = "Next", l = "Last" }) do
     i[key] = vim.tbl_extend("force", { name = "Inside " .. name .. " textobject" }, ic)
     a[key] = vim.tbl_extend("force", { name = "Around " .. name .. " textobject" }, ac)
 end
-require("which-key").register({
-    mode = { "o", "x" },
-    i = i,
-    a = a,
-})
+local textobject_specs = {}
+local textobject_modes = { "o", "x" }
+
+local function add_textobject_specs(prefix, mappings)
+    for key, value in pairs(mappings) do
+        if key ~= "name" then
+            local lhs = prefix .. key
+            if type(value) == "string" then
+                table.insert(textobject_specs, { lhs, desc = value, mode = textobject_modes })
+            else
+                table.insert(textobject_specs, { lhs, group = value.name, mode = textobject_modes })
+                add_textobject_specs(lhs, value)
+            end
+        end
+    end
+end
+
+add_textobject_specs("i", i)
+add_textobject_specs("a", a)
+wk.add(textobject_specs)
 
 -- More consistent behavior of <CR>
 -- local keys = {

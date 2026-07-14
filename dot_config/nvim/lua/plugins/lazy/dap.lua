@@ -12,10 +12,6 @@ return {
 				desc = "Continue"
 			},
 			{
-				"<leader>Ds",
-				desc = "Step"
-			},
-			{
 				"<leader>Dsi",
 				mode = "n",
 				function()

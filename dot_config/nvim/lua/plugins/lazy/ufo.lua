@@ -13,7 +13,7 @@ return {
 
             local wk = require('which-key')
             wk.add({
-                { "z",  group = "UFO" },
+                { "z",  group = "Folds" },
                 { "zM", require('ufo').closeAllFolds,  desc = "Close all folds" },
                 { "zR", require('ufo').openAllFolds, desc = "Open all folds" },
             })

@@ -10,6 +10,7 @@ return {
                 -- trigger deliberately skips them.
                 { "a",      mode = { "x", "o" } },
                 { "i",      mode = { "x", "o" } },
+                { "s",      mode = { "n", "x", "o" } },
                 { "S",      mode = { "n", "x" } }, -- explicitly trigger on S
             },
         }
