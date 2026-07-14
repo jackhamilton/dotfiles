@@ -57,6 +57,9 @@ require("mini.move").setup(
 
 require("mini.ai").setup({
     search_method = "cover_or_nearest",
+    custom_textobjects = {
+        [","] = require("core.textobjects").comma_list_item(),
+    },
 })
 -- from lazyvim
 ---@type table<string, string|table>
@@ -78,6 +81,7 @@ _ = "Underscore",
 a = "Argument",
 b = "Balanced ), ], }",
 c = "Class",
+[","] = "Comma-separated item",
 d = "Digit(s)",
 e = "Word in CamelCase & snake_case",
 f = "Function",
