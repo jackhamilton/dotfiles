@@ -11,7 +11,7 @@ return {
                 { "a",      mode = { "x", "o" } },
                 { "i",      mode = { "x", "o" } },
                 { "s",      mode = { "n", "x", "o" } },
-                { "S",      mode = { "n", "x" } }, -- explicitly trigger on S
+                { "S",      mode = { "n", "x", "o" } }, -- explicitly trigger on S
             },
         }
     },

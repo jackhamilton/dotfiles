@@ -125,15 +125,31 @@ au("TermOpen", {
     callback = start_term_mode,
 })
 
+local detached_lsp_clients = {}
+
 local function toggle_lsp_client()
     local buf = vim.api.nvim_get_current_buf()
     local clients = vim.lsp.get_clients({ bufnr = buf })
     if not vim.tbl_isempty(clients) then
-        vim.cmd("LspStop")
+        detached_lsp_clients[buf] = vim.tbl_map(function(client)
+            vim.lsp.buf_detach_client(buf, client.id)
+            return client.id
+        end, clients)
         vim.notify("[nvim] LSP client has been temporarily disabled in this buffer")
     else
-        vim.cmd("LspStart")
-        vim.notify("[nvim] LSP client has been enabled again in this buffer")
+        local attached = 0
+        for _, client_id in ipairs(detached_lsp_clients[buf] or {}) do
+            if vim.lsp.get_client_by_id(client_id) and vim.lsp.buf_attach_client(buf, client_id) then
+                attached = attached + 1
+            end
+        end
+        detached_lsp_clients[buf] = nil
+
+        if attached > 0 then
+            vim.notify("[nvim] LSP client has been enabled again in this buffer")
+        else
+            vim.notify("[nvim] No detached LSP client is available for this buffer", vim.log.levels.WARN)
+        end
     end
 end
 

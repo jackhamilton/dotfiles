@@ -15,7 +15,7 @@ return {
                 log_level = vim.log.levels.ERROR,
             })
 
-            vim.keymap.set({ "n", "v" }, "<leader>mp", function()
+            vim.keymap.set({ "n", "x" }, "<leader>mp", function()
                 conform.format({
                     lsp_fallback = true,
                     async = false,

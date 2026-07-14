@@ -49,7 +49,7 @@ return {
             },
             {
                 "sy",
-                mode = { "n", "x", "o" },
+                mode = "n",
                 function()
                     require('hop-yank').yank_char1()
                 end,
@@ -57,7 +57,7 @@ return {
             },
             {
                 "sP",
-                mode = { "n", "x", "o" },
+                mode = "n",
                 function()
                     require('hop-yank').paste_char1()
                 end,

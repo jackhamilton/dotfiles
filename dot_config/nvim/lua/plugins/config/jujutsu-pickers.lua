@@ -48,8 +48,7 @@ end
 
 local wk = require("which-key")
 wk.add({
-   { "<leader>j",  group = "Jujutsu", mode = { "n", "x" } },
-   { "<leader>jp", function() jj_pr_diff() end, desc = "Files changed in PR", mode = { "n", "x" } },
-   { "<leader>jm", function() jj_main_diff() end, desc = "Files changed from main", mode = { "n", "x" } },
+   { "<leader>j",  group = "Jujutsu" },
+   { "<leader>jp", function() jj_pr_diff() end, desc = "Files changed in PR" },
+   { "<leader>jm", function() jj_main_diff() end, desc = "Files changed from main" },
 })
-

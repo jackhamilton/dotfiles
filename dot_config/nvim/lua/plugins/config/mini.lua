@@ -15,22 +15,15 @@ require("mini.surround").setup({
         find_left = 'SF',
         highlight = 'Sh',
         replace = 'Sr',
-        update_n_lines = 'Sn',
     }
 })
+
+vim.keymap.set("n", "Sn", MiniSurround.update_n_lines, { desc = "Update surround search lines" })
 
 local wk = require("which-key")
 
 wk.add({
-  { "S",  group = "Surround", mode = { "n", "x" } },
-
-  { "Sa", desc = "Add surround", mode = { "n", "x" } },
-  { "Sd", desc = "Delete surround", mode = { "n", "x" } },
-  { "Sf", desc = "Find right surround", mode = "n" },
-  { "SF", desc = "Find left surround", mode = "n" },
-  { "Sh", desc = "Highlight surround", mode = { "n", "x" } },
-  { "Sr", desc = "Replace surround", mode = { "n", "x" } },
-  { "Sn", desc = "Update n_lines", mode = "n" },
+  { "S", group = "Surround", mode = { "n", "x", "o" } },
 })
 
 require("mini.splitjoin").setup()
