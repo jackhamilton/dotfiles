@@ -18,14 +18,9 @@ setopt INC_APPEND_HISTORY
 export EDITOR='nvim'
 export VISUAL='nvim'
 
-eval "$(direnv-instant hook zsh)"
-
 znap eval fzf "fzf --zsh"
 znap eval zoxide "zoxide init zsh"
 znap eval starship "starship init zsh"
-eval "$(fzf --zsh)"
-eval "$(zoxide init zsh)"
-eval "$(starship init zsh)"
 
 # MARK: Source extensions
 source ~/.config/zsh/alias.zsh
@@ -45,23 +40,17 @@ export PATH="$JAVA_HOME/bin:$HOME/.maestro/maestro/bin:$PATH"
 add-zsh-hook chpwd tmux-window-name
 tmux-window-name() {
     if [ "$TERM_PROGRAM" = tmux ]; then
-	    ($TMUX_PLUGIN_MANAGER_PATH/tmux-window-name/scripts/rename_session_windows.py &)
+	    "$TMUX_PLUGIN_MANAGER_PATH/tmux-window-name/scripts/rename_session_windows.py" \
+	        >/dev/null 2>&1 &!
 	fi
 }
 
-eval "$(direnv-instant hook zsh)"
-_direnv_retrap_widget() {
-    trap '_direnv_handler' USR1
-    return 0
-}
-zle -N _direnv_retrap_widget
-autoload -Uz add-zle-hook-widget
-add-zle-hook-widget line-pre-redraw _direnv_retrap_widget
-
 [ -f "/home/jack/.ghcup/env" ] && . "/home/jack/.ghcup/env" # ghcup-env
 
-unset __DIRENV_INSTANT_HOOKED
 eval "$(direnv-instant hook zsh)"
+# direnv only needs to refresh when the working directory changes. Running its
+# process launcher before every prompt adds latency after every command.
+add-zsh-hook -d precmd _direnv_hook
 
 # Re-register USR1 trap after zsh-autocomplete's async clears it
 _direnv_retrap_widget() {

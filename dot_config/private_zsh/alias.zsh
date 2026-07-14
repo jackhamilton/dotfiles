@@ -17,7 +17,7 @@ alias tlist="tmux list-sessions"
 alias detach="tmux detach"
 alias attach="tmuxAttach"
 alias tmain="tmuxAttachMain"
-alias tmain2="tmux new-session -t main -s sesssion-2 -f active-pane"
+alias tmain2="tmuxAttachMain2"
 alias lg="lazygit"
 alias lj="lazyjj"
 alias gdvim="nvim --listen /tmp/godot.pipe"
@@ -36,13 +36,16 @@ gitup ()
 }
 tmuxAttachMain ()
 {
-    tmux new -s "main" -d
-    tmux attach -d -t "main"
+    tmux new-session -A -D -s "main"
+}
+tmuxAttachMain2 ()
+{
+    tmux has-session -t "main" 2>/dev/null || tmux new-session -d -s "main"
+    tmux new-session -A -D -t "main" -s "main-2" -f active-pane
 }
 tmuxAttach ()
 {
-    tmux new -s "$1" -d
-    tmux attach -d -t "$1"
+    tmux new-session -A -D -s "$1"
 }
 flake()
 {

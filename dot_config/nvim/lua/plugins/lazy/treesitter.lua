@@ -68,11 +68,54 @@ return {
                 local ai = require("mini.ai")
                 local treesitter = ai.gen_spec.treesitter
 
+                -- Syntax nodes do not include the indentation before their first
+                -- token. A characterwise operator over a multiline inner node can
+                -- therefore join that indentation to the closing delimiter (for
+                -- example, `dio` would over-indent a Swift closing brace). Treat
+                -- captures which occupy otherwise blank lines as linewise objects.
+                local function inner_lines(captures)
+                    local spec = treesitter(captures)
+
+                    return function(ai_type, id, opts)
+                        local regions = spec(ai_type, id, opts)
+                        if ai_type ~= "i" then
+                            return regions
+                        end
+
+                        for _, region in ipairs(regions) do
+                            local first = vim.fn.getline(region.from.line)
+                            local last = vim.fn.getline(region.to.line)
+                            local before = first:sub(1, region.from.col - 1)
+                            local after = last:sub(region.to.col + 1)
+
+                            -- Some parsers include the newline and indentation
+                            -- immediately before the closing delimiter. Keep that
+                            -- delimiter line out of a linewise inner selection.
+                            local selected_on_last = last:sub(1, region.to.col)
+                            if
+                                region.to.line > region.from.line
+                                and selected_on_last:match("^%s*$")
+                                and not after:match("^%s*$")
+                            then
+                                region.to.line = region.to.line - 1
+                                region.to.col = math.max(#vim.fn.getline(region.to.line), 1)
+                                after = ""
+                            end
+
+                            if before:match("^%s*$") and after:match("^%s*$") then
+                                region.vis_mode = "V"
+                            end
+                        end
+
+                        return regions
+                    end
+                end
+
                 MiniAi.config.custom_textobjects = vim.tbl_extend(
                     "force",
                     MiniAi.config.custom_textobjects,
                     {
-                        c = treesitter({ a = "@class.outer", i = "@class.inner" }),
+                        c = inner_lines({ a = "@class.outer", i = "@class.inner" }),
                         d = { "%f[%d]%d+" },
                         e = {
                             {
@@ -83,7 +126,7 @@ return {
                             },
                             "^().*()$",
                         },
-                        f = treesitter({ a = "@function.outer", i = "@function.inner" }),
+                        f = inner_lines({ a = "@function.outer", i = "@function.inner" }),
                         g = function()
                             local last_line = vim.fn.line("$")
                             return {
@@ -91,7 +134,7 @@ return {
                                 to = { line = last_line, col = math.max(vim.fn.col({ last_line, "$" }) - 1, 1) },
                             }
                         end,
-                        o = treesitter({
+                        o = inner_lines({
                             a = { "@block.outer", "@conditional.outer", "@loop.outer" },
                             i = { "@block.inner", "@conditional.inner", "@loop.inner" },
                         }),

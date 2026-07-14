@@ -1,18 +1,31 @@
-znap source marlonrichert/zsh-autocomplete
+load-zsh-plugin() {
+    local repo="$1"
+    local entrypoint="$2"
+    local plugin="$HOME/Repos/$repo/$entrypoint"
+
+    if [[ -r "$plugin" ]]; then
+        source "$plugin"
+    else
+        znap source "$repo"
+    fi
+}
+
+load-zsh-plugin marlonrichert/zsh-autocomplete zsh-autocomplete.plugin.zsh
 
 #ZSH_AUTOSUGGEST_STRATEGY=(match_prev_cmd completion)
 ZSH_AUTOSUGGEST_STRATEGY=(completion history)
-znap source zsh-users/zsh-autosuggestions
+load-zsh-plugin zsh-users/zsh-autosuggestions zsh-autosuggestions.plugin.zsh
 
-znap source zsh-users/zsh-syntax-highlighting
+load-zsh-plugin zsh-users/zsh-syntax-highlighting zsh-syntax-highlighting.plugin.zsh
 
-znap source akash329d/zsh-alias-finder
-lsdloc=$(which lsd)
-znap source zpm-zsh/undollar
-znap source jeffreytse/zsh-vi-mode
-znap source nix-community/nix-zsh-completions
+load-zsh-plugin akash329d/zsh-alias-finder zsh-alias-finder.plugin.zsh
+load-zsh-plugin zpm-zsh/undollar undollar.plugin.zsh
+load-zsh-plugin jeffreytse/zsh-vi-mode zsh-vi-mode.plugin.zsh
+load-zsh-plugin nix-community/nix-zsh-completions nix-zsh-completions.plugin.zsh
 #znap source Junker/zsh-archlinux@main
 eval $(themester -l)
 
-znap source zsh-users/zsh-completions
-znap source chisui/zsh-nix-shell
+load-zsh-plugin zsh-users/zsh-completions zsh-completions.plugin.zsh
+load-zsh-plugin chisui/zsh-nix-shell nix-shell.plugin.zsh
+
+unfunction load-zsh-plugin
