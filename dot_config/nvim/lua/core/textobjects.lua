@@ -49,6 +49,7 @@ local function comma_siblings(parent)
                 items[after_id] = items[after_id] or { node = after }
                 items[before_id].following = after
                 items[after_id].previous = before
+                items[after_id].separator_before = child
             end
         end
     end
@@ -75,8 +76,24 @@ function M.comma_list_item()
         for _, tree in ipairs(parser:parse()) do
             local node = tree:root():descendant_for_range(row, col, row, col)
             while node do
-                for id, item in pairs(comma_siblings(node)) do
-                    if not seen[id] then
+                local siblings = comma_siblings(node)
+                local separator_target
+                for id, item in pairs(siblings) do
+                    if item.separator_before then
+                        local separator_row, separator_col = item.separator_before:range()
+                        local item_row, item_col = item.node:range()
+                        local after_separator = row > separator_row
+                            or (row == separator_row and col >= separator_col)
+                        local before_item = row < item_row or (row == item_row and col < item_col)
+                        if after_separator and before_item then
+                            separator_target = id
+                            break
+                        end
+                    end
+                end
+
+                for id, item in pairs(siblings) do
+                    if not seen[id] and (not separator_target or id == separator_target) then
                         local region = node_region(item.node)
 
                         if ai_type == "a" then
