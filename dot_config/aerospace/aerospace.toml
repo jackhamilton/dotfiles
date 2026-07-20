@@ -41,7 +41,7 @@ cmd-s = 'layout v_accordion' # 'layout stacking' in i3
 cmd-shift-a = 'layout h_accordion' # 'layout tabbed' in i3
 cmd-e = 'layout tiles horizontal vertical' # 'layout toggle split' in i3
 
-cmd-shift-space = 'layout floating tiling' # 'floating toggle' in i3
+cmd-alt-f = 'layout floating' # 'floating toggle' in i3
 cmd-alt-q = 'close-all-windows-but-current'
 
 cmd-w = 'exec-and-forget open -n /Applications/Zen\ Browser.app'
@@ -104,7 +104,7 @@ run = ['layout floating']  # The callback itself
 
 [[on-window-detected]]
 if.app-id = 'com.apple.iphonesimulator'
-run = 'move-node-to-workspace 1'
+run = 'move-node-to-workspace 4'
 
 [[on-window-detected]]
 if.app-id = 'com.github.wez.wezterm'
@@ -112,23 +112,27 @@ run = 'move-node-to-workspace 2'
 
 [[on-window-detected]]
 if.app-id = 'com.apple.dt.Xcode'
-run = 'move-node-to-workspace 3'
+run = 'move-node-to-workspace 4'
 
 [[on-window-detected]]
 if.app-id = 'app.zen-browser.zen'
-run = 'move-node-to-workspace 6'
+run = 'move-node-to-workspace 7'
 
 [[on-window-detected]]
 if.app-id = 'com.figma.Desktop'
-run = 'move-node-to-workspace 1'
+run = 'move-node-to-workspace 8'
 
 [[on-window-detected]]
 if.app-id = 'com.tinyspeck.slackmacgap'
-run = 'move-node-to-workspace 1'
+run = 'move-node-to-workspace 3'
 
 [[on-window-detected]]
 if.app-id = 'us.zoom.xos'
-run = 'move-node-to-workspace 5'
+run = 'move-node-to-workspace 9'
+
+[[on-window-detected]]
+if.app-id = 'com.apple.mail'
+run = 'move-node-to-workspace 6'
 
 [[on-window-detected]]
 if.app-id = 'com.apple.iCal'

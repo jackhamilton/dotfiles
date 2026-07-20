@@ -186,18 +186,18 @@ return {
                 layouts = {
                     {
                         elements = {
-                            { id = "watches", size = 0.75 },
-                            { id = "stacks",  size = 0.25 },
+                            { id = "watches", size = 0.67 },
+                            { id = "stacks",  size = 0.33 },
                         },
                         position = "bottom",
                         size = 10,
                     }
                 },
-                wrap = true,
+                wrap = false,
                 icons = {
-                    collapsed = "",
-                    expanded = "",
-                    current_frame = ""
+                    collapsed = "",
+                    expanded = "",
+                    current_frame = "󰜴"
                 },
             })
 
@@ -206,6 +206,57 @@ return {
             })
 
             local dap, dapui = require("dap"), require("dapui")
+
+            local function set_dapui_highlights()
+                vim.api.nvim_set_hl(0, "DapUIStoppedThread", { bold = true, reverse = true })
+                vim.api.nvim_set_hl(0, "DapUICurrentFrameName", { bold = true, underline = true })
+            end
+
+            set_dapui_highlights()
+            vim.api.nvim_create_autocmd("ColorScheme", {
+                group = vim.api.nvim_create_augroup("dapui_highlights", { clear = true }),
+                callback = set_dapui_highlights,
+            })
+
+            local system_source_roots = {
+                "/Applications/Xcode.app/",
+                "/Library/Developer/CoreSimulator/",
+                "/System/Library/",
+                "/usr/lib/",
+            }
+
+            local function is_system_frame(frame)
+                local path = frame.source and frame.source.path
+                if not path then
+                    return true
+                end
+
+                for _, root in ipairs(system_source_roots) do
+                    if path:sub(1, #root) == root then
+                        return true
+                    end
+                end
+
+                return false
+            end
+
+            -- lldb-dap does not mark Apple/runtime frames as subtle, so dap-ui
+            -- otherwise renders the complete SwiftUI/UIKit stack by default.
+            dap.listeners.before.stackTrace["dapui_system_frames"] = function(session, err, response, request)
+                if err or not response or not response.stackFrames then
+                    return
+                end
+
+                local current_frame_id = session.current_frame and session.current_frame.id
+                for index, frame in ipairs(response.stackFrames) do
+                    local is_current = frame.id == current_frame_id
+                        or (request.threadId == session.stopped_thread_id and index == 1)
+
+                    if not is_current and is_system_frame(frame) then
+                        frame.presentationHint = "subtle"
+                    end
+                end
+            end
 
             dap.listeners.after.event_initialized["dapui_config"] = function()
                 dapui.open()
