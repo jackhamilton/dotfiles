@@ -18,8 +18,6 @@ require("mini.surround").setup({
     }
 })
 
-vim.keymap.set("n", "Sn", MiniSurround.update_n_lines, { desc = "Update surround search lines" })
-
 local wk = require("which-key")
 
 wk.add({

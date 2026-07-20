@@ -3,6 +3,13 @@ return {
         "mfussenegger/nvim-lint",
         event = { "BufReadPre", "BufNewFile" },
         enabled = function() return jit.os ~= "Linux" end,
+        keys = {
+            {
+                "<leader>ml",
+                function() require("lint").try_lint() end,
+                desc = "Lint file",
+            },
+        },
         config = function()
             local lint = require("lint")
 
@@ -18,10 +25,6 @@ return {
                     require("lint").try_lint()
                 end,
             })
-
-            vim.keymap.set("n", "<leader>ml", function()
-                require("lint").try_lint()
-            end, { desc = "Lint file" })
         end,
     },
 }

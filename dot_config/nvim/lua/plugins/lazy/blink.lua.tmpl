@@ -14,7 +14,22 @@ return {
 		-- 'super-tab' for mappings similar to vscode (tab to accept, arrow keys to navigate)
 		-- 'enter' for mappings similar to 'super-tab' but with 'enter' to accept
 		-- See the full "keymap" documentation for information on defining your own keymap.
-		keymap = { preset = 'default' },
+		keymap = {
+			preset = 'default',
+			-- Cycle a LuaSnip choice when one is active; otherwise retain blink's
+			-- cancel behavior and the normal Insert-mode fallback for <C-e>.
+			['<C-e>'] = {
+				function()
+					local ok, luasnip = pcall(require, 'luasnip')
+					if ok and luasnip.choice_active() then
+						luasnip.change_choice(1)
+						return true
+					end
+				end,
+				'cancel',
+				'fallback',
+			},
+		},
 
 		appearance = {
 			-- Sets the fallback highlight groups to nvim-cmp's highlight groups
@@ -27,9 +42,21 @@ return {
 		},
 
 		completion = {
+			keyword = {
+				-- Match against the text on both sides of the cursor when editing
+				-- an identifier in place.
+				range = 'full',
+			},
+			trigger = {
+				-- Offer completions while filling SourceKit's argument placeholders.
+				show_in_snippet = true,
+			},
 			documentation = {
 				auto_show = true,
 				auto_show_delay_ms = 500,
+			},
+			ghost_text = {
+				enabled = true,
 			},
 			menu = {
 				draw = {
@@ -50,12 +77,44 @@ return {
 			},
 		},
 
+		-- Automatically complete Ex commands, but keep searches unobtrusive.
+		cmdline = {
+			completion = {
+				menu = {
+					auto_show = function(ctx)
+						return ctx.mode == 'cmdline' and vim.fn.getcmdtype() == ':'
+					end,
+				},
+			},
+		},
+
+		-- Show the active function signature while editing an argument list.
+		signature = {
+			enabled = true,
+			trigger = {
+				-- Also request signature help when re-entering Insert mode inside
+				-- an existing call, rather than only immediately after `(` or `,`.
+				show_on_insert = true,
+			},
+			window = {
+				border = 'rounded',
+				show_documentation = false,
+			},
+		},
+
 		snippets = { preset = 'luasnip' },
 
 		-- Default list of enabled providers defined so that you can extend it
 		-- elsewhere in your config, without redefining it, due to `opts_extend`
 		sources = {
-			default = { 'snippets', 'lsp', 'path', 'buffer' },
+			default = { 'lazydev', 'snippets', 'lsp', 'path', 'buffer' },
+			providers = {
+				lazydev = {
+					name = 'LazyDev',
+					module = 'lazydev.integrations.blink',
+					score_offset = 100,
+				},
+			},
 		},
 	},
 	opts_extend = { "sources.default" }

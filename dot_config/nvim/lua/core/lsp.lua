@@ -13,6 +13,14 @@ vim.diagnostic.config({
 vim.lsp.config('*', { capabilities = require('blink.cmp').get_lsp_capabilities()})
 
 vim.lsp.config('sourcekit', {
+    -- Prevent recursive Swift watchers from exhausting file descriptors in large workspaces.
+    capabilities = {
+        workspace = {
+            didChangeWatchedFiles = {
+                dynamicRegistration = false,
+            },
+        },
+    },
     root_dir = function(bufnr, on_dir)
         local path = vim.fs.normalize(vim.api.nvim_buf_get_name(bufnr))
         local cwd = vim.fs.normalize(vim.fn.getcwd())

@@ -8,7 +8,38 @@ local config = wezterm.config_builder()
 config.enable_wayland = false
 
 -- For example, changing the color scheme:
-config.font = wezterm.font 'RobotoMono Nerd Font Mono'
+-- kinda unvetted
+-- config.font = wezterm.font 'JetBrainsMono Nerd Font Mono'
+-- config.font = wezterm.font 'GeistMono Nerd Font Mono'
+-- config.font = wezterm.font 'BlexMono Nerd Font Mono'
+-- config.font = wezterm.font 'MonaspiceAr Nerd Font Mono'
+--
+-- vetted
+-- config.font = wezterm.font 'MonaspiceNe Nerd Font Mono'
+-- config.font = wezterm.font 'Lilex Nerd Font Mono'
+-- config.font = wezterm.font 'MesloLGL Nerd Font Mono'
+--
+config.font = wezterm.font("RobotoMono Nerd Font Mono", {
+    weight = "Regular",
+})
+
+config.font_rules = {
+    {
+        intensity = "Bold",
+        italic = false,
+        font = wezterm.font("RobotoMono Nerd Font Mono", {
+            weight = "Bold",
+        }),
+    },
+    {
+        intensity = "Bold",
+        italic = true,
+        font = wezterm.font("RobotoMono Nerd Font Mono", {
+            weight = "Bold",
+            style = "Italic",
+        }),
+    },
+}
 {{ if eq .chezmoi.os "darwin" }}
 config.font_size = 16
 {{ else }}

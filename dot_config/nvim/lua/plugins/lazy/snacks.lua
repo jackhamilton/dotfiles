@@ -124,6 +124,8 @@ return {
         { "<leader>gd", function() Snacks.picker.git_diff() end, desc = "Git Diff (Hunks)" },
         { "<leader>gf", function() Snacks.picker.git_log_file() end, desc = "Git Log File" },
         { "<leader>gr", function() Snacks.gitbrowse.open() end, desc = "Open repository" },
+        { "<leader>gi", function() Snacks.picker.gh_issue() end, desc = "GitHub Issues" },
+        { "<leader>gP", function() Snacks.picker.gh_pr() end, desc = "GitHub Pull Requests" },
         -- Grep
         { "<leader>sb", function() Snacks.picker.lines() end, desc = "Buffer Lines" },
         { "<leader>sB", function() Snacks.picker.grep_buffers() end, desc = "Grep Open Buffers" },
@@ -146,9 +148,22 @@ return {
         { "<leader>sm", function() Snacks.picker.marks() end, desc = "Marks" },
         { "<leader>sM", function() Snacks.picker.man() end, desc = "Man Pages" },
         { "<leader>sp", function() Snacks.picker.lazy() end, desc = "Search for Plugin Spec" },
-        { "<leader>sq", function() Snacks.picker.qflist() end, desc = "Quickfix List" },
+        {
+          "<leader>sq",
+          function()
+            Snacks.picker.qflist({
+              transform = function(item)
+                return item.severity == vim.diagnostic.severity.ERROR
+              end,
+            })
+          end,
+          desc = "Quickfix Errors",
+        },
+        { "<leader>sQ", function() Snacks.picker.qflist() end, desc = "Quickfix List (All)" },
         { "<leader>sR", function() Snacks.picker.resume() end, desc = "Resume" },
+        { "<leader>s.", function() Snacks.picker.scratch() end, desc = "Scratch Buffers" },
         { "<leader>su", function() Snacks.picker.undo() end, desc = "Undo History" },
+        { "<leader>sz", function() Snacks.picker.zoxide() end, desc = "Zoxide" },
         -- buffers
         { "<leader>bd", function() Snacks.bufdelete() end, desc = "Delete buffer" },
         { "<leader>bl", function() Snacks.picker.buffers() end, desc = "List buffers" },
@@ -158,6 +173,9 @@ return {
         -- intent
         { "<leader>ie", function() Snacks.indent.enable() end, desc = "Enable indents" },
         { "<leader>id", function() Snacks.indent.disable() end, desc = "Disable indents" },
+        -- Words
+        { "<leader>ln", function() Snacks.words.jump(1, true) end, desc = "Next ref instance" },
+        { "<leader>lp", function() Snacks.words.jump(-1, true) end, desc = "Previous ref instance" },
         -- scope
         { "<leader>lSa", function() Snacks.scope.attach() end, desc = "Attach" },
         { "<leader>lSg", function() Snacks.scope.get() end, desc = "Get scope" },

@@ -28,6 +28,7 @@ wk.add({
     { "<leader>x", group = "Trouble" },
     { "<leader>xc", group = "Code" },
     { "<leader>X", group = "Xcodebuild", mode = { "n", "x" } },
+    { "<leader>Xd", group = "Debug" },
 
     { "s", group = "Hop", mode = { "n", "x", "o" } },
 })

@@ -6,14 +6,12 @@ return {
         config = function()
             local luaload = require("luasnip.loaders.from_lua")
             luaload.lazy_load({ paths = { "./lua/snippets" } })
-            local ls = require("luasnip")
-            vim.keymap.set({"i", "s"}, "<C-E>", function()
-	            if ls.choice_active() then
-		            ls.change_choice(1)
-	            end
-            end, {silent = true})
             local types = require("luasnip.util.types")
             require'luasnip'.config.setup({
+	            -- Drop stale jump sessions when their text is deleted or the
+	            -- cursor leaves their region.
+	            delete_check_events = { "TextChanged", "TextChangedI" },
+	            region_check_events = { "CursorMoved", "CursorMovedI" },
                 ext_opts = {
 		            [types.choiceNode] = {
 			            active = {

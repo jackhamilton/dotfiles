@@ -52,8 +52,8 @@ return {
             },
             {
                 "<leader>xQ",
-                "<cmd>Trouble qflist toggle<cr>",
-                desc = "Quickfix List (Trouble)",
+                "<cmd>Trouble qflist toggle filter.severity=vim.diagnostic.severity.ERROR<cr>",
+                desc = "Quickfix Errors (Trouble)",
             },
         },
     },
