@@ -20,6 +20,7 @@ local function jj_pr_diff()
 
       return Snacks.picker({
         items = items,
+        layout = { preset = "vscode" },
       })
 end
 
@@ -43,6 +44,7 @@ local function jj_main_diff()
 
       return Snacks.picker({
         items = items,
+        layout = { preset = "vscode" },
       })
 end
 

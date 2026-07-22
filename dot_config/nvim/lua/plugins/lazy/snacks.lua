@@ -22,6 +22,27 @@ return {
                 frecency = true,
                 history_bonus = true
             },
+            sources = {
+                diagnostics = { layout = { preset = "ivy", preview = "main" } },
+                diagnostics_buffer = { layout = { preset = "ivy", preview = "main" } },
+                grep = { layout = { preset = "ivy", preview = "main" } },
+                grep_buffers = { layout = { preset = "ivy", preview = "main" } },
+                grep_word = { layout = { preset = "ivy", preview = "main" } },
+                jumps = { layout = { preset = "ivy", preview = "main" } },
+                marks = { layout = { preset = "ivy", preview = "main" } },
+                loclist = { layout = { preset = "ivy", preview = "main" } },
+                qflist = { layout = { preset = "ivy", preview = "main" } },
+
+                smart = { layout = { preset = "vscode" } },
+                buffers = { layout = { preset = "vscode" } },
+                files = { layout = { preset = "vscode" } },
+                git_files = { layout = { preset = "vscode" } },
+                recent = { layout = { preset = "vscode" } },
+                projects = { layout = { preset = "vscode" } },
+                zoxide = { layout = { preset = "vscode" } },
+
+                colorschemes = { layout = { preset = "select" } },
+            },
         },
         quickfile = { enabled = true },
         scope = { enabled = true },
