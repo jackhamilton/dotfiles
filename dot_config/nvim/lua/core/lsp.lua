@@ -55,6 +55,8 @@ vim.lsp.enable({
     'nixd',
     'ts_ls',
     'yamlls',
+    'action_ls',
+    "gh_actions_ls"
 })
 
 vim.lsp.config('nixd', {

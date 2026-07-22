@@ -71,6 +71,14 @@ return {
                 end,
                 desc = "Hop to treesitter obj"
             },
+            {
+                "sa",
+                mode = { "n", "x", "o" },
+                function()
+                    require('hop').hop_anywhere()
+                end,
+                desc = "Hop Anywhere"
+            },
         }
     },
 }
