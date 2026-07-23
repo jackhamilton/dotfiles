@@ -170,7 +170,7 @@ return {
         { "<leader>sM", function() Snacks.picker.man() end, desc = "Man Pages" },
         { "<leader>sp", function() Snacks.picker.lazy() end, desc = "Search for Plugin Spec" },
         {
-          "<leader>sq",
+          "<leader>qe",
           function()
             Snacks.picker.qflist({
               transform = function(item)
@@ -180,7 +180,7 @@ return {
           end,
           desc = "Quickfix Errors",
         },
-        { "<leader>sQ", function() Snacks.picker.qflist() end, desc = "Quickfix List (All)" },
+        { "<leader>qa", function() Snacks.picker.qflist() end, desc = "Quickfix List (All)" },
         { "<leader>sR", function() Snacks.picker.resume() end, desc = "Resume" },
         { "<leader>s.", function() Snacks.picker.scratch() end, desc = "Scratch Buffers" },
         { "<leader>su", function() Snacks.picker.undo() end, desc = "Undo History" },
@@ -218,11 +218,11 @@ return {
         { "<leader>tz", function() Snacks.toggle.zen():toggle() end, desc = "Toggle Zen mode" },
         { "<leader>tZ", function() Snacks.toggle.zoom():toggle() end, desc = "Toggle zoom" },
         -- LSP
-        -- { "gd", function() Snacks.picker.lsp_definitions() end, desc = "Goto Definition" },
-        -- { "gD", function() Snacks.picker.lsp_declarations() end, desc = "Goto Declaration" },
-        -- { "gr", function() Snacks.picker.lsp_references() end, nowait = true, desc = "References" },
-        -- { "gI", function() Snacks.picker.lsp_implementations() end, desc = "Goto Implementation" },
-        -- { "gy", function() Snacks.picker.lsp_type_definitions() end, desc = "Goto T[y]pe Definition" },
+        { "<leader>lgd", function() Snacks.picker.lsp_definitions() end, desc = "Goto Definition" },
+        { "<leader>lgD", function() Snacks.picker.lsp_declarations() end, desc = "Goto Declaration" },
+        { "<leader>lgr", function() Snacks.picker.lsp_references() end, desc = "References" },
+        { "<leader>lgi", function() Snacks.picker.lsp_implementations() end, desc = "Goto Implementation" },
+        { "<leader>lgt", function() Snacks.picker.lsp_type_definitions() end, desc = "Goto Type Definition" },
         -- { "<leader>ss", function() Snacks.picker.lsp_symbols() end, desc = "LSP Symbols" },
         -- { "<leader>sS", function() Snacks.picker.lsp_workspace_symbols() end, desc = "LSP Workspace Symbols" },
     },

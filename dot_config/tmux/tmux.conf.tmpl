@@ -19,7 +19,8 @@ set -ag terminal-overrides ",*:RGB"
 set -g @tmux_window_name_shells "['bash', 'fish', 'sh', 'zsh', 'tmux', 'chezmoi']"
 set -g @tmux_window_name_dir_programs "['nvim', 'vim', 'vi', 'nano']"
 set -g @tmux_window_name_icon_style "'name_and_icon'"
-set -g @tmux_window_name_ignored_programs "['reattach-to-user-namespace', '/usr/bin/env']"
+set -g @tmux_window_name_ignored_programs "['reattach-to-user-namespace', 'env']"
+set -g @tmux_window_name_running 0
 set -g @tmux_window_name_show_program_args "False"
 # set -g @tmux_window_name_max_name_len "25"
 set -g @tmux_window_name_use_tilde "True"
@@ -61,7 +62,16 @@ set-option -a terminal-features ''
 # set -g @plugin 'git@github.com:user/plugin'
 # set -g @plugin 'git@bitbucket.com:user/plugin'
 
-# Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)
-run '~/.config/tmux/plugins/tpm/tpm'
+# Initialize plugins once per tmux server. Re-sourcing this file should apply
+# configuration without paying the cost of re-running every plugin entrypoint.
+if-shell -F '#{!=:#{@plugins_initialized},1}' {
+    run-shell '~/.config/tmux/plugins/tpm/tpm'
+    set-option -g @plugins_initialized 1
+}
+
+# The window formats in jackcore are static. Keep them out of tmux-powerline's
+# per-refresh shell pipeline so only the dynamic left and right sides spawn jobs.
+set -g window-status-current-format '#[fg=colour235,bg=colour255,nobold,noitalics,nounderscore] #I#F  #W #[fg=colour255,bg=colour235,nobold,noitalics,nounderscore]'
+set -g window-status-format '#[fg=colour255,bg=colour235,nobold,noitalics,nounderscore]  #I#{?window_flags,#F, }  #W '
 # set -g status 2
 # set -g status-format[1] ''

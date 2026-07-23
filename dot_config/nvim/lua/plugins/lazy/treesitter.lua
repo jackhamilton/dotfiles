@@ -84,14 +84,14 @@ return {
                 desc = "Around local scope",
             },
             {
-                "<leader>ean",
+                "<leader>en",
                 function()
                     require("nvim-treesitter-textobjects.swap").swap_next("@parameter.inner")
                 end,
                 desc = "Swap with next argument",
             },
             {
-                "<leader>eap",
+                "<leader>ep",
                 function()
                     require("nvim-treesitter-textobjects.swap").swap_previous("@parameter.inner")
                 end,

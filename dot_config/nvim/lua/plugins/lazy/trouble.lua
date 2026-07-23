@@ -36,14 +36,9 @@ return {
                 desc = "Buffer Diagnostics (Trouble)",
             },
             {
-                "<leader>xcs",
-                "<cmd>Trouble symbols toggle focus=false<cr>",
-                desc = "Symbols (Trouble)",
-            },
-            {
-                "<leader>xcl",
+                "<leader>lL",
                 "<cmd>Trouble lsp toggle focus=false win.position=right<cr>",
-                desc = "LSP Definitions / references / ... (Trouble)",
+                desc = "All LSP relationships (Trouble)",
             },
             {
                 "<leader>xL",
@@ -51,7 +46,7 @@ return {
                 desc = "Location List (Trouble)",
             },
             {
-                "<leader>xQ",
+                "<leader>qt",
                 "<cmd>Trouble qflist toggle filter.severity=vim.diagnostic.severity.ERROR<cr>",
                 desc = "Quickfix Errors (Trouble)",
             },

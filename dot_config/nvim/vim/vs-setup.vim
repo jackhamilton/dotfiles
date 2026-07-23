@@ -14,16 +14,12 @@ filetype plugin on
 
 runtime vim/platform.vim
 
-nnoremap m h
-nnoremap h m
 nnoremap j n
 nnoremap n j
 nnoremap e k
 nnoremap k e
 nnoremap i l
 nnoremap l i
-vnoremap m h
-vnoremap h m
 vnoremap j n
 vnoremap n j
 vnoremap e k

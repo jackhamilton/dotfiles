@@ -19,10 +19,10 @@ return {
             })
         end,
         keys = {
-            { "<leader>Dnn", function() require("neotest").run.run() end, desc = "Run nearest test" },
-            { "<leader>Dnf", function() require("neotest").run.run(vim.fn.expand("%")) end, desc = "Run test file" },
-            { "<leader>Dnd", function() require("neotest").run.run({ strategy = "dap" }) end, desc = "Debug nearest test" },
-            { "<leader>Dns", function() require("neotest").run.stop() end, desc = "Stop test" },
+            { "<leader>Dn", function() require("neotest").run.run() end, desc = "Run nearest test" },
+            { "<leader>Df", function() require("neotest").run.run(vim.fn.expand("%")) end, desc = "Run test file" },
+            { "<leader>Dd", function() require("neotest").run.run({ strategy = "dap" }) end, desc = "Debug nearest test" },
+            { "<leader>Ds", function() require("neotest").run.stop() end, desc = "Stop test" },
         }
     }
 }

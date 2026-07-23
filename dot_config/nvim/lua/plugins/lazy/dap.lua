@@ -4,14 +4,8 @@ return {
         event = 'LspAttach',
         keys = {
             {
-                "<leader>d",
-                group = "Debugger",
-                nowait = true,
-                remap = false,
-            },
-            {
-                "<leader>ds",
-                mode = { "n", "v", "x" },
+                "Ds",
+                mode = "n",
                 function()
                     if vim.bo.filetype == "swift" then
                         require("xcodebuild.integrations.dap").build_and_debug()
@@ -24,8 +18,8 @@ return {
                 remap = false,
             },
             {
-                "<leader>dc",
-                mode = { "n", "v", "x" },
+                "Dc",
+                mode = "n",
                 function()
                     require("dap").continue()
                 end,
@@ -34,8 +28,8 @@ return {
                 remap = false,
             },
             {
-                "<leader>di",
-                mode = { "n", "v", "x" },
+                "Di",
+                mode = "n",
                 function()
                     require("dap").step_into()
                 end,
@@ -44,8 +38,8 @@ return {
                 remap = false,
             },
             {
-                "<leader>do",
-                mode = { "n", "v", "x" },
+                "Do",
+                mode = "n",
                 function()
                     require("dap").step_over()
                 end,
@@ -54,8 +48,8 @@ return {
                 remap = false,
             },
             {
-                "<leader>du",
-                mode = { "n", "v", "x" },
+                "Du",
+                mode = "n",
                 function()
                     require("dap").step_out()
                 end,
@@ -64,8 +58,8 @@ return {
                 remap = false,
             },
             {
-                "<leader>dr",
-                mode = { "n", "v", "x" },
+                "Dr",
+                mode = "n",
                 function()
                     require("dap").repl.open()
                 end,
@@ -74,8 +68,8 @@ return {
                 remap = false,
             },
             {
-                "<leader>dl",
-                mode = { "n", "v", "x" },
+                "Dl",
+                mode = "n",
                 function()
                     require("dap").run_last()
                 end,
@@ -84,8 +78,8 @@ return {
                 remap = false,
             },
             {
-                "<leader>dq",
-                mode = { "n", "v", "x" },
+                "Dq",
+                mode = "n",
                 function()
                     require("dap").terminate()
                     require("dapui").close()
@@ -96,8 +90,8 @@ return {
                 remap = false,
             },
             {
-                "<leader>dC",
-                mode = { "n", "v", "x" },
+                "DC",
+                mode = "n",
                 function()
                     require("dap").clear_breakpoints()
                 end,
@@ -106,8 +100,8 @@ return {
                 remap = false,
             },
             {
-                "<leader>dx",
-                mode = { "n", "v", "x" },
+                "Dx",
+                mode = "n",
                 function()
                     require("dap").run_to_cursor()
                 end,
@@ -116,8 +110,8 @@ return {
                 remap = false,
             },
             {
-                "<leader>de",
-                mode = { "n", "v", "x" },
+                "De",
+                mode = "n",
                 function()
                     require("dap").set_exception_breakpoints({ "all" })
                 end,
@@ -126,16 +120,16 @@ return {
                 remap = false,
             },
             {
-                "<leader>db",
-                mode = { "n", "v", "x" },
+                "Db",
+                mode = "n",
                 function()
                     require("dap").toggle_breakpoint()
                 end,
                 desc = "Toggle Breakpoint"
             },
             {
-                "<leader>dB",
-                mode = { "n", "v", "x" },
+                "DB",
+                mode = "n",
                 function()
                     require("dap").list_breakpoints(false)
                     require("snacks").picker.qflist({ title = "Breakpoints" })
@@ -155,8 +149,8 @@ return {
         lazy = true,
         keys = {
             {
-                "<leader>dt",
-                mode = { "n", "v", "x" },
+                "Dt",
+                mode = "n",
                 function()
                     require("dapui").toggle()
                 end,
