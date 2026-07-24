@@ -8,7 +8,7 @@ return {
     ls.snippet({ trig = "endpoint", dscr = "API Endpoint" }, fmt([[
         import Foundation
 
-        enum &+Endpoint {
+        enum &+Endpoint: APIEndpoint {
             case &+
 
             var method: APIMethod {
