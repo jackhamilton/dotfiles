@@ -6,6 +6,6 @@ zinit wait lucid for \
         OMZP::alias-finder \
         zpm-zsh/undollar \
         chisui/zsh-nix-shell \
-        zsh-users/zsh-completions
+        zsh-users/zsh-completions \
+        jeffreytse/zsh-vi-mode \
 
-# jeffreytse/zsh-vi-mode \
