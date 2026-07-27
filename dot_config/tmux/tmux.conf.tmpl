@@ -42,6 +42,8 @@ set -g @jump-key 's'
 set-option -g status-position top
 
 bind-key x kill-pane # skip "kill-pane 1? (y/n)" prompt
+bind-key j command-prompt -p "join pane from:"  "join-pane -h -s '%%'"
+bind-key s command-prompt -p "send pane to:"  "join-pane -h -t '%%'"
 set -g detach-on-destroy off  # don't exit from tmux when closing a session
 
 bind M-R source-file ~/.config/tmux/tmux.conf
