@@ -12,6 +12,8 @@ return {
                 { "i",      mode = { "x", "o" } },
                 { "s",      mode = { "n", "x", "o" } },
                 { "S",      mode = { "n", "x", "o" } }, -- explicitly trigger on S
+                { "D",      mode = "n" },
+                { "X",      mode = "n" },
             },
         }
     },

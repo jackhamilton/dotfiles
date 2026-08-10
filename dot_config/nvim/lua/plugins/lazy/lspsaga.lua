@@ -54,7 +54,18 @@ return {
             { "<leader>lh", mode = { "n" }, "<CMD>Lspsaga hover_doc<CR>",                desc = "Hover Documentation" },
             { "<leader>lo", mode = { "n" }, "<CMD>Lspsaga outline<CR>",                  desc = "Outline" },
             { "<leader>lr", mode = { "n" }, "<CMD>Lspsaga rename<CR>",                   desc = "Rename" },
-            { "<leader>lF", mode = { "n", "x" }, vim.lsp.buf.format,                    desc = "Format file or range" },
+            {
+                "<leader>lF",
+                mode = { "n", "x" },
+                function()
+                    require("conform").format({
+                        lsp_format = "fallback",
+                        async = false,
+                        timeout_ms = 500,
+                    })
+                end,
+                desc = "Format file or range",
+            },
             { "<leader>lT", "<CMD>LspToggle<CR>",                                        desc = "Toggle LSP" },
             { "<leader>lx", vim.lsp.codelens.run,                                         desc = "Run code lens" },
             {

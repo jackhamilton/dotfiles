@@ -7,7 +7,7 @@ return {
                 "<leader>mp",
                 function()
                     require("conform").format({
-                        lsp_fallback = true,
+                        lsp_format = "fallback",
                         async = false,
                         timeout_ms = 500,
                     })
@@ -26,13 +26,17 @@ return {
                 formatters = {
                     swiftformat = {
                         prepend_args = {
-                            "--wrap-parameters", "after-first",
-                            "--wrap-arguments", "after-first",
+                            "--allman", "false",
+                            "--disable", "wrapMultilineStatementBraces",
+                            "--max-width", "120",
+                            "--wrap-parameters", "preserve",
+                            "--allow-partial-wrapping", "false",
+                            "--wrap-arguments", "preserve",
                         },
                     },
                 },
                 -- format_on_save = function(bufnr)
-                --     return { timeout_ms = 500, lsp_fallback = true }
+                --     return { timeout_ms = 500, lsp_format = "fallback" }
                 -- end,
                 log_level = vim.log.levels.ERROR,
             })

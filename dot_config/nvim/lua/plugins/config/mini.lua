@@ -24,7 +24,14 @@ wk.add({
   { "S", group = "Surround", mode = { "n", "x", "o" } },
 })
 
-require("mini.splitjoin").setup()
+local splitjoin = require("mini.splitjoin")
+splitjoin.setup({
+    join = {
+        hooks_post = {
+            splitjoin.gen_hook.pad_brackets({ brackets = { "%b{}" } }),
+        },
+    },
+})
 
 -- require("mini.bracketed").setup()
 

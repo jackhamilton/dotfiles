@@ -103,6 +103,10 @@ if.app-id = 'com.apple.iphonesimulator'
 run = ['layout floating']  # The callback itself
 
 [[on-window-detected]]
+if.app-id = 'io.superFile.Super'
+run = ['layout floating']  # The callback itself
+
+[[on-window-detected]]
 if.app-id = 'com.apple.iphonesimulator'
 run = 'move-node-to-workspace 4'
 

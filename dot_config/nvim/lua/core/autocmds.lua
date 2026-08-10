@@ -110,9 +110,8 @@ local function disable_ui_settings()
     end
 end
 
-local function start_term_mode()
+local function configure_terminal()
     disable_ui_settings()
-    vim.cmd("startinsert!")
 end
 
 au({ "BufEnter", "BufWinEnter" }, {
@@ -122,7 +121,7 @@ au({ "BufEnter", "BufWinEnter" }, {
 
 au("TermOpen", {
     pattern = "term://*",
-    callback = start_term_mode,
+    callback = configure_terminal,
 })
 
 local detached_lsp_clients = {}

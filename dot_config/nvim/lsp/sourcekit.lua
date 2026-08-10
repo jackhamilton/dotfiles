@@ -1,6 +1,6 @@
 return {
     cmd = { 'sourcekit-lsp' },
-    filetypes = { 'swift', 'objc', 'objcpp' },
+    filetypes = { 'swift' },
     root_markers = {
       { 'buildServer.json', '*.xcworkspace', '*.xcodeproj', 'Package.swift' },
       '.git',
