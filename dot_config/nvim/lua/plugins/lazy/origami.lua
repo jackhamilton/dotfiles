@@ -6,7 +6,10 @@ return {
         config = function()
             require("origami").setup {
                 useLspFoldsWithTreesitterFallback = {
-                    enabled = true,
+                    -- The outline controller below owns Tree-sitter fold
+                    -- providers so a later LSP attach cannot replace the
+                    -- initialized window-local fold state.
+                    enabled = false,
                     foldmethodIfNeitherIsAvailable = "indent", ---@type string|fun(bufnr: number): string
                 },
                 pauseFoldsOnSearch = true,
@@ -26,7 +29,11 @@ return {
                     disableOnFt = { "snacks_picker_input" }, ---@type string[]
                 },
                 autoFold = {
-                    enabled = true,
+                    -- vim.lsp.foldclose() can fail from a deferred callback while
+                    -- opening a buffer (especially an empty one). This cannot be
+                    -- contained with pcall here, so leave Origami's automatic
+                    -- import/comment folding off until the Neovim bug is fixed.
+                    enabled = false,
                     kinds = { "comment", "imports" }, ---@type lsp.FoldingRangeKind[]
                 },
                 foldKeymaps = {
@@ -43,6 +50,8 @@ return {
             local swiftFoldTextNs = vim.api.nvim_create_namespace("swift.foldtext")
             vim.api.nvim_set_decoration_provider(swiftFoldTextNs, {
                 on_win = function(_, win, buf, topline, botline)
+                    if not vim.api.nvim_buf_is_valid(buf) or not vim.api.nvim_win_is_valid(win) then return end
+                    if vim.api.nvim_win_get_buf(win) ~= buf then return end
                     if vim.bo[buf].filetype ~= "swift" then return end
 
                     vim.api.nvim_win_call(win, function()
@@ -75,34 +84,7 @@ return {
 
             vim.keymap.set("n", "<Left>", function() require("origami").h() end)
             vim.keymap.set("n", "<Right>", function() require("origami").l() end)
-
-            local function setupSwiftFolds(buf)
-                if vim.bo[buf].filetype ~= "swift" then return end
-                if not pcall(vim.treesitter.get_parser, buf) then return end
-
-                vim.api.nvim_buf_call(buf, function()
-                    vim.wo.foldmethod = "expr"
-                    vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
-                    -- Leave foldtext empty: Origami decorates the displayed source
-                    -- line with virtual text, which retains Tree-sitter highlighting.
-                    vim.wo.foldtext = ""
-                end)
-                vim.b[buf].origami_folding_provider = "treesitter"
-            end
-
-            local swiftFoldGroup = vim.api.nvim_create_augroup("swift_treesitter_folds", { clear = true })
-            vim.api.nvim_create_autocmd("FileType", {
-                group = swiftFoldGroup,
-                pattern = "swift",
-                callback = function(event) setupSwiftFolds(event.buf) end,
-            })
-            vim.api.nvim_create_autocmd("LspAttach", {
-                group = swiftFoldGroup,
-                callback = function(event) setupSwiftFolds(event.buf) end,
-            })
-            for _, buf in ipairs(vim.api.nvim_list_bufs()) do
-                if vim.bo[buf].buflisted then setupSwiftFolds(buf) end
-            end
+            require("utils.origami_outline").setup()
         end,
 
         -- recommended: disable vim's auto-folding

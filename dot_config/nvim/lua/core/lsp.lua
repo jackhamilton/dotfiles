@@ -59,6 +59,15 @@ vim.lsp.enable({
     "gh_actions_ls"
 })
 
+vim.api.nvim_create_autocmd('LspAttach', {
+    callback = function(event)
+        local client = vim.lsp.get_client_by_id(event.data.client_id)
+        if client and client.name == 'sourcekit' then
+            require('utils.lsp_references').wrap_client(client)
+        end
+    end,
+})
+
 vim.lsp.config('nixd', {
    settings = {
       nixd = {

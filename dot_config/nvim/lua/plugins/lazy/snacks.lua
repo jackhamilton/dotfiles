@@ -14,6 +14,23 @@ return {
         },
         picker = {
             enabled = true,
+            win = {
+                preview = {
+                    wo = {
+                        -- Avoid creating a parser-less Tree-sitter fold cache
+                        -- before the previewer has detected the item's language.
+                        foldmethod = "manual",
+                    },
+                },
+            },
+            config = function(opts)
+                local onChange = opts.on_change
+                opts.on_change = function(picker, item)
+                    if onChange then onChange(picker, item) end
+                    require("utils.origami_outline").refreshPicker(picker)
+                end
+                return opts
+            end,
             matcher = {
                 smartcase = true,
                 ignorecase = true,
@@ -223,6 +240,7 @@ return {
         { "<leader>lgr", function() Snacks.picker.lsp_references() end, desc = "References" },
         { "<leader>lgi", function() Snacks.picker.lsp_implementations() end, desc = "Goto Implementation" },
         { "<leader>lgt", function() Snacks.picker.lsp_type_definitions() end, desc = "Goto Type Definition" },
+        { "<leader>lgc", function() require("utils.type_constructions").show() end, desc = "Find Type Constructions" },
         -- { "<leader>ss", function() Snacks.picker.lsp_symbols() end, desc = "LSP Symbols" },
         -- { "<leader>sS", function() Snacks.picker.lsp_workspace_symbols() end, desc = "LSP Workspace Symbols" },
     },

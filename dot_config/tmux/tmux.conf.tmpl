@@ -73,7 +73,14 @@ if-shell -F '#{!=:#{@plugins_initialized},1}' {
 
 # The window formats in jackcore are static. Keep them out of tmux-powerline's
 # per-refresh shell pipeline so only the dynamic left and right sides spawn jobs.
-set -g window-status-current-format '#[fg=colour235,bg=colour255,nobold,noitalics,nounderscore] #I#F  #W #[fg=colour255,bg=colour235,nobold,noitalics,nounderscore]'
-set -g window-status-format '#[fg=colour255,bg=colour235,nobold,noitalics,nounderscore]  #I#{?window_flags,#F, }  #W '
+set-hook -g after-select-window[9100] 'run-shell -b "sh ~/.config/tmux/session-accent.sh --all"'
+set-hook -g client-attached[9100] 'run-shell -b "sh ~/.config/tmux/session-accent.sh --all"'
+set-hook -g client-detached[9100] 'run-shell -b "sh ~/.config/tmux/session-accent.sh --all"'
+set-hook -g client-session-changed[9100] 'run-shell -b "sh ~/.config/tmux/session-accent.sh --all"'
+set-hook -g session-created[9100] 'run-shell -b "sh ~/.config/tmux/session-accent.sh --all"'
+set-hook -g session-closed[9100] 'run-shell -b "sh ~/.config/tmux/session-accent.sh --all"'
+run-shell -b 'sh ~/.config/tmux/session-accent.sh --all'
+set -g window-status-current-format '#[fg=colour235,bg=#{?#{@session_accent},#{@session_accent},colour78},nobold,noitalics,nounderscore] #I#F  #W #[fg=#{?#{@session_accent},#{@session_accent},colour78},bg=colour235,nobold,noitalics,nounderscore]'
+set -g window-status-format '#[fg=colour235,bg=#{?#{@session_activity_accent},#{@session_activity_accent},colour235},nobold,noitalics,nounderscore]#{?#{@session_activity_accent},, }#[fg=colour255] #I#{?window_flags,#F, }  #W #[fg=#{?#{@session_activity_accent},#{@session_activity_accent},colour255},bg=colour235]#{?#{@session_activity_accent},,}'
 # set -g status 2
 # set -g status-format[1] ''
