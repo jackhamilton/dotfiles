@@ -7,11 +7,22 @@ return {
         config = {
             auto_close = true,
             modes = {
+                diagnostics = {
+                    -- Keep Trouble focused on actionable diagnostics. The
+                    -- old errors-only filter lived in `mydiags`, but the
+                    -- mappings below open this built-in mode instead.
+                    filter = {
+                        severity = vim.diagnostic.severity.ERROR,
+                    },
+                },
                 mydiags = {
                   mode = "diagnostics", -- inherit from diagnostics mode
                   filter = {
                     any = {
-                      buf = 0, -- current buffer
+                      {
+                        buf = 0, -- current buffer
+                        severity = vim.diagnostic.severity.ERROR,
+                      },
                       {
                         severity = vim.diagnostic.severity.ERROR, -- errors only
                         -- limit to files in the current project
@@ -32,7 +43,7 @@ return {
             },
             {
                 "<leader>xX",
-                "<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
+                "<cmd>Trouble diagnostics toggle filter.buf=0 filter.severity=vim.diagnostic.severity.ERROR<cr>",
                 desc = "Buffer Diagnostics (Trouble)",
             },
             {

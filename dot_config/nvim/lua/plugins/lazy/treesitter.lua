@@ -20,6 +20,14 @@ return {
                         return
                     end
 
+                    -- The current Swift parser/query produces incorrect
+                    -- indentation in deeply nested expressions and closures.
+                    -- Keep Swift's stable built-in smartindent behavior until
+                    -- the Tree-sitter Swift indentation query is fixed.
+                    if filetype == "swift" then
+                        return
+                    end
+
                     local ok, query = pcall(vim.treesitter.query.get, language, "indents")
                     if ok and query then
                         vim.bo[event.buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
