@@ -70,6 +70,7 @@ if-shell -F '#{!=:#{@plugins_initialized},1}' {
     run-shell '~/.config/tmux/plugins/tpm/tpm'
     set-option -g @plugins_initialized 1
 }
+run-shell -b '~/.config/tmux/powerline-enable.sh'
 
 # The window formats in jackcore are static. Keep them out of tmux-powerline's
 # per-refresh shell pipeline so only the dynamic left and right sides spawn jobs.

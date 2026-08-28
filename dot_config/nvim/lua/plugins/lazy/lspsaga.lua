@@ -87,8 +87,22 @@ return {
             { "<leader>lsD", vim.lsp.buf.workspace_diagnostics, desc = "Workspace diagnostics" },
             { "<leader>lsr", vim.lsp.buf.document_highlight, desc = "Highlight references" },
             { "<leader>lsR", vim.lsp.buf.clear_references, desc = "Clear reference highlights" },
-            { "<leader>lci", mode = { "n" }, "<CMD>Lspsaga incoming_calls<CR>", desc = "Explore incoming calls" },
-            { "<leader>lco", mode = { "n" }, "<CMD>Lspsaga outgoing_calls<CR>", desc = "Explore outgoing calls" },
+            {
+                "<leader>lci",
+                mode = { "n" },
+                function()
+                    require("utils.call_hierarchy").incoming_calls()
+                end,
+                desc = "Explore incoming call sites",
+            },
+            {
+                "<leader>lco",
+                mode = { "n" },
+                function()
+                    require("utils.call_hierarchy").outgoing_calls()
+                end,
+                desc = "Explore outgoing call sites",
+            },
             { "<leader>lgs", "<CMD>Lspsaga subtypes<CR>",   desc = "Explore subtypes" },
             { "<leader>lgS", "<CMD>Lspsaga supertypes<CR>", desc = "Explore supertypes" },
             { "<leader>lwa", vim.lsp.buf.add_workspace_folder, desc = "Add workspace folder" },
