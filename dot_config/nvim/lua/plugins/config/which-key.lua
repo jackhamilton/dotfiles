@@ -9,6 +9,7 @@ wk.add({
     { "<leader>e", group = "Edit" },
     { "<leader>f", group = "Files" },
     { "<leader>g", group = "Git" },
+    { "<leader>j", group = "Jujutsu" },
     { "<leader>h", group = "History" },
     { "<leader>i", group = "Indentation" },
     { "<leader>l", group = "LSP", mode = { "n", "x" } },

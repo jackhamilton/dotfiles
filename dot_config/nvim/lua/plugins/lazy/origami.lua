@@ -43,45 +43,6 @@ return {
                 },
             }
 
-            -- Tree-sitter's Swift folds include a closing brace that SourceKit's
-            -- folding ranges omit. Add that brace as a decoration instead of via
-            -- `foldtext`, since a non-empty foldtext replaces syntax-highlighted
-            -- source text on the folded line.
-            local swiftFoldTextNs = vim.api.nvim_create_namespace("swift.foldtext")
-            vim.api.nvim_set_decoration_provider(swiftFoldTextNs, {
-                on_win = function(_, win, buf, topline, botline)
-                    if not vim.api.nvim_buf_is_valid(buf) or not vim.api.nvim_win_is_valid(win) then return end
-                    if vim.api.nvim_win_get_buf(win) ~= buf then return end
-                    if vim.bo[buf].filetype ~= "swift" then return end
-
-                    vim.api.nvim_win_call(win, function()
-                        local lineNum = topline
-                        while lineNum <= botline do
-                            local foldstart = vim.fn.foldclosed(lineNum)
-                            if foldstart > -1 then
-                                local foldend = vim.fn.foldclosedend(foldstart)
-                                local first = vim.fn.getline(foldstart)
-                                local last = vim.fn.getline(foldend)
-
-                                if first:match("{%s*$") and last:match("^%s*}%s*$") then
-                                    local wininfo = vim.fn.getwininfo(win)[1]
-                                    local leftcol = wininfo and wininfo.leftcol or 0
-                                    local wincol = math.max(0, vim.fn.virtcol { foldstart, #first } - leftcol)
-                                    vim.api.nvim_buf_set_extmark(buf, swiftFoldTextNs, foldstart - 1, 0, {
-                                        virt_text = { { " }", "@punctuation.bracket" } },
-                                        virt_text_win_col = wincol,
-                                        ephemeral = true,
-                                    })
-                                end
-
-                                lineNum = foldend
-                            end
-                            lineNum = lineNum + 1
-                        end
-                    end)
-                end,
-            })
-
             vim.keymap.set("n", "<Left>", function() require("origami").h() end)
             vim.keymap.set("n", "<Right>", function() require("origami").l() end)
             require("utils.origami_outline").setup()

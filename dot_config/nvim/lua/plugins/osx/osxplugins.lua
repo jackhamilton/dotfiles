@@ -28,6 +28,44 @@ return {
         },
         init = function()
             local group = vim.api.nvim_create_augroup("XcodebuildTrouble", { clear = true })
+            local build_diagnostics_namespace = vim.api.nvim_create_namespace("xcodebuild-build-diagnostics")
+
+            -- xcodebuild.nvim publishes build failures to quickfix. Mirror
+            -- those entries into vim.diagnostic so the same compiler errors
+            -- are available to the normal diagnostic UI as a fallback when
+            -- SourceKit cannot publish them for a buffer.
+            vim.api.nvim_create_autocmd("User", {
+                group = group,
+                pattern = "XcodebuildBuildFinished",
+                callback = function()
+                    vim.diagnostic.reset(build_diagnostics_namespace)
+
+                    local diagnostics_by_buffer = {}
+                    for _, item in ipairs(vim.fn.getqflist({ items = 1 }).items) do
+                        if item.valid == 1 and (item.type == "E" or item.type == "W") then
+                            local bufnr = item.bufnr
+                            if not bufnr or bufnr == 0 then
+                                bufnr = vim.fn.bufadd(item.filename)
+                            end
+
+                            diagnostics_by_buffer[bufnr] = diagnostics_by_buffer[bufnr] or {}
+                            table.insert(diagnostics_by_buffer[bufnr], {
+                                lnum = math.max(item.lnum - 1, 0),
+                                col = math.max(item.col - 1, 0),
+                                severity = item.type == "E"
+                                    and vim.diagnostic.severity.ERROR
+                                    or vim.diagnostic.severity.WARN,
+                                source = "xcodebuild",
+                                message = item.text,
+                            })
+                        end
+                    end
+
+                    for bufnr, diagnostics in pairs(diagnostics_by_buffer) do
+                        vim.diagnostic.set(build_diagnostics_namespace, bufnr, diagnostics, {})
+                    end
+                end,
+            })
 
             vim.api.nvim_create_autocmd("User", {
                 group = group,

@@ -15,6 +15,13 @@ return {
         picker = {
             enabled = true,
             win = {
+                input = {
+                    keys = {
+                        -- Keep Enter as picker confirmation while the query is
+                        -- focused in Insert mode (including the ivy layout).
+                        ["<CR>"] = { "confirm", mode = { "n", "i" } },
+                    },
+                },
                 preview = {
                     wo = {
                         -- Avoid creating a parser-less Tree-sitter fold cache
@@ -120,15 +127,6 @@ return {
                 Snacks.lazygit.open(opts)
             end,
             desc = "Lazygit"
-        },
-        {
-            "<leader>go",
-            mode = { "n" },
-            function()
-                ---@param opts? snacks.gitbrowse.Config
-                Snacks.gitbrowse.open(opts)
-            end,
-            desc = "Open branch in browser"
         },
         {
             "<leader>fr",

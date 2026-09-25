@@ -5,8 +5,12 @@ return {
     init = function()
         vim.g.rustaceanvim = {
             server = {
-                settings = {
+                default_settings = {
                     ["rust-analyzer"] = {
+                        checkOnSave = true,
+                        check = {
+                            command = "check",
+                        },
                         files = {
                             watcher = "client",
                             exclude = {

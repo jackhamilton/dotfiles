@@ -1,6 +1,55 @@
 local M = {}
 
-local foldexpr = "v:lua.vim.treesitter.foldexpr()"
+-- EXPERIMENTAL: SwiftUI modifiers are parsed as nested call expressions. The stock Swift
+-- folds therefore create one fold level per modifier in a multiline chain.
+-- Keep the native expression everywhere else, but collapse Swift dot-chains
+-- into one fold level. This is intentionally filetype-local so other
+-- languages and Swift's brace-based folds retain their normal behavior.
+-- Caveats: this is line-based, so unusual formatting, comments, multiline
+-- modifier arguments, and ordinary Swift method chains may not behave like
+-- SwiftUI chains.
+local function nativeFoldexpr(line)
+    return vim.treesitter.foldexpr(line)
+end
+
+local function foldLevel(value)
+    local level = tonumber(value:match("(%d+)$"))
+    return level
+end
+
+function M.foldexpr()
+    local line = vim.v.lnum
+    if vim.bo.filetype ~= "swift" then
+        return nativeFoldexpr(line)
+    end
+
+    local text = vim.fn.getline(line)
+    local nextText = vim.fn.getline(line + 1)
+    local isDotLine = text:match("^%s*%.") ~= nil
+    local nextIsDotLine = nextText:match("^%s*%.") ~= nil
+
+    if not isDotLine and nextIsDotLine then
+        -- Use the native level immediately before the chain as its parent.
+        -- A fold starts one level below that parent.
+        local parent = foldLevel(nativeFoldexpr(line - 1))
+        if parent then return ">" .. (parent + 1) end
+    elseif isDotLine then
+        local start = line
+        while start > 1 and vim.fn.getline(start - 1):match("^%s*%.") do
+            start = start - 1
+        end
+
+        -- Find the expression line preceding the dot continuation lines.
+        if start > 1 and vim.fn.getline(start - 1):match("^%s*%.") == nil then
+            local parent = foldLevel(nativeFoldexpr(start - 2))
+            if parent then return tostring(parent + 1) end
+        end
+    end
+
+    return nativeFoldexpr(line)
+end
+
+local foldexpr = "v:lua.require'utils.origami_outline'.foldexpr()"
 
 -- These nodes represent types whose immediate contents should remain visible
 -- in the otherwise-folded initial outline. Queries are compiled lazily so a
@@ -114,6 +163,8 @@ local function openContainingFolds(win, line)
     end)
 end
 
+M.openContainingFolds = openContainingFolds
+
 ---@param buf number
 ---@param language string
 local function exposePreviewFiletype(buf, language)
@@ -148,6 +199,7 @@ function M.refresh(buf, win, opts)
     opts = opts or {}
     if not vim.api.nvim_buf_is_valid(buf) or not vim.api.nvim_win_is_valid(win) then return end
     if not vim.api.nvim_buf_is_loaded(buf) or vim.api.nvim_win_get_buf(win) ~= buf then return end
+    if vim.api.nvim_buf_get_name(buf):match("^diffview://") then return end
 
     local parser, language = parserForBuffer(buf)
     if not parser or not language then return end

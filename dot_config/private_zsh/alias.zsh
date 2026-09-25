@@ -33,6 +33,11 @@ gitup ()
     git commit -m "$1"
     git push
 }
+jjbranch ()
+{
+    jj bookmark create $1
+    jj bookmark track $1
+}
 tmuxAttachMain ()
 {
     tmux new-session -A -D -s "main"
@@ -58,6 +63,34 @@ cleanup ()
 {
     nix-collect-garbage
     paru -Sccd
+}
+# Initialize an SPM package and populate it from the latest spm-template.
+spm-template() {
+    local template_dir="$(mktemp -d "${TMPDIR:-/tmp}/spm-template.XXXXXX")"
+
+    git clone --branch main --single-branch https://github.com/jackhamilton/spm-template.git "$template_dir"
+    local clone_status=$?
+    if (( clone_status != 0 )); then
+        print -u2 "spm-template: failed to clone template (exit $clone_status)"
+        rm -rf "$template_dir"
+        return $clone_status
+    fi
+
+    command swift package init "$@" 2>&1
+    local init_status=$?
+    if (( init_status != 0 )); then
+        print -u2 "spm-template: swift package init failed (exit $init_status)"
+        rm -rf "$template_dir"
+        return $init_status
+    fi
+
+    rsync -a --exclude=.git/ "$template_dir/" ./
+    local rsync_status=$?
+    rm -rf "$template_dir"
+    if (( rsync_status != 0 )); then
+        print -u2 "spm-template: failed to copy template (exit $rsync_status)"
+    fi
+    return $rsync_status
 }
 # nix-upgrade 25.11 ex.
 nix-upgrade()

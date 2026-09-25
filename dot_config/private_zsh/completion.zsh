@@ -1,3 +1,7 @@
+# Make compdef available before completion snippets and delayed plugins load.
+autoload -Uz compinit
+compinit
+
 # Rustup / Cargo
 zinit ice id-as"rustup-completion" has"rustup" \
     atclone'rustup completions zsh cargo > _cargo' atpull'%atclone' \
