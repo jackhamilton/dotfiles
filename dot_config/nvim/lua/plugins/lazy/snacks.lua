@@ -1,3 +1,49 @@
+local pendingPickerCSI = false
+local rawPickerCSI = string.char(0x80, 0xfd, 0x67)
+
+local function jumpFromPicker(picker)
+    local attempts = 0
+    local function tryJump()
+        if not picker or picker.closed then return end
+        if vim.fn.mode():sub(1, 1) == "i" then
+            attempts = attempts + 1
+            vim.cmd.stopinsert()
+            if attempts < 20 then vim.defer_fn(tryJump, 10) end
+            return
+        end
+        require("snacks.picker.actions").jump(picker, nil, {})
+    end
+    tryJump()
+end
+
+vim.on_key(function(key)
+    local snacks = rawget(_G, "Snacks")
+    local picker = snacks and snacks.picker and snacks.picker.get()[1]
+    if not picker or not picker.input or not picker.input.win then
+        pendingPickerCSI = false
+        return
+    end
+
+    local buf = vim.api.nvim_get_current_buf()
+    if buf ~= picker.input.win.buf and buf ~= picker.list.win.buf then
+        pendingPickerCSI = false
+        return
+    end
+
+    local mode = vim.fn.mode():sub(1, 1)
+    if key == rawPickerCSI then
+        pendingPickerCSI = mode == "i" or pendingPickerCSI
+    elseif pendingPickerCSI then
+        pendingPickerCSI = false
+        if key == "\r" then
+            vim.schedule(function()
+                local current = snacks and snacks.picker and snacks.picker.get()[1]
+                if current and not current.closed then jumpFromPicker(current) end
+            end)
+        end
+    end
+end, vim.api.nvim_create_namespace("snacks_picker_confirm"))
+
 return {
     "folke/snacks.nvim",
     priority = 1000,
@@ -17,9 +63,16 @@ return {
             win = {
                 input = {
                     keys = {
-                        -- Keep Enter as picker confirmation while the query is
-                        -- focused in Insert mode (including the ivy layout).
                         ["<CR>"] = { "confirm", mode = { "n", "i" } },
+                        ["<C-J>"] = { "confirm", mode = { "n", "i" } },
+                        ["<C-kEnter>"] = { "confirm", mode = { "n", "i" } },
+                    },
+                },
+                list = {
+                    keys = {
+                        ["<CR>"] = { "confirm", mode = { "n", "i" } },
+                        ["<C-J>"] = { "confirm", mode = { "n", "i" } },
+                        ["<C-kEnter>"] = { "confirm", mode = { "n", "i" } },
                     },
                 },
                 preview = {
@@ -35,6 +88,12 @@ return {
                 opts.on_change = function(picker, item)
                     if onChange then onChange(picker, item) end
                     require("utils.origami_outline").refreshPicker(picker)
+                end
+
+                local onShow = opts.on_show
+                opts.on_show = function(picker)
+                    if onShow then onShow(picker) end
+
                 end
                 return opts
             end,
