@@ -27,7 +27,7 @@ if [[ $(uname) == "Darwin" ]]; then
 else
     export PATH="$PATH:$HOME/Android/Sdk/platform-tools"
     export ANDROID_HOME="$HOME/Android/sdk"
-    export XDG_DATA_DIRS=$XDG_DATA_DIRS:/usr/share:/var/lib/flatpak/exports/share:$HOME/.local/share/flatpak/exports/share
+    export XDG_DATA_DIRS=$XDG_DATA_DIRS:/usr/share:/var/lib/flatpak/exports/share:$HOME/.local/share/flatpak/exports/share:/run/current-system/sw/share:/nix/var/nix/profiles/default/share
 fi
 export RUSTC_WRAPPER=sccache
 export HOMEBREW_AUTO_UPDATE_SECS=604800
