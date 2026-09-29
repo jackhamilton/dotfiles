@@ -35,3 +35,8 @@ eval "$(fzf --zsh)"
 eval "$(zoxide init zsh)"
 eval "$(starship init zsh)"
 
+# Restore stderr immediately before each interactive command.
+_restore_interactive_stderr() {
+    builtin exec 2>&1
+}
+preexec_functions+=(_restore_interactive_stderr)

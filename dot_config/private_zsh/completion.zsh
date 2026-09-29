@@ -1,12 +1,17 @@
-# Make compdef available before completion snippets and delayed plugins load.
-autoload -Uz compinit
-compinit
-
 # Rustup / Cargo
 zinit ice id-as"rustup-completion" has"rustup" \
     atclone'rustup completions zsh cargo > _cargo' atpull'%atclone' \
     atload'fpath+=( $PWD )' \
     as"completion" nocompile'!'
+zinit light zdharma-continuum/null
+
+# Git's zsh completion delegates the detailed candidate generation to Git's
+# Bash completion script, so keep both files together as one cached completion.
+zinit ice id-as"git-completion" \
+    atclone'curl -fsSL https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.zsh > _git && curl -fsSL https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash > git-completion.bash' \
+    atpull'%atclone' \
+    atload'fpath+=( $PWD ); zstyle ":completion:*:*:git:*" script "$PWD/git-completion.bash"' \
+    nocompile'!'
 zinit light zdharma-continuum/null
 
 # Sass

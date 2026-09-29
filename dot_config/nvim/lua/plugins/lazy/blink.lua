@@ -62,6 +62,17 @@ local function select_and_accept_with_indent(cmp)
 	return accepted
 end
 
+local function lsp_color_completion(ctx)
+	if ctx.item.source_name ~= 'LSP' then
+		return nil
+	end
+
+	return require('nvim-highlight-colors').format(
+		ctx.item.documentation,
+		{ kind = ctx.kind }
+	)
+end
+
 return {
 	'saghen/blink.cmp',
 
@@ -131,6 +142,24 @@ return {
 					-- combined together in label by colorful-menu.nvim.
 					columns = { { "kind_icon" }, { "label", gap = 1 } },
 					components = {
+						kind_icon = {
+							text = function(ctx)
+								local icon = ctx.kind_icon
+								local color = lsp_color_completion(ctx)
+								if color and color.abbr ~= '' then
+									icon = color.abbr
+								end
+								return icon .. ctx.icon_gap
+							end,
+							highlight = function(ctx)
+								local highlight = 'BlinkCmpKind' .. ctx.kind
+								local color = lsp_color_completion(ctx)
+								if color and color.abbr_hl_group then
+									highlight = color.abbr_hl_group
+								end
+								return highlight
+							end,
+						},
 						label = {
 							text = function(ctx)
 								return require("colorful-menu").blink_components_text(ctx)

@@ -1,4 +1,7 @@
 export TMUX_PLUGIN_MANAGER_PATH="$HOME/.config/tmux/plugins"
+# The guard is exported by Home Manager, so child shells can inherit it without
+# inheriting the corresponding variables. Always initialize this shell.
+unset __HM_SESS_VARS_SOURCED
 source "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"
 export _JAVA_AWT_WM_NONREPARENTING=1
 export SDL_VIDEODRIVER='wayland,x11,windows'

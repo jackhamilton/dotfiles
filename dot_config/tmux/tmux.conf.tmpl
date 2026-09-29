@@ -33,6 +33,9 @@ set -g default-shell /run/current-system/sw/bin/zsh
 {{ else }}
 set -g default-shell /bin/zsh
 {{ end }}
+
+# Preserve stderr when tmux was launched by a GUI terminal with fd 2 closed.
+set -g default-command 'exec 2>&1; exec "$SHELL" -l'
 # {{ if eq .chezmoi.os "darwin" }}
 # set -g default-command "reattach-to-user-namespace -l zsh"
 # {{ end }}
