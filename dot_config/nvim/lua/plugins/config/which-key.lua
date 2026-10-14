@@ -13,6 +13,7 @@ wk.add({
     { "<leader>h", group = "History" },
     { "<leader>i", group = "Indentation" },
     { "<leader>l", group = "LSP", mode = { "n", "x" } },
+    { "<leader>o", group = "Overseer" },
     { "<leader>lc", group = "Call hierarchy" },
     { "<leader>lS", group = "Scope" },
     { "<leader>lg", group = "Goto / type hierarchy" },

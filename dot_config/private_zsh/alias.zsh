@@ -40,16 +40,16 @@ jjbranch ()
 }
 tmuxAttachMain ()
 {
-    tmux new-session -A -D -s "main"
+    tmux new-session -A -D -s "main" -n "${PWD##*/}"
 }
 tmuxAttachMain2 ()
 {
-    tmux has-session -t "main" 2>/dev/null || tmux new-session -d -s "main"
-    tmux new-session -A -D -t "main" -s "main-2" -f active-pane
+    tmux has-session -t "main" 2>/dev/null || tmux new-session -d -s "main" -n "${PWD##*/}"
+    tmux new-session -A -D -t "main" -s "main-2" -f active-pane -n "${PWD##*/}"
 }
 tmuxAttach ()
 {
-    tmux new-session -A -D -s "$1"
+    tmux new-session -A -D -s "$1" -n "${PWD##*/}"
 }
 flake()
 {

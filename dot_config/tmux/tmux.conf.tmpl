@@ -16,10 +16,11 @@ set -g @plugin 'ofirgall/tmux-window-name'
 set -g default-terminal "tmux-256color"
 set -ag terminal-overrides ",*:RGB"
 
-set -g @tmux_window_name_shells "['bash', 'fish', 'sh', 'zsh', 'tmux', 'chezmoi']"
-set -g @tmux_window_name_dir_programs "['nvim', 'vim', 'vi', 'nano']"
-set -g @tmux_window_name_icon_style "'name_and_icon'"
-set -g @tmux_window_name_ignored_programs "['reattach-to-user-namespace', 'env']"
+set -g @tmux_window_name_shells "['bash', 'fish', 'sh', 'tmux', 'chezmoi']"
+set -g @tmux_window_name_dir_programs "['nvim', 'vim', 'vi', 'nano', 'zsh']"
+set -g @tmux_window_name_icon_style "'dir_and_icon'"
+set -g @tmux_window_name_custom_icons '{"zsh": ""}'
+set -g @tmux_window_name_ignored_programs "['reattach-to-user-namespace', 'env', '2>&1;']"
 set -g @tmux_window_name_running 0
 set -g @tmux_window_name_show_program_args "False"
 # set -g @tmux_window_name_max_name_len "25"
@@ -45,6 +46,7 @@ set -g @jump-key 's'
 set-option -g status-position top
 
 bind-key x kill-pane # skip "kill-pane 1? (y/n)" prompt
+bind-key c new-window -c "#{pane_current_path}" \; rename-window ""
 bind-key W run-shell 'a=$(tmux display-message -p -t main "##{window_index}"); b=$(tmux display-message -p -t main-2 "##{window_index}"); tmux select-window -t "main:$b"; tmux select-window -t "main-2:$a"'
 bind-key j command-prompt -p "join pane from:"  "join-pane -h -s '%%'"
 bind-key s command-prompt -p "send pane to:"  "join-pane -h -t '%%'"
@@ -79,6 +81,8 @@ run-shell -b '~/.config/tmux/powerline-enable.sh'
 # The window formats in jackcore are static. Keep them out of tmux-powerline's
 # per-refresh shell pipeline so only the dynamic left and right sides spawn jobs.
 set-hook -g after-select-window[9100] 'run-shell -b "sh ~/.config/tmux/session-accent.sh --all"'
+set-hook -g after-new-window[8922] 'run-shell -b "sleep 0.5; if [ \"$(tmux display-message -p -t \"#{window_id}\" \"#{pane_current_command}\")\" = zsh ]; then tmux rename-window -t \"#{window_id}\" \" #{b:pane_current_path}\"; tmux set-option -w -t \"#{window_id}\" automatic-rename-format \" #{b:pane_current_path}\"; tmux set-option -w -t \"#{window_id}\" automatic-rename on; tmux set-option -w -t \"#{window_id}\" @tmux_window_name_enabled 1; fi"'
+set-hook -g session-created[8922] 'run-shell -b "sleep 0.5; if [ \"$(tmux display-message -p -t \"#{window_id}\" \"#{pane_current_command}\")\" = zsh ]; then tmux rename-window -t \"#{window_id}\" \" #{b:pane_current_path}\"; tmux set-option -w -t \"#{window_id}\" automatic-rename-format \" #{b:pane_current_path}\"; tmux set-option -w -t \"#{window_id}\" automatic-rename on; tmux set-option -w -t \"#{window_id}\" @tmux_window_name_enabled 1; fi"'
 set-hook -g client-attached[9100] 'run-shell -b "sh ~/.config/tmux/session-accent.sh --all"'
 set-hook -g client-detached[9100] 'run-shell -b "sh ~/.config/tmux/session-accent.sh --all"'
 set-hook -g client-session-changed[9100] 'run-shell -b "sh ~/.config/tmux/session-accent.sh --all"'

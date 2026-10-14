@@ -1,8 +1,16 @@
 # Directory-change hooks
 _rename_tmux_window() {
     [[ $TERM_PROGRAM == tmux ]] || return 0
-    "$TMUX_PLUGIN_MANAGER_PATH/tmux-window-name/scripts/rename_session_windows.py" \
-        >/dev/null 2>&1 &!
+
+    local window_id directory_name
+    window_id=$(tmux display-message -p -t "$TMUX_PANE" '#{window_id}') || return 0
+    directory_name=${PWD:t}
+    [[ -n $directory_name ]] || directory_name=/
+
+    tmux rename-window -t "$window_id" " $directory_name"
+    tmux set-option -w -t "$window_id" automatic-rename-format " $directory_name"
+    tmux set-option -w -t "$window_id" automatic-rename on
+    tmux set-option -w -t "$window_id" @tmux_window_name_enabled 1
 }
 add-zsh-hook chpwd _rename_tmux_window
 
