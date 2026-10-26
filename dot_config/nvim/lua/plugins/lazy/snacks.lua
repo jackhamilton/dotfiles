@@ -1,5 +1,10 @@
 local pendingPickerCSI = false
 local rawPickerCSI = string.char(0x80, 0xfd, 0x67)
+local pickerEnterKeys = {
+    ["\r"] = true,
+    ["\n"] = true,
+    [vim.keycode("<kEnter>")] = true,
+}
 
 local function jumpFromPicker(picker)
     local attempts = 0
@@ -35,7 +40,7 @@ vim.on_key(function(key)
         pendingPickerCSI = mode == "i" or pendingPickerCSI
     elseif pendingPickerCSI then
         pendingPickerCSI = false
-        if key == "\r" then
+        if pickerEnterKeys[key] then
             vim.schedule(function()
                 local current = snacks and snacks.picker and snacks.picker.get()[1]
                 if current and not current.closed then jumpFromPicker(current) end

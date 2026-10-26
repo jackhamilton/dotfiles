@@ -71,10 +71,20 @@ vim.lsp.config('sourcekit', {
     root_dir = function(bufnr, on_dir)
         local path = vim.fs.normalize(vim.api.nvim_buf_get_name(bufnr))
         local git_root = vim.fs.root(path, '.git')
-        local is_xcode_project = git_root and has_xcode_project(git_root)
+        local working_directory = vim.fn.getcwd()
+        local package_root = vim.fs.root(working_directory, 'Package.swift')
+        local working_git_root = vim.fs.root(working_directory, '.git')
+        local is_xcode_project = working_git_root and has_xcode_project(working_git_root)
 
-        local root = is_xcode_project and git_root
-            or vim.fs.root(path, 'Package.swift')
+        -- The working directory identifies whether this is a project-wide or
+        -- package-local session. The parent Xcode project is the source of
+        -- truth when Neovim starts at the repository root; a package is the
+        -- source of truth when Neovim starts inside that package. Do not infer
+        -- intent from the file path: packages are also dependencies of the
+        -- parent Xcode project, and need the parent target's build settings in
+        -- a project-wide session.
+        local root = package_root
+            or (is_xcode_project and working_git_root)
             or git_root
 
         on_dir(root)

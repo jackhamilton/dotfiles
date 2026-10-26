@@ -8,7 +8,9 @@ return {
     {
         "nvimdev/lspsaga.nvim",
         opts = {
-            devicon = true,
+            ui = {
+                devicon = false,
+            },
             callhierarchy = {
                 keys = {
                     edit = "o",

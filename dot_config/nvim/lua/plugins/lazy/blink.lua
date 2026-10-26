@@ -205,6 +205,31 @@ return {
 		sources = {
 			default = { 'lazydev', 'snippets', 'lsp', 'path', 'buffer' },
 			providers = {
+				-- SourceKit may replace only the prefix of an identifier being edited in place.
+				lsp = {
+					transform_items = function(ctx, items)
+						for _, item in ipairs(items) do
+							local text_edit = item.textEdit
+							local new_text = text_edit and text_edit.newText
+							local range = text_edit and text_edit.range
+							local cursor = ctx.cursor
+							local has_suffix = ctx.line:sub(cursor[2] + 1):match('^[%w_]+') ~= nil
+							local is_prefix_only = range ~= nil
+								and range.start.line == cursor[1] - 1
+								and range['end'].line == cursor[1] - 1
+								and range['end'].character == cursor[2]
+							if item.client_name == 'sourcekit'
+								and is_prefix_only
+								and has_suffix
+								and new_text ~= nil
+								and new_text:match('^[%a_][%w_]*$')
+							then
+								item.textEdit = nil
+							end
+						end
+						return items
+					end,
+				},
 				lazydev = {
 					name = 'LazyDev',
 					module = 'lazydev.integrations.blink',

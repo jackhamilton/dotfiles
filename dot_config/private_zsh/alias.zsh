@@ -38,18 +38,28 @@ jjbranch ()
     jj bookmark create $1
     jj bookmark track $1
 }
+tmuxEnsureSession ()
+{
+    tmux has-session -t "$1" 2>/dev/null || tmux new-session -d -s "$1" -n "${PWD##*/}"
+}
+tmuxAttachSession ()
+{
+    tmuxEnsureSession "$1"
+    tmux attach-session -d -t "$1"
+}
 tmuxAttachMain ()
 {
-    tmux new-session -A -D -s "main" -n "${PWD##*/}"
+    tmuxAttachSession "main"
 }
 tmuxAttachMain2 ()
 {
-    tmux has-session -t "main" 2>/dev/null || tmux new-session -d -s "main" -n "${PWD##*/}"
-    tmux new-session -A -D -t "main" -s "main-2" -f active-pane -n "${PWD##*/}"
+    tmuxEnsureSession "main"
+    tmux has-session -t "main-2" 2>/dev/null || tmux new-session -d -t "main" -s "main-2" -f active-pane
+    tmux attach-session -d -t "main-2"
 }
 tmuxAttach ()
 {
-    tmux new-session -A -D -s "$1" -n "${PWD##*/}"
+    tmuxAttachSession "$1"
 }
 flake()
 {

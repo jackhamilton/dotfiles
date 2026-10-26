@@ -1,4 +1,7 @@
 export TMUX_PLUGIN_MANAGER_PATH="$HOME/.config/tmux/plugins"
+if [[ -x "$HOME/.local/share/tmux-window-name-venv/bin/python3" ]]; then
+    export PATH="$HOME/.local/share/tmux-window-name-venv/bin:$PATH"
+fi
 # The guard is exported by Home Manager, so child shells can inherit it without
 # inheriting the corresponding variables. Always initialize this shell.
 unset __HM_SESS_VARS_SOURCED

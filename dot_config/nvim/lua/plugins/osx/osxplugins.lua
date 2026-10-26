@@ -29,6 +29,52 @@ return {
         init = function()
             local group = vim.api.nvim_create_augroup("XcodebuildTrouble", { clear = true })
             local build_diagnostics_namespace = vim.api.nvim_create_namespace("xcodebuild-build-diagnostics")
+            local build_server_refresh_timer
+
+            local function schedule_build_server_refresh()
+                if build_server_refresh_timer then
+                    vim.fn.timer_stop(build_server_refresh_timer)
+                end
+
+                build_server_refresh_timer = vim.defer_fn(function()
+                    build_server_refresh_timer = nil
+                    local settings = require("xcodebuild.project.config").settings
+
+                    -- Package-local sessions use SwiftPM's .sourcekit-lsp
+                    -- configuration. Only the parent Xcode-project session
+                    -- should regenerate buildServer.json.
+                    if settings.projectFile and settings.scheme then
+                        require("xcodebuild.integrations.xcode-build-server")
+                            .run_config_if_enabled()
+                    end
+                end, 500)
+            end
+
+            vim.api.nvim_create_autocmd("BufWritePost", {
+                group = group,
+                pattern = "*",
+                callback = function(event)
+                    local name = vim.fs.basename(vim.api.nvim_buf_get_name(event.buf))
+                    if name == "Package.swift"
+                        or name == "Package.resolved"
+                        or name == "project.pbxproj"
+                        or name == "contents.xcworkspacedata"
+                        or name:match("%.xcscheme$")
+                    then
+                        schedule_build_server_refresh()
+                    end
+                end,
+            })
+
+            vim.api.nvim_create_autocmd("User", {
+                group = group,
+                pattern = "XcodebuildBuildFinished",
+                callback = function(event)
+                    if event.data.success then
+                        require("xcodebuild.integrations.lsp").restart_sourcekit_lsp()
+                    end
+                end,
+            })
 
             -- xcodebuild.nvim publishes build failures to quickfix. Mirror
             -- those entries into vim.diagnostic so the same compiler errors
@@ -84,6 +130,11 @@ return {
             })
         end,
         opts = {
+            project_config = {
+                -- Keep xcodebuild.nvim's project state aligned with the
+                -- working-directory-based SourceKit workspace selection.
+                reload_on_cwd_change = true,
+            },
             logs = {
                 auto_open_on_failed_build = false,
                 auto_open_on_failed_tests = false,
