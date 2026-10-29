@@ -1,3 +1,8 @@
+# Nix profile completions (eza, bat, fd, gh, chezmoi, and others)
+zinit ice id-as"nix-profile-completions" \
+    atinit'fpath+=( "$HOME/.nix-profile/share/zsh/site-functions" )'
+zinit light zdharma-continuum/null
+
 # Rustup / Cargo
 zinit ice id-as"rustup-completion" has"rustup" \
     atclone'rustup completions zsh cargo > _cargo' atpull'%atclone' \
@@ -28,7 +33,3 @@ zinit ice id-as"jj-completion" has"jj" \
     as"completion" nocompile'!'
 zinit light zdharma-continuum/null
 
-# Skim (sk)
-zinit ice wait"0b" lucid id-as"sk-completion" has"sk" nocompile'!' \
-    atload'eval "$(sk --shell zsh)"'
-zinit light zdharma-continuum/null

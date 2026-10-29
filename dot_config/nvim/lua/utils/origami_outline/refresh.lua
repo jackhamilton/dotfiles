@@ -6,6 +6,13 @@ local treesitter = require("utils.origami_outline.treesitter")
 
 local M = {}
 
+local function isDocumentationPopup(buf, win)
+    if vim.b[buf].lsp_floating_preview == win then return true end
+
+    local hover = package.loaded["lspsaga.hover"]
+    return hover ~= nil and hover.bufnr == buf and hover.winid == win
+end
+
 ---@param buf number
 ---@param win number
 ---@param opts? { preview?: boolean, force?: boolean, noRetry?: boolean, diffview?: boolean }
@@ -13,6 +20,7 @@ function M.refresh(buf, win, opts)
     opts = opts or {}
     if not vim.api.nvim_buf_is_valid(buf) or not vim.api.nvim_win_is_valid(win) then return end
     if not vim.api.nvim_buf_is_loaded(buf) or vim.api.nvim_win_get_buf(win) ~= buf then return end
+    if isDocumentationPopup(buf, win) then return end
     if vim.api.nvim_buf_get_name(buf):match("^diffview://") and not opts.diffview then return end
 
     local parser, language = treesitter.parserForBuffer(buf)

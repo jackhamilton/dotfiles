@@ -33,6 +33,7 @@ source ~/.config/zsh/direnv-instant.zsh
 # Generated shell integrations
 eval "$(fzf --zsh)"
 eval "$(zoxide init zsh)"
+source ~/.config/zsh/zoxide-autocomplete.zsh
 eval "$(starship init zsh)"
 
 # Restore stderr immediately before each interactive command.

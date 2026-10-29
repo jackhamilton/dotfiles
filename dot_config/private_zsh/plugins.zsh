@@ -22,6 +22,12 @@ _super_autocomplete_cancel_stale() {
 }
 add-zle-hook-widget line-pre-redraw _super_autocomplete_cancel_stale
 
+# Pin while upstream main has a broken zasync autoload (#907): it registers the
+# cache directory instead of the zasync function file, so async calls silently
+# do nothing. Tab completion still works, but type-ahead suggestions do not.
+# Release 26.08.04 is the latest unaffected version.
+# Remove the pin after an upstream release includes the zasync loading fix.
+zinit ice ver"26.08.04"
 zinit light marlonrichert/zsh-autocomplete
 zinit light NICHOLAS85/z-a-eval
 

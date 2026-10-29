@@ -94,6 +94,29 @@ vim.wait(50)
 assert(vim.fn.foldclosed(3) == -1, "reused preview type should be open")
 assert(vim.fn.foldclosed(4) == 4, "reused preview method should be folded")
 
+local documentation = sourceBuffer("swift", {
+    "class Documentation {",
+    "    func staysOpen() {",
+    "        print(1)",
+    "    }",
+    "}",
+})
+local float = vim.api.nvim_open_win(documentation, false, {
+    relative = "editor",
+    row = 1,
+    col = 1,
+    width = 30,
+    height = 5,
+    style = "minimal",
+})
+local previousHover = package.loaded["lspsaga.hover"]
+package.loaded["lspsaga.hover"] = { bufnr = documentation, winid = float }
+vim.wo[float].foldmethod = "manual"
+outline.refresh(documentation, float)
+assert(vim.wo[float].foldmethod == "manual", "LSP documentation floats should skip outline folding")
+package.loaded["lspsaga.hover"] = previousHover
+vim.api.nvim_win_close(float, true)
+
 local deleted = vim.api.nvim_create_buf(false, true)
 vim.api.nvim_buf_delete(deleted, { force = true })
 assert(pcall(outline.refresh, deleted, win), "deleted buffers should be ignored")

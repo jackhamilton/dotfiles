@@ -27,6 +27,7 @@ alias archive="yt-dlp --live-from-start --cookies-from-browser firefox --extract
 alias killall="pkill -9 -f"
 alias skrg="sk --ansi -i -c 'rg --color=always --line-number \"{}\"'"
 alias jira="jiratui ui --search-on-startup --focus-item-on-startup 1"
+alias ls="ls-wrapper"
 gitup ()
 {
     git add .
@@ -115,4 +116,12 @@ function y() {
 	IFS= read -r -d '' cwd < "$tmp"
 	[ "$cwd" != "$PWD" ] && [ -d "$cwd" ] && builtin cd -- "$cwd"
 	command rm -f -- "$tmp"
+}
+ls-wrapper() {
+    if command -v eza &>/dev/null
+    then
+        eza
+    else
+        ls
+    fi
 }

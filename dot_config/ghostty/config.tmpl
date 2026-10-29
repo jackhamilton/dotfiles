@@ -1,0 +1,18 @@
+font-family = RobotoMono Nerd Font Mono
+font-family-bold = RobotoMono Nerd Font Mono
+font-style-bold = Bold
+font-family-bold-italic = RobotoMono Nerd Font Mono
+font-style-bold-italic = Bold Italic
+{{ if eq .chezmoi.os "darwin" }}
+font-size = 16
+{{ else }}
+font-size = 14
+{{ end }}
+
+theme = Gruvbox Dark
+scrollbar = system
+window-show-tab-bar = auto
+{{ if eq .chezmoi.os "darwin" }}
+working-directory = /Users/jackhamilton/Documents/GitHub/packager/
+macos-titlebar-style = hidden
+{{ end }}
