@@ -68,7 +68,7 @@ flake()
 }
 switch()
 {
-    home-manager switch --flake ~/.config/home-manager/.#$1
+    home-manager switch --flake ~/Documents/GitHub/nixos-config/home-manager#$1
 }
 cleanup ()
 {

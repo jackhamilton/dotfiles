@@ -9,6 +9,8 @@ font-size = 16
 font-size = 14
 {{ end }}
 
+command = /usr/bin/env -u fish_trace {{ .chezmoi.homeDir }}/.nix-profile/bin/fish -l
+config-file = ?../themester/ghostty.conf
 theme = Gruvbox Dark
 scrollbar = system
 window-show-tab-bar = auto

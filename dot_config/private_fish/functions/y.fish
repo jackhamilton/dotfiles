@@ -7,7 +7,7 @@ function y --description 'Open Yazi and change to its last directory on exit'
 
     if test -r "$temp_file"
         set -l cwd (string collect < "$temp_file")
-        if test -n "$cwd" -a "$cwd" != "$PWD" -a -d "$cwd"
+        if test -n "$cwd"; and test "$cwd" != "$PWD"; and test -d "$cwd"
             cd -- "$cwd"
         end
     end

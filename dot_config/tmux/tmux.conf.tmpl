@@ -16,10 +16,10 @@ set -g @plugin 'ofirgall/tmux-window-name'
 set -g default-terminal "tmux-256color"
 set -ag terminal-overrides ",*:RGB"
 
-set -g @tmux_window_name_shells "['bash', 'fish', 'sh', 'tmux', 'chezmoi']"
+set -g @tmux_window_name_shells "['bash', 'fish', 'sh', 'tmux', 'chezmoi', 'zsh']"
 set -g @tmux_window_name_dir_programs "['nvim', 'vim', 'vi', 'nano', 'zsh']"
 set -g @tmux_window_name_icon_style "'dir_and_icon'"
-set -g @tmux_window_name_custom_icons '{"zsh": ""}'
+set -g @tmux_window_name_custom_icons '{"fish": "", "zsh": ""}'
 set -g @tmux_window_name_ignored_programs "['reattach-to-user-namespace', 'env', '2>&1;']"
 set -g @tmux_window_name_running 0
 set -g @tmux_window_name_show_program_args "False"
@@ -27,16 +27,10 @@ set -g @tmux_window_name_show_program_args "False"
 set -g @tmux_window_name_use_tilde "True"
 set -g @tmux_window_name_substitute_sets "[('\/nix\/store\/[0-9a-z]{32}-[-.+_?=0-9a-zA-Z]+\/(bin\/|)', ''), ('edit ', '')]"
 
-{{ if eq .chezmoi.hostname "nixos-laptop" }}
-set -g default-shell /run/current-system/sw/bin/zsh
-{{ else if eq .chezmoi.hostname "nixos-desktop" }}
-set -g default-shell /run/current-system/sw/bin/zsh
-{{ else }}
-set -g default-shell /bin/zsh
-{{ end }}
+set -g default-shell {{ .chezmoi.homeDir }}/.nix-profile/bin/fish
 
 # Preserve stderr when tmux was launched by a GUI terminal with fd 2 closed.
-set -g default-command 'exec 2>&1; exec "$SHELL" -l'
+set -g default-command 'exec {{ .chezmoi.homeDir }}/.nix-profile/bin/fish -l 2>&1'
 # {{ if eq .chezmoi.os "darwin" }}
 # set -g default-command "reattach-to-user-namespace -l zsh"
 # {{ end }}
@@ -81,8 +75,8 @@ run-shell -b '~/.config/tmux/powerline-enable.sh'
 # The window formats in jackcore are static. Keep them out of tmux-powerline's
 # per-refresh shell pipeline so only the dynamic left and right sides spawn jobs.
 set-hook -g after-select-window[9100] 'run-shell -b "sh ~/.config/tmux/session-accent.sh --all"'
-set-hook -g after-new-window[8922] 'run-shell -b "sleep 0.5; if [ \"$(tmux display-message -p -t \"#{window_id}\" \"#{pane_current_command}\")\" = zsh ]; then tmux rename-window -t \"#{window_id}\" \" #{b:pane_current_path}\"; tmux set-option -w -t \"#{window_id}\" automatic-rename-format \" #{b:pane_current_path}\"; tmux set-option -w -t \"#{window_id}\" automatic-rename on; tmux set-option -w -t \"#{window_id}\" @tmux_window_name_enabled 1; fi"'
-set-hook -g session-created[8922] 'run-shell -b "sleep 0.5; if [ \"$(tmux display-message -p -t \"#{window_id}\" \"#{pane_current_command}\")\" = zsh ]; then tmux rename-window -t \"#{window_id}\" \" #{b:pane_current_path}\"; tmux set-option -w -t \"#{window_id}\" automatic-rename-format \" #{b:pane_current_path}\"; tmux set-option -w -t \"#{window_id}\" automatic-rename on; tmux set-option -w -t \"#{window_id}\" @tmux_window_name_enabled 1; fi"'
+set-hook -g after-new-window[8922] 'run-shell -b "sleep 0.5; shell=\$(tmux display-message -p -t \"#{window_id}\" \"#{pane_current_command}\"); if [ \"\$shell\" = fish ] || [ \"\$shell\" = zsh ]; then tmux rename-window -t \"#{window_id}\" \" #{b:pane_current_path}\"; tmux set-option -w -t \"#{window_id}\" automatic-rename-format \" #{b:pane_current_path}\"; tmux set-option -w -t \"#{window_id}\" automatic-rename on; tmux set-option -w -t \"#{window_id}\" @tmux_window_name_enabled 1; fi"'
+set-hook -g session-created[8922] 'run-shell -b "sleep 0.5; shell=\$(tmux display-message -p -t \"#{window_id}\" \"#{pane_current_command}\"); if [ \"\$shell\" = fish ] || [ \"\$shell\" = zsh ]; then tmux rename-window -t \"#{window_id}\" \" #{b:pane_current_path}\"; tmux set-option -w -t \"#{window_id}\" automatic-rename-format \" #{b:pane_current_path}\"; tmux set-option -w -t \"#{window_id}\" automatic-rename on; tmux set-option -w -t \"#{window_id}\" @tmux_window_name_enabled 1; fi"'
 set-hook -g client-attached[9100] 'run-shell -b "sh ~/.config/tmux/session-accent.sh --all"'
 set-hook -g client-detached[9100] 'run-shell -b "sh ~/.config/tmux/session-accent.sh --all"'
 set-hook -g client-session-changed[9100] 'run-shell -b "sh ~/.config/tmux/session-accent.sh --all"'

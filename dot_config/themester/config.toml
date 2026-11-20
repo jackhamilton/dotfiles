@@ -6,21 +6,26 @@ nvim_theme_env_var_name = "NVIM_THEME"
 
 write_term_lua = true
 term_lua_path = "~/.config/wezterm/dynamic_theme.lua"
+write_ghostty_config = true
+ghostty_config_path = "~/.config/themester/ghostty.conf"
 
 hours_per_randomization = 1
 
 [[theme]]
 term = "Tokyo Night"
+ghostty_theme = "TokyoNight Night"
 nvim_plugin = "tokyonight"
 nvim_themename = "tokyonight-night"
 
 [[theme]]
 term = "Tokyo Night Moon"
+ghostty_theme = "TokyoNight Moon"
 nvim_plugin = "tokyonight"
 nvim_themename = "tokyonight-moon"
 
 [[theme]]
 term = "Tokyo Night Storm"
+ghostty_theme = "TokyoNight Storm"
 nvim_plugin = "tokyonight"
 nvim_themename = "tokyonight-storm"
 
@@ -49,25 +54,30 @@ nvim_themename = "oh-lucy-evening"
 
 [[theme]]
 term = "catppuccin-frappe"
+ghostty_theme = "Catppuccin Frappe"
 nvim_plugin = "catppuccin"
 nvim_themename = "catppuccin-frappe"
 
 [[theme]]
 term = "catppuccin-macchiato"
+ghostty_theme = "Catppuccin Macchiato"
 nvim_plugin = "catppuccin"
 nvim_themename = "catppuccin-macchiato"
 
 [[theme]]
 term = "catppuccin-mocha"
+ghostty_theme = "Catppuccin Mocha"
 nvim_plugin = "catppuccin"
 nvim_themename = "catppuccin-mocha"
 
 [[theme]]
 term = "GruvboxDark"
+ghostty_theme = "Gruvbox Dark"
 nvim_themename = "gruvbox-material"
 
 [[theme]]
 term = "Gruvbox Dark (Gogh)"
+ghostty_theme = "Gruvbox Dark"
 nvim_themename = "gruvbox-material"
 
 [[theme]]
@@ -87,11 +97,13 @@ nvim_themename = "terafox"
 
 [[theme]]
 term = "rose-pine"
+ghostty_theme = "Rose Pine"
 nvim_plugin = "rose-pine"
 nvim_themename = "rose-pine"
 
 [[theme]]
 term = "Kanagawa (Gogh)"
+ghostty_theme = "Kanagawa Wave"
 nvim_plugin = "kanagawa"
 nvim_themename = "kanagawa-wave"
 
