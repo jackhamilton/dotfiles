@@ -1,4 +1,6 @@
 if test (uname) = Darwin
+    fish_add_path --prepend /nix/var/nix/profiles/default/bin
+
     set -l android_home "$HOME/Library/Android/sdk"
     if test -d "$android_home"
         set -gx ANDROID_HOME "$android_home"
