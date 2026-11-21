@@ -8,15 +8,15 @@
     {{ if eq .chezmoi.hostname "nixos-laptop" }}
     "modules-left": ["clock", "custom/weather", "hyprland/language", "keyboard-state", "tray"],
     "modules-center": ["hyprland/workspaces"],
-    "modules-right": ["pulseaudio", "backlight", "battery", "custom/mem", "cpu", "custom/power"],
+    "modules-right": ["pulseaudio", "backlight", "battery", "custom/mouse", "custom/mem", "cpu", "custom/power"],
     {{ else if eq .chezmoi.hostname "nixos-desktop" }}
     "modules-left": ["clock", "custom/weather", "hyprland/language", "keyboard-state", "tray"],
     "modules-center": ["hyprland/workspaces"],
-    "modules-right": ["pulseaudio", "backlight", "battery", "custom/mem", "cpu", "custom/power"],
+    "modules-right": ["pulseaudio", "backlight", "battery", "custom/mouse", "custom/mem", "cpu", "custom/power"],
     {{ else }}
     "modules-left": ["hyprland/workspaces", "hyprland/language", "keyboard-state", "custom/pacman", "custom/mail", "sway/mode"],
     "modules-center": ["clock", "custom/weather"],
-    "modules-right": ["pulseaudio", "custom/mem", "cpu", "battery", "tray", "custom/power"],
+    "modules-right": ["pulseaudio", "custom/mouse", "custom/mem", "cpu", "battery", "tray", "custom/power"],
     {{ end }}
 
 
@@ -154,6 +154,13 @@
         "format": "{} ",
         "interval": 3,
         "exec": "free -h | awk '/Mem:/{printf $3}'",
+        "tooltip": false,
+    },
+
+    "custom/mouse": {
+        "format": "{} 🖱",
+        "interval": 5,
+        "exec": "python3 $HOME/.config/waybar/scripts/g502-py.py",
         "tooltip": false,
     },
 

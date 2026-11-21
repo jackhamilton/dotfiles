@@ -137,7 +137,6 @@
 }
 
 #pulseaudio {
-    margin-right: 8px;
     padding-left: 16px;
     padding-right: 16px;
     border-radius: 0px 0px 10px 10px;
@@ -155,7 +154,7 @@
 #custom-mem {
     padding-left: 16px;
     padding-right: 16px;
-    border-radius: 0px 0px 0px 10px;
+    border-radius: 0;
     transition: none;
     color: #ffffff;
     background: #1d0d2f;
@@ -163,10 +162,9 @@
 }
 
 #cpu {
-    margin-right: 8px;
     padding-left: 0px;
     padding-right: 16px;
-    border-radius: 0px 0px 10px 0px;
+    border-radius: 0;
     transition: none;
     color: #ffffff;
     background: #1d0d2f;
@@ -189,7 +187,6 @@
 }
 
 #backlight {
-    margin-right: 8px;
     padding-left: 16px;
     padding-right: 16px;
     border-radius: 0px 0px 10px 10px;
@@ -200,7 +197,6 @@
 }
 
 #battery {
-    margin-right: 8px;
     padding-left: 16px;
     padding-right: 16px;
     border-radius: 0px 0px 10px 10px;
@@ -225,6 +221,15 @@
 
 #backlight, #battery {
     border-radius: 0;
+}
+
+#custom-mouse {
+    padding-left: 16px;
+    padding-right: 16px;
+    border-radius: 0;
+    color: #ffffff;
+    background: #0f2f0d;
+    opacity: 0.9;
 }
 
 #pulseaudio {
@@ -252,7 +257,7 @@
 #tray {
     padding-left: 16px;
     padding-right: 16px;
-    border-radius: 0px 0px 10px 10px;
+    border-radius: 0;
     transition: none;
     color: #ffffff;
     background: #2d0f19;
