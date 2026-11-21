@@ -304,52 +304,33 @@ hl.workspace_rule({
     gaps_in = 0,
 })
 
--- hl.window_rule({
---     name  = "bordersize_0_198",
---     match = {
---         floating = 0,
---         onworkspace = "w[tv1]",
---     },
---     -- TODO: review rule: "bordersize 0"
--- })
---
--- hl.window_rule({
---     name  = "rounding_0_199",
---     match = {
---         floating = 0,
---         onworkspace = "w[tv1]",
---     },
---     rounding = 0,
--- })
---
--- hl.window_rule({
---     name  = "bordersize_0_200",
---     match = {
---         floating = 0,
---         onworkspace = "f[1]",
---     },
---     -- TODO: review rule: "bordersize 0"
--- })
---
--- hl.window_rule({
---     name  = "rounding_0_201",
---     match = {
---         floating = 0,
---         onworkspace = "f[1]",
---     },
---     rounding = 0,
--- })
+hl.window_rule({
+    match = { float = false, workspace = "w[tv1]" },
+    border_size = 0,
+})
+
+hl.window_rule({
+    match = { float = false, workspace = "w[tv1]" },
+    rounding = 0,
+})
+
+hl.window_rule({
+    match = { float = false, workspace = "f[1]" },
+    border_size = 0,
+})
+
+hl.window_rule({
+    match = { float = false, workspace = "f[1]" },
+    rounding = 0,
+})
 
 -- See https://wiki.hypr.land/Configuring/Dwindle-Layout/ for more
 
--- hl.config({
---     dwindle = {
---         pseudotile = true,
---         -- Master switch for pseudotiling. Enabling is bound to mainMod + P in the keybinds section below
---         preserve_split = true,
---         -- You probably want this
---     },
--- })
+hl.config({
+    dwindle = {
+        preserve_split = true,
+    },
+})
 
 -- See https://wiki.hypr.land/Configuring/Master-Layout/ for more
 
@@ -434,8 +415,7 @@ hl.bind(mainMod .. " + " .. "P", hl.dsp.window.pseudo())
 
 -- dwindle
 
--- TODO: manual review (unknown dispatcher: togglesplit)
--- hl.bind(mainMod .. " + " .. "J", hl.dsp.togglesplit())
+hl.bind(mainMod .. " + " .. "J", hl.dsp.layout("togglesplit"))
 
 -- dwindle
 
@@ -447,11 +427,11 @@ hl.bind("CTRL + SHIFT + V", hl.dsp.exec_cmd("cliphist list | rofi -dmenu -displa
 
 hl.bind("Print", hl.dsp.exec_cmd("grimblast copy active"))
 
-hl.bind("CTRL + S", hl.dsp.exec_cmd("grimblast copy window"))
+hl.bind("CTRL + Print", hl.dsp.exec_cmd("grimblast copy window"))
 
-hl.bind("CTRL + SHIFT + S", hl.dsp.exec_cmd("grimblast copy output"))
+hl.bind("CTRL + SHIFT + Print", hl.dsp.exec_cmd("grimblast copy output"))
 
--- hl.bind(mainMod + "SHIFT" .. " + " .. "S", hl.dsp.exec_cmd("grimblast -f copy area"))
+hl.bind(mainMod .. " + SHIFT + S", hl.dsp.exec_cmd("grimblast -f copy area"))
 
 -- Move focus with mainMod + arrow keys
 
@@ -580,10 +560,10 @@ hl.window_rule({
     match = {
         class = "^$",
         title = "^$",
-        xwayland = 1,
-        -- floating = 1,
-        fullscreen = 0,
-        -- pinned = 0,
+        xwayland = true,
+        float = true,
+        fullscreen = false,
+        pin = false,
     },
     no_focus = true,
 })
@@ -622,13 +602,13 @@ hl.window_rule({
     float = true,
 })
 
--- hl.window_rule({
---     name  = "opacity_0_0_override_351",
---     match = {
---         class = "^(xwaylandvideobridge)$",
---     },
---     opacity = { 0.0, "override" },
--- })
+hl.window_rule({
+    name  = "opacity_0_0_override_351",
+    match = {
+        class = "^(xwaylandvideobridge)$",
+    },
+    opacity = "0.0 override",
+})
 
 hl.window_rule({
     name  = "noanim_352",
@@ -659,7 +639,7 @@ hl.window_rule({
     match = {
         class = "^(xwaylandvideobridge)$",
     },
-    -- blur = false,
+    no_blur = true,
 })
 
 hl.window_rule({
@@ -677,7 +657,7 @@ hl.window_rule({
     match = {
         title = "(Path of Exile)",
     },
-    -- TODO: review rule: "tag +poe"
+    tag = "+poe",
 })
 
 hl.window_rule({
@@ -685,7 +665,7 @@ hl.window_rule({
     match = {
         class = "(steam_app_238960)",
     },
-    -- TODO: review rule: "tag +poe"
+    tag = "+poe",
 })
 
 hl.window_rule({
@@ -709,7 +689,7 @@ hl.window_rule({
     match = {
         tag = "poe",
     },
-    -- TODO: review rule: "fullscreenstate 1 1"
+    fullscreen_state = "1 1",
 })
 
 hl.window_rule({
@@ -717,7 +697,7 @@ hl.window_rule({
     match = {
         title = "(Awakened PoE Trade)",
     },
-    -- TODO: review rule: "tag +apt"
+    tag = "+apt",
 })
 
 hl.window_rule({
@@ -733,7 +713,7 @@ hl.window_rule({
     match = {
         tag = "apt",
     },
-    -- blur = false,
+    no_blur = true,
 })
 
 -- windowrule = nofocus, tag:apt # Disable auto-focus
@@ -743,7 +723,7 @@ hl.window_rule({
     match = {
         tag = "apt",
     },
-    -- shadow = false,
+    no_shadow = true,
 })
 
 hl.window_rule({
@@ -751,7 +731,7 @@ hl.window_rule({
     match = {
         tag = "apt",
     },
-    -- border = false,
+    border_size = 0,
 })
 
 hl.window_rule({
@@ -794,6 +774,6 @@ hl.on("hyprland.start", function()
     hl.exec_cmd("blueman-applet")
     hl.exec_cmd("nm-applet --indicator &")
     hl.exec_cmd("/usr/lib/polkit-tnome/polkit-gnome-authentication-agent-1 &")
-    hl.exec_cmd("--no-startup-id/usr/lib/xdg-desktop-portal -r")
+    hl.exec_cmd("/usr/lib/xdg-desktop-portal -r")
     hl.exec_cmd("systemctl --user start hyprland-session.target")
 end)
