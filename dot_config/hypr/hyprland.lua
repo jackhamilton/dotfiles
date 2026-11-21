@@ -64,7 +64,7 @@ hl.monitor({
 
 -- Set programs that you use
 
-local terminal = "wezterm"
+local terminal = "ghostty"
 
 local browser = "zen"
 
@@ -397,7 +397,7 @@ local mainMod = "SUPER"
 
 -- Example binds, see https://wiki.hypr.land/Configuring/Binds/ for more
 
-hl.bind(mainMod .. " + " .. "Return", hl.dsp.exec_cmd("wezterm"))
+hl.bind(mainMod .. " + " .. "Return", hl.dsp.exec_cmd("ghostty"))
 
 -- bind = $mainMod, X, exit,
 
