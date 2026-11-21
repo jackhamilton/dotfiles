@@ -762,7 +762,8 @@ hl.window_rule({
 -- Autostart
 hl.on("hyprland.start", function()
     hl.exec_cmd("waypaper --restore")
-    hl.exec_cmd("waybar & hyprpaper")
+    hl.exec_cmd("waybar")
+    hl.exec_cmd("hyprpaper")
     hl.exec_cmd("swaync")
     hl.exec_cmd("blueman-applet")
     hl.exec_cmd("kdeconnectd")
