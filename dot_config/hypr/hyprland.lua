@@ -66,7 +66,7 @@ hl.monitor({
 
 local terminal = "ghostty"
 
-local browser = "zen"
+local browser = "librewolf"
 
 local fileManager = "nautilus"
 
@@ -404,6 +404,7 @@ hl.bind(mainMod .. " + " .. "Return", hl.dsp.exec_cmd("ghostty"))
 hl.bind(mainMod .. " + " .. "Q", hl.dsp.window.close())
 
 -- bind = $mainMod, W, exec, $browser
+hl.bind(mainMod .. " + " .. "W", hl.dsp.exec_cmd("librewolf"))
 
 hl.bind(mainMod .. " + " .. "E", hl.dsp.exec_cmd("nautilus"))
 
